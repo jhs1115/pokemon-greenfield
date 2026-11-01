@@ -80,3 +80,6 @@ html,body{width:100%;min-width:0;overflow-x:clip}#app{width:100%;min-width:0}.me
 .battle-wrapper .ability-banner.own{left:0}.battle-wrapper .ability-banner.opponent{right:0}
 
 .bag-actions button{background:#668351;color:#fff9e5;border:1px solid #668351;font-weight:700}.bag-actions button.primary{background:#456a3d;border-color:#456a3d}.bag-actions button:disabled{background:#e0e5d6;color:#78866c;border-color:#cdd6bf;opacity:1}
+
+/* Keep save-slot names legible on their dark cards. */
+.save-card>strong{color:#fff}
