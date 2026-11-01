@@ -5,12 +5,15 @@
   "description": "Local Pokemon tile battle prototype",
   "scripts": {
     "build:sim": "esbuild scripts/sim-entry.js --bundle --platform=browser --format=iife --global-name=PKMN --minify --outfile=assets/vendor/pkmn-sim.js",
-    "test": "node tests/game-state.test.cjs && node tests/campaign.test.cjs && node tests/native-combat.test.cjs && node tests/turn-sequence.test.cjs && node tests/boss-unlock.test.cjs && node tests/ui-rules.test.cjs && node tests/campaign-ui.test.cjs && node tests/audio.test.cjs && node tests/engine.test.cjs && node tests/sprite-effects.test.cjs"
+    "test": "node tests/game-state.test.cjs && node tests/campaign.test.cjs && node tests/native-combat.test.cjs && node tests/turn-sequence.test.cjs && node tests/boss-unlock.test.cjs && node tests/ui-rules.test.cjs && node tests/campaign-ui.test.cjs && node tests/audio.test.cjs && node tests/engine.test.cjs && node tests/sprite-effects.test.cjs && node tests/cloud-save.test.cjs && node tests/cloud-schema.test.cjs",
+    "build:supabase": "esbuild scripts/supabase-entry.js --bundle --platform=browser --format=iife --minify --outfile=assets/vendor/supabase.js"
   },
   "dependencies": {
-    "@pkmn/sim": "0.10.12"
+    "@pkmn/sim": "0.10.12",
+    "@supabase/supabase-js": "2.118.0"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "0.5.14",
     "esbuild": "0.25.12"
   }
 }

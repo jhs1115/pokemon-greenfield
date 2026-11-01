@@ -6,7 +6,7 @@ HTML/CSS/JavaScript로 만든 로컬 타일 턴제 게임입니다. 런타임 �
 python -m http.server 8765 --bind 127.0.0.1
 ```
 
-http://127.0.0.1:8765/ 에서 게임 시작 → 파일 1~3 → 튜토리얼을 진행합니다. 저장은 브라우저/주소별 localStorage이며 기존 파일을 유지합니다.
+http://127.0.0.1:8765/ 에서 게임 시작 → 파일 1~3 → 튜토리얼을 진행합니다. 기본 저장은 브라우저/주소별 localStorage이며 기존 파일을 유지합니다. Supabase 공개 설정을 연결하면 로그인 후 계정별 클라우드 저장을 사용합니다.
 
 ## 현재 구현
 
@@ -57,3 +57,8 @@ npm run build:sim
 `tests/campaign-preview.html`과 `tests/visual-scenes.html`은 저장 파일을 쓰지 않는 개발용 장면 확인 페이지입니다. 실제 플레이는 루트 페이지를 사용합니다.
 
 엔진: https://github.com/pkmn/ps (MIT). Jua 글꼴: https://github.com/google/fonts/tree/main/ofl/jua (OFL). Pokemon 데이터/기존 도트/울음소리: PokéAPI 및 pret 저장소. 캐릭터와 환경 생성 이미지의 전체 프롬프트·도구 방식은 각 `assets/*/SOURCE.md`에 기록합니다.
+
+
+## Supabase 계정 / 클라우드 저장
+
+이메일 로그인·회원가입·비밀번호 재설정, 계정별 저장 슬롯 3개, 빈 슬롯에 기기 파일 가져오기, 자동 저장·재시도·동시 수정 충돌 처리를 구현했습니다. `supabase-config.js`의 공개 URL/Publishable key와 `supabase/schema.sql` 실행이 필요합니다. 설정 전에는 기존 기기 저장으로 동작합니다. [연결 절차와 범위](docs/SUPABASE_SETUP.md)를 참고하세요. 교환/PVP와 서버 권위 재화 관리는 다음 단계입니다.

@@ -9,7 +9,7 @@ const QA_PROFILE=/^qa(?:-[a-z]+)*$/.test(PROFILE_NAME);
 const SAVE_PREFIX=QA_PROFILE?'greenfield-'+PROFILE_NAME+'-slot-v2-':'greenfield-slot-v2-';
 let activeSlot=null,game=G.normalize(),savedTeam=game.team,progress=0;
 let view='title',stage=0,battle,selectedTeam=[],token=0;
-function saveGame(){if(activeSlot===null)return;game.updatedAt=new Date().toISOString();try{localStorage.setItem(SAVE_PREFIX+activeSlot,JSON.stringify(game));}catch{toast('저장 공간을 확인해 주세요');}}
+function saveGame(){if(activeSlot===null)return;game.updatedAt=new Date().toISOString();try{if(window.GameAccount){window.GameAccount.save(activeSlot,game);return;}localStorage.setItem(SAVE_PREFIX+activeSlot,JSON.stringify(game));}catch(error){toast(window.GameAccount?'클라우드 저장 상태를 확인해 주세요.':'저장 공간을 확인해 주세요');}}
 function navigate(next){if(view==='battle'&&['manage','training','scout'].includes(next))return;if(view==='battle'&&next!=='battle')token++;view=next;render();}
 const img=id=>`assets/pokemon/animated/${id}.gif`;
 const badges=types=>types.map(t=>`<img class="type-badge" src="assets/types/${t}.png" alt="${D.types[t]}" title="${D.types[t]}">`).join('');
@@ -31,7 +31,7 @@ function battleImage(mon){return mon.art||`assets/pokemon/${mon.appearance||mon.
 function grantKnockoutExperience(){const b=battle;if(b.tutorial||enemy().hp>0||b.experiencePaid.includes(b.enemy))return;b.experiencePaid.push(b.enemy);const allocations=G.experienceShares(game,b.party,b.participants),events=[];for(const allocation of allocations){const i=allocation.index;const mon=b.party[i],oldHP=mon.hp,oldMax=mon.maxHP,remaining=new Map(mon.moves.map(m=>[m.id,m.remaining]));const event=G.gainExperience(game,mon.id,enemy(),!!b.encounter.trainer,1,allocation.weight*(b.encounter.chapter>=3?1.5:1)),fresh=makeMon(event.id);Object.assign(mon,fresh);mon.hp=Math.max(0,Math.min(mon.maxHP,oldHP+mon.maxHP-oldMax));mon.moves.forEach(m=>{if(remaining.has(m.id))m.remaining=remaining.get(m.id);});events.push(event);}savedTeam=game.team;saveGame();if(events.length)showExperienceNotice(events);}
 const player=()=>battle.party[battle.active],enemy=()=>battle.foes[battle.enemy];
 function log(t){battle.logs.unshift(t);}
-function render(){if(render.previousView&&render.previousView!==view){transitionView();window.requestAnimationFrame?.(()=>window.scrollTo?.({top:0,left:0,behavior:'instant'}));}render.previousView=view;document.body.dataset.view=view;window.GameAudio?.scene(view==='battle'?('battle:'+((battle?.encounter?.gym)|| (battle?.encounter?.rocket?'rocket':'wild'))):view);if(view==='title')return renderTitle();if(view==='files')return renderFiles();if(view==='tutorial')return renderTutorial();if(view==='leader')return renderLeader();if(view==='rocket')return renderRocket();if(view==='battle')return renderStory();if(view==='story')return renderStages();if(view==='manage')return renderManagement();if(view==='training')return renderTraining();if(view==='scout')return renderScout();renderHome();}
+function render(){if(render.previousView&&render.previousView!==view){transitionView();window.requestAnimationFrame?.(()=>window.scrollTo?.({top:0,left:0,behavior:'instant'}));}render.previousView=view;document.body.dataset.view=view;window.GameAudio?.scene(view==='battle'?('battle:'+((battle?.encounter?.gym)|| (battle?.encounter?.rocket?'rocket':'wild'))):view);if(view==='auth')return renderAuth();if(view==='title')return renderTitle();if(view==='files')return renderFiles();if(view==='tutorial')return renderTutorial();if(view==='leader')return renderLeader();if(view==='rocket')return renderRocket();if(view==='battle')return renderStory();if(view==='story')return renderStages();if(view==='manage')return renderManagement();if(view==='training')return renderTraining();if(view==='scout')return renderScout();renderHome();}
 function monPanel(p,isEnemy){return `<div class="unit-hud ${isEnemy?'enemy-hud':'player-hud'}"><div><b>${p.name}<small> Lv.${p.level}</small></b><span>${p.hp}/${p.maxHP}</span></div><div class="hp-track"><div class="hp-fill ${p.hp<p.maxHP/3?'low':''}" style="width:${p.hp/p.maxHP*100}%"></div></div><div class="hud-types">${badges(p.types)}${statusBadges(p)}</div></div>`;}
 function renderStory(){
  const b=battle,p=player(),f=enemy(),m=p.moves[b.move],origin=b.destination||b.pos;
@@ -193,4 +193,5 @@ function transitionView(){
 
 function syncBattleItems(){if(!game.itemsUnlocked)return;let changed=false;const snap=battle.combat.snapshot();for(const entry of snap.mons){if(entry.name[0]!=='p')continue;const mon=battle.combat.lookup(entry.name).mon,key=game.heldItems[mon.id];if(key&&window.ITEM_DATA[key]?.consumed&&!entry.item){delete game.heldItems[mon.id];changed=true;}}if(changed)saveGame();}
 
+if(typeof initAccountUI==='function')initAccountUI();
 render();

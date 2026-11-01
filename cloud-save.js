@@ -1,0 +1,54 @@
+(function(root){
+'use strict';
+const clone=x=>JSON.parse(JSON.stringify(x));
+const stable=x=>JSON.stringify(x,(_,v)=>v&&typeof v==='object'&&!Array.isArray(v)?Object.fromEntries(Object.keys(v).sort().map(k=>[k,v[k]])):v);
+function createCloudStore({client,storage,schedule=setTimeout,cancel=clearTimeout}){
+ let user=null,epoch=0,loaded=false,loading=null,flushing=null,timer=null,recovery=false,lastError=null;
+ let slots=new Map(),revisions=new Map(),pending=new Map(),conflicts=new Map();
+ const listeners=new Set(),key=id=>'greenfield-cloud-pending-v1-'+id;
+ const notify=()=>listeners.forEach(fn=>fn());
+ function persist(){if(!user)return;try{storage.setItem(key(user.id),JSON.stringify([...pending.values()]));}catch{lastError=new Error('기기 백업 공간이 부족합니다');}}
+ function status(){return {user,loaded,recovery,error:lastError,pending:pending.size,conflicts:[...conflicts.keys()],saving:!!flushing};}
+ function observe(event,session){const next=session?.user||null;if(user?.id!==next?.id){epoch++;user=next;loaded=false;loading=null;flushing=null;slots=new Map();revisions=new Map();pending=new Map();conflicts=new Map();lastError=null;cancel(timer);if(user){try{for(const p of JSON.parse(storage.getItem(key(user.id))||'[]'))if([1,2,3].includes(p.slot)&&p.state&&Number.isInteger(p.baseRevision))pending.set(p.slot,p);}catch{}}}else user=next;
+  if(event==='PASSWORD_RECOVERY')recovery=true;if(!next)recovery=false;notify();
+ }
+ async function init(){client.auth.onAuthStateChange((event,session)=>schedule(()=>observe(event,session),0));const {data,error}=await client.auth.getSession();if(error)throw error;observe('INITIAL_SESSION',data.session);return status();}
+ async function load(){if(!user)throw Error('로그인이 필요합니다');if(loaded)return;if(loading)return loading;const ownEpoch=epoch,uid=user.id;
+  const task=(async()=>{const {data,error}=await client.from('game_saves').select('slot,state,revision,updated_at').eq('user_id',uid).order('slot');if(ownEpoch!==epoch)return;if(error){lastError=error;throw error;}
+   slots=new Map();revisions=new Map();for(const row of data){slots.set(row.slot,clone(row.state));revisions.set(row.slot,Number(row.revision));}
+   for(const [slot,p]of pending){const revision=revisions.get(slot)||0;if(revision===p.baseRevision){slots.set(slot,clone(p.state));}else if(stable(slots.get(slot))===stable(p.state)){pending.delete(slot);}else conflicts.set(slot,{remote:clone(slots.get(slot)||null),local:clone(p.state)});}
+   loaded=true;lastError=null;persist();notify();if(pending.size&&!conflicts.size)queueFlush();
+  })();loading=task;try{await task;}finally{if(ownEpoch===epoch)loading=null;}
+ }
+ function read(slot){return slots.has(slot)?clone(slots.get(slot)):null;}
+ function save(slot,state){if(!user||!loaded)throw Error('클라우드 파일을 먼저 불러와 주세요');if(![1,2,3].includes(slot))throw Error('잘못된 파일 번호입니다');if(conflicts.has(slot))throw Error('다른 기기의 저장 내용을 먼저 확인해 주세요');
+  const value=clone(state),entry={slot,state:value,baseRevision:pending.get(slot)?.baseRevision??(revisions.get(slot)||0)};pending.set(slot,entry);slots.set(slot,value);persist();notify();queueFlush();
+ }
+ function queueFlush(){cancel(timer);timer=schedule(()=>{flush().catch(()=>{});},650);}
+ async function flush(){cancel(timer);if(flushing)return flushing;if(!user||!loaded)return;const ownEpoch=epoch,owner=user.id;
+  const task=(async()=>{for(const [slot]of pending){if(conflicts.has(slot))continue;while(pending.has(slot)&&!conflicts.has(slot)){
+   const sent=pending.get(slot);const {data,error}=await client.rpc('save_game_slot',{p_slot:slot,p_state:sent.state,p_expected_revision:sent.baseRevision,p_owner:owner});if(ownEpoch!==epoch)return;
+   if(error){lastError=error;if(String(error.message).includes('SAVE_CONFLICT'))conflicts.set(slot,{local:clone(pending.get(slot).state),remote:null});persist();throw error;}
+   const row=Array.isArray(data)?data[0]:data;if(!row||!Number.isInteger(Number(row.revision)))throw Error('저장 응답을 확인할 수 없습니다');revisions.set(slot,Number(row.revision));
+   if(pending.get(slot)===sent)pending.delete(slot);else pending.get(slot).baseRevision=Number(row.revision);lastError=null;persist();notify();
+  }}})();flushing=task;notify();try{await task;}finally{if(ownEpoch===epoch){flushing=null;notify();}}
+ }
+ async function reloadConflict(slot){if(!conflicts.has(slot))return;const ownEpoch=epoch,uid=user.id;const {data,error}=await client.from('game_saves').select('slot,state,revision,updated_at').eq('user_id',uid).eq('slot',slot).maybeSingle();if(error)throw error;if(ownEpoch!==epoch)return;
+  // Keep the discarded local progress as a separate, account-scoped recovery copy.
+  storage.setItem('greenfield-conflict-backup-'+uid+'-'+slot+'-'+Date.now(),JSON.stringify(pending.get(slot)?.state||conflicts.get(slot).local));
+  pending.delete(slot);conflicts.delete(slot);if(data){slots.set(slot,clone(data.state));revisions.set(slot,Number(data.revision));}else{slots.delete(slot);revisions.delete(slot);}lastError=null;persist();notify();
+ }
+ async function signOut(){await flush();if(pending.size)throw Error('저장이 끝난 뒤 로그아웃해 주세요');const {error}=await client.auth.signOut();if(error)throw error;observe('SIGNED_OUT',null);}
+ return {configured:true,init,load,read,save,flush,status,reloadConflict,subscribe(fn){listeners.add(fn);return()=>listeners.delete(fn);},
+  async signIn(email,password){const {data,error}=await client.auth.signInWithPassword({email,password});if(error)throw error;observe('SIGNED_IN',data.session);},
+  async signUp(email,password,redirect){const {data,error}=await client.auth.signUp({email,password,options:{emailRedirectTo:redirect}});if(error)throw error;if(data.session)observe('SIGNED_IN',data.session);return !!data.session;},
+  async resetPassword(email,redirect){const {error}=await client.auth.resetPasswordForEmail(email,{redirectTo:redirect});if(error)throw error;},
+  async updatePassword(password){const {error}=await client.auth.updateUser({password});if(error)throw error;recovery=false;notify();},signOut};
+}
+root.createCloudStore=createCloudStore;if(typeof module==='object')module.exports={createCloudStore};
+const config=root.SUPABASE_CONFIG;if(root.document&&config?.url&&config?.publishableKey){try{
+ if(config.publishableKey.startsWith('sb_secret_'))throw Error('브라우저에는 Publishable key만 사용할 수 있습니다');
+ if(config.publishableKey.split('.').length===3){const claims=JSON.parse(root.atob(config.publishableKey.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));if(claims.role!=='anon')throw Error('브라우저에는 anon public key만 사용할 수 있습니다');}
+ root.GameAccount=createCloudStore({client:root.SupabaseSDK.createClient(config.url,config.publishableKey),storage:root.localStorage});
+}catch{root.GameAccountConfigError=true;}}
+})(typeof window==='object'?window:globalThis);
