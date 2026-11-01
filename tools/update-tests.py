@@ -1,0 +1,15 @@
+from pathlib import Path
+p=Path('native-combat.js');s=p.read_text(encoding='utf-8').replace('if(mon.art){p.hp=mon.hp;', 'if(mon.art||p.maxhp!==mon.maxHP){p.hp=mon.hp;');p.write_text(s,encoding='utf-8')
+p=Path('tests/game-state.test.cjs');s=p.read_text(encoding='utf-8-sig').replace("G=require('../game-state.js')(D,T,P)","G=require('../game-state.js')(D,T,P,require('../data/abilities.json'))")
+s=s.replace('assert.equal(state.coins,30)','assert.equal(state.coins,0)').replace('const picks=[...G.scout(state,()=>.4)]','G.completeTutorial(state);assert.equal(state.coins,10);G.completeTutorial(state);assert.equal(state.coins,10);const picks=[...G.scout(state,()=>.4)]').replace('assert.equal(state.coins,20)','assert.equal(state.coins,0)')
+s=s.replace("G.reward(e,0,'first').total,15", "G.reward(e,0,'first').total,1").replace("G.reward(e,0,'repeat').total,5", "G.reward(e,0,'repeat').total,0").replace(".total>5", ".total>=1")
+s += "\nassert.throws(()=>G.setAbility(state,4,94));assert.equal(G.ability(state,4),G.defaultAbility(4));const final=G.normalize({owned:[6],team:[6]});G.setAbility(final,6,94);assert.equal(G.ability(final,6),94);assert.equal(G.ability(G.normalize(JSON.parse(JSON.stringify(final))),6),94);assert.throws(()=>G.setAbility(final,6,22));\n"
+p.write_text(s,encoding='utf-8')
+p=Path('tests/turn-sequence.test.cjs');s=p.read_text(encoding='utf-8-sig').replace("window:{POKE_DATA:","window:{ABILITY_DATA:require('../data/abilities.json'),NativeCombat:require('../native-combat.js'),POKE_DATA:")
+s=s.replace('showExperienceNotice:()=>{},','showExperienceNotice:()=>{},showAbilityNotices:()=>{},describeCombat:()=>[{text:\'used\',side:\'e\'}],showBattleNotes:()=>{},')
+s=s.replace("remaining:D.moves[id].pp}));}fixture();", "remaining:D.moves[id].pp}));battle.combat=window.NativeCombat.create(battle,D,E,moveFor,[1,2,3,4]);}fixture();")
+s=s.replace("fixture();enemy().hp=1;", "fixture();enemy().hp=1;battle.combat.sim.sides[1].active[0].hp=1;")
+s=s.replace("fixture();enemy().battleStats[6]=999;", "fixture();enemy().actionSpeed=999;battle.combat.sim.sides[1].active[0].storedStats.spe=999;")
+s=s.replace("battle.foes.forEach(p=>p.hp=1);", "battle.foes.forEach(p=>p.hp=1);battle.combat.sim.sides[1].pokemon.forEach(p=>p.hp=1);")
+s=s.replace("'game.coins',context),45", "'game.coins',context),31")
+p.write_text(s,encoding='utf-8')

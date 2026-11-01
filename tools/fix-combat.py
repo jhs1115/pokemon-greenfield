@@ -1,0 +1,11 @@
+from pathlib import Path
+p=Path('app.js');s=p.read_text(encoding='utf-8').replace('b.combat.apply(turn.preSwitch);','b.combat.apply(turn.final);').replace("battle.combat=window.NativeCombat.create(battle,D,E,moveFor);render();", "battle.combat=window.NativeCombat.create(battle,D,E,moveFor);battle.combat.apply(battle.combat.snapshot());render();")
+s=s.replace("b.busy||b.result||i===b.active||mon.hp<=0?", "b.busy||b.result||i===b.active||mon.hp<=0||!b.combat.canSwitch(i)?")
+s=s.replace('speed:player().battleStats[6]*E.stageMultiplier(player().statStages[6])','speed:player().actionSpeed||player().battleStats[6]*E.stageMultiplier(player().statStages[6])').replace('speed:enemy().battleStats[6]*E.stageMultiplier(enemy().statStages[6])','speed:enemy().actionSpeed||enemy().battleStats[6]*E.stageMultiplier(enemy().statStages[6])')
+s=s.replace("game.tutorial.step='scout';saveGame();view='scout';", "game.tutorial.step='scout';saveGame();view='scout';")
+p.write_text(s,encoding='utf-8')
+p=Path('native-combat.js');s=p.read_text(encoding='utf-8').replace('status:p.status,volatiles:', 'status:p.status,speed:p.getActionSpeed(),volatiles:').replace('mon.hp=p.hp;mon.maxHP', 'mon.actionSpeed=p.speed;mon.hp=p.hp;mon.maxHP')
+s=s.replace('disabled:m.disabled}));mon.nativeRequest=p.request;', "disabled:m.disabled||(p.request?.moves?.length>0&&!p.request.moves.some(r=>r.id===Dex.moves.get(data.moves[m.id].key).id&&!r.disabled))}));mon.nativeRequest=p.request;")
+p.write_text(s,encoding='utf-8')
+p=Path('journey.js');s=p.read_text(encoding='utf-8').replace("function renderTutorial(){if(","function renderTutorial(){if(game.tutorial.step==='training')game.tutorial.step='training-slot';if(")
+p.write_text(s,encoding='utf-8')

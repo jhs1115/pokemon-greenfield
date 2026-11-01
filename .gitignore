@@ -1,0 +1,16 @@
+node_modules/
+tools/npm/
+.env
+.env.*
+!.env.example
+*.log
+*.tmp
+__pycache__/
+.DS_Store
+Thumbs.db
+assets/audio/*.zip
+assets/audio/*.source.html
+data/raw/
+docs/preview-*.png
+docs/preview-*.jpg
+/pokemon-greenfield/

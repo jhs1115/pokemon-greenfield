@@ -1,0 +1,42 @@
+from pathlib import Path
+p=Path('game-state.js');s=p.read_text(encoding='utf-8').replace('progression=root.PROGRESSION_DATA)', 'progression=root.PROGRESSION_DATA,abilityData=root.ABILITY_DATA)')
+s=s.replace("  const freshRecord=", "  const abilityOptions=id=>abilityData?.pokemon[id]||[];\n  const defaultAbility=id=>abilityOptions(id).find(a=>!a.hidden)?.id||0;\n  const ability=(state,id)=>isFinal(id)&&abilityOptions(id).some(a=>a.id===state.abilitySets?.[id])?state.abilitySets[id]:defaultAbility(id);\n  function setAbility(state,id,value){if(!state.owned.includes(id)||!isFinal(id)||!abilityOptions(id).some(a=>a.id===value))throw new Error('최종 진화 후 특성을 선택할 수 있습니다');state.abilitySets[id]=value;}\n  function completeTutorial(state){state.tutorial={step:'done',done:true};if(!state.tutorialRewardClaimed){state.coins+=10;state.tutorialRewardClaimed=true;return 10;}return 0;}\n  const freshRecord=")
+s=s.replace(':30,owned,team,records,moveSets:{}',':0,owned,team,records,abilitySets:{...(raw.abilitySets||{})},tutorialRewardClaimed:raw.tutorialRewardClaimed===true||(raw.tutorial?.done===true&&raw.tutorialRewardClaimed===undefined),moveSets:{}')
+s=s.replace('const base=5,first=state.clears[stage]===0?(stage===9?30:10+stage*2):0;', 'const base=state.clears[stage]>0&&(state.clears[stage]+1)%5===0?1:0,first=state.clears[stage]===0?(stage===9?3:1):0;')
+s=s.replace('state.records[next]=state.records[id];state.moveSets[next]', 'state.records[next]=state.records[id];state.abilitySets[next]=defaultAbility(next);delete state.abilitySets[id];state.moveSets[next]')
+s=s.replace('return {normalize,defaultMoves,', 'return {abilityOptions,defaultAbility,ability,setAbility,completeTutorial,normalize,defaultMoves,')
+p.write_text(s,encoding='utf-8')
+p=Path('index.html');s=p.read_text(encoding='utf-8').replace('<script src="game-state.js','<script src="data/abilities.js"></script><script src="game-state.js').replace('<script src="dialogue.js">','<script src="battle-feedback.js"></script><script src="dialogue.js">').replace('journey-5','journey-6');p.write_text(s,encoding='utf-8')
+p=Path('app.js');s=p.read_text(encoding='utf-8').replace('G=window.createGameModel(D,T,P)','A=window.ABILITY_DATA,G=window.createGameModel(D,T,P,A)')
+s=s.replace('return {...p,level,types:',"return {...p,level,abilityId:isEnemy?G.defaultAbility(id):G.ability(game,id),abilityKey:A?.abilities[isEnemy?G.defaultAbility(id):G.ability(game,id)]?.key||'noability',types:")
+s=s.replace('battle.combat.apply(battle.combat.snapshot());render();}',"battle.combat.apply(battle.combat.snapshot());render();const initial=battle.combat.sim.log.slice();setTimeout(()=>{if(view==='battle'&&!battle.busy)showAbilityNotices(initial);},350);}")
+s=s.replace("b.message=combatMessage(record.logs,atk.name,m.name);log(b.message);render();await pause(650);", "const notes=describeCombat(record,atk,m);b.message=notes.map(n=>n.text).join(' ');b.messages=notes;log(b.message);render();showBattleNotes(notes);showAbilityNotices(record.logs);await pause(850);")
+s=s.replace('<div class="battle-instruction" role="status">${battleInstruction()}</div>', '<div class="battle-instruction" role="status">${b.busy&&b.messages?.length?b.messages.map(n=>`<span class="combat-note ${n.kind}">${n.text}</span>`).join(\'\'):battleInstruction()}</div>')
+s=s.replace("b.busy=true;b.mode='resolving';", "b.busy=true;b.messages=[];b.message='';b.mode='resolving';")
+p.write_text(s,encoding='utf-8')
+p=Path('native-combat.js');s=p.read_text(encoding='utf-8').replace("ability:'No Ability'", "ability:m.abilityKey||'No Ability'")
+# Preserve entry effects such as Intimidate; do not reset HP to full after start except custom dummy HP.
+s=s.replace('p.hp=mon.hp;p.maxhp=mon.maxHP;p.baseMaxhp=mon.maxHP;', 'if(mon.art){p.hp=mon.hp;p.maxhp=mon.maxHP;p.baseMaxhp=mon.maxHP;}')
+p.write_text(s,encoding='utf-8')
+p=Path('journey.js');s=p.read_text(encoding='utf-8').replace("game.tutorial={step:'done',done:true};saveGame();navigate('home');", "G.completeTutorial(game);saveGame();navigate('home');toast('튜토리얼 완료 · +10 COIN');")
+s=s.replace("game.tutorial={step:'done',done:true};view='home';", "G.completeTutorial(game);view='home';toast('튜토리얼 완료 · +10 COIN');")
+s=s.replace("function showExperienceNotice(events){if(!Array.isArray(events))events=[events];", "function showExperienceNotice(events){if(!Array.isArray(events))events=[events];for(const event of events)if(event.evolved.length)queueEvolution(event.oldId,event.id);")
+s=s.replace("'스카우트 버튼을 눌러 동료를 만나보렴. 10코인으로 후보 세 마리 중 한 마리를 데려올 수 있단다.'", "'스카우트 버튼을 눌러보렴. 이번 연습 영입은 무료란다. 평소에는 후보 세 마리 중 한 마리를 데려오는 데 10코인이 필요하지.'")
+s=s.replace("1-10에서는 웅이가 기다리고 있단다!", "1-10에서는 웅이가 기다리고 있단다! 튜토리얼 완료 보상으로 10코인을 주마.")
+p.write_text(s,encoding='utf-8')
+p=Path('menus.js');s=p.read_text(encoding='utf-8')
+s=s.replace("const pending=game.pending,waiting=pending.length&&Date.now()<(game.scoutRevealAt||0);", "const pending=game.pending,waiting=false,practice=!game.tutorial.done&&game.tutorial.step==='scout';")
+s=s.replace('assets/trainers/scout-npc.png','assets/trainers/scout-leaf.png').replace('${i*350}ms','${i*80}ms')
+s=s.replace("game.coins<10||!G.scoutPool(game).length", "(!practice&&game.coins<10)||!G.scoutPool(game).length")
+s=s.replace('>스카우트 · 10 COIN</button>',">${practice?'연습 스카우트 · 무료':'스카우트 · 10 COIN'}</button>")
+s=s.replace("G.scout(game);game.scoutRevealAt=Date.now()+2600;", "if(practice&&!game.pending.length){game.coins+=10;try{G.scout(game);}catch(e){game.coins-=10;throw e;}}else G.scout(game);game.scoutRevealAt=0;")
+s=s.replace('${evolutionControls(game.team[managementSlot])}', '${abilitySummary(game.team[managementSlot])}${evolutionControls(game.team[managementSlot])}')
+s=s.replace('<div class="training-slots">','${abilityControls(p.id)}<div class="training-slots">')
+s=s.replace("bindMenuHeader();document.querySelectorAll('[data-train-pokemon]')", "bindMenuHeader();bindAbilityControls();document.querySelectorAll('[data-train-pokemon]')")
+s=s.replace("renderManagement();toast(`${species(to).name}(으)로 진화했다!`);", "renderManagement();queueEvolution(from,to);toast(`${species(to).name}(으)로 진화했다!`);")
+s += '''
+function abilitySummary(id){if(!id)return '';const a=A.abilities[G.ability(game,id)];return a?`<div class="ability-summary"><small>특성</small><b>${a.name}</b><p>${escapeHTML(a.description||'')}</p></div>`:'';}
+function abilityControls(id){const options=G.abilityOptions(id),selected=G.ability(game,id);return `<div class="ability-settings"><label for="ability-select">특성 ${G.isFinal(id)?'':'<small>최종 진화 후 변경</small>'}</label><select id="ability-select" ${G.isFinal(id)?'':'disabled'}>${options.filter(a=>G.isFinal(id)||a.id===selected).map(a=>`<option value="${a.id}" ${a.id===selected?'selected':''}>${A.abilities[a.id].name}${a.hidden?' · 숨겨진 특성':''}</option>`).join('')}</select><p>${escapeHTML(A.abilities[selected]?.description||'')}</p></div>`;}
+function bindAbilityControls(){if($('#ability-select'))$('#ability-select').onchange=e=>{try{G.setAbility(game,trainingPokemon,+e.target.value);saveGame();renderTraining();}catch(error){toast(error.message);}};}
+'''
+p.write_text(s,encoding='utf-8')
