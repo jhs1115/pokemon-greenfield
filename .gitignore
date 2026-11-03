@@ -14,3 +14,6 @@ data/raw/
 docs/preview-*.png
 docs/preview-*.jpg
 /pokemon-greenfield/
+
+supabase/.temp/
+supabase/.branches/

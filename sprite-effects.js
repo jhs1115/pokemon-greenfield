@@ -23,7 +23,7 @@
   const attacker=board.querySelector(`[data-x="${origin.x}"][data-y="${origin.y}"] img:not(.move-ghost)`);
   const defender=hit?board.querySelector(`[data-x="${defenderPos.x}"][data-y="${defenderPos.y}"] img:not(.move-ghost)`):null;
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const duration=reduced?350:move.fxVariant?1000+(move.fxVariant%7)*75:durationByMove[move.fx],begin=performance.now();
+  const duration=(reduced?350:move.fxVariant?1000+(move.fxVariant%7)*75:durationByMove[move.fx])/(window.getBattlePlaybackRate?.()||1),begin=performance.now();
   const clamp=v=>Math.max(0,Math.min(1,v));
   const phase=(t,start,end)=>(t-start)/(end-start);
   const mix=(p,q,t)=>({x:p.x+(q.x-p.x)*t,y:p.y+(q.y-p.y)*t});

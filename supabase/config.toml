@@ -1,0 +1,7 @@
+project_id = "pokemon-greenfield"
+
+[functions.pvp]
+verify_jwt = false
+
+[functions.trade]
+verify_jwt = false

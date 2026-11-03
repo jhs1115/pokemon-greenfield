@@ -35,3 +35,9 @@ The Kenney license files and the PokéAPI repository license are retained in `li
 Defaults: music 7%, effects 45%. Effects receive their own bus, gain normalization, a compressor and limited concurrent voices. Music ducks further during casts, impacts and jingles; scene changes fade between local tracks. Playback starts after a click/key gesture, stops when the tab is hidden, and respects persistent mute/volume choices. Original cry sources occasionally contain MPEG data under an `.ogg` name; those files are copied with `.mp3` extensions in the runtime manifest.
 
 Rebuild download assets with `scripts/prepare_audio.py`, `scripts/select_audio.py`, then `scripts/prepare_cries.py`. Full source archives and saved source-page HTML are kept for provenance, but the game only loads the selected files referenced in the manifest and the current scene music.
+
+## Active evolution audio
+
+- During evolution: `pokemon-evolution.ogg`, existing Pokémon evolution BGM from the Pokémon Essentials GSC kit: https://github.com/RZC2/pokemon-essentials-GSC/blob/9ea8cc8e6725db95f4cf56bbbc48bdd404d367ff/Audio/BGM/Evolution.ogg .
+- Completion: `pokemon-evolution-success.ogg`, `Audio/ME/Evolution success.ogg` from Pokémon Essentials Chasm, commit `685d3f2234273faf116cf5a6a1b15227128aee37`. Exact raw source URLs are recorded alongside each file in `.source.txt`. Original game soundtrack rights remain with Nintendo / Creatures / GAME FREAK.
+- These are downloaded game audio files, not generated imitations. Playback follows the 4.3-second evolution scene, uses the effects volume/mute settings, and temporarily lowers the existing background music. Closing the completion dialog stops the evolution voice and restores background volume.

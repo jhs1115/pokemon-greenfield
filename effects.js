@@ -12,7 +12,7 @@ window.animateMovement=async function(from,to){
  if(movingShadow){const r=shadow.getBoundingClientRect();movingShadow.className='moving-shadow';Object.assign(movingShadow.style,{left:`${r.left-b.left}px`,top:`${r.top-b.top}px`,width:`${r.width}px`,height:`${r.height}px`});shadow.style.visibility='hidden';board.append(movingShadow);}
  sprite.style.visibility='hidden';board.append(moving);
  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- const frames=[{transform:'translate(0,0)'},{transform:`translate(${end.left-start.left}px,${end.top-start.top}px)`}],timing={duration:reduced?100:520,easing:'cubic-bezier(.25,.7,.3,1)',fill:'forwards'};
+ const frames=[{transform:'translate(0,0)'},{transform:`translate(${end.left-start.left}px,${end.top-start.top}px)`}],timing={duration:(reduced?100:520)/(window.getBattlePlaybackRate?.()||1),easing:'cubic-bezier(.25,.7,.3,1)',fill:'forwards'};
  try{await Promise.all([moving.animate(frames,timing).finished,movingShadow?.animate(frames,timing).finished]);}
  finally{moving.remove();movingShadow?.remove();sprite.style.visibility='';if(shadow)shadow.style.visibility='';}
 };
