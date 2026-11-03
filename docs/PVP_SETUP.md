@@ -25,7 +25,7 @@ npx --yes supabase functions deploy pvp --remote=cncoztfeuzruykxiykfj --use-api 
 
 Dashboard → Edge Functions에서 `pvp` 배포를 확인합니다. 서비스 키는 Supabase의 서버 환경 변수로만 읽으며 HTML/JS 설정 파일에 넣지 않습니다. `--no-verify-jwt`는 게이트웨이의 구형 JWT 검사를 생략하는 설정이며, 함수 내부에서 매 요청의 사용자 토큰을 `auth.getUser()`로 검증합니다.
 
-게임 규칙을 수정했다면 배포 전에 `npm ci`, `npm run build:pvp`로 `supabase/functions/pvp/rules.mjs`를 다시 만드세요. 현재 생성된 번들은 저장소에 포함되어 있습니다.
+게임 규칙을 수정했다면 배포 전에 `npm ci`, `npm run build:pvp`로 `supabase/functions/pvp/rules.mjs`를 다시 만드세요. 현재 생성된 번들은 저장소에 포함되어 있습니다. `scripts/build-pvp.cjs`는 전투 엔진의 ESM/CommonJS 중복을 제거하고, 서버에서 사용하지 않는 Showdown 기술 습득·팀 적법성 테이블을 제외합니다. 보유/기술 검증은 기존 게임의 `game-state.js`와 `training.json`을 사용하며 전투 기술·특성·도구 판정 데이터는 유지합니다. API 배포를 위해 번들이 4,000,000바이트를 넘으면 빌드가 실패합니다. 2026-11-03 수정 번들은 약 3.49 MiB이며 기존 전체 엔진과 151종의 초기 상태/턴 판정 동등성을 확인했습니다.
 
 ## 3. 사이트 업데이트 / 실전 확인
 
