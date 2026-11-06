@@ -19,13 +19,13 @@ assert.equal(E.range({x:0,y:0},{x:2,y:1},{range:3,shape:'line'}),false);
 assert.equal(E.range({x:0,y:0},{x:2,y:1},{range:3,shape:'area'}),true);
 const moves=require('../moves.js');
 const center={x:4,y:3};
-assert.equal(E.attackTiles({x:0,y:3},center,moves[85]).length,5);
+assert.equal(E.attackTiles({x:0,y:3},center,moves[85]).length,9);
 assert.deepEqual(E.attackTiles(center,{x:5,y:3},moves[33]),[{x:5,y:2},{x:5,y:3},{x:5,y:4}]);
 assert.deepEqual(E.attackTiles(center,{x:4,y:2},moves[33]),[{x:3,y:2},{x:4,y:2},{x:5,y:2}]);
 assert.equal(E.attackTiles(center,{x:5,y:4},moves[33]).length,0);
-assert.equal(E.attackTiles({x:4,y:3},{x:0,y:0},moves[85]).length,3);
-assert.equal(E.attackTiles(center,{x:5,y:3},moves[55]).length,5);
-assert.equal(E.attackTiles(center,{x:5,y:3},moves[53]).length,5);
+assert.equal(E.attackTiles({x:4,y:3},{x:0,y:0},moves[85]).length,4);
+assert.equal(E.attackTiles(center,{x:5,y:3},moves[55]).length,9);
+assert.equal(E.attackTiles(center,{x:5,y:3},moves[53]).length,9);
 assert.ok(E.attackTiles({x:0,y:0},{x:2,y:2},moves[85]).some(p=>p.x===3&&p.y===2));
 for(const m of Object.values(moves))for(const origin of [{x:0,y:0},center,{x:9,y:6}]){
  for(let y=0;y<7;y++)for(let x=0;x<10;x++){
@@ -63,25 +63,25 @@ assert.deepEqual(E.criticalTiles(center,center,{range:0,impact:'self',damageClas
 assert.equal(E.damage(mon,mon,{type:13,power:0,damageClass:1},D,crit),0);
 for(let i=1;i<=151;i++)assert.ok(require('node:fs').statSync(require('node:path').join(__dirname,`../assets/pokemon/${i}.png`)).size>50);
 console.log('Battle engine and 151 sprite assets: all checks passed.');
-// All base move definitions, including expanded moves, share the same five-tile limit.
+// All base move definitions, including expanded moves, share the same nine-tile limit.
 const expanded=require('../expanded-moves.js');
 for(const raw of Object.values(D.moves)){
  const move={...raw,...(moves[raw.id]||expanded(raw))};
  for(const origin of [{x:0,y:0},{x:4,y:3},{x:9,y:6}])for(let y=0;y<7;y++)for(let x=0;x<10;x++){
   const cells=E.attackTiles(origin,{x,y},move);
-  assert.ok(cells.length<=5,`${raw.key} exceeds five tiles`);
+  assert.ok(cells.length<=9,`${raw.key} exceeds nine tiles`);
   assert.equal(new Set(cells.map(p=>`${p.x},${p.y}`)).size,cells.length);
  }
- if(move.impact==='ray'&&!E.BASIC_MOVE_RULES[raw.id])assert.deepEqual(E.attackTiles({x:0,y:3},{x:1,y:3},move),[1,2,3,4,5].map(x=>({x,y:3})));
+ assert.deepEqual(E.normalizeMove(E.normalizeMove(move)),E.normalizeMove(move),'normalization must be idempotent');
 }
-assert.deepEqual(E.attackTiles({x:0,y:3},{x:4,y:3},{range:4,impact:'square',size:1}),[{x:4,y:3},{x:5,y:3},{x:3,y:3},{x:4,y:4},{x:4,y:2}]);
-console.log('All 937 move footprints: maximum five tiles; square-to-cross and five-tile rays: passed.');
+assert.equal(E.attackTiles({x:0,y:3},{x:4,y:3},{range:4,impact:'square',size:1}).length,9);
+console.log('All 937 move footprints: maximum nine tiles; square areas and broad cones: passed.');
 
 for(const [id,length]of [[22,2],[55,2],[98,2],[81,5]])assert.equal(E.attackTiles({x:0,y:3},{x:1,y:3},{...D.moves[id],...(moves[id]||expanded(D.moves[id]))}).length,length);
 for(const id of [1,10,33,64,71,40,52,84,93,16,145]){const m={...D.moves[id],...(moves[id]||expanded(D.moves[id]))};for(let y=0;y<7;y++)for(let x=0;x<10;x++)assert(E.attackTiles({x:4,y:3},{x,y},m).length<=3);}
 assert.equal(E.normalizeMove({...D.moves[55],...moves[55]}).range,2);
 assert.equal(E.normalizeMove({...D.moves[85],...moves[85]}).range,4);
-console.log('Basic moves: short reach, one-to-three hit tiles; upgraded moves retain five-tile patterns: passed.');
+console.log('Basic moves: short reach, one-to-three hit tiles; upgraded moves retain nine-tile patterns: passed.');
 
 for(const id of [45,39,43,47,28,81,73]){const move=E.normalizeMove({...D.moves[id],...(moves[id]||expanded(D.moves[id]))});assert(move.range>=3);assert(E.range({x:2,y:3},{x:5,y:3},move));assert(E.attackTiles({x:2,y:3},{x:5,y:3},move).some(p=>p.x===5&&p.y===3));}
 assert.equal(E.normalizeMove({...D.moves[45],...expanded(D.moves[45])}).impact,'cone');

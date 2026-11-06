@@ -18,3 +18,9 @@ Existing images were downloaded. Palette entry zero is made transparent for brow
 - Rocket Grunt: https://github.com/pret/pokefirered/blob/master/graphics/trainers/front_pics/rocket_grunt_m_front_pic.png
 - Item sprites: https://github.com/PokeAPI/sprites/tree/master/sprites/items
 - Existing animated Gen 1 Pokemon sprites: https://github.com/PokeAPI/sprites/tree/master/sprites/pokemon/versions/generation-v/black-white/animated
+
+Additional shop item icons (2026-11-06): original PokéAPI sprites for black-belt, black-glasses, dragon-fang, metal-coat, never-melt-ice, pixie-plate, poison-barb, silver-powder, soft-sand, spell-tag and twisted-spoon. Source: https://github.com/PokeAPI/sprites/tree/master/sprites/items .
+
+- Koga / Sabrina / Blaine: pret/pokefirered `graphics/trainers/front_pics/leader_{koga,sabrina,blaine}_front_pic.png`.
+- Nature mints: PokeAPI/sprites `sprites/items/*-mint.png`.
+- Chapter 5–7 gym species and moves: https://github.com/pret/pokefirered/blob/master/src/data/trainer_parties.h (campaign levels differ).

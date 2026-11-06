@@ -3,7 +3,7 @@
  const distance=(a,b)=>Math.abs(a.x-b.x)+Math.abs(a.y-b.y);
  const inside=p=>p.x>=0&&p.x<10&&p.y>=0&&p.y<7;
  const directional=m=>['front','ray','cone'].includes(m.impact);
- // Small, fixed starter footprints; their upgrades still use the normal five-tile rules.
+ // Small, fixed starter footprints; their upgrades still use the normal nine-tile rules.
  const BASIC_MOVE_RULES={
   1:{range:1,impact:'front',width:0},10:{range:1,impact:'front',width:0},33:{range:1,impact:'front',width:0},64:{range:1,impact:'front',width:0},122:{range:1,impact:'front',width:0},
   22:{range:2,impact:'ray',width:0},55:{range:2,impact:'ray',width:0},98:{range:2,impact:'ray',width:0},81:{range:3,impact:'ray',width:0},
@@ -12,14 +12,14 @@
   71:{range:2,impact:'single'},40:{range:3,impact:'single'},73:{range:3,impact:'single'}
  };
  function normalizeMove(move){
-  if(move.tileLimit&&move.tileLimit!==5)return {...move};
-  const m={...move,range:Math.min(5,move.range||0),tileLimit:5};
-  if(m.impact==='square')m.impact='cross';
-  if(['cross','diamond','diagonal'].includes(m.impact))m.size=1;
-  if(m.impact==='ray'){m.range=5;m.width=0;}
+  if(move.geometryVersion===2)return {...move};
+  // Footprint cap, distinct from selectable reach. Starter attacks stay compact.
+  const m={...move,geometryVersion:2,range:Math.min(5,move.range||0),tileLimit:9};
+  if(['square','ring','burst','diagonal','diamond'].includes(m.impact))m.size=1;
+  if(m.impact==='cross')m.size=(m.power||0)>=80?2:1;
+  if(m.impact==='ray'){if([32,90,329].includes(m.id)){m.range=5;m.width=0;}else {m.impact='cone';m.range=3;}}
   if(m.impact==='cone')m.range=3;
-  if(m.impact==='ring')m.size=2;
-  if(m.impact==='burst')m.size=1;
+  if(m.impact==='front'){m.width=1;m.depth=(m.power||0)>=60?2:1;m.range=m.depth;}
   if(m.damageClass===1&&!['self','burst'].includes(m.impact)){if(m.id===81){m.impact='ray';m.range=5;m.width=0;}if(m.impact==='front'){m.impact='cross';m.size=1;}m.range=Math.max(3,m.range);return m;}
   return BASIC_MOVE_RULES[m.id]?{...m,...BASIC_MOVE_RULES[m.id],basicMove:true}:m;
  }
@@ -47,7 +47,7 @@
   else if(move.impact==='ring'){add(target.x,target.y);for(let y=-move.size;y<=move.size;y++)for(let x=-move.size;x<=move.size;x++)if(Math.max(Math.abs(x),Math.abs(y))===move.size)add(target.x+x,target.y+y);}
   else if(directional(move)){
    const dx=Math.sign(target.x-origin.x),dy=Math.sign(target.y-origin.y);
-   for(let depth=1;depth<=(move.impact==='front'?1:move.range);depth++){
+   for(let depth=1;depth<=(move.impact==='front'?(move.depth||1):move.range);depth++){
     const width=move.impact==='cone'?depth-1:(move.width||0);
     for(let offset=-width;offset<=width;offset++)add(origin.x+dx*depth-dy*offset,origin.y+dy*depth+dx*offset);
    }

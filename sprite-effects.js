@@ -11,7 +11,7 @@
  const loading=Promise.all(Array.from({length:4},async()=>{while(queue.length){const [key,asset]=queue.shift();await loadAsset(key,asset);}}));
  loading.catch(error=>console.error(error));
  const durationByMove={thunder:1450,shock:1050,dash:900,slam:1100,vine:1100,tackle:900,leaves:1300,rush:1050,embers:1200,scratch:850,flamethrower:1500,slash:950,watergun:1300,bite:1050,surf:1600,stars:1350,gust:1300,wings:950,fireblast:1650,absorb:1200,acid:1200,drain:1400,sludge:1350,confusion:1200,psychic:1450,shadow:1350,flamewheel:1250,fang:1100};
- window.playMoveEffect=async function({move,origin,target,tiles,hit,critical=false,defenderPos}){
+ window.playMoveEffect=async function({move,origin,target,tiles,hit,critical=false,defenderPos,durationScale=1}){
   await loading;
   const board=document.querySelector('.board');if(!board)return;window.GameAudio?.cast(move);
   const canvas=document.createElement('canvas');canvas.className='battle-fx';canvas.dataset.effect=move.fx;canvas.setAttribute('aria-hidden','true');
@@ -23,7 +23,7 @@
   const attacker=board.querySelector(`[data-x="${origin.x}"][data-y="${origin.y}"] img:not(.move-ghost)`);
   const defender=hit?board.querySelector(`[data-x="${defenderPos.x}"][data-y="${defenderPos.y}"] img:not(.move-ghost)`):null;
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const duration=(reduced?350:move.fxVariant?1000+(move.fxVariant%7)*75:durationByMove[move.fx])/(window.getBattlePlaybackRate?.()||1),begin=performance.now();
+  const duration=Math.max(.2,Math.min(1,durationScale))*(reduced?350:move.fxVariant?1000+(move.fxVariant%7)*75:durationByMove[move.fx])/(window.getBattlePlaybackRate?.()||1),begin=performance.now();
   const clamp=v=>Math.max(0,Math.min(1,v));
   const phase=(t,start,end)=>(t-start)/(end-start);
   const mix=(p,q,t)=>({x:p.x+(q.x-p.x)*t,y:p.y+(q.y-p.y)*t});

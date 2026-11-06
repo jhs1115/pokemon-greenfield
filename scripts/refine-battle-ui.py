@@ -1,0 +1,42 @@
+from pathlib import Path
+R=Path(__file__).resolve().parents[1]
+def read(p):return (R/p).read_text(encoding='utf-8')
+def write(p,s):(R/p).write_text(s,encoding='utf-8')
+def edit(p,a,b):
+ s=read(p)
+ if a not in s:raise ValueError(p+': '+a[:90])
+ write(p,s.replace(a,b))
+edit('campaign-ui.js',"${game.clears[selectedStage]?'<button id=\"route-retry\" class=\"secondary\">다시하기</button>':''}",'')
+edit('campaign-ui.js',"if($('#route-retry'))$('#route-retry').onclick=()=>{stage=selectedStage;startBattle();};",'')
+edit('game-state.js',"const scoutLevel=state=>state.clears[19]>0?12:state.clears[9]>0?8:5;", "const scoutLevel=state=>Math.min(100,5+4*state.clears.filter((n,i)=>i%10===9&&n>0).length);")
+edit('game-state.js','  function buyItem(', '''  function reorderTeam(state,from,to){if(!Number.isInteger(from)||!Number.isInteger(to)||from<0||from>5||to<0||to>5||!state.team[from])throw Error('출전 순서를 바꿀 수 없습니다');if(from===to)return;const [id]=state.team.splice(from,1);state.team.splice(to,0,id);}
+  function rewardCoins(state,stage){const chapter=Math.floor(stage/10)+1,boss=stage%10===9,base=chapter+1,first=state.clears[stage]===0?(boss?7+(chapter-1)*3:chapter+2):0;return {base,first,total:base+first};}
+  function buyItem(''')
+edit('game-state.js',"const chapter=Math.floor(stage/10)+1,boss=stage%10===9,base=chapter,first=state.clears[stage]===0?(boss?5+(chapter-1)*3:chapter+1):0;", "const chapter=Math.floor(stage/10)+1,{base,first}=rewardCoins(state,stage);")
+edit('game-state.js',"if(state.itemsUnlocked&&random()<.2+chapter*.025)", "if((state.itemsUnlocked||first>0)&&random()<(first>0?Math.min(.7,.45+chapter*.015):.2+chapter*.025))")
+edit('game-state.js','return {battleStats,','return {reorderTeam,rewardCoins,battleStats,')
+edit('campaign-ui.js','${mapChapter+1} COIN','${G.rewardCoins(game,selectedStage).base} COIN')
+edit('campaign-ui.js','${(selectedStage%10===9?5+mapChapter*3:mapChapter+2)+mapChapter+1} COIN','${G.rewardCoins(game,selectedStage).total} COIN')
+edit('menu-updates.js',"let managementSearch=''", "let managementSort='dex';let managementSearch=''")
+edit('menu-updates.js',"${game.team.includes(id)?'출전 순서 변경':`${slot+1}번에 출전`}","${slot+1}번에 출전")
+edit('menu-updates.js','<button id="enroll-pokemon" class="primary">${slot+1}번에 출전</button>', '${game.team.includes(id)?\'\':`<button id="enroll-pokemon" class="primary">${slot+1}번에 출전</button>`}')
+edit('menu-updates.js',"$('#enroll-pokemon').onclick=", "if($('#enroll-pokemon'))$('#enroll-pokemon').onclick=")
+edit('menu-updates.js','data-team-slot="${i}"','data-team-slot="${i}" draggable="${!!id}"')
+edit('menu-updates.js','<input id="collection-search"', '<select id="collection-sort" aria-label="포켓몬 정렬">${[[\'name\',\'이름순\'],[\'dex\',\'도감 번호순\'],[\'acquired\',\'획득순\']].map(([key,label])=>`<option value="${key}" ${managementSort===key?\'selected\':\'\'}>${label}</option>`).join(\'\')}</select><input id="collection-search"')
+edit('menu-updates.js','[...game.owned].sort((a,b)=>a-b)', "[...game.owned].sort((a,b)=>managementSort==='name'?species(a).name.localeCompare(species(b).name,'ko'):managementSort==='acquired'?game.owned.indexOf(a)-game.owned.indexOf(b):a-b)")
+edit('menu-updates.js','bindMenuHeader();bindManagementTabs();bindEvolutionControls();','bindMenuHeader();bindManagementTabs();bindEvolutionControls();bindPartyDrag();$(\'#collection-sort\').onchange=e=>{managementSort=e.target.value;renderManagement();};')
+edit('menu-updates.js','function filteredTrainingMoves()', '''function bindPartyDrag(){let source=null,touch=null;const slots=[...document.querySelectorAll('[data-team-slot]')];const clear=()=>slots.forEach(s=>s.classList.remove('dragging','drag-over'));const drop=target=>{if(source!==null&&source!==target){G.reorderTeam(game,source,target);savedTeam=game.team;managementSlot=target;managementSlotExplicit=false;saveGame();renderManagement();}source=null;clear();};for(const slot of slots){slot.ondragstart=e=>{source=+slot.dataset.teamSlot;if(!game.team[source])return e.preventDefault();e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain',String(source));slot.classList.add('dragging');};slot.ondragover=e=>{if(source===null)return;e.preventDefault();e.dataTransfer.dropEffect='move';clear();slot.classList.add('drag-over');};slot.ondrop=e=>{e.preventDefault();drop(+slot.dataset.teamSlot);};slot.ondragend=()=>{source=null;clear();};slot.onpointerdown=e=>{if(e.pointerType==='mouse'||!game.team[+slot.dataset.teamSlot])return;touch={x:e.clientX,y:e.clientY,id:e.pointerId};source=+slot.dataset.teamSlot;slot.setPointerCapture(e.pointerId);};slot.onpointermove=e=>{if(!touch)return;if(Math.hypot(e.clientX-touch.x,e.clientY-touch.y)<8)return;touch.dragging=true;e.preventDefault();clear();slot.classList.add('dragging');document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-team-slot]')?.classList.add('drag-over');};slot.onpointerup=e=>{if(!touch)return;const target=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-team-slot]');const moved=touch.dragging;touch=null;if(moved&&target){e.preventDefault();drop(+target.dataset.teamSlot);}else {source=null;clear();}};slot.onpointercancel=()=>{touch=null;source=null;clear();};}}
+function filteredTrainingMoves()''')
+edit('menu-updates.js','<div class="shop-tabs"><button id="shop-buy-tab"','<div class="shop-tabs"><button id="shop-village" class="secondary">← 마을로</button><button id="shop-buy-tab"')
+edit('menu-updates.js','<button id="shop-village" class="secondary">마을로</button></div>','</div>')
+edit('menu-updates.js','class="secondary village-return">마을로','class="secondary village-return">← 마을로')
+write('styles.css',read('styles.css')+'''\n.village-return{margin-left:0!important;margin-right:auto!important;align-self:flex-start;float:none!important}.shop-tabs #shop-village{margin-left:0;margin-right:12px}.selection-slot[draggable="true"]{cursor:grab;touch-action:none}.selection-slot[draggable="true"]:active{cursor:grabbing}.selection-slot.dragging{opacity:.45}.selection-slot.drag-over{outline:3px solid #83ab6c;outline-offset:2px}#collection-sort{font:inherit;color:#34563e;background:#f9faed;border:1px solid #b2c59f;border-radius:9px;padding:8px 12px;margin-bottom:5px}.archive-chapters{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0}.archive-chapters button{font-size:16px}.story-archive .archive-scenes button{min-height:52px;text-align:left}\n''')
+# A chapter selector keeps every individual unlocked scene reachable without a long page.
+edit('story-ui.js','const book=window.KANTO_STORY;let current=null;', 'const book=window.KANTO_STORY;let current=null,archiveChapter=0;')
+edit('story-ui.js',"function archive(){view='story-archive';render();}","function archive(chapter=archiveChapter){archiveChapter=chapter;view='story-archive';render();}")
+edit('campaign-ui.js','window.StoryUI.archive();','window.StoryUI.archive(mapChapter);')
+edit('story-ui.js','${visible.map(({name,ch})=>{const entries=', '<nav class="archive-chapters" aria-label="지난 이야기 챕터">${visible.map(({name,ch})=>`<button data-archive-chapter="${ch}" class="${ch===archiveChapter?\'primary\':\'secondary\'}">${ch+1}챕터의 ${escapeHTML(name)}</button>`).join(\'\')}</nav>${visible.filter(({ch})=>ch===archiveChapter).map(({name,ch})=>{const entries=')
+edit('story-ui.js','${escapeHTML(spec.title)}</button>', '${ch+1}챕터의 ${escapeHTML(spec.title)}</button>')
+edit('story-ui.js',"bindMenuHeader();$('#archive-map')", "bindMenuHeader();document.querySelectorAll('[data-archive-chapter]').forEach(b=>b.onclick=()=>archive(+b.dataset.archiveChapter));$('#archive-map')")
+edit('story-ui.js','open(key,spec,archive,{replay:true});','open(key,spec,()=>archive(archiveChapter),{replay:true});')
+print('UI, order, story browser, economy and scout progression updated')
