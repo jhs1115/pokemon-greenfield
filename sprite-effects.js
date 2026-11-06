@@ -13,7 +13,7 @@
  const durationByMove={thunder:1450,shock:1050,dash:900,slam:1100,vine:1100,tackle:900,leaves:1300,rush:1050,embers:1200,scratch:850,flamethrower:1500,slash:950,watergun:1300,bite:1050,surf:1600,stars:1350,gust:1300,wings:950,fireblast:1650,absorb:1200,acid:1200,drain:1400,sludge:1350,confusion:1200,psychic:1450,shadow:1350,flamewheel:1250,fang:1100};
  window.playMoveEffect=async function({move,origin,target,tiles,hit,critical=false,defenderPos,durationScale=1}){
   await loading;
-  const board=document.querySelector('.board');if(!board)return;window.GameAudio?.cast(move);
+  const board=document.querySelector('.board');if(!board)return;
   const canvas=document.createElement('canvas');canvas.className='battle-fx';canvas.dataset.effect=move.fx;canvas.setAttribute('aria-hidden','true');
   const rect=board.getBoundingClientRect();canvas.width=Math.round(rect.width/2);canvas.height=Math.round(rect.height/2);board.append(canvas);
   const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;

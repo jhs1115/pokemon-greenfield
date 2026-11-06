@@ -85,6 +85,7 @@
     seen.add(key);queue.push({...n,steps:[...p.steps,n]});}}
   return null;
  }
- root.BattleEngine={BASIC_MOVE_RULES,normalizeMove,distance,range,attackTiles,criticalTiles,isCritical,stageMultiplier,directional,effectiveness,damage,order,path};
+ function spawnPosition(side,occupied){const pos={x:side===0?2:7,y:3};if(occupied&&pos.x===occupied.x&&pos.y===occupied.y)pos.x=side===0?1:8;return pos;}
+ root.BattleEngine={spawnPosition,BASIC_MOVE_RULES,normalizeMove,distance,range,attackTiles,criticalTiles,isCritical,stageMultiplier,directional,effectiveness,damage,order,path};
  if(typeof module!=='undefined')module.exports=root.BattleEngine;
 })(typeof window!=='undefined'?window:globalThis);

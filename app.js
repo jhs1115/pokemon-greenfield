@@ -131,7 +131,7 @@ function aiCommand(){
  options.sort((a,b)=>b.score-a.score);return options[0]||{kind:'wait',destination:{...b.enemyPos}};
 }
 const pause=ms=>new Promise(r=>setTimeout(r,battleDuration(ms)));
-async function playRecordedMove(record,options,applyFrame){const frames=record.hitFrames?.length?record.hitFrames:[record.after];for(let i=0;i<frames.length;i++){await window.playMoveEffect({...options,hit:options.hit||frames.length>1,durationScale:frames.length>1?.36:1});if(view!=='battle')return;if(frames.length>1){applyFrame(frames[i]);render();await pause(65);}}}
+async function playRecordedMove(record,options,applyFrame){const frames=record.hitFrames?.length?record.hitFrames:[record.after];for(let i=0;i<frames.length;i++){await window.GameAudio?.cast(options.move);await window.playMoveEffect({...options,hit:options.hit||frames.length>1,durationScale:frames.length>1?.36:1});if(view!=='battle')return;if(frames.length>1){applyFrame(frames[i]);render();await pause(65);}}}
 async function applyBattleActive(snapshot){const b=battle,old=[b.active,b.enemy];if(old[1]!==+snapshot.active[1].slice(1)){b.experienceParticipants||={};b.experienceParticipants[old[1]]=[...b.participants];}b.combat.apply(snapshot,true);if(old[0]!==b.active&&!b.participants.includes(b.active))b.participants.push(b.active);if(old[1]!==b.enemy)b.participants=[b.active];if(old[0]!==b.active||old[1]!==b.enemy){render();for(const side of [0,1])if(old[side]!==[b.active,b.enemy][side]){const pos=side===0?b.pos:b.enemyPos;document.querySelector(`[data-x="${pos.x}"][data-y="${pos.y}"] img:not(.move-ghost)`)?.animate?.([{opacity:0,transform:'scale(.7)'},{opacity:1,transform:'scale(1)'}],{duration:battleDuration(220),easing:'ease-out'});}await pause(230);}}
 async function resolveTurn(command){
 if(battle?.pvp)return window.PvpUI.submit(command);
@@ -144,7 +144,7 @@ const actions=E.order([
 ]);
 for(const a of actions.filter(a=>a.command.kind==='switch')){
  if(ownToken!==token)return;
- player().statStages={2:0,3:0,4:0,5:0,6:0};b.active=a.command.index;window.GameAudio?.play('cry-'+player().id,{volume:.7});if(!b.participants.includes(b.active))b.participants.push(b.active);render();await pause(400);
+ player().statStages={2:0,3:0,4:0,5:0,6:0};b.active=a.command.index;b.pos=E.spawnPosition(0,b.enemyPos);window.GameAudio?.play('cry-'+player().id,{volume:.7});if(!b.participants.includes(b.active))b.participants.push(b.active);render();await pause(400);
 }
 const mobility=b.combat.prepareMovement(command,opponent);
 const movers=E.order(actions.filter(a=>a.command.kind!=='switch').map(a=>({...a,priority:0})));

@@ -1,0 +1,7 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const rows=[{text:'피카츄 pikachu 25 025',hidden:false},{text:'파이리 charmander 4 004',hidden:false},{text:'거북왕 blastoise 9 009',hidden:false}],input={value:''},empty={hidden:true};let stored='';
+const c=vm.createContext({window:{},$:selector=>selector==='#search'?input:selector==='#search-empty'?empty:null,document:{querySelectorAll:()=>rows},store:value=>stored=value});vm.runInContext(fs.readFileSync('menu-updates.js','utf8'),c);c.text=row=>row.text;
+vm.runInContext("bindCollectionSearch('#search','','.row',text,store)",c);
+for(const query of ['피카','ㅍㅋㅊ','ㅍㅣㅋㅏㅊㅠ','피카츄'.normalize('NFD'),'25','025','PIKACHU',' 피 카 츄 ']){input.value=query;input.oninput({isComposing:true});assert.deepEqual(rows.map(r=>r.hidden),[false,true,true],query);assert.equal(stored,query);assert.equal(c.$('#search'),input,'IME input is never replaced');assert(empty.hidden);}
+input.value='ㄱㅂㅇ';input.oncompositionend();assert.deepEqual(rows.map(r=>r.hidden),[true,true,false]);input.value='없는포켓몬';input.oninput({});assert(rows.every(r=>r.hidden));assert.equal(empty.hidden,false);input.value='';input.oninput({});assert(rows.every(r=>!r.hidden));assert(empty.hidden);
+console.log('Collection search: live IME composition, Korean syllables/initials/compatibility jamo/NFD, English and dex numbers, preserved input and empty-state recovery: passed.');
