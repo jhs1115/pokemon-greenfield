@@ -1,0 +1,15 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const w={POKE_DATA:require('../data/reference.json'),TRAINING_DATA:require('../data/training.json'),PROGRESSION_DATA:require('../data/progression.json'),ABILITY_DATA:require('../data/abilities.json'),ITEM_DATA:require('../items'),PKMN:require('@pkmn/sim'),NativeCombat:require('../native-combat'),createGameModel:require('../game-state'),BattleEngine:require('../engine'),MOVE_RULES:require('../moves'),getExpandedMoveRule:require('../expanded-moves')};
+for(const file of ['stages.js','late-stages.js'])vm.runInNewContext(fs.readFileSync(file,'utf8'),{window:w});
+assert.deepEqual(Array.from(w.STORY_STAGES[0].levels),[3,3]);assert.deepEqual(Array.from(w.STORY_STAGES[4].levels),[7,8,10]);assert.deepEqual(Array.from(w.STORY_STAGES[9].levels),[15,17]);assert.deepEqual(Array.from(w.STORY_STAGES[40].levels),[36,37,36,37]);
+const c=vm.createContext({window:w,document:{querySelector:()=>({}),querySelectorAll:()=>[]},setTimeout:()=>0,localStorage:{setItem(){}},console});
+vm.runInContext(fs.readFileSync('app.js','utf8').replace(/render\(\);\s*$/,''),c);
+vm.runInContext(`render=()=>{};game=G.normalize({owned:[9,6],team:[9,6],records:{9:G.freshRecord(9,40),6:G.freshRecord(6,40)},tutorial:{done:true}});stage=43;startBattle(false,{name:'AI 확인',enemy:[109],levels:[40],moves:[[123,114]]});battle.pos={x:4,y:3};battle.enemyPos={x:5,y:3};battle.combat.sim.sides[0].active[0].boosts.atk=4;battle.combat.apply(battle.combat.snapshot());`,c);
+assert(vm.runInContext('enemyMoveIds(109,40).includes(114)',c),'an eligible enemy keeps a level-legal boost counter');
+assert(!vm.runInContext('enemyMoveIds(109,20).includes(114)',c),'no early access to Haze');
+const command=vm.runInContext('aiCommand()',c);assert.equal(vm.runInContext('enemy().moves',c)[command.move].id,114,'AI responds to visible boosts with Haze');
+c.command=command;vm.runInContext(`const outcome=battle.combat.turn({kind:'wait',destination:battle.pos},command);battle.combat.apply(outcome.final);`,c);
+assert.equal(vm.runInContext('player().statStages[2]',c),0,'the native move really clears the boost');
+assert.equal(vm.runInContext(`enemyMoveValue(moveFor(114),enemy(),player(),true,false)`,c),0,'do not waste repeated Haze on neutral stats');
+vm.runInContext('battle.tutorial=true',c);assert.equal(vm.runInContext('aiCommand().kind',c),'wait');
+console.log('Story difficulty: gentle levels, level-legal counters, actual native Haze response, no wasted reset and unchanged practice dummy: passed.');

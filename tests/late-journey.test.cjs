@@ -12,7 +12,7 @@ for(let i=40;i<70;i++){
  vm.runInContext("battle.combat.turn({kind:'wait',destination:battle.pos},{kind:'wait',destination:battle.enemyPos});",c);
 }
 assert.deepEqual(Array.from(w.STORY_STAGES[49].enemy),[109,89,109,110]);assert.deepEqual(Array.from(w.STORY_STAGES[59].enemy),[64,122,49,65]);assert.deepEqual(Array.from(w.STORY_STAGES[69].enemy),[58,77,78,59]);
-assert.deepEqual(Array.from(w.STORY_STAGES[49].moves[0]),[120,124,108,92]);assert.deepEqual(Array.from(w.STORY_STAGES[59].moves[3]),[94,105,248,347]);assert.deepEqual(Array.from(w.STORY_STAGES[69].moves[3]),[44,46,36,126]);
+assert.deepEqual(Array.from(w.STORY_STAGES[49].moves[0]),[188,53,92,114]);assert.deepEqual(Array.from(w.STORY_STAGES[59].moves[3]),[94,411,247,105]);assert.deepEqual(Array.from(w.STORY_STAGES[69].moves[3]),[394,245,370,234]);
 for(const [ch,name]of [[5,'독수'],[6,'초련'],[7,'강연']]){assert.equal(w.STORY_STAGES[ch*10-1].leader,name);assert.equal(w.CHAPTER_MAPS[ch-1].length,10);assert(fs.existsSync(`assets/world/chapter-${ch}.svg`));}
 const book=require('../story-scenes');for(const stage of [43,46,53,57,63,66])assert(w.STORY_STAGES[stage].rocket&&book.scenes['before-'+stage]);for(const [key,s] of Object.entries(book.scenes).filter(([key])=>/^(?:before|after)-(?:4[0-9]|[56][0-9])$/.test(key)||key.startsWith('secret-'))){assert(s.lines.length<=9);for(const l of s.lines)assert(l.text.length<=85);}
-console.log('All 30 late-chapter encounters initialize and advance in native 6v4/5 combat; seven maps, FRLG gym moves, six Rocket encounters and concise story: passed.');
+console.log('All 30 late-chapter encounters initialize and advance in native 6v4/5 combat; seven maps, practical gym moves, six Rocket encounters and concise story: passed.');

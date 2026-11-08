@@ -1,0 +1,107 @@
+[
+  {
+    "source": "assets/world/home-scenes.png",
+    "asset": "assets/world/home-scenes-v2.png",
+    "prompt": "assets/world/home-scenes-v2.prompt.txt",
+    "mode": "built-in image_gen reference-image edit",
+    "transparent": false
+  },
+  {
+    "source": "assets/world/interiors.png",
+    "asset": "assets/world/interiors-v2.png",
+    "prompt": "assets/world/interiors-v2.prompt.txt",
+    "mode": "built-in image_gen reference-image edit",
+    "transparent": false
+  },
+  {
+    "source": "assets/world/gyms.png",
+    "asset": "assets/world/gyms-v2.png",
+    "prompt": "assets/world/gyms-v2.prompt.txt",
+    "mode": "built-in image_gen reference-image edit",
+    "transparent": false
+  },
+  {
+    "source": "assets/world/title-adventure.png",
+    "asset": "assets/world/title-adventure-v2.png",
+    "prompt": "assets/world/title-adventure-v2.prompt.txt",
+    "mode": "built-in image_gen reference-image edit",
+    "transparent": false
+  },
+  {
+    "source": "assets/world/pvp-home-v1.png",
+    "asset": "assets/world/pvp-home-v2.png",
+    "prompt": "assets/world/pvp-home-v2.prompt.txt",
+    "mode": "built-in image_gen reference-image edit",
+    "transparent": false
+  },
+  {
+    "source": "assets/world/trade-home-v1.png",
+    "asset": "assets/world/trade-home-v2.png",
+    "prompt": "assets/world/trade-home-v2.prompt.txt",
+    "mode": "built-in image_gen reference-image edit",
+    "transparent": false
+  },
+  {
+    "source": "assets/world/item-shop-v1.png",
+    "asset": "assets/world/item-shop-v2.png",
+    "prompt": "assets/world/item-shop-v2.prompt.txt",
+    "mode": "built-in image_gen reference-image edit",
+    "transparent": false
+  },
+  {
+    "source": "assets/trainers/scout-ranger.png",
+    "asset": "assets/trainers/scout-ranger-v2.png",
+    "prompt": "assets/trainers/scout-ranger-v2.prompt.txt",
+    "mode": "built-in image_gen reference-image edit",
+    "transparent": true
+  },
+  {
+    "source": "assets/world/routes/chapter-1-v3.png",
+    "asset": "assets/world/routes/chapter-1-v5.png",
+    "prompt": "assets/world/routes/chapter-1-v5.prompt.txt",
+    "mode": "built-in image_gen reference-image edit",
+    "transparent": false
+  },
+  {
+    "source": "assets/world/routes/chapter-2-v4.png",
+    "asset": "assets/world/routes/chapter-2-v5.png",
+    "prompt": "assets/world/routes/chapter-2-v5.prompt.txt",
+    "mode": "built-in image_gen reference-image edit",
+    "transparent": false
+  },
+  {
+    "source": "assets/world/routes/chapter-3-v3.png",
+    "asset": "assets/world/routes/chapter-3-v5.png",
+    "prompt": "assets/world/routes/chapter-3-v5.prompt.txt",
+    "mode": "built-in image_gen reference-image edit",
+    "transparent": false
+  },
+  {
+    "source": "assets/world/routes/chapter-4-v3.png",
+    "asset": "assets/world/routes/chapter-4-v5.png",
+    "prompt": "assets/world/routes/chapter-4-v5.prompt.txt",
+    "mode": "built-in image_gen reference-image edit",
+    "transparent": false
+  },
+  {
+    "source": "assets/world/routes/chapter-5-v3.png",
+    "asset": "assets/world/routes/chapter-5-v5.png",
+    "prompt": "assets/world/routes/chapter-5-v5.prompt.txt",
+    "mode": "built-in image_gen reference-image edit",
+    "transparent": false
+  },
+  {
+    "source": "assets/world/routes/chapter-6-v3.png",
+    "asset": "assets/world/routes/chapter-6-v5.png",
+    "prompt": "assets/world/routes/chapter-6-v5.prompt.txt",
+    "mode": "built-in image_gen reference-image edit",
+    "transparent": false
+  },
+  {
+    "source": "assets/world/routes/chapter-7-v3.png",
+    "asset": "assets/world/routes/chapter-7-v5.png",
+    "prompt": "assets/world/routes/chapter-7-v5.prompt.txt",
+    "mode": "built-in image_gen reference-image edit",
+    "transparent": false
+  }
+]

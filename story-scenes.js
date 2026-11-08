@@ -1,4 +1,4 @@
-/* User-authored chapter one; brackets mark red clues, thought marks inner speech. */
+/* User-authored chapters 1–2. Brackets are red clues; thought lines are gray. */
 (function(root){root.KANTO_STORY={
   "scenes": {
     "opening": {
@@ -8,19 +8,19 @@
       "lines": [
         {
           "speaker": "narrator",
-          "text": "이곳은 포켓몬 세계. 새로운 종족인 포켓몬들과 사람이 공존하며 살아간다."
+          "text": "이곳은 포켓몬 세계. 포켓몬이라 불리는 생물들과 사람이 공존하며 살아간다."
         },
         {
           "speaker": "narrator",
-          "text": "동시에 포켓몬끼리 싸우는 포켓몬 배틀은 이세계의 문화로 자리잡았으며,"
+          "text": "동시에 포켓몬끼리 싸우는 포켓몬 배틀은 이 세계의 문화로 자리 잡았으며,"
         },
         {
           "speaker": "narrator",
-          "text": "이렇게 배틀을 하는 사람들을 \"트레이너\" 라고 부른다."
+          "text": "이렇게 배틀을 하는 사람들을 \"트레이너\"라고 부른다."
         },
         {
           "speaker": "narrator",
-          "text": "모든 리그를 제패한 포켓몬 챔피언이 된다는것은 모든 트레이너들의 꿈이다."
+          "text": "모든 리그를 제패한 포켓몬 챔피언이 된다는 것은 모든 트레이너들의 꿈이다."
         },
         {
           "speaker": "narrator",
@@ -28,7 +28,7 @@
         },
         {
           "speaker": "oak",
-          "text": "... 지금쯤이면 올 시간이 된거같군."
+          "text": "... 지금쯤이면 올 시간이 된 것 같군."
         },
         {
           "speaker": "player",
@@ -40,15 +40,15 @@
         },
         {
           "speaker": "player",
-          "text": "오늘 드디어 포켓몬을 받을수 있는거죠?"
+          "text": "오늘 드디어 포켓몬을 받을 수 있는 거죠?"
         },
         {
           "speaker": "oak",
-          "text": "그렇단다. 이제 어엿한 성인이 되었으니 트레이너의 길을 걸을수 있게 되었단다."
+          "text": "그렇단다. 이제 어엿한 성인이 되었으니 트레이너의 길을 걸을 수 있게 되었단다."
         },
         {
           "speaker": "oak",
-          "text": "포켓몬은 세마리 준비해 놨다. 어떤포켓몬을 선택하겠니?",
+          "text": "포켓몬은 세 마리 준비해 놨다. 어떤 포켓몬을 선택하겠니?",
           "choice": "starter"
         },
         {
@@ -57,7 +57,7 @@
         },
         {
           "speaker": "player",
-          "text": "후.. 드디어 트레이너가 됐구나.. 잘부탁해 {partner}!"
+          "text": "후.. 드디어 트레이너가 됐구나.. 잘 부탁해 {partner}!"
         },
         {
           "speaker": "narrator",
@@ -70,25 +70,25 @@
         },
         {
           "speaker": "news",
-          "text": "현재 [악의조직 로켓단]의 기지 근처에서 큰 [굉음]이 들렸다는 소식입니다.",
+          "text": "현재 [악의 조직 로켓단]의 기지 근처에서 큰 [굉음]이 들렸다는 소식입니다.",
           "actor": null
         },
         {
           "speaker": "news",
-          "text": "포켓몬 리그측에서는 이 사건을 전면 조사중이며...",
+          "text": "포켓몬 리그 측에서는 이 사건을 전면 조사 중이며...",
           "actor": null
         },
         {
           "speaker": "oak",
-          "text": "... 트레이너가 될 타이밍을 그렇게 잘 잡은건 아닌거같구나."
+          "text": "... 트레이너가 될 타이밍을 그렇게 잘 잡은 건 아닌 것 같구나."
         },
         {
           "speaker": "oak",
-          "text": "신경쓰지 말거라. 일단 리그에 참여하기 위해선 뱃지를 8개 모야아한단다."
+          "text": "신경 쓰지 말거라. 일단 리그에 참여하기 위해선 배지를 8개 모아야 한단다."
         },
         {
           "speaker": "oak",
-          "text": "먼저 회색시티로 가보렴."
+          "text": "먼저 회색시티로 가 보렴."
         },
         {
           "speaker": "narrator",
@@ -96,15 +96,15 @@
         },
         {
           "speaker": "player",
-          "text": "... 보통 라이벌이 있어야하지 않나요?"
+          "text": "... 보통 라이벌이 있어야 하지 않나요?"
         },
         {
           "speaker": "oak",
-          "text": "아 섭외를 못했네"
+          "text": "아, 섭외를 못했네"
         },
         {
           "speaker": "narrator",
-          "text": "여러 찝찝한 마음을 뒤로 한체, 연구소를 나섰다.",
+          "text": "여러 찝찝한 마음을 뒤로한 채, 연구소를 나섰다.",
           "backdrop": "road",
           "actor": null
         }
@@ -132,7 +132,7 @@
       "lines": [
         {
           "speaker": "narrator",
-          "text": "야생 포켓몬들을 천천히 쓰러뜨려 가며, 체육관을 향하던 도중, 한 사람이 보인다.",
+          "text": "야생 포켓몬들을 천천히 쓰러뜨려 가며, 체육관을 향하던 도중 한 사람이 보인다.",
           "actor": null
         },
         {
@@ -155,35 +155,35 @@
         },
         {
           "speaker": "brock",
-          "text": "나는 회색 체육관 관장의 웅! 이곳을 순찰하러 돌아다니고 있었다!"
+          "text": "나는 회색체육관 관장 웅이다! 이곳을 순찰하러 돌아다니고 있었다!"
         },
         {
           "speaker": "player",
-          "text": "아 체육관 관장님이셨구나! 반갑습니다 이번에 트레이너의 길을 걷게됐습니다!"
+          "text": "아 체육관 관장님이셨구나! 반갑습니다! 이번에 트레이너의 길을 걷게 됐습니다!"
         },
         {
           "speaker": "brock",
-          "text": "트레이너? 요즘시대에 트레이너라니?"
+          "text": "트레이너? 요즘 시대에 트레이너라니?"
         },
         {
           "speaker": "player",
-          "text": "어... 요즘 무슨일이 있나요?"
+          "text": "어... 요즘 무슨 일이 있나요?"
         },
         {
           "speaker": "brock",
-          "text": "... 나는 처음 마을에 있는 관장이라 모르지만, 이번에 어떤 [굉음]이 어디선가 들렸다 하더라고."
+          "text": "... 나는 초입 마을의 관장이라 자세히는 모르지만, 얼마 전에 어디선가 [굉음]이 들렸다고 하더라고."
         },
         {
           "speaker": "brock",
-          "text": "그게 이번에 [로켓단]의 소행이라는 소문이있어.. 어떤 실험을 하다 실패했고, 근처 [트레이너들이 쓰러진채] 발견된다 하더라고."
+          "text": "그게 이번에 [로켓단]의 소행이라는 소문이 있어.. 어떤 실험을 하다 실패했고, 근처 [트레이너들이 쓰러진 채] 발견된다 하더라고."
         },
         {
           "speaker": "player",
-          "text": "그렇군요... [로켓단]이 트레이너들을 납치하는걸까요?"
+          "text": "그렇군요... [로켓단]이 트레이너들을 납치하는 걸까요?"
         },
         {
           "speaker": "brock",
-          "text": "하지만 걱정마라! 이 회색시티에는 내가 있기에 지킬수 있지!"
+          "text": "하지만 걱정 마라! 이 회색시티에는 내가 있기에 지킬 수 있지!"
         },
         {
           "speaker": "player",
@@ -191,49 +191,158 @@
         },
         {
           "speaker": "brock",
-          "text": "좋다! 너가 이곳을 나아갈 자격이 있는지 시험해 보겠다!"
+          "text": "좋다! 네가 이곳을 지나갈 자격이 있는지 시험해 보겠다!"
         }
       ]
     },
     "before-11": {
-      "title": "블루시티의 강가",
-      "backdrop": "river",
+      "title": "푸른 바다에서",
       "npc": "misty",
+      "backdrop": "coast",
       "lines": [
         {
+          "speaker": "narrator",
+          "text": "시원한 푸른 바다가 훤히 보인다."
+        },
+        {
           "speaker": "misty",
-          "text": "거긴 물이 깊어. 이쪽으로 와."
+          "text": "핸드폰을 보고 있다.",
+          "thought": true
+        },
+        {
+          "speaker": "misty",
+          "text": "쳇, [로켓단] 이 자식들이 여기까지 들어왔어?"
         },
         {
           "speaker": "player",
-          "text": "고마워. 체육관에 가는 중이야."
+          "text": "멀리서 이슬의 모습이 보인다.",
+          "thought": true
         },
         {
           "speaker": "misty",
-          "text": "그럼 곧 다시 만나겠네. 난 이슬이야. 강을 건너면 바로 블루시티야."
+          "text": "이슬이 기척을 느끼고 뒤를 본다.",
+          "thought": true
+        },
+        {
+          "speaker": "misty",
+          "text": "누구지? 처음 보는 친구인데?"
+        },
+        {
+          "speaker": "player",
+          "text": "아! 안녕하세요. 이번에 새로 들어온 트레이너입니다!"
+        },
+        {
+          "speaker": "misty",
+          "text": "오, 트레이너?! 오랜만이다!! 반가워!!"
+        },
+        {
+          "speaker": "misty",
+          "text": "난 이 블루시티의 체육관 관장 이슬이라고 해!"
+        },
+        {
+          "speaker": "misty",
+          "text": "이슬이 반갑게 인사하다 말고 빤히 쳐다본다.",
+          "thought": true
+        },
+        {
+          "speaker": "player",
+          "text": "... 왜요?"
+        },
+        {
+          "speaker": "misty",
+          "text": "혹시 지나가다 수상한 사람 못 봤어?"
+        },
+        {
+          "speaker": "player",
+          "text": "아니요? ... 설마 전 체육관 관장 말씀하시는 건가요?"
+        },
+        {
+          "speaker": "misty",
+          "text": "걔는 수상하다기보단 이상한 거고. 좀 위험해 보이는 사람."
+        },
+        {
+          "speaker": "player",
+          "text": "그런 사람은 못 봤어요."
+        },
+        {
+          "speaker": "misty",
+          "text": "음... 보면 꼭 체육관으로 찾아와."
+        },
+        {
+          "speaker": "player",
+          "text": "네.."
+        },
+        {
+          "speaker": "narrator",
+          "text": "대답을 할 틈도 없이 이슬이 달려 나간다.",
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "뭐지...",
+          "thought": true,
+          "actor": null
         }
       ]
     },
     "ambush": {
-      "title": "로켓단",
-      "backdrop": "river",
+      "title": "수상한 연구 자료",
       "npc": "rocket",
+      "backdrop": "coast",
       "lines": [
         {
-          "speaker": "narrator",
-          "text": "길가에 포켓몬이 든 우리가 놓여 있다."
-        },
-        {
-          "speaker": "rocket",
-          "text": "그건 우리 거다. 손대지 마."
+          "speaker": "player",
+          "text": "좋아. 점점 성장하고 있어!",
+          "actor": null
         },
         {
           "speaker": "player",
-          "text": "포켓몬들이 다쳤잖아요. 풀어 주세요."
+          "text": "모가지 싹 닦아 놔라, 챔피언",
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "그렇게 걸어가다가, 무언가가 밟힌다.",
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "— 연구 자료: 포켓몬 유전자에 대해",
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "뭐지, 하며 주우려 한다.",
+          "thought": true,
+          "actor": null
         },
         {
           "speaker": "rocket",
-          "text": "로켓단 일에 끼어들지 마라!"
+          "text": "잠깐!!!!",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "player",
+          "text": "아잇 깜짝이야"
+        },
+        {
+          "speaker": "rocket",
+          "text": "당장 내려놔라!!!",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "player",
+          "text": "...네?!? 이게 뭔데요??"
+        },
+        {
+          "speaker": "rocket",
+          "text": "말 안 들려? 내려놓으라고!!",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "rocket",
+          "text": "이미 본 이상 곱게는 못 보내 준다!",
+          "speakerName": "???"
         }
       ]
     },
@@ -354,19 +463,19 @@
       "lines": [
         {
           "speaker": "scout",
-          "text": "오, 이번에 새로 들어오신 트레이너 님이신가요?"
+          "text": "오, 이번에 새로 들어오신 트레이너님이신가요?"
         },
         {
           "speaker": "player",
-          "text": "아 네! 맞아요 여기서 새 포켓몬들을 만날수 있다고 들었습니다!"
+          "text": "아, 네! 맞아요 여기서 새 포켓몬들을 만날 수 있다고 들었습니다!"
         },
         {
           "speaker": "scout",
-          "text": "아 네 맞아요. 여기서 포켓몬들을 만나 보실수 있죠."
+          "text": "아, 네. 맞아요. 여기서 포켓몬들을 만나 보실 수 있죠."
         },
         {
           "speaker": "scout",
-          "text": "첫 비용은... 무료로 해드리죠. 저희 자주 만날거같거든요."
+          "text": "첫 비용은... 무료로 해 드리죠. 저희 자주 만날 것 같거든요."
         },
         {
           "speaker": "player",
@@ -374,7 +483,7 @@
         },
         {
           "speaker": "player",
-          "text": "하 이몸의 인기란",
+          "text": "하 이 몸의 인기란",
           "thought": true
         },
         {
@@ -634,7 +743,7 @@
       ]
     },
     "after-9": {
-      "title": "회색 뱃지",
+      "title": "회색 배지",
       "backdrop": "gym-rock",
       "npc": "brock",
       "lines": [
@@ -644,19 +753,19 @@
         },
         {
           "speaker": "brock",
-          "text": "멋진 배틀이었다! 인정의 의미로 이 회색 뱃지를 주마!"
+          "text": "멋진 배틀이었다! 인정의 의미로 이 회색 배지를 주마!"
         },
         {
           "speaker": "player",
-          "text": "감사합니다! 인연이되면 또 만나죠."
+          "text": "감사합니다! 인연이 되면 또 만나죠."
         },
         {
           "speaker": "brock",
-          "text": "좋다! 언제는 환영이지!"
+          "text": "좋다! 언제든 환영이지!"
         },
         {
           "speaker": "brock",
-          "text": "그래서 너 몇살이냐?"
+          "text": "그래서 너 몇 살이냐?"
         },
         {
           "speaker": "narrator",
@@ -672,7 +781,7 @@
       "lines": [
         {
           "speaker": "oak",
-          "text": "벌써...? 빠르구나! 웅이를 이렇게 빨리 꺾은사람은 처음이네!"
+          "text": "벌써...? 빠르구나! 웅이를 이렇게 빨리 꺾은 사람은 처음이네!"
         },
         {
           "speaker": "oak",
@@ -680,7 +789,7 @@
         },
         {
           "speaker": "player",
-          "text": "도구요...? 뭐 칼이라도 쥐어 주는건가요?"
+          "text": "도구요...? 뭐 칼이라도 쥐어 주는 건가요?"
         },
         {
           "speaker": "oak",
@@ -688,16 +797,16 @@
         },
         {
           "speaker": "player",
-          "text": "가라르 지방은 어떤곳일까",
+          "text": "가라르 지방은 어떤 곳일까",
           "thought": true
         },
         {
           "speaker": "oak",
-          "text": "포켓몬들은 도구를 사용하면 성장에 도움이되거나 전투에서 유리한 이점을 가져갈수 있지!"
+          "text": "포켓몬들은 도구를 사용하면 성장에 도움이 되거나 전투에서 유리한 이점을 가져갈 수 있지!"
         },
         {
           "speaker": "oak",
-          "text": "이 도구를 착용해보게!"
+          "text": "이 도구를 착용해 보게!"
         },
         {
           "speaker": "narrator",
@@ -706,11 +815,11 @@
         },
         {
           "speaker": "oak",
-          "text": "이 도구를 착용하면 포켓몬을 쓰러뜨리지 않더라도 경험치를 얻을수 있지!"
+          "text": "이 도구를 착용하면 포켓몬을 쓰러뜨리지 않더라도 경험치를 얻을 수 있지!"
         },
         {
           "speaker": "oak",
-          "text": "아, 그리고 다른 도구가 필요하면 상점에 들려보게나. 여러 것들이 있을거다!"
+          "text": "아, 그리고 다른 도구가 필요하면 상점에 들러 보게나. 여러 가지가 있을 거다!"
         },
         {
           "speaker": "player",
@@ -748,7 +857,257 @@
         },
         {
           "speaker": "oak",
-          "text": "... 아무일 없기를 바란다."
+          "text": "... 아무 일 없기를 바란다."
+        }
+      ]
+    },
+    "before-10": {
+      "title": "블루시티로",
+      "npc": "brock",
+      "backdrop": "coast",
+      "lines": [
+        {
+          "speaker": "brock",
+          "text": "좋아! 다음 도시로 떠나는군. 다음은 블루시티다!"
+        },
+        {
+          "speaker": "brock",
+          "text": "이곳 관장은 타입 상성 때문에 한 번도 이겨 본 적 없는 내 라이벌이지..."
+        },
+        {
+          "speaker": "brock",
+          "text": "내가 언젠간 복수할 거다"
+        },
+        {
+          "speaker": "player",
+          "text": "이름이 어떻게 되죠?"
+        },
+        {
+          "speaker": "brock",
+          "text": "이슬. 이슬이다."
+        },
+        {
+          "speaker": "brock",
+          "text": "꽤나 자유분방한 녀석이다. 건투를 빌지."
+        },
+        {
+          "speaker": "player",
+          "text": "감사합니다!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "주인공은 신난 마음으로 떠나갔다."
+        },
+        {
+          "speaker": "brock",
+          "text": "..."
+        },
+        {
+          "speaker": "brock",
+          "text": "무사하길 빈다."
+        },
+        {
+          "speaker": "brock",
+          "text": "..."
+        },
+        {
+          "speaker": "brock",
+          "text": "아, 맞다. 나이"
+        }
+      ]
+    },
+    "after-ambush": {
+      "title": "로켓단의 실험체",
+      "npc": "rocket",
+      "backdrop": "coast",
+      "lines": [
+        {
+          "speaker": "rocket",
+          "text": "쳇..",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "player",
+          "text": "이게 뭐길래 이렇게까지 하는 거죠?"
+        },
+        {
+          "speaker": "rocket",
+          "text": "조용. 넌 이제 끝이야.",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "narrator",
+          "text": "뒤에서 같은 옷을 입은 무리들이 여러 명 온다."
+        },
+        {
+          "speaker": "player",
+          "text": "비겁한...!"
+        },
+        {
+          "speaker": "misty",
+          "text": "잠깐! 거기까지!"
+        },
+        {
+          "speaker": "misty",
+          "text": "난 이곳 체육관 관장 이슬이다. 당장 저리 가도록!"
+        },
+        {
+          "speaker": "rocket",
+          "text": "관장..? 쳇, 후퇴! 빠져라!",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "narrator",
+          "text": "일제히 같은 옷을 입은 무리들과 수상한 남자가 같이 도망간다.",
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "잡아야 하나요?",
+          "actor": "misty"
+        },
+        {
+          "speaker": "misty",
+          "text": "아니. 잡아도 손해일 것 같아. 잡진 말자."
+        },
+        {
+          "speaker": "misty",
+          "text": "하... 너도 어렴풋이 들었겠지만, 저건 [로켓단]이야."
+        },
+        {
+          "speaker": "misty",
+          "text": "지금 모종의 이유로 실험이 실패해서 [실험체]를 찾고 다닌대!"
+        },
+        {
+          "speaker": "misty",
+          "text": "심지어 [실험체]의 성격이 난폭해서, 일반 시민들도 다 치고 다닌다는 거야."
+        },
+        {
+          "speaker": "misty",
+          "text": "모든 도시의 관장들에게 문자가 왔어. 이 사람들 보이면 리그에 신고하라고."
+        },
+        {
+          "speaker": "misty",
+          "text": "내가 신고할 테니까 넌 가 있어. 나중에 체육관에서 만나자!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "밝게 말했지만, 얼굴만은 밝지 못한 채로 이슬이 뛰어간다.",
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "[로켓단]...",
+          "actor": null
+        }
+      ]
+    },
+    "before-17": {
+      "title": "뜻밖의 만남",
+      "npc": "misty",
+      "backdrop": "coast",
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "어디선가 이슬이 나타난다.",
+          "actors": [
+            "misty"
+          ]
+        },
+        {
+          "speaker": "misty",
+          "text": "다친 덴 없어?",
+          "actors": [
+            "misty"
+          ]
+        },
+        {
+          "speaker": "player",
+          "text": "네? 저 아무 일도 없었는데...",
+          "actors": [
+            "misty"
+          ]
+        },
+        {
+          "speaker": "misty",
+          "text": "... 다행이네. 지금 회색시티에도 로켓단이 나왔대.",
+          "actors": [
+            "misty"
+          ]
+        },
+        {
+          "speaker": "brock",
+          "text": "그렇다. 지금 로켓단의 활동 범위가 막대하다!"
+        },
+        {
+          "speaker": "misty",
+          "text": "어맛 깜짝이야!"
+        },
+        {
+          "speaker": "brock",
+          "text": "크헉?!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "놀란 이슬이가 뒤돌아보자, 팔꿈치에 맞은 웅이가 쓰러졌다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "이게 그 유명한 백스핀 엘보인가 하는 건가?"
+        },
+        {
+          "speaker": "misty",
+          "text": "..."
+        },
+        {
+          "speaker": "misty",
+          "text": "못 본 걸로 하고, 아마도 네가 배지를 모으려고 앞으로 나갈수록 로켓단이 계속 나올 거야."
+        },
+        {
+          "speaker": "misty",
+          "text": "몸조심해. 요즘 트레이너가 많이 귀하거든."
+        },
+        {
+          "speaker": "brock",
+          "text": "입에 피를 흘리고 있다.",
+          "thought": true
+        },
+        {
+          "speaker": "brock",
+          "text": "걱정 마라... 회색시티에 내가 있으니..."
+        },
+        {
+          "speaker": "narrator",
+          "text": "이슬이가 웅이를 들고 갔다.",
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": ".. 뭐였지?",
+          "actor": null
+        }
+      ],
+      "actors": [
+        "misty",
+        "brock"
+      ]
+    },
+    "after-19": {
+      "title": "블루배지",
+      "backdrop": "gym-water",
+      "npc": "misty",
+      "lines": [
+        {
+          "speaker": "misty",
+          "text": "휴! 재밌었네! 오랜만이었어!"
+        },
+        {
+          "speaker": "misty",
+          "text": "여기 블루배지야. ... 앞으로 조심해."
+        },
+        {
+          "speaker": "player",
+          "text": "네, 알겠습니다."
         }
       ]
     }
@@ -769,21 +1128,37 @@
       ],
       [
         "brock",
-        "... 근데 몇살이냐?"
+        "... 근데 몇 살이냐?"
       ]
     ],
     "misty": [
       [
         "misty",
-        "강을 무사히 건너왔네! 이제 정식으로 겨뤄 볼까?"
-      ],
-      [
-        "player",
-        "응. 준비됐어."
+        "..."
       ],
       [
         "misty",
-        "블루체육관의 이슬이야. 시작하자!"
+        "휴대폰을 들여다보는 이슬의 표정이 심각하다"
+      ],
+      [
+        "player",
+        "저기... 체육관전 하러 왔습니다."
+      ],
+      [
+        "misty",
+        "...아! 반가워!"
+      ],
+      [
+        "misty",
+        "... 정말 앞으로 나갈 거야?"
+      ],
+      [
+        "misty",
+        "나가야겠지. 그게 트레이너인데. 후... 좋아! 전력으로 널 상대하겠어!"
+      ],
+      [
+        "player",
+        "갑니다!"
       ]
     ],
     "surge": [
@@ -896,7 +1271,7 @@
     },
     "scout": {
       "name": "스카우터",
-      "src": "scout-ranger.png"
+      "src": "scout-ranger-v2.png"
     }
   }
 };if(typeof module==='object')module.exports=root.KANTO_STORY;})(typeof window==='object'?window:globalThis);

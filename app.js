@@ -32,7 +32,17 @@ function defaultAim(origin,m){
  return {x:Math.max(0,Math.min(9,origin.x+Math.max(-m.range,Math.min(m.range,battle.enemyPos.x-origin.x)))),y:Math.max(0,Math.min(6,origin.y+Math.max(-m.range,Math.min(m.range,battle.enemyPos.y-origin.y))))};
 }
 function makeMon(id,isEnemy=false,enemyLevel=5){const p=D.pokemon.find(p=>p.id===id),stats={},level=isEnemy?enemyLevel:(game.records[id]?.level||5);const natureKey=isEnemy?'Serious':G.effectiveNature(game.records[id]);Object.assign(stats,G.battleStats(id,level,natureKey));const moveIds=isEnemy?enemyMoveIds(id,level):(game.moveSets[id]||G.defaultMoves(id,level));return {...p,level,natureKey,heldItem:isEnemy?'':(game.heldItems[id]||''),abilityId:isEnemy?G.defaultAbility(id):G.ability(game,id),abilityKey:A?.abilities[isEnemy?G.defaultAbility(id):G.ability(game,id)]?.key||'noability',types:[...p.types],battleStats:stats,statStages:{2:0,3:0,4:0,5:0,6:0},maxHP:stats[1],hp:stats[1],moves:moveIds.map(id=>({...moveFor(id),remaining:D.moves[id].pp}))};}
-function startBattle(tutorial=false,encounter=null){view='battle';savedTeam=game.team;token++;const chapter=encounter||chapters[stage];battle={encounter:chapter,ambush:!!encounter,id:Date.now()+'-'+Math.random().toString(36).slice(2),party:savedTeam.filter(Boolean).map(id=>makeMon(id)),foes:chapter.enemy.map((id,i)=>makeMon(id,true,chapter.levels[i])),active:0,enemy:0,pos:{x:2,y:3},enemyPos:{x:tutorial?4:7,y:3},turn:1,move:null,destination:null,target:null,hover:null,mode:'idle',logs:[],busy:false,result:null,reward:null,tutorial,experiencePaid:[],participants:[0]};if(chapter.moves&&!tutorial)battle.foes.forEach((mon,i)=>{mon.moves=chapter.moves[i].map(id=>({...moveFor(id),remaining:D.moves[id].pp}));});if(tutorial){const dummy=makeMon(19,true,1);dummy.name='연습 더미';dummy.hp=6;dummy.maxHP=6;dummy.art='assets/trainers/dummy.png';battle.foes=[dummy];}battle.combat=window.NativeCombat.create(battle,D,E,moveFor);battle.combat.apply(battle.combat.snapshot());render();const initial=battle.combat.sim.log.slice(),startToken=token;setTimeout(()=>{if(view!=='battle'||battle.busy||token!==startToken)return;const entry=initial.filter(l=>/\|(?:-boost|-unboost|-status|-weather)\|/.test(l));if(entry.length){const snap=battle.combat.snapshot();battle.messages=describeCombat({actor:'p0',before:snap,after:snap,logs:entry},player(),{name:'특성'});battle.entryUntil=Date.now()+battleDuration(2200);render();showBattleNotes(battle.messages);setTimeout(()=>{if(view==='battle'&&!battle.busy&&token===startToken)render();},battleDuration(2250));}showAbilityNotices(initial);if(!battle.tutorial){window.GameAudio?.play('cry-'+player().id,{volume:.7});window.GameAudio?.later('cry-'+enemy().id,850,{volume:.55});}},battleDuration(350));}
+function captureRocketCarry(b){
+ const order=[b.active,...b.party.map((_,i)=>i).filter(i=>i!==b.active)];
+ return {version:1,pos:{...b.pos},mons:order.map(i=>{const m=b.party[i],p=b.combat.sim.sides[0].pokemon.find(p=>p.name==='p'+i);return {id:m.id,hp:p.hp,maxHP:p.maxhp,status:p.status,statusState:Object.fromEntries(['time','startTime','stage'].filter(k=>Number.isFinite(p.statusState[k])).map(k=>[k,p.statusState[k]])),boosts:{...p.boosts},item:p.item,moves:p.moveSlots.filter(v=>v.id!=='greenfieldwait').map(v=>({id:window.PKMN.Dex.moves.get(v.id).num,pp:v.pp}))};})};
+}
+function restoreRocketCarry(carry){
+ const side=battle.combat.sim.sides[0];
+ for(const p of side.pokemon){const m=battle.combat.lookup(p.name).mon,saved=carry.mons.find(v=>v.id===m.id);if(!saved)continue;p.hp=Math.max(0,Math.min(p.maxhp,saved.hp));p.fainted=p.hp===0;p.status=saved.status;p.statusState={id:saved.status,target:p,...saved.statusState};for(const key of Object.keys(p.boosts))p.boosts[key]=Math.max(-6,Math.min(6,(saved.boosts[key]||0)+(p.boosts[key]||0)));for(const slot of p.moveSlots){const old=saved.moves.find(v=>window.PKMN.Dex.moves.get(D.moves[v.id].key).id===slot.id);if(old)slot.pp=Math.min(slot.maxpp,old.pp);}p.baseMoveSlots=p.moveSlots.map(v=>({...v}));}
+ side.pokemonLeft=side.pokemon.filter(p=>!p.fainted).length;battle.pos={...carry.pos};if(battle.pos.x===battle.enemyPos.x&&battle.pos.y===battle.enemyPos.y)battle.pos=E.spawnPosition(0,battle.enemyPos);battle.combat.sim.makeRequest('move');
+}
+function restartRocketSequence(){stage=14;game.rocketCarry=null;saveGame();startBattle();}
+function startBattle(tutorial=false,encounter=null){view='battle';const carry=encounter===window.ROCKET_AMBUSH?game.rocketCarry:null;if(!encounter&&stage===14&&game.rocketPending){game.rocketCarry=null;saveGame();}savedTeam=carry?carry.mons.map(m=>m.id):game.team;token++;const chapter=encounter||chapters[stage];battle={encounter:chapter,ambush:!!encounter,id:Date.now()+'-'+Math.random().toString(36).slice(2),party:savedTeam.filter(Boolean).map(id=>makeMon(id)),foes:chapter.enemy.map((id,i)=>makeMon(id,true,chapter.levels[i])),active:0,enemy:0,pos:{x:2,y:3},enemyPos:{x:tutorial?4:7,y:3},turn:1,move:null,destination:null,target:null,hover:null,mode:'idle',logs:[],busy:false,result:null,reward:null,tutorial,experiencePaid:[],participants:[0]};if(carry)battle.party.forEach(m=>{const prior=carry.mons.find(v=>v.id===m.id);m.heldItem=prior.item;m.moves=prior.moves.map(v=>({...moveFor(v.id),remaining:v.pp}));});if(chapter.moves&&!tutorial)battle.foes.forEach((mon,i)=>{mon.moves=chapter.moves[i].map(id=>({...moveFor(id),remaining:D.moves[id].pp}));});if(tutorial){const dummy=makeMon(19,true,1);dummy.name='연습 더미';dummy.hp=6;dummy.maxHP=6;dummy.art='assets/trainers/dummy.png';battle.foes=[dummy];}battle.combat=window.NativeCombat.create(battle,D,E,moveFor);if(carry)restoreRocketCarry(carry);battle.combat.apply(battle.combat.snapshot());render();const initial=battle.combat.sim.log.slice(),startToken=token;setTimeout(()=>{if(view!=='battle'||battle.busy||token!==startToken)return;const entry=initial.filter(l=>/\|(?:-boost|-unboost|-status|-weather)\|/.test(l));if(entry.length){const snap=battle.combat.snapshot();battle.messages=describeCombat({actor:'p0',before:snap,after:snap,logs:entry},player(),{name:'특성'});battle.entryUntil=Date.now()+battleDuration(2200);render();showBattleNotes(battle.messages);setTimeout(()=>{if(view==='battle'&&!battle.busy&&token===startToken)render();},battleDuration(2250));}showAbilityNotices(initial);if(!battle.tutorial){window.GameAudio?.play('cry-'+player().id,{volume:.7});window.GameAudio?.later('cry-'+enemy().id,850,{volume:.55});}},battleDuration(350));}
 function battleImage(mon){return mon.art||`assets/pokemon/${mon.appearance||mon.id}.png`;}
 function grantKnockoutExperience(){const b=battle;if(b.tutorial||enemy().hp>0||b.experiencePaid.includes(b.enemy))return;b.experiencePaid.push(b.enemy);const allocations=G.experienceShares(game,b.party,b.experienceParticipants?.[b.enemy]||b.participants),events=[];for(const allocation of allocations){const i=allocation.index;const mon=b.party[i],oldHP=mon.hp,oldMax=mon.maxHP,remaining=new Map(mon.moves.map(m=>[m.id,m.remaining]));const event=G.gainExperience(game,mon.id,enemy(),!!b.encounter.trainer,1,allocation.weight*(b.encounter.chapter>=3?1.5:1)),fresh=makeMon(event.id);Object.assign(mon,fresh);mon.hp=Math.max(0,Math.min(mon.maxHP,oldHP+mon.maxHP-oldMax));mon.moves.forEach(m=>{if(remaining.has(m.id))m.remaining=remaining.get(m.id);});events.push(event);}savedTeam=game.team;saveGame();if(events.length)showExperienceNotice(events);}
 const player=()=>battle.party[battle.active],enemy=()=>battle.foes[battle.enemy];
@@ -69,9 +79,9 @@ function renderStory(){
  $('#reset-command').onclick=()=>{b.mode='idle';b.destination=null;b.target=null;b.hover=null;b.move=null;render();};
  $('#confirm').onclick=()=>resolveTurn({kind:'attack',destination:b.destination||{...b.pos},target:{...b.target},move:b.move});
  $('#wait').onclick=()=>resolveTurn({kind:'wait',destination:{...b.destination}});
- if($('#retry-stage'))$('#retry-stage').onclick=()=>startBattle(b.tutorial,b.ambush?b.encounter:null);
- if($('#next-stage'))$('#next-stage').onclick=()=>{if(b.pvp){window.PvpUI.returnLobby();return;}if(b.tutorial){game.tutorial.step='scout';saveGame();view='scout';render();return;}if(b.ambush&&b.result!=='win'){beginRocket();return;}if(b.result==='win'){if(b.ambush){mapChapter=1;navigate('story');return;}if(stage===14&&game.rocketPending){beginRocket();return;}if(stage%10===9){mapChapter=Math.floor(stage/10);navigate('story');return;}if(stage<chapters.length-1)stage++;}beginStage();};
- if($('#next-stage')&&b.result==='win'&&!b.pvp&&!b.tutorial&&!b.ambush){const action=$('#next-stage').onclick;$('#next-stage').onclick=()=>{if(window.StoryUI?.afterBattle(stage,action))return;action();};}
+ if($('#retry-stage'))$('#retry-stage').onclick=()=>b.encounter===window.ROCKET_AMBUSH?restartRocketSequence():startBattle(b.tutorial,b.ambush?b.encounter:null);
+ if($('#next-stage'))$('#next-stage').onclick=()=>{if(b.pvp){window.PvpUI.returnLobby();return;}if(b.tutorial){game.tutorial.step='scout';saveGame();view='scout';render();return;}if(b.ambush&&b.result!=='win'){restartRocketSequence();return;}if(b.result==='win'){if(b.ambush){mapChapter=1;navigate('story');return;}if(stage===14&&game.rocketPending){beginRocket();return;}if(stage%10===9){mapChapter=Math.floor(stage/10);navigate('story');return;}if(stage<chapters.length-1)stage++;}beginStage();};
+ if($('#next-stage')&&b.result==='win'&&!b.pvp&&!b.tutorial){const action=$('#next-stage').onclick;$('#next-stage').onclick=()=>{if(window.StoryUI?.afterBattle(stage,action,{ambush:b.ambush}))return;action();};}
 }
 function chooseTile(x,y){
  const b=battle;if(b.busy||b.result)return;const pos={x,y};
@@ -92,17 +102,24 @@ function enemyMoveIds(id,level){
  const attacks=moves.filter(m=>m.damageClass!==1).sort((a,b)=>((b.power||30)*(p.types.includes(b.type)?1.5:1)*(b.accuracy||100))-((a.power||30)*(p.types.includes(a.type)?1.5:1)*(a.accuracy||100)));
  const selected=[];for(const m of attacks)if(!selected.some(v=>v.type===m.type)||selected.length<2){selected.push(m);if(selected.length===3)break;}
  const status=moves.filter(m=>m.damageClass===1).reverse().sort((a,b)=>Number(!!window.PKMN.Dex.moves.get(b.key).status)-Number(!!window.PKMN.Dex.moves.get(a.key).status));
+ const counter=moves.find(m=>['haze','clearsmog','taunt','roar','whirlwind'].includes(m.key));if(counter&&!selected.some(m=>m.id===counter.id)){if(selected.length===3)selected.pop();selected.push(counter);}
  for(const m of [...status,...moves.slice().reverse()])if(selected.length<4&&!selected.some(v=>v.id===m.id))selected.push(m);
  return selected.map(m=>m.id);
 }
 function enemyMoveValue(m,p,def,can,critical){
  const native=window.PKMN.Dex.moves.get(m.key),accuracy=typeof native.accuracy==='number'?native.accuracy/100:1;
- if(m.damageClass!==1){if(!can)return 0;const factor=E.effectiveness(m.type,def.types,D),damage=E.damage(p,def,m,D,{critical});
+ const boosts=mon=>Object.values(mon.statStages||{}).reduce((sum,v)=>sum+Math.max(0,v),0)+Math.max(0,mon.evasionStage||0),pressure=boosts(def),ownBoosts=boosts(p);
+ if(m.damageClass!==1){if(!can)return 0;const factor=E.effectiveness(m.type,def.types,D),damage=E.damage(p,def,['grassknot','lowkick'].includes(native.id)?{...m,power:(def.weight||500)<100?20:(def.weight||500)<250?40:(def.weight||500)<500?60:(def.weight||500)<1000?80:(def.weight||500)<2000?100:120}:m,D,{critical});
   const immunity=({levitate:5,flashfire:10,waterabsorb:11,stormdrain:11,voltabsorb:13,lightningrod:13,motordrive:13,sapsipper:12})[def.abilityKey?.replace(/-/g,'')];
-  if(immunity===m.type)return 0;let score=damage*10*accuracy;if(damage>=def.hp)score+=70;if(native.priority>0&&def.hp<def.maxHP*.3)score+=20;
-  if(native.secondary?.status&&!def.status)score+=15;if(native.drain&&p.hp<p.maxHP*.7)score+=15;return factor===0?0:score;
+  if(immunity===m.type)return 0;let score=damage*10*accuracy;if(damage>=def.hp)score+=350;if(native.priority>0&&def.hp<def.maxHP*.3)score+=20;
+  if(m.key==='clearsmog'&&pressure>=2)score+=160+pressure*40;if(native.secondary?.status&&!def.status)score+=15;if(native.drain&&p.hp<p.maxHP*.7)score+=15;return factor===0?0:score;
  }
  const self=['self','allySide','all'].includes(native.target)||m.impact==='self';if(!self&&!can)return 0;
+ if(m.key==='haze')return pressure>=2&&pressure>ownBoosts?180+(pressure-ownBoosts)*60:0;
+ if(native.forceSwitch)return pressure>=2&&battle.party.some((mon,i)=>i!==battle.active&&mon.hp>0)?(150+pressure*55)*accuracy:0;
+ if(native.volatileStatus==='taunt')return def.volatiles?.includes('taunt')?0:(pressure>=2?200+pressure*55:45)*accuracy;
+ if(['reflect','lightscreen'].includes(native.sideCondition)){const condition=native.sideCondition,active=battle.combat.sim.sides[1].sideConditions[condition],category=condition==='reflect'?2:3;return !active&&def.moves.some(move=>move.damageClass===category)&&p.hp>p.maxHP*.45?140:0;}
+ if(native.volatileStatus==='leechseed'&&def.types.includes(12))return 0;
  if(native.heal)return p.hp<p.maxHP*.55?Math.min(p.maxHP-p.hp,p.maxHP*.5)*9:0;
  if(native.status){if(def.status)return 0;const status=native.status;
   if((status==='par'&&def.types.includes(13))||(['psn','tox'].includes(status)&&def.types.some(t=>[4,9].includes(t)))||(status==='brn'&&def.types.includes(10))||(native.flags.powder&&def.types.includes(12)))return 0;
@@ -121,10 +138,10 @@ function aiCommand(){
    const m=p.moves[i];if(m.remaining<=0||m.disabled)continue;
    for(let ty=0;ty<7;ty++)for(let tx=0;tx<10;tx++){
     const target={x:tx,y:ty};if(!E.range(pos,target,m))continue;
-    const can=E.attackTiles(pos,target,m).some(t=>t.x===b.pos.x&&t.y===b.pos.y),value=enemyMoveValue(m,p,def,can,E.isCritical(pos,target,b.pos,m));
+    const tiles=E.attackTiles(pos,target,m),can=tiles.some(t=>t.x===b.pos.x&&t.y===b.pos.y),coverage=tiles.filter(t=>Math.max(Math.abs(t.x-b.pos.x),Math.abs(t.y-b.pos.y))<=1).length,value=enemyMoveValue(m,p,def,can,E.isCritical(pos,target,b.pos,m));
     // Keep useful distance for ranged moves; do not read the player's pending command.
     const distance=E.distance(pos,b.pos),spacing=value>0?-Math.abs(distance-Math.max(1,Math.min(3,m.range)))*2:-distance*3;
-    options.push({kind:'attack',destination:pos,target,move:i,score:value+spacing-E.distance(pos,b.enemyPos)*.3-E.distance(target,b.pos)*.01});
+    options.push({kind:'attack',destination:pos,target,move:i,score:value+spacing+(can&&m.damageClass!==1?Math.min(18,coverage*3):0)-E.distance(pos,b.enemyPos)*.3-E.distance(target,b.pos)*.01});
    }
   }
  }
@@ -184,7 +201,7 @@ for(const entry of turn.final.mons){const mon=b.combat.lookup(entry.name).mon;mo
 if(ownToken!==token)return;
 b.acting=null;
 const pAlive=b.party.some(p=>p.hp>0),eAlive=b.foes.some(p=>p.hp>0);
-if(!pAlive||!eAlive){b.result=pAlive?'win':'lose';window.GameAudio?.celebrate(b.result==='win'?'victory':'defeat');if(b.result==='win'&&!b.tutorial){b.reward=b.ambush?G.rewardRocket(game,b.id):G.reward(game,stage,b.id);progress=game.clears.filter(n=>n>0).length;saveGame();}log(b.result==='win'?'배틀에서 승리했습니다!':'포켓몬이 모두 쓰러졌습니다.');}
+if(!pAlive||!eAlive){b.result=pAlive?'win':'lose';window.GameAudio?.celebrate(b.result==='win'?'victory':'defeat');if(b.result==='win'&&!b.tutorial){b.reward=b.ambush?G.rewardRocket(game,b.id):G.reward(game,stage,b.id);progress=game.clears.filter(n=>n>0).length;if(stage===14&&!b.ambush&&game.rocketPending)game.rocketCarry=captureRocketCarry(b);saveGame();}if(b.result!=='win'&&b.encounter===window.ROCKET_AMBUSH){game.rocketCarry=null;saveGame();}log(b.result==='win'?'배틀에서 승리했습니다!':'포켓몬이 모두 쓰러졌습니다.');}
 else{if(player().hp===0){b.active=b.party.findIndex(p=>p.hp>0);if(!b.participants.includes(b.active))b.participants.push(b.active);log(`${player().name}이(가) 이어서 출전했다.`);}if(enemy().hp===0){b.enemy=b.foes.findIndex(p=>p.hp>0);b.participants=[b.active];log(`상대 ${enemy().name}이(가) 출전했다.`);}b.turn++;}
 b.busy=false;b.mode='idle';b.destination=null;b.target=null;b.hover=null;b.move=null;render();if(b.result==='win'&&!b.ambush&&stage===9&&!game.itemUnlockSeen){await pause(700);if(ownToken===token&&view==='battle'){const done=()=>navigate('home');if(!window.StoryUI?.afterBattle(stage,done))done();}}}
 function openTeam(){if(view!=='battle')navigate('manage');}

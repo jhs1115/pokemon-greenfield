@@ -1,0 +1,5 @@
+Tool mode: built-in image_gen, edit of oak-laboratory-v1.png with user-supplied GBA screenshot as style reference.
+Created: 2026-11-08
+The screenshot is a style reference only. No screenshot content is inserted in the environment.
+
+undefined

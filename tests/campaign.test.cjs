@@ -12,6 +12,6 @@ let seed=42;const random=()=>((seed=(seed*1664525+1013904223)>>>0)/4294967296),r
 for(let i=1;i<=151;i++)assert.equal(fs.readFileSync(`assets/pokemon/animated/${i}.gif`).subarray(0,3).toString(),'GIF');for(const key of Object.keys(I)){if(key!=='exp-share'&&!I[key].mint)assert(require('@pkmn/sim').Dex.items.get(key).exists,key);assert(fs.statSync(`assets/items/${key}.png`).size>50);}
 console.log('70-stage progression, distinct routes, Rocket gates, retroactive one-time unlock, held inventory, shared EXP, chapter scout levels, rare weights, increasing coins/drops, 151 animated sprites: passed.');
 
-assert.deepEqual(Array.from(stages[19].moves[0]),[33,106,105,352]);assert.deepEqual(Array.from(stages[29].moves[2]),[98,86,104,351]);assert.deepEqual(Array.from(stages[39].moves[2]),[79,51,78,202]);
+assert.deepEqual(Array.from(stages[19].moves[0]),[352,229,105,115]);assert.deepEqual(Array.from(stages[29].moves[2]),[85,447,411,417]);assert.deepEqual(Array.from(stages[39].moves[2]),[202,188,585,235]);
 for(const chapter of [1,2,3,4]){const save=G.normalize({owned:[25],team:[25],clears:Array(40).fill(1),itemsUnlocked:true});let draw=0;const reward=G.reward(save,(chapter-1)*10,'stone-check',()=>draw++===0?0:.999);assert.equal(!!I[reward.item]?.stone,chapter>=3);}
-console.log('Original FRLG leader moves and stone drops only from chapter 3: passed.');
+console.log('Practical gym loadouts and stone drops only from chapter 3: passed.');

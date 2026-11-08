@@ -1,7 +1,7 @@
 [
   {
     "chapter": 1,
-    "src": "assets/world/routes/chapter-1-v3.png",
+    "src": "assets/world/routes/chapter-1-v5.png",
     "points": [
       [
         5.637,
@@ -96,7 +96,7 @@
   },
   {
     "chapter": 2,
-    "src": "assets/world/routes/chapter-2-v3.png",
+    "src": "assets/world/routes/chapter-2-v5.png",
     "points": [
       [
         7.497,
@@ -142,9 +142,9 @@
     "width": 1774,
     "height": 887,
     "palette": {
-      "frame": "#5d9fa2",
-      "ink": "#366570",
-      "footer": "#335f64"
+      "frame": "#549fba",
+      "ink": "#326c88",
+      "footer": "#326879"
     },
     "reviewedPixelCenters": [
       [
@@ -191,7 +191,7 @@
   },
   {
     "chapter": 3,
-    "src": "assets/world/routes/chapter-3-v3.png",
+    "src": "assets/world/routes/chapter-3-v5.png",
     "points": [
       [
         5.073,
@@ -286,7 +286,7 @@
   },
   {
     "chapter": 4,
-    "src": "assets/world/routes/chapter-4-v3.png",
+    "src": "assets/world/routes/chapter-4-v5.png",
     "points": [
       [
         5.637,
@@ -381,7 +381,7 @@
   },
   {
     "chapter": 5,
-    "src": "assets/world/routes/chapter-5-v3.png",
+    "src": "assets/world/routes/chapter-5-v5.png",
     "points": [
       [
         4.791,
@@ -476,7 +476,7 @@
   },
   {
     "chapter": 6,
-    "src": "assets/world/routes/chapter-6-v3.png",
+    "src": "assets/world/routes/chapter-6-v5.png",
     "points": [
       [
         5.637,
@@ -571,7 +571,7 @@
   },
   {
     "chapter": 7,
-    "src": "assets/world/routes/chapter-7-v3.png",
+    "src": "assets/world/routes/chapter-7-v5.png",
     "points": [
       [
         6.313,
