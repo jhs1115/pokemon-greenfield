@@ -1,0 +1,13 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+let tick,enter,advanced=0;
+const c=vm.createContext({setInterval:fn=>(tick=fn,1),clearInterval(){},document:{addEventListener:(name,fn)=>enter=fn,activeElement:{tagName:'BODY'}}});
+vm.runInContext(fs.readFileSync('dialogue.js','utf8'),c);
+const element={textContent:'',innerHTML:'',isConnected:true},button={onclick:()=>advanced++,click(){this.onclick();}};
+c.element=element;c.button=button;
+vm.runInContext(`typeDialogue(element,'소식: [로켓단]과 [굉음] <img>!',button,null,null,{rich:true})`,c);
+for(let i=0;i<7;i++)tick();assert(element.innerHTML.includes('<span class="story-clue">로켓'));
+const event={key:'Enter',target:{closest:()=>false},preventDefault(){},stopImmediatePropagation(){}};
+enter(event);assert.equal(advanced,0,'first Enter completes this line');assert.equal(element.innerHTML,'소식: <span class="story-clue">로켓단</span>과 <span class="story-clue">굉음</span> &lt;img&gt;!');
+enter(event);assert.equal(advanced,1,'second Enter advances exactly one line');
+vm.runInContext(`typeDialogue(element,'일반 [텍스트]',null)`,c);for(let i=0;i<20;i++)tick();assert.equal(element.textContent,'일반 [텍스트]','other dialogue keeps its literal text');
+console.log('Rich dialogue: clue colors during typing and Enter completion, escaped text and unchanged plain callers: passed.');

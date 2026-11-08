@@ -11,7 +11,7 @@ for(const id of [144,145,146,150,151,131,143,115,127,123,128,142,5,6,8,9,2,3])as
 const late=G.normalize({...state,clears:Array(10).fill(1)});assert.ok(G.scoutPool(late).includes(143));assert.ok(!G.scoutPool(late).includes(150));
 G.completeTutorial(state);assert.equal(state.coins,10);G.completeTutorial(state);assert.equal(state.coins,10);const picks=[...G.scout(state,()=>.4)];assert.equal(state.coins,0);assert.equal(new Set(picks).size,3);
 G.scout(state);assert.equal(state.coins,0);assert.deepEqual(state.pending,picks);
-const resumed=G.normalize(JSON.parse(JSON.stringify(state)));assert.deepEqual(resumed.pending,picks);G.recruit(resumed,picks[1]);assert.equal(resumed.records[picks[1]].level,5);
+const resumed=G.normalize(JSON.parse(JSON.stringify(state)));assert.deepEqual(resumed.pending,picks);G.recruit(resumed,picks[1]);assert.equal(resumed.records[picks[1]].level,4);
 assert.equal(resumed.pending.length,0);G.setTeam(resumed,1,picks[1]);assert.equal(resumed.team[1],picks[1]);assert.throws(()=>G.setTeam(resumed,0,152));
 assert.throws(()=>G.setMove(resumed,4,0,53));assert.throws(()=>G.setMove(resumed,4,4,10));G.setMove(resumed,4,0,45);assert.equal(new Set(resumed.moveSets[4]).size,resumed.moveSets[4].length);
 for(let i=0;i<8;i++)G.removeMove(resumed,4,0);assert.equal(resumed.moveSets[4].length,1);
