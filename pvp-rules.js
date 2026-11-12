@@ -5,7 +5,7 @@ function createPvpRules({D,T,P,A,I,G,E,N,moveFor}){
  const validPoint=p=>p&&Number.isInteger(p.x)&&Number.isInteger(p.y)&&p.x>=0&&p.x<10&&p.y>=0&&p.y<7;
  function prepareTeam(raw,selection){const save=G.normalize(raw);if(!Array.isArray(selection)||selection.length!==6)throw Error('SIX_REQUIRED');const ids=new Set(),items=new Set();return selection.map(entry=>{
   const id=Number(entry.id),item=entry.item||'';if(!save.owned.includes(id))throw Error('NOT_OWNED');if(ids.has(id))throw Error('DUPLICATE_POKEMON');ids.add(id);
-  if(item){if(!I[item]||I[item].stone||I[item].mint||!(save.inventory[item]>0||Object.values(save.heldItems).includes(item)))throw Error('ITEM_NOT_OWNED');if(items.has(item))throw Error('DUPLICATE_ITEM');items.add(item);}
+  if(item){if(!I[item]||I[item].stone||I[item].mint||I[item].ticket||!(save.inventory[item]>0||Object.values(save.heldItems).includes(item)))throw Error('ITEM_NOT_OWNED');if(items.has(item))throw Error('DUPLICATE_ITEM');items.add(item);}
   return {id,item,nature:G.effectiveNature(save.records[id]),ability:G.ability(save,id),moves:[...save.moveSets[id]]};
  });}
  function mon(entry){const species=D.pokemon.find(p=>p.id===entry.id);if(!species)throw Error('INVALID_SPECIES');const stats=G.battleStats(entry.id,50,entry.nature);

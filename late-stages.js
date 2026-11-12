@@ -6,5 +6,8 @@ for(const encounter of window.STORY_STAGES){const bonus=encounter.chapter>=5?2:e
 window.ROCKET_AMBUSH.levels=window.ROCKET_AMBUSH.levels.map(level=>level+1);
 
 /* Practical gym loadouts supersede the base FRLG moves above; species stay unchanged. */
-window.GYM_LOADOUTS={"9":[[88,523,111,205],[317,523,20,103]],"19":[[352,229,105,115],[503,473,58,105]],"29":[[527,521,113,269],[85,98,447,86],[85,447,411,417]],"39":[[438,389,398,79],[202,246,73,282],[202,188,585,235]],"49":[[188,53,92,114],[441,282,425,174],[188,85,261,114],[188,53,261,114]],"59":[[94,247,605,347],[94,115,113,86],[405,94,79,483],[94,411,247,105]],"69":[[53,242,46,261],[394,667,528,261],[394,667,528,14],[394,245,370,234]]};
-for(const [index,loadout] of Object.entries(window.GYM_LOADOUTS)){const i=+index,boss=window.STORY_STAGES[i],floor=Math.max(...window.STORY_STAGES[i-1].levels);boss.moves=loadout;boss.levels=boss.enemy.map((_,n)=>Math.min(100,floor+3+Math.round(n*2/Math.max(1,boss.enemy.length-1))));}
+window.GYM_LOADOUTS={"9":[[157,89,111,205],[157,89,20,103]],"19":[[57,58,105,115],[56,94,58,105]],"29":[[87,521,113,269],[85,98,447,86],[85,447,411,417]],"39":[[438,389,398,79],[437,246,73,282],[572,188,585,235]],"49":[[188,53,92,114],[441,282,425,174],[188,85,261,114],[188,53,261,114]],"59":[[94,247,605,347],[94,115,113,86],[405,94,79,483],[94,411,247,105]],"69":[[53,242,46,261],[394,667,528,261],[394,667,528,14],[394,245,370,234]]};
+for(const [index,loadout] of Object.entries(window.GYM_LOADOUTS)){const i=+index,boss=window.STORY_STAGES[i],floor=Math.max(...window.STORY_STAGES[i-1].levels);boss.moves=loadout;boss.levels=boss.enemy.map((_,n)=>Math.min(100,floor+5+Math.round(n*3/Math.max(1,boss.enemy.length-1))));}
+
+/* Leaders prepare specialized natures and held items; Brock always has Sturdy. */
+for(const [index] of Object.entries(window.GYM_LOADOUTS)){const boss=window.STORY_STAGES[+index];boss.heldItems=boss.enemy.map((_,n)=>n===boss.enemy.length-1?'sitrus-berry':'oran-berry');boss.natures=boss.enemy.map(id=>{const p=window.POKE_DATA?.pokemon.find(p=>p.id===id);return !p||p.stats[2]>=p.stats[4]?'Adamant':'Modest';});}window.STORY_STAGES[9].abilities=['sturdy','sturdy'];

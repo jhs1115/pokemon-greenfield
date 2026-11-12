@@ -100,7 +100,7 @@
         },
         {
           "speaker": "oak",
-          "text": "아, 섭외를 못했네"
+          "text": "아 섭외를 못했네"
         },
         {
           "speaker": "narrator",
@@ -457,39 +457,29 @@
       ]
     },
     "scout": {
-      "title": "스카우터",
+      "title": "새로운 동료를 만나는 곳",
       "backdrop": "shop",
-      "npc": "scout",
+      "npc": null,
       "lines": [
         {
+          "speaker": "narrator",
+          "text": "파란 지붕의 문을 열고 들어갔다."
+        },
+        {
           "speaker": "scout",
-          "text": "오, 이번에 새로 들어오신 트레이너님이신가요?"
+          "text": "아 안녕하세요!"
         },
         {
           "speaker": "player",
-          "text": "아, 네! 맞아요 여기서 새 포켓몬들을 만날 수 있다고 들었습니다!"
+          "text": "여기서 포켓몬을 만날 수 있다고 해서 왔습니다!"
         },
         {
           "speaker": "scout",
-          "text": "아, 네. 맞아요. 여기서 포켓몬들을 만나 보실 수 있죠."
+          "text": "맞아요! 여기선 더 많이 나아갈수록 더 강한 포켓몬들을 얻을 수 있답니다~"
         },
         {
           "speaker": "scout",
-          "text": "첫 비용은... 무료로 해 드리죠. 저희 자주 만날 것 같거든요."
-        },
-        {
-          "speaker": "player",
-          "text": "아핫 감사합니다!"
-        },
-        {
-          "speaker": "player",
-          "text": "하 이 몸의 인기란",
-          "thought": true
-        },
-        {
-          "speaker": "scout",
-          "text": "... 설마 착각하는건 아니겠지",
-          "thought": true
+          "text": "티켓이 있으신 것 같은데 한번 만나 보실래요?"
         }
       ]
     },
@@ -819,7 +809,7 @@
         },
         {
           "speaker": "oak",
-          "text": "아, 그리고 다른 도구가 필요하면 상점에 들러 보게나. 여러 가지가 있을 거다!"
+          "text": "아 그리고 다른 도구가 필요하면 상점에 들러 보게나. 여러 가지가 있을 거다!"
         },
         {
           "speaker": "player",
@@ -912,7 +902,7 @@
         },
         {
           "speaker": "brock",
-          "text": "아, 맞다. 나이"
+          "text": "아 맞다 나이"
         }
       ]
     },
@@ -1108,6 +1098,68 @@
         {
           "speaker": "player",
           "text": "네, 알겠습니다."
+        }
+      ]
+    },
+    "after-2": {
+      "title": "오박사의 전화",
+      "backdrop": "forest",
+      "npc": null,
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "핸드폰이 울린다."
+        },
+        {
+          "speaker": "oak",
+          "text": "아아 들리나?"
+        },
+        {
+          "speaker": "oak",
+          "text": "모험은 잘 떠나고 있는지 모르겠군."
+        },
+        {
+          "speaker": "player",
+          "text": "아 잘 되고 있습니다!"
+        },
+        {
+          "speaker": "oak",
+          "text": "그렇다면 다행이군."
+        },
+        {
+          "speaker": "oak",
+          "text": "혹시 새로운 포켓몬을 가지고 싶지 않나?"
+        },
+        {
+          "speaker": "player",
+          "text": "아 네! 혹시 어디서 얻을 수 있나요?"
+        },
+        {
+          "speaker": "oak",
+          "text": "마을로 한번 가 보게. 파란 지붕이 보일 거야."
+        },
+        {
+          "speaker": "oak",
+          "text": "그곳으로 가면 새로운 포켓몬들을 만날 수 있을 걸세."
+        },
+        {
+          "speaker": "oak",
+          "text": "스카우트 티켓을 넣어 놨으니 한번 가 보게."
+        },
+        {
+          "speaker": "narrator",
+          "text": "스카우트 티켓을 얻었다!",
+          "itemGift": "scout-ticket",
+          "itemCount": 1
+        },
+        {
+          "speaker": "player",
+          "text": "감사합니다!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "마을 · 스카우트 잠금 해제",
+          "unlock": "village"
         }
       ]
     }
