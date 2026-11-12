@@ -132,21 +132,23 @@ function enemyMoveValue(m,p,def,can,critical){
  }return 0;
 }
 function aiCommand(){
- const b=battle,p=enemy(),def=player();let best=null;if(b.tutorial)return {kind:'wait',destination:{...b.enemyPos}};
+ const b=battle,p=enemy(),def=player(),currentDistance=E.distance(b.enemyPos,b.pos);let best=null,stationary=null;if(b.tutorial)return {kind:'wait',destination:{...b.enemyPos}};
  for(let y=0;y<7;y++)for(let x=0;x<10;x++){
-  const pos={x,y};if(E.path(b.enemyPos,pos,b.pos)===null)continue;
+  const pos={x,y},staying=x===b.enemyPos.x&&y===b.enemyPos.y;
+  // Approach only when needed; never circle or retreat to improve a firing angle.
+  if(!staying&&E.distance(pos,b.pos)>=currentDistance)continue;if(E.path(b.enemyPos,pos,b.pos)===null)continue;
   for(let i=0;i<p.moves.length;i++){
    const m=p.moves[i];if(m.remaining<=0||m.disabled)continue;
    for(let ty=0;ty<7;ty++)for(let tx=0;tx<10;tx++){
     const target={x:tx,y:ty};if(!E.range(pos,target,m))continue;
     const tiles=E.attackTiles(pos,target,m),can=tiles.some(t=>t.x===b.pos.x&&t.y===b.pos.y),coverage=tiles.filter(t=>Math.max(Math.abs(t.x-b.pos.x),Math.abs(t.y-b.pos.y))<=1).length,value=enemyMoveValue(m,p,def,can,E.isCritical(pos,target,b.pos,m));
-    // Keep useful distance for ranged moves; do not read the player's pending command.
-    const distance=E.distance(pos,b.pos),spacing=value>0?-Math.abs(distance-Math.max(1,Math.min(3,m.range)))*2:-distance*3;
-    const candidate={kind:'attack',destination:pos,target,move:i,score:value+spacing+(can&&m.damageClass!==1?Math.min(18,coverage*3):0)-E.distance(pos,b.enemyPos)*.3-E.distance(target,b.pos)*.01};if(!best||candidate.score>best.score)best=candidate;
+    // Prefer the current tile whenever a useful attack or status move is available.
+    const distance=E.distance(pos,b.pos),spacing=-distance*3;
+    const candidate={kind:'attack',destination:pos,target,move:i,score:value+spacing+(can&&m.damageClass!==1?Math.min(18,coverage*3):0)-E.distance(pos,b.enemyPos)*.3-E.distance(target,b.pos)*.01};if(!best||candidate.score>best.score)best=candidate;if(staying&&value>0&&(!stationary||candidate.score>stationary.score))stationary=candidate;
    }
   }
  }
- return best||{kind:'wait',destination:{...b.enemyPos}};
+ return stationary||best||{kind:'wait',destination:{...b.enemyPos}};
 }
 const pause=ms=>new Promise(r=>setTimeout(r,battleDuration(ms)));
 async function playRecordedMove(record,options,applyFrame){const frames=record.hitFrames?.length?record.hitFrames:[record.after];for(let i=0;i<frames.length;i++){await window.GameAudio?.cast(options.move);await window.playMoveEffect({...options,hit:options.hit||frames.length>1,durationScale:frames.length>1?.36:1});if(view!=='battle')return;if(frames.length>1){applyFrame(frames[i]);render();await pause(65);}}}
