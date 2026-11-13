@@ -51,7 +51,7 @@ function itemUnlock(){
  return open('item-gift',book.scenes['item-gift'],()=>{game.itemUnlockSeen=true;saveGame();view='home';render();});
 }
 function beforeMenu(name){if(!book.scenes[name]||has('menu-'+name)||name==='scout'&&!G.villageUnlocked(game)||name!=='scout'&&!has('opening'))return false;return open('menu-'+name,book.scenes[name],()=>{view=name;render();});}
-const secrets=[{chapter:4,stage:45,key:'secret-marsh',name:'사파리의 샛길',item:'persim-berry'}];
+const secrets=[];
 function secretsHTML(chapter){return secrets.filter(s=>s.chapter===chapter&&game.clears[s.stage]>0).map(s=>`<button class="secret-route secondary" data-secret="${s.key}">${has(s.key)?'✓ ':''}${s.name}</button>`).join('');}
 function bindSecrets(){document.querySelectorAll('[data-secret]').forEach(b=>b.onclick=()=>{const s=secrets.find(s=>s.key===b.dataset.secret),claimed=has(s.key);open(s.key,book.scenes[s.key],()=>{if(!claimed){game.inventory[s.item]=(game.inventory[s.item]||0)+1;saveGame();toast(`${window.ITEM_DATA[s.item].name} ×1`);}view='story';render();},{replay:claimed});});}
 function archive(chapter=archiveChapter){archiveChapter=chapter;view='story-archive';render();}

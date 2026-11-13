@@ -702,21 +702,6 @@
         }
       ]
     },
-    "secret-marsh": {
-      "title": "사파리의 분실물",
-      "backdrop": "river",
-      "npc": "koga",
-      "lines": [
-        {
-          "speaker": "narrator",
-          "text": "풀숲 사이에서 작은 가방을 발견했다."
-        },
-        {
-          "speaker": "koga",
-          "text": "순찰대 가방이군. 찾아줘서 고맙다. 안의 시몬열매는 가져가도 좋아."
-        }
-      ]
-    },
     "after-9": {
       "title": "회색 배지",
       "backdrop": "gym-rock",
