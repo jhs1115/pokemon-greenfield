@@ -72,7 +72,7 @@
 
   function evolve(state,id,next){const rule=info(id).evolutions.find(e=>e.to===next);if(!state.owned.includes(id)||!rule||rule.level&&state.records[id].level<rule.level)throw new Error('진화 조건을 만족하지 않습니다');if(state.owned.includes(next))throw new Error('이미 보유한 진화형입니다');if(rule.trigger===3){const key=Object.keys(ITEMS).find(k=>ITEMS[k].stone===rule.item);if(!key||!(state.inventory[key]>0))throw new Error('해당 진화의 돌이 필요합니다. 상점이나 모험 보상에서 구할 수 있습니다');state.inventory[key]--;}state.owned[state.owned.indexOf(id)]=next;state.team=state.team.map(v=>v===id?next:v);state.records[next]=state.records[id];if(state.heldItems[id]){state.heldItems[next]=state.heldItems[id];delete state.heldItems[id];}state.abilitySets[next]=defaultAbility(next);delete state.abilitySets[id];state.moveSets[next]=state.moveSets[id];delete state.records[id];delete state.moveSets[id];return next;}
   function gainExperience(state,id,foe,trainer=false,participants=1,share=1,baseMultiplier=1,chapter=scoutChapter(state)){
-   const original=id,record=state.records[id],oldLevel=record.level,cap=levelCap(state,chapter),requested=Math.max(1,Math.floor(Math.floor(info(foe.id).baseExp*foe.level*(trainer?1.5:1)*baseMultiplier/(7*Math.max(1,participants)))*share)),newMoves=[],evolved=[];
+   const original=id,record=state.records[id],oldLevel=record.level,cap=Math.min(levelCap(state),levelCap(state,chapter)),requested=Math.max(1,Math.floor(Math.floor(info(foe.id).baseExp*foe.level*(trainer?1.5:1)*baseMultiplier/(7*Math.max(1,participants)))*share)),newMoves=[],evolved=[];
    const amount=Math.min(requested,Math.max(0,threshold(id,Math.max(cap,oldLevel))-record.exp));record.exp+=amount;
    while(record.level<cap&&record.exp>=threshold(id,record.level+1)){
     record.level++;
