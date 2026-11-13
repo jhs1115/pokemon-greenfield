@@ -13,7 +13,31 @@ function opening(replay=false){if(current&&view==='dialogue')return renderScene(
 }
 function skip(){if(!current)return;if(current.options.opening&&!game.starter){current.page=starterPage;current.options.skipAfterChoice=true;renderScene();return;}finish();}
 function next(){if(!current)return;if(current.page>=current.spec.lines.length-1){finish();return;}current.page++;if(!current.options.replay&&!current.options.repeat){progress().cursors[current.key]=current.page;saveGame();}renderScene();}
-function background(kind){if(kind==='ruined-city')return '<img src="assets/world/fuchsia-ruins-v1.png" alt="">';if(kind==='safari-fog')return '<img src="assets/world/routes/chapter-5-v5.png" alt="">';if(kind==='restaurant')return '<img src="assets/world/flower-restaurant-v1.png" alt="">';if(kind==='warehouse'||kind==='warehouse-dark')return '<img src="assets/world/port-warehouse-v1.png" alt="">';if(kind==='coast')return '<img src="assets/world/routes/chapter-2-v5.png" alt="">';if(kind==='lab')return '<img src="assets/world/oak-laboratory-v2.png" alt="">';if(kind==='shop')return sceneArt('interiors',0);if(kind==='lounge')return sceneArt('interiors',2);if(kind==='training')return sceneArt('interiors',1);if(kind==='river')return sceneArt('interiors',3);if(kind==='blossom-street')return '<img src="assets/world/routes/chapter-4-v5.png" alt="">';if(kind==='garden')return sceneArt('home-scenes',2);if(kind==='harbor')return '<img src="assets/world/pvp-home-v2.png" alt="">';if(kind==='hideout')return sceneArt('gyms',0);if(kind.startsWith('gym-'))return sceneArt('gyms',({rock:0,water:1,electric:2,grass:3,poison:3,psychic:2,fire:0})[kind.slice(4)]||0);return sceneArt('home-scenes',0);}
+const backgroundAssets=Object.freeze({
+  "pallet-town": "assets/world/story-v1/pallet-town-v1.png",
+  "road": "assets/world/story-v1/forest-path-v1.png",
+  "forest": "assets/world/story-v1/forest-path-v1.png",
+  "coast": "assets/world/story-v1/cerulean-coast-v1.png",
+  "cerulean-pier": "assets/world/story-v1/cerulean-pier-v1.png",
+  "ferry-deck": "assets/world/story-v1/ferry-deck-v1.png",
+  "vermilion-port": "assets/world/story-v1/vermilion-port-v1.png",
+  "celadon-arrival": "assets/world/story-v1/celadon-arrival-v1.png",
+  "blossom-street": "assets/world/story-v1/blossom-street-v1.png",
+  "rocket-hideout": "assets/world/story-v1/rocket-hideout-v1.png",
+  "safari-fog": "assets/world/story-v1/safari-mist-v1.png",
+  "shop": "assets/world/story-v1/scout-reception-v1.png",
+  "gym-rock": "assets/world/story-v1/gym-rock-v1.png",
+  "gym-water": "assets/world/story-v1/gym-water-v1.png",
+  "gym-electric": "assets/world/story-v1/gym-electric-v1.png",
+  "gym-grass": "assets/world/story-v1/gym-grass-v1.png",
+  "gym-poison": "assets/world/story-v1/gym-poison-v1.png",
+  "lab": "assets/world/oak-laboratory-v2.png",
+  "restaurant": "assets/world/flower-restaurant-v1.png",
+  "warehouse": "assets/world/port-warehouse-v1.png",
+  "warehouse-dark": "assets/world/port-warehouse-v1.png",
+  "ruined-city": "assets/world/fuchsia-ruins-v1.png"
+});
+function background(kind){if(backgroundAssets[kind])return `<img src="${backgroundAssets[kind]}" alt="" decoding="async">`;if(kind==='ruined-city')return '<img src="assets/world/fuchsia-ruins-v1.png" alt="">';if(kind==='safari-fog')return '<img src="assets/world/routes/chapter-5-v5.png" alt="">';if(kind==='restaurant')return '<img src="assets/world/flower-restaurant-v1.png" alt="">';if(kind==='warehouse'||kind==='warehouse-dark')return '<img src="assets/world/port-warehouse-v1.png" alt="">';if(kind==='coast')return '<img src="assets/world/routes/chapter-2-v5.png" alt="">';if(kind==='lab')return '<img src="assets/world/oak-laboratory-v2.png" alt="">';if(kind==='shop')return sceneArt('interiors',0);if(kind==='lounge')return sceneArt('interiors',2);if(kind==='training')return sceneArt('interiors',1);if(kind==='river')return sceneArt('interiors',3);if(kind==='blossom-street')return '<img src="assets/world/routes/chapter-4-v5.png" alt="">';if(kind==='garden')return sceneArt('home-scenes',2);if(kind==='harbor')return '<img src="assets/world/pvp-home-v2.png" alt="">';if(kind==='hideout')return sceneArt('gyms',0);if(kind.startsWith('gym-'))return sceneArt('gyms',({rock:0,water:1,electric:2,grass:3,poison:3,psychic:2,fire:0})[kind.slice(4)]||0);return sceneArt('home-scenes',0);}
 function renderScene(){if(!current){view='story';render();return;}const {key,spec,page,options}=current,line=spec.lines[page],speaker=line.speaker;
  if(book.cast[speaker])current.lastNpc=speaker;
  const npc=Object.prototype.hasOwnProperty.call(line,'actor')?line.actor:current.lastNpc,cast=npc&&book.cast[npc],choosing=line.choice==='starter'&&!game.starter,partner=species(game.starter||game.team.find(Boolean)||4).name,text=line.text.replaceAll('{partner}',partner),backdrop=spec.lines.slice(0,page+1).reverse().find(l=>l.backdrop)?.backdrop||spec.backdrop;
@@ -39,7 +63,7 @@ function beforeStage(index,done){const c=chapters[index],key='before-'+index;
   return open('gym-'+index+(repeat?'-repeat':''),{title:c.leader+'의 체육관',backdrop:'gym-'+c.gym,npc:actor,lines},()=>{game.gymVisits[index]=(game.gymVisits[index]||0)+1;saveGame();startBattle();},{repeat});
  }
  if(book.scenes[key]&&!has(key))return open(key,book.scenes[key],c.rocket?()=>startBattle():done);
- if(c.rocket)return open(key+'-repeat',{title:c.rocketBase?'로켓단의 지하 거점':'로켓단',backdrop:c.rocketBase?'hideout':'harbor',npc:'rocket',lines:[{speaker:'rocket',text:'여기서 또 마주치다니! 이번에는 그냥 보내 주지 않겠다!'}]},()=>startBattle(),{repeat:true});
+ if(c.rocket)return open(key+'-repeat',{title:c.rocketBase?'로켓단의 지하 거점':'로켓단',backdrop:c.chapter<=5?(c.rocketBase?'rocket-hideout':c.chapter===5?'safari-fog':c.name==='3-3'?'warehouse':'vermilion-port'):(c.rocketBase?'hideout':'harbor'),npc:'rocket',lines:[{speaker:'rocket',text:'여기서 또 마주치다니! 이번에는 그냥 보내 주지 않겠다!'}]},()=>startBattle(),{repeat:true});
  return false;
 }
 function ambush(done){return open('ambush',book.scenes.ambush,done,{repeat:has('ambush')});}
@@ -58,5 +82,5 @@ function bindSecrets(){document.querySelectorAll('[data-secret]').forEach(b=>b.o
 function archive(chapter=archiveChapter){archiveChapter=chapter;view='story-archive';render();}
 function replayOrder(key){if(key==='opening')return -1;if(key==='item-gift')return 92;if(key==='ambush')return 145;if(key==='after-ambush')return 146;if(key.startsWith('menu-'))return {scout:95,manage:96,training:97}[key.slice(5)];const secret=secrets.find(s=>s.key===key);if(secret)return secret.stage*10+5;const stage=key.match(/^(before|after)-(\d+)$/);if(stage)return +stage[2]*10+(stage[1]==='after'?1:0);return (+key.split('-').at(-1)*10+9)*10;}
 function renderArchive(){const visible=CHAPTER_NAMES.map((name,ch)=>({name,ch})).filter(({ch})=>ch===0||game.clears[ch*10-1]>0);$('#app').innerHTML=`<div class="menu-shell story-archive">${menuHeader('지난 이야기')}<button id="archive-map" class="secondary">지도로</button><nav class="archive-chapters" aria-label="지난 이야기 챕터">${visible.map(({name,ch})=>`<button data-archive-chapter="${ch}" class="${ch===archiveChapter?'primary':'secondary'}">${ch+1}챕터의 ${escapeHTML(name)}</button>`).join('')}</nav>${visible.filter(({ch})=>ch===archiveChapter).map(({name,ch})=>{const entries=Object.entries(book.scenes).filter(([key])=>{if(key==='opening')return ch===0;if(key==='ambush'||key==='after-ambush')return ch===1&&game.rocketCleared;const m=key.match(/^(?:before|after)-(\d+)$/);return m&&Math.floor(+m[1]/10)===ch&&(has(key)||game.clears[+m[1]]>0);});if(ch===0&&has('item-gift'))entries.push(['item-gift',book.scenes['item-gift']]);if(ch===0)for(const key of ['scout'])if(has('menu-'+key))entries.push(['menu-'+key,book.scenes[key]]);const boss=chapters[ch*10+9],actor=gymKeys[boss.leader];if(game.clears[ch*10+9]||has('gym-'+(ch*10+9)))entries.push(['archive-gym-'+ch,{title:boss.leader+'의 체육관',backdrop:'gym-'+boss.gym,npc:actor,lines:book.gymLines[actor].map(([speaker,text],i)=>({speaker,text,thought:actor==='misty'&&i===1}))}]);for(const s of secrets.filter(s=>s.chapter===ch&&has(s.key)))entries.push([s.key,book.scenes[s.key]]);return `<section><h2>${ch+1}장 · ${name}</h2><div class="archive-scenes">${entries.sort((a,b)=>replayOrder(a[0])-replayOrder(b[0])).map(([key,spec])=>`<button class="secondary" data-replay-scene="${key}">${ch+1}챕터의 ${escapeHTML(spec.title)}</button>`).join('')||'<small>아직 지나온 이야기가 없습니다.</small>'}</div></section>`;}).join('')}</div>`;bindMenuHeader();document.querySelectorAll('[data-archive-chapter]').forEach(b=>b.onclick=()=>archive(+b.dataset.archiveChapter));$('#archive-map').onclick=()=>{view='story';render();};document.querySelectorAll('[data-replay-scene]').forEach(b=>b.onclick=()=>{const key=b.dataset.replayScene;let spec=book.scenes[key]||book.scenes[key.replace(/^menu-/,'')];if(!spec){const ch=+key.split('-').at(-1),boss=chapters[ch*10+9],actor=gymKeys[boss.leader];spec={title:boss.leader+'의 체육관',backdrop:'gym-'+boss.gym,npc:actor,lines:book.gymLines[actor].map(([speaker,text],i)=>({speaker,text,thought:actor==='misty'&&i===1}))};}open(key,spec,()=>archive(archiveChapter),{replay:true});});}
-window.StoryUI={archive,renderArchive,secretsHTML,bindSecrets,opening,render:renderScene,beforeStage,afterBattle,hasAfterBattle,itemUnlock,beforeMenu,ambush,has,replayOpening:()=>opening(true)};
+window.StoryUI={backgroundAssets,archive,renderArchive,secretsHTML,bindSecrets,opening,render:renderScene,beforeStage,afterBattle,hasAfterBattle,itemUnlock,beforeMenu,ambush,has,replayOpening:()=>opening(true)};
 })();

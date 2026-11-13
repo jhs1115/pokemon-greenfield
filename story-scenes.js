@@ -105,7 +105,7 @@
         {
           "speaker": "narrator",
           "text": "여러 찝찝한 마음을 뒤로한 채, 연구소를 나섰다.",
-          "backdrop": "road",
+          "backdrop": "pallet-town",
           "actor": null
         }
       ]
@@ -348,7 +348,7 @@
     },
     "before-20": {
       "title": "갈색시티 항구",
-      "backdrop": "coast",
+      "backdrop": "cerulean-pier",
       "npc": "misty",
       "lines": [
         {
@@ -383,7 +383,8 @@
           "speaker": "narrator",
           "text": "배가 뱃고동 소리와 함께 출발한다.",
           "actor": null,
-          "sound": "ship-horn"
+          "sound": "ship-horn",
+          "backdrop": "ferry-deck"
         },
         {
           "speaker": "narrator",
@@ -393,7 +394,7 @@
         {
           "speaker": "player",
           "text": "배멀미땜에 디질뻔;;",
-          "backdrop": "harbor",
+          "backdrop": "vermilion-port",
           "actor": null
         },
         {
@@ -482,7 +483,7 @@
     },
     "before-22": {
       "title": "창고 앞",
-      "backdrop": "harbor",
+      "backdrop": "vermilion-port",
       "npc": null,
       "lines": [
         {
@@ -563,7 +564,7 @@
     },
     "before-27": {
       "title": "운송 기록",
-      "backdrop": "harbor",
+      "backdrop": "vermilion-port",
       "npc": "rocket",
       "lines": [
         {
@@ -701,7 +702,7 @@
         {
           "speaker": "player",
           "text": "헉... 헉...",
-          "backdrop": "hideout"
+          "backdrop": "rocket-hideout"
         },
         {
           "speaker": "erika",
@@ -750,7 +751,7 @@
     },
     "after-37": {
       "title": "함께 지켜 낸 마을",
-      "backdrop": "hideout",
+      "backdrop": "rocket-hideout",
       "npc": "rocket",
       "lines": [
         {
@@ -1637,7 +1638,7 @@
         {
           "speaker": "narrator",
           "text": "마침 밖을 순찰하던 마티스를 만난다.",
-          "backdrop": "harbor",
+          "backdrop": "vermilion-port",
           "actor": null
         },
         {
@@ -1673,7 +1674,7 @@
     },
     "before-26": {
       "title": "수상한 사람들을 쫓아서",
-      "backdrop": "harbor",
+      "backdrop": "vermilion-port",
       "npc": null,
       "lines": [
         {
@@ -1735,7 +1736,7 @@
     },
     "after-27": {
       "title": "놓쳐 버린 연구 자료",
-      "backdrop": "harbor",
+      "backdrop": "vermilion-port",
       "npc": "rocket",
       "lines": [
         {
@@ -1820,7 +1821,7 @@
     },
     "before-30": {
       "title": "꽃향기가 나는 도시",
-      "backdrop": "garden",
+      "backdrop": "celadon-arrival",
       "npc": null,
       "lines": [
         {

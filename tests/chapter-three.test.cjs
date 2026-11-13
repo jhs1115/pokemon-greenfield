@@ -17,7 +17,7 @@ const c=vm.createContext({window:w,document:{querySelector:()=>({}),querySelecto
   }
   vm.runInContext('startBattle();',c);assert.equal(vm.runInContext('battle.encounter.waveIndex||0',c),0,'retry starts from the first trainer');assert.equal(vm.runInContext('battle.foes.length',c),3);
  }
- assert.equal(book.scenes['before-20'].backdrop,'coast');assert(book.scenes['before-20'].lines.some(l=>l.backdrop==='harbor'));assert(book.scenes['before-20'].lines.some(l=>l.sound==='ship-horn'));
+ assert.equal(book.scenes['before-20'].backdrop,'cerulean-pier');assert(book.scenes['before-20'].lines.some(l=>l.backdrop==='vermilion-port'));assert(book.scenes['before-20'].lines.some(l=>l.sound==='ship-horn'));
  const warehouse=book.scenes['before-22'].lines;assert(warehouse.findIndex(l=>l.backdrop==='warehouse-dark')<warehouse.findIndex(l=>l.backdrop==='warehouse'));
  for(const key of ['after-22','before-26','after-27','after-29'])assert(book.scenes[key]);assert(book.gymLines.surge.some(([,text])=>text.includes('electronic')));assert(!book.scenes['before-20'].lines.some(l=>l.text.includes('노랑시티')));
  console.log('Chapter 3: user dialogue/backdrop/light/horn, chapters 3–5 two/three/four trainers of three, preserved HP/status/PP, no premature clears/rewards, final reward and full retry: passed.');

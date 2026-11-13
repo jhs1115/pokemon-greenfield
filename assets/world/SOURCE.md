@@ -35,3 +35,5 @@ Fifteen active generated assets were redrawn with the built-in image_gen referen
 - `flower-restaurant-v1.png`: built-in image_gen, 2026-11-14. Coarse handheld RPG pixel-art restaurant exterior framed by cherry blossoms, used at 4-4 meal and 4-8 meeting place. Prompt: `flower-restaurant-v1.prompt.txt`. No external image source.
 
 - `fuchsia-ruins-v1.png`: built-in image_gen, 2026-11-14. Coarse GBA-style ruined safari town for chapter five dialogue; prompt in `fuchsia-ruins-v1.prompt.txt`. No external source imagery.
+
+- `story-v1/*.png`: 16 dedicated chapter 1–5 dialogue backgrounds, built-in image_gen, 2026-11-14. Exact prompts and original generated filenames: `story-v1/prompts.json`. Full scene mapping: `docs/STORY_BACKGROUNDS.md`. No new backgrounds for chapters 6 onward.

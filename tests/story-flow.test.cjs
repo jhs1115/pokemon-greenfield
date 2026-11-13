@@ -28,9 +28,9 @@ const call=fixture({owned:[4],team:[4],clears:[1,1,1],story:{seen:['opening']}})
 console.log('First 1-3 phone call, ticket gift/unlock presentation, return home, first-only scout introduction and reload-safe ticket: passed.');
 
 const warehouseStory=fixture({owned:[4],team:[4],tutorial:{done:true}});warehouseStory.c.chapters[22]={rocket:true};warehouseStory.w.StoryUI.beforeStage(22,()=>{});
-for(let page=0;page<book.scenes['before-22'].lines.length;page++){assert.equal(warehouseStory.el('#story-cinema').dataset.backdrop,page<3?'harbor':page<10?'warehouse-dark':'warehouse','backdrop changes persist across subsequent dialogue lines');warehouseStory.el('#story-next').onclick();}
+for(let page=0;page<book.scenes['before-22'].lines.length;page++){assert.equal(warehouseStory.el('#story-cinema').dataset.backdrop,page<3?'vermilion-port':page<10?'warehouse-dark':'warehouse','backdrop changes persist across subsequent dialogue lines');warehouseStory.el('#story-next').onclick();}
 const arrivalStory=fixture({owned:[4],team:[4],tutorial:{done:true}});arrivalStory.c.chapters[20]={};arrivalStory.w.StoryUI.beforeStage(20,()=>{});
-for(let page=0;page<book.scenes['before-20'].lines.length;page++){assert.equal(arrivalStory.el('#story-cinema').dataset.backdrop,page<9?'coast':'harbor');arrivalStory.el('#story-next').onclick();}
+for(let page=0;page<book.scenes['before-20'].lines.length;page++){assert.equal(arrivalStory.el('#story-cinema').dataset.backdrop,page<7?'cerulean-pier':page<9?'ferry-deck':'vermilion-port');arrivalStory.el('#story-next').onclick();}
 console.log('Chapter three persistent ship-arrival background and warehouse dark-to-lit transition: passed.');
 
 assert(book.scenes['before-30']);assert(!book.scenes['before-31'],'Erika meeting moved from 4-2 to 4-1');assert(book.scenes['before-33']);assert(book.scenes['after-39']);assert(!book.scenes['after-37'].lines.some(l=>/뮤츠|연구 기록/.test(l.text)),'the previous chapter-four research discovery is replaced');
@@ -45,3 +45,14 @@ const fifth=fixture({owned:[4],team:[4],tutorial:{done:true}});fifth.c.chapters[
 assert(book.scenes['after-43'].lines.some(l=>l.text.includes('기님')));assert(book.scenes['before-48'].lines.some(l=>l.text.includes('치료가 완벽하게')));assert(!book.scenes['before-48'].injured);assert(book.scenes['after-49'].lines.some(l=>l.text.includes('핑크 배지')));assert(!book.scenes['before-46'].lines.some(l=>/실프|장치/.test(l.text)));
 fifth.c.chapters[49]={leader:'독수',gym:'poison'};fifth.c.game.gymVisits[49]=1;fifth.w.StoryUI.beforeStage(49,()=>{});assert.equal(fifth.el('#story-line').textContent,'이 늙은이를 또 상대할 건가? 나야 좋다!');assert.equal(fifth.el('#story-cinema').dataset.injured,'false');
 console.log('Chapter five ruined city and injured leader, red humanoid clue, first-only rescue aftermath, boss-name hint, recovery and Koga badge/rechallenge: passed.');
+// Dedicated chapter 1–5 backgrounds cover every authored location and every gym.
+const fsArt=require('node:fs'),art=fixture().w.StoryUI.backgroundAssets;
+for(const [key,spec]of Object.entries(book.scenes)){
+ const match=key.match(/^(?:before|after)-(\d+)$/);if(match&&+match[1]>=50)continue;
+ for(const kind of [spec.backdrop,...spec.lines.map(l=>l.backdrop).filter(Boolean)]){assert(art[kind],`${key}: ${kind} must use a dedicated background`);assert(fsArt.existsSync(art[kind]),`${key}: missing ${art[kind]}`);assert(!/routes\/chapter-|pvp-home|home-scenes|interiors/.test(art[kind]),`${key}: map/menu art cannot substitute for a dialogue scene`);}
+}
+for(const [index,actor,gym]of [[9,'brock','rock'],[19,'misty','water'],[29,'surge','electric'],[39,'erika','grass'],[49,'koga','poison']]){const gymStory=fixture({owned:[4],team:[4],tutorial:{done:true}});gymStory.c.chapters[index]={leader:book.cast[actor].name,gym};gymStory.w.StoryUI.beforeStage(index,()=>{});assert(gymStory.el('.story-backdrop').innerHTML.includes(`gym-${gym}-v1.png`));}
+assert.equal(new Set(['rock','water','electric','grass','poison'].map(t=>art['gym-'+t])).size,5);
+for(const [key,kind]of [['before-50','harbor'],['before-53','hideout'],['before-57','hideout'],['before-60','river'],['before-63','hideout'],['before-66','hideout']])assert.equal(book.scenes[key].backdrop,kind,'chapter 6 onward is outside this artwork update');
+const artManifest=JSON.parse(fsArt.readFileSync('assets/world/story-v1/prompts.json','utf8'));assert.equal(Object.keys(artManifest.assets).length,16);for(const item of Object.values(artManifest.assets)){assert(item.prompt?.length>400);const data=fsArt.readFileSync(item.path);assert.equal(data.toString('ascii',1,4),'PNG');assert(data.length>10000);assert(Math.abs(data.readUInt32BE(16)/data.readUInt32BE(20)-16/9)<.02);}
+console.log('All chapter 1–5 dialogue/gym/replay locations use complete dedicated assets; 16 wide original images/prompts valid and chapter 6+ unchanged: passed.');
