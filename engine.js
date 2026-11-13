@@ -11,6 +11,40 @@
   16:{range:1,impact:'front',width:1},145:{range:1,impact:'front',width:1},45:{range:1,impact:'front',width:1},39:{range:1,impact:'front',width:1},43:{range:2,impact:'single'},47:{range:2,impact:'single'},28:{range:1,impact:'front',width:1},
   71:{range:2,impact:'single'},40:{range:3,impact:'single'},73:{range:3,impact:'single'}
  };
+ // Authored footprints follow the action, rather than move ID modulo patterns.
+ function signatureGeometry(m){
+  const k=m.key||'';if(!k||m.impact==='self'||m.id===157)return m;
+  const local=(label,cells,reach)=>({...m,impact:'cone',range:reach,localMask:cells,geometryLabel:label});
+  const area=(label,cells)=>({...m,impact:'single',mask:cells,geometryLabel:label});
+  if(m.damageClass===1){
+   if(/powder|spore|mist|haze|smoke/.test(k))return area('안개 지대',[[0,0],[-1,0],[1,0],[0,-1],[0,1],[-1,-1],[1,1]]);
+   if(/wave|glare|hypnosis|confuse/.test(k))return area('교란 교차',[[0,0],[-1,-1],[1,-1],[-1,1],[1,1]]);
+   return m;
+  }
+  if([32,90,329].includes(m.id))return m;
+  if(/punch|hammer|palm/.test(k))return local('정면 충격',[[1,0],[2,0],[2,-1],[2,1]],2);
+  if(/kick|stomp|rolling|rollout/.test(k))return local('쐐기 돌파',[[1,-1],[1,0],[1,1],[2,0],[3,0]],3);
+  if(/slash|claw|cut|chop|blade|scythe/.test(k))return local('초승달 베기',[[1,-1],[1,0],[1,1],[2,-2],[2,-1],[2,1],[2,2]],2);
+  if(/bite|fang|crunch|jaw/.test(k))return local('집게 물기',[[1,0],[1,-1],[1,1],[2,-1],[2,1]],2);
+  if(/beam|cannon|gun|lance/.test(k))return local('집중 포격',[[1,0],[2,0],[2,-1],[2,1],[3,0],[3,-1],[3,1],[4,0]],4);
+  if(/pulse|breath/.test(k))return local('맥동 파동',[[1,0],[2,-1],[2,0],[2,1],[3,-1],[3,0],[3,1]],3);
+  if(/surf|wave|muddy-water/.test(k))return local('넓은 파도',[[1,-1],[1,0],[1,1],[2,-1],[2,0],[2,1],[3,-1],[3,0],[3,1]],3);
+  if(/earthquake|magnitude|bulldoze|self-destruct|explosion|discharge|petal-blizzard/.test(k))return {...m,impact:'burst',range:0,mask:null,geometryLabel:'주변 충격파'};
+  if(/whirl|spin|vortex|hurricane|twister/.test(k))return area('회오리 고리',[[0,0],[-1,-1],[0,-1],[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0]]);
+  if(/thunder|lightning|zap|bolt/.test(k))return area('번개 갈래',[[0,0],[-1,0],[1,0],[0,-1],[0,1],[-2,0],[2,0],[0,-2],[0,2]]);
+  if(/blizzard|ice|freeze|frost/.test(k))return area('얼음 결정',[[0,0],[-1,-1],[1,-1],[-1,1],[1,1],[0,-1],[0,1]]);
+  if(/flame|fire|heat|burn/.test(k))return local('불꽃 부채',[[1,0],[2,-1],[2,0],[2,1],[3,-2],[3,-1],[3,0],[3,1],[3,2]],3);
+  if(/bomb|meteor|avalanche/.test(k))return area('폭발 충격',[[0,0],[-1,0],[1,0],[0,-1],[0,1],[-1,-1],[1,-1],[-1,1],[1,1]]);
+  if(/ball|orb|sphere/.test(k))return area('구체 확산',[[0,0],[-1,0],[1,0],[0,-1],[0,1]]);
+  if(/sting|needle|spike|seed|shuriken|missile/.test(k))return local('갈래 투사',[[1,0],[2,-1],[2,0],[2,1],[3,-1],[3,1]],3);
+  if(/wing|gust|air|aerial/.test(k))return local('날개 바람',[[1,-1],[1,0],[1,1],[2,-2],[2,0],[2,2]],2);
+  if(/leaf|petal|razor/.test(k))return local('잎새 부채',[[1,0],[2,-1],[2,0],[2,1],[3,-2],[3,0],[3,2]],3);
+  if(/psychic|psyshock|extrasensory/.test(k))return area('염동 교차',[[0,0],[-1,-1],[1,-1],[-1,1],[1,1],[-1,0],[1,0]]);
+  if(/rock|stone|tomb/.test(k))return area('바위 낙하',[[0,0],[-1,0],[1,0],[-1,-1],[0,-1],[1,-1]]);
+  if(/sludge|acid|poison|venom/.test(k))return area('독성 비산',[[0,0],[-1,0],[1,0],[0,1],[-1,1],[1,1]]);
+  if(/tackle|slam|head|rush|charge|impact/.test(k))return local('돌진 충격',[[1,0],[2,-1],[2,0],[2,1],[3,0]],3);
+  return m;
+ }
  function normalizeMove(move){
   if(move.geometryVersion===2)return {...move};
   // Footprint cap, distinct from selectable reach. Starter attacks stay compact.
@@ -20,8 +54,8 @@
   if(m.impact==='ray'){if([32,90,329].includes(m.id)){m.range=5;m.width=0;}else {m.impact='cone';m.range=3;}}
   if(m.impact==='cone')m.range=3;
   if(m.impact==='front'){m.width=1;m.depth=(m.power||0)>=60?2:1;m.range=m.depth;}
-  if(m.damageClass===1&&!['self','burst'].includes(m.impact)){if(m.id===81){m.impact='ray';m.range=5;m.width=0;}if(m.impact==='front'){m.impact='cross';m.size=1;}m.range=Math.max(3,m.range);return m;}
-  return BASIC_MOVE_RULES[m.id]?{...m,...BASIC_MOVE_RULES[m.id],basicMove:true}:m;
+  if(m.damageClass===1&&!['self','burst'].includes(m.impact)){if(m.id===81){m.impact='ray';m.range=5;m.width=0;}if(m.impact==='front'){m.impact='cross';m.size=1;}m.range=Math.max(3,m.range);return signatureGeometry(m);}
+  return BASIC_MOVE_RULES[m.id]?{...m,...BASIC_MOVE_RULES[m.id],basicMove:true}:signatureGeometry(m);
  }
  function range(origin,target,move){
   move=normalizeMove(move);
@@ -37,7 +71,8 @@
   if(!range(origin,target,move))return [];
   if(move.impact==='self')return [{...origin}];
   const tiles=[],seen=new Set(),add=(x,y)=>{const key=x+','+y;if(inside({x,y})&&(move.impact==='burst'||x!==origin.x||y!==origin.y)&&!seen.has(key)){seen.add(key);tiles.push({x,y});}};
-  if(move.mask){for(const [dx,dy]of move.mask)add(target.x+dx,target.y+dy);}
+  if(move.localMask){const dx=Math.sign(target.x-origin.x),dy=Math.sign(target.y-origin.y);for(const [depth,offset]of move.localMask)add(origin.x+dx*depth-dy*offset,origin.y+dy*depth+dx*offset);}
+  else if(move.mask){for(const [dx,dy]of move.mask)add(target.x+dx,target.y+dy);}
   else if(move.impact==='burst'&&move.tileLimit===5){for(const [x,y]of [[0,0],[0,-1],[1,0],[0,1],[-1,0]])add(origin.x+x,origin.y+y);}
   else if(move.impact==='ring'&&move.tileLimit===5){for(const [x,y]of [[0,0],[0,-2],[2,0],[0,2],[-2,0]])add(target.x+x,target.y+y);}
   else if(move.impact==='cone'&&move.tileLimit===5){const dx=Math.sign(target.x-origin.x),dy=Math.sign(target.y-origin.y);for(const [depth,offset]of [[1,0],[2,-1],[2,0],[2,1],[3,0]])add(origin.x+dx*depth-dy*offset,origin.y+dy*depth+dx*offset);}

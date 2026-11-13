@@ -24,15 +24,15 @@ const evolved=G.normalize({owned:[6],team:[6],records:{6:G.freshRecord(6,36)}});
 const pika=G.normalize({owned:[25],team:[25]});assert.throws(()=>G.evolve(pika,25,26),/진화의 돌/);pika.inventory['thunder-stone']=1;pika.itemsUnlocked=true;pika.inventory['exp-share']=1;G.equipItem(pika,25,'exp-share');assert.throws(()=>G.equipItem(pika,25,'thunder-stone'),/착용할 수 없는/);assert.throws(()=>G.useItem(pika,25,'fire-stone'),/사용할 수 없는/);assert.equal(G.useItem(pika,25,'thunder-stone'),26);assert.equal(pika.inventory['thunder-stone'],0);assert.equal(pika.heldItems[26],'exp-share');assert.equal(pika.records[26].level,5);
 const e=G.normalize();G.chooseStarter(e,1);const ev=G.gainExperience(e,1,{id:19,level:3});assert.equal(ev.amount,Math.floor(57*3/7));
 const shared=G.normalize();G.chooseStarter(shared,1);assert.equal(G.gainExperience(shared,1,{id:19,level:3},false,2).amount,Math.floor(57*3/14));
-assert.equal(G.unlocked(e,1),false);assert.equal(G.reward(e,1,'bad').total,0);assert.equal(G.reward(e,0,'first').total,4000);assert.equal(G.reward(e,0,'first').total,0);assert.equal(G.reward(e,0,'repeat').total,1000);
+assert.equal(G.unlocked(e,1),false);assert.equal(G.reward(e,1,'bad').total,0);assert.equal(G.reward(e,0,'first').total,2000);assert.equal(G.reward(e,0,'first').total,0);assert.equal(G.reward(e,0,'repeat').total,500);
 for(let i=1;i<10;i++)assert.ok(G.reward(e,i,'stage'+i).total>=1);assert.equal(e.clears[9],1);assert.ok(G.scoutPool(e).includes(143));
 console.log('Starter Lv5 moves, scout exclusions/late unlocks, level-only recall, EXP sharing, exact evolution levels, and 10-stage rewards: passed.');
 
 assert.throws(()=>G.setAbility(state,4,94));assert.equal(G.ability(state,4),G.defaultAbility(4));const final=G.normalize({owned:[6],team:[6]});G.setAbility(final,6,94);assert.equal(G.ability(final,6),94);assert.equal(G.ability(G.normalize(JSON.parse(JSON.stringify(final))),6),94);assert.throws(()=>G.setAbility(final,6,22));
 
 const coinTest=G.normalize();G.chooseStarter(coinTest,4);
-assert.deepEqual(Array.from({length:9},(_,i)=>G.reward(coinTest,0,'coin-'+i).total),[4000,1000,1000,1000,1000,1000,1000,1000,1000]);
+assert.deepEqual(Array.from({length:9},(_,i)=>G.reward(coinTest,0,'coin-'+i).total),[2000,500,500,500,500,500,500,500,500]);
 const beforeDuplicate=coinTest.coins;assert.equal(G.reward(coinTest,0,'coin-8').total,0);assert.equal(coinTest.coins,beforeDuplicate);
-const bossReward=G.normalize({clears:Array(9).fill(1)});assert.equal(G.reward(bossReward,9,'boss-first').total,20500);
+const bossReward=G.normalize({clears:Array(9).fill(1)});assert.equal(G.reward(bossReward,9,'boss-first').total,10250);
 assert.equal(G.normalize().coins,0);assert.equal(G.completeTutorial(coinTest),10000);
 console.log('Updated economy: first-clear bonus plus base coins every clear, duplicate protection: passed.');

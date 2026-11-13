@@ -31,8 +31,8 @@ vm.runInContext("{const own=makeMon(7,true,20),fire=makeMon(4,true,20),water=mak
  vm.runInContext("stage=0;fixture();game.coins=30;game.clears=Array(10).fill(0);game.claimed=[];battle.foes.forEach(p=>p.hp=1);battle.combat.sim.sides[1].pokemon.forEach(p=>p.hp=1);aiCommand=()=>({kind:'wait',destination:{...battle.enemyPos}});",context);
  for(let i=0;i<3;i++)await vm.runInContext("resolveTurn({kind:'attack',destination:{x:3,y:3},target:{x:7,y:3},move:2})",context);
  assert.equal(vm.runInContext('battle.result',context),'win');
- assert.equal(vm.runInContext('game.coins',context),4030);
+ assert.equal(vm.runInContext('game.coins',context),2030);
  await vm.runInContext("resolveTurn({kind:'wait',destination:{x:3,y:3}})",context);
- assert.equal(vm.runInContext('game.coins',context),4030);
+ assert.equal(vm.runInContext('game.coins',context),2030);
  console.log('Complete action order, faster opponent, and knockout cancellation: passed.');
 })().catch(error=>{console.error(error);process.exitCode=1;});

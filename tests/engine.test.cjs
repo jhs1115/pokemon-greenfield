@@ -88,3 +88,15 @@ assert.equal(E.normalizeMove({...D.moves[45],...expanded(D.moves[45])}).impact,'
 assert.equal(E.normalizeMove({...D.moves[39],...expanded(D.moves[39])}).impact,'cross');
 assert.equal(E.normalizeMove({...D.moves[33],...moves[33]}).range,1);
 console.log('Opponent status moves regain reach of at least three tiles; early attack ranges stay short: passed.');
+
+const signature=id=>E.normalizeMove({...D.moves[id],...(moves[id]||expanded(D.moves[id]))});
+const forward={x:4,y:3},east={x:5,y:3},north={x:4,y:2};
+const punch=signature(9),slash=signature(163),beam=signature(63),wave=signature(57),ice=signature(59),thunder=signature(85);
+assert(punch.localMask&&slash.localMask&&beam.localMask&&wave.localMask&&ice.mask&&thunder.mask);
+const footprint=m=>JSON.stringify(E.attackTiles(forward,east,m).map(p=>[p.x-forward.x,p.y-forward.y]).sort());
+assert.equal(new Set([punch,slash,beam,wave,ice,thunder].map(footprint)).size,6,'representative attack families have distinct real hit cells');
+const rotated=E.attackTiles(forward,east,punch).map(p=>`${forward.x+p.y-forward.y},${forward.y-(p.x-forward.x)}`).sort();
+assert.deepEqual(E.attackTiles(forward,north,punch).map(p=>`${p.x},${p.y}`).sort(),rotated,'directional footprints rotate with aim');
+assert(E.attackTiles(forward,east,punch).every(p=>p.x>forward.x),'punch does not hit behind the user');
+const slide=signature(157);assert.equal(E.attackTiles({x:0,y:3},{x:3,y:3},slide).length,5);assert(E.attackTiles({x:0,y:3},{x:3,y:3},slide).every(p=>Math.abs(p.x-3)+Math.abs(p.y-3)<=1));
+console.log('Signature move families, rotated directional masks, forward-only punches and unchanged five-cell Rock Slide: passed.');

@@ -12,11 +12,13 @@ create table if not exists public.pvp_matches (
  picks1 jsonb,picks2 jsonb,pending1 jsonb,pending2 jsonb,
  phase text not null default 'select' check(phase in ('select','battle','resolving','finished')),
  round integer not null default 0,version integer not null default 0,
- deadline timestamptz not null default (now()+interval '30 seconds'),starts_at timestamptz not null default now(),
+ deadline timestamptz not null default (now()+interval '15 seconds'),starts_at timestamptz not null default now(),
  seed jsonb not null,state jsonb,history jsonb not null default '[]',events jsonb not null default '[]',
  winner text check(winner in ('p1','p2','draw')),resolve_token uuid,lease_until timestamptz,
  created_at timestamptz not null default now(),updated_at timestamptz not null default now()
 );
+-- Also updates previously created databases when this script is rerun.
+alter table public.pvp_matches alter column deadline set default (now()+interval '15 seconds');
 create index if not exists pvp_player1_active on public.pvp_matches(player1,phase);
 create index if not exists pvp_player2_active on public.pvp_matches(player2,phase);
 alter table public.pvp_queue enable row level security;
@@ -100,7 +102,7 @@ begin
  select coalesce(jsonb_agg(e order by n),'[]') into next_events from jsonb_array_elements(m.events||jsonb_build_array(p_event||jsonb_build_object('version',m.version+1))) with ordinality as x(e,n) where n>greatest(0,jsonb_array_length(m.events)+1-4);
  update public.pvp_matches set state=p_state,events=next_events,history=case when p_commands is null then history else history||jsonb_build_array(p_commands) end,
   round=m.round+1,version=m.version+1,phase=case when p_winner is null then 'battle' else 'finished' end,winner=p_winner,
-  pending1=null,pending2=null,starts_at=next_start,deadline=next_start+interval '30 seconds',resolve_token=null,lease_until=null,updated_at=clock_timestamp()
+  pending1=null,pending2=null,starts_at=next_start,deadline=next_start+interval '15 seconds',resolve_token=null,lease_until=null,updated_at=clock_timestamp()
  where id=p_id returning * into m;
  return to_jsonb(m);
 end;$$;

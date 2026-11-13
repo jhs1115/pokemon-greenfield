@@ -15,3 +15,7 @@ console.log('Bulk ticket purchase/restore/capacity/atomic rejection and full par
 
 for(let chapter=1;chapter<=8;chapter++){const state=G.normalize({economyVersion:1,coins:1000000,clears:Array((chapter-1)*10).fill(1),story:{seen:['village-scout-ticket']}}),expected=[15000,18000,21000,24000,27000,30000,33000,36000][chapter-1];assert.equal(G.scoutCost(state),expected);assert.equal(G.itemPrice(state,'scout-ticket'),expected);assert.equal(G.itemPrice(state,'charcoal'),I.charcoal.price);if(chapter>1){const before=state.coins;G.buyItem(state,'scout-ticket',3);assert.equal(state.coins,before-expected*3);assert.equal(state.inventory['scout-ticket'],3);assert.equal(G.normalize(state).inventory['scout-ticket'],3);state.coins=expected-1;assert.throws(()=>G.buyItem(state,'scout-ticket'),/소지금/);assert.equal(state.inventory['scout-ticket'],3);}}
 console.log('Scout ticket price rises 3,000 per unlocked chapter; bulk checkout, persistence and insufficient funds use the same price: passed.');
+
+// All chapter battle payouts, including both portions, are exactly halved.
+for(let stage=0;stage<70;stage++){const state=G.normalize(),ch=Math.floor(stage/10)+1,pos=stage%10,boss=pos===9;const base=1000+(ch-1)*5000+pos*500+(boss?2000:0),first=boss?10000+ch*3000:2000+ch*1000+pos*500;assert.deepEqual(G.rewardCoins(state,stage),{base:base/2,first:first/2,total:(base+first)/2});state.clears[stage]=1;assert.equal(G.rewardCoins(state,stage).total,base/2);}
+console.log('All 70 stage first-clear and repeat rewards halved: passed.');

@@ -25,7 +25,7 @@ function moveFor(id){
  const fallback=m.damageClass===1?{range:m.target===7?0:3,impact:m.target===7?'self':'single',fx:m.meta.healing>0?'drain':fx}:{range:3,impact:m.power>=100?'square':'single',size:1,fx};
  return E.normalizeMove(window.MOVE_RULES[id]?{...m,...fallback,...window.MOVE_RULES[id]}:{...m,...fallback,...window.getExpandedMoveRule(m)});
 }
-function aimDescription(m){return ({self:'자신',square:`${m.size*2+1}×${m.size*2+1}`,front:m.width?`정면 ${(m.depth||1)*3}칸`:'정면 1칸',ray:`직선 ${m.range}칸`,cone:'부채꼴 최대 9칸',cross:`십자 ${1+4*m.size}칸`,single:m.mask?`${m.mask.length}칸`:'단일 지점',diagonal:'대각선',diamond:'마름모',ring:'고리',burst:'주변 확산'})[m.impact];}
+function aimDescription(m){if(m.geometryLabel)return m.geometryLabel+' · 최대 '+(m.localMask?.length||m.mask?.length||9)+'칸';return ({self:'자신',square:`${m.size*2+1}×${m.size*2+1}`,front:m.width?`정면 ${(m.depth||1)*3}칸`:'정면 1칸',ray:`직선 ${m.range}칸`,cone:'부채꼴 최대 9칸',cross:`십자 ${1+4*m.size}칸`,single:m.mask?`${m.mask.length}칸`:'단일 지점',diagonal:'대각선',diamond:'마름모',ring:'고리',burst:'주변 확산'})[m.impact];}
 function defaultAim(origin,m){
  if(m.impact==='self'||m.impact==='burst')return {...origin};
  if(E.directional(m)){const dx=enemy().id&&battle.enemyPos.x-origin.x,dy=battle.enemyPos.y-origin.y;return Math.abs(dx)>=Math.abs(dy)?{x:origin.x+(dx>=0?1:-1),y:origin.y}:{x:origin.x,y:origin.y+(dy>=0?1:-1)};}
