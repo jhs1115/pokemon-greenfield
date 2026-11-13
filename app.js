@@ -162,7 +162,7 @@ const actions=E.order([
 ]);
 for(const a of actions.filter(a=>a.command.kind==='switch')){
  if(ownToken!==token)return;
- player().statStages={2:0,3:0,4:0,5:0,6:0};b.active=a.command.index;b.pos=E.spawnPosition(0,b.enemyPos);window.GameAudio?.play('cry-'+player().id,{volume:.7});if(!b.participants.includes(b.active))b.participants.push(b.active);render();await pause(400);
+ player().statStages={2:0,3:0,4:0,5:0,6:0};b.active=a.command.index;window.GameAudio?.play('cry-'+player().id,{volume:.7});if(!b.participants.includes(b.active))b.participants.push(b.active);render();await pause(400);
 }
 const mobility=b.combat.prepareMovement(command,opponent);
 const movers=E.order(actions.filter(a=>a.command.kind!=='switch').map(a=>({...a,priority:0})));
