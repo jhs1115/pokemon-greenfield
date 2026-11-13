@@ -1,5 +1,6 @@
 (function(root){
  const definitions={
+  157:{range:4,impact:'cross',size:1,fx:'slam'},
   84:{range:3,impact:'cross',size:1,fx:'shock'},
   85:{range:4,impact:'square',size:1,fx:'thunder'},
   98:{range:2,impact:'ray',width:0,fx:'dash'},

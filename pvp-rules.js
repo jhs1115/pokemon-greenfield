@@ -6,10 +6,10 @@ function createPvpRules({D,T,P,A,I,G,E,N,moveFor}){
  function prepareTeam(raw,selection){const save=G.normalize(raw);if(!Array.isArray(selection)||selection.length!==6)throw Error('SIX_REQUIRED');const ids=new Set(),items=new Set();return selection.map(entry=>{
   const id=Number(entry.id),item=entry.item||'';if(!save.owned.includes(id))throw Error('NOT_OWNED');if(ids.has(id))throw Error('DUPLICATE_POKEMON');ids.add(id);
   if(item){if(!I[item]||I[item].stone||I[item].mint||I[item].ticket||!(save.inventory[item]>0||Object.values(save.heldItems).includes(item)))throw Error('ITEM_NOT_OWNED');if(items.has(item))throw Error('DUPLICATE_ITEM');items.add(item);}
-  return {id,item,nature:G.effectiveNature(save.records[id]),ability:G.ability(save,id),moves:[...save.moveSets[id]]};
+  return {id,item,shiny:save.records[id]?.shiny===true,nature:G.effectiveNature(save.records[id]),ability:G.ability(save,id),moves:[...save.moveSets[id]]};
  });}
  function mon(entry){const species=D.pokemon.find(p=>p.id===entry.id);if(!species)throw Error('INVALID_SPECIES');const stats=G.battleStats(entry.id,50,entry.nature);
-  return {...copy(species),level:50,natureKey:entry.nature||'Serious',heldItem:entry.item||'',abilityId:entry.ability,abilityKey:A.abilities[entry.ability]?.key||'noability',battleStats:stats,statStages:{2:0,3:0,4:0,5:0,6:0},hp:stats[1],maxHP:stats[1],moves:entry.moves.map(id=>({...moveFor(id),remaining:D.moves[id].pp}))};
+  return {...copy(species),level:50,shiny:entry.shiny===true,natureKey:entry.nature||'Serious',heldItem:entry.item||'',abilityId:entry.ability,abilityKey:A.abilities[entry.ability]?.key||'noability',battleStats:stats,statStages:{2:0,3:0,4:0,5:0,6:0},hp:stats[1],maxHP:stats[1],moves:entry.moves.map(id=>({...moveFor(id),remaining:D.moves[id].pp}))};
  }
  function create(match){const picks1=match.picks1||[0,1,2],picks2=match.picks2||[0,1,2];const state={party:picks1.map(i=>mon(match.team1[i])),foes:picks2.map(i=>mon(match.team2[i])),active:0,enemy:0,pos:{x:2,y:3},enemyPos:{x:7,y:3},turn:1,revealed:[[true,false,false],[true,false,false]]};const combat=N.create(state,D,E,moveFor,match.seed);state.combat=combat;combat.apply(combat.snapshot());
   const frame=()=>copy({party:state.party,foes:state.foes,active:state.active,enemy:state.enemy,pos:state.pos,enemyPos:state.enemyPos,turn:state.turn,revealed:state.revealed,snapshot:combat.snapshot()});

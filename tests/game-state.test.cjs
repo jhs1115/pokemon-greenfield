@@ -17,7 +17,7 @@ assert.throws(()=>G.setMove(resumed,4,0,53));assert.throws(()=>G.setMove(resumed
 for(let i=0;i<8;i++)G.removeMove(resumed,4,0);assert.equal(resumed.moveSets[4].length,1);
 assert.throws(()=>G.scout(G.normalize({coins:9})));
 for(const[from,at,to]of [[1,16,2],[2,32,3],[4,16,5],[5,36,6],[7,16,8],[8,36,9],[10,7,11],[11,10,12]]){
- const s=G.normalize({owned:[from],team:[from],records:{[from]:G.freshRecord(from,at-1)}});s.records[from].exp=G.threshold(from,at)-1;
+ const s=G.normalize({owned:[from],team:[from],records:{[from]:G.freshRecord(from,at-1)},clears:Array(20).fill(1),rocketCleared:true});s.records[from].exp=G.threshold(from,at)-1;
  const event=G.gainExperience(s,from,{id:19,level:2});assert.equal(event.id,to);assert.ok(s.owned.includes(to));assert.ok(s.team.includes(to));assert.equal(s.records[to].level,at);
 }
 const evolved=G.normalize({owned:[6],team:[6],records:{6:G.freshRecord(6,36)}});assert.ok(G.trainable(evolved,6).includes(63));G.setMove(evolved,6,0,63);
