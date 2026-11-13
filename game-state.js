@@ -52,6 +52,7 @@
   const scoutLevel=state=>Math.min(100,scoutChapter(state)*4);
   function levelCapInfo(state,chapter=scoutChapter(state)){chapter=Number.isInteger(chapter)&&chapter>=1?chapter:scoutChapter(state);const boss=stageData[chapter*10-1],cleared=state.clears[chapter*10-1]>0,leaderLevel=boss?.levels?.length?Math.max(...boss.levels):null,unrestricted=cleared||leaderLevel===null;return {chapter,cleared,leader:boss?.leader||'',leaderLevel,unrestricted,cap:unrestricted?100:Math.min(100,leaderLevel+5)};}
   const levelCap=(state,chapter)=>levelCapInfo(state,chapter).cap;
+  function overCapTeam(state,chapter,team=state.team){const info=levelCapInfo(state,chapter);return info.unrestricted?[]:team.filter(id=>id&&state.records[id]?.level>info.cap);}
   const isRare=id=>[1,4,7,147].some(base=>info(base).chain===info(id)?.chain);
   function recruit(state,id){if(!state.pending.includes(id))throw new Error('후보를 선택하세요');if(!state.owned.includes(id)){state.owned.push(id);state.records[id]=freshRecord(id,scoutLevel(state),state.pendingNatures?.[id],state.pendingShiny?.[id]===true);state.moveSets[id]=defaultMoves(id,scoutLevel(state));}state.pending=[];state.pendingNatures={};state.pendingShiny={};}
   function setTeam(state,slot,id){if(!Number.isInteger(slot)||slot<0||slot>5||!state.owned.includes(id))throw new Error('선출할 수 없습니다');const current=state.team.indexOf(id);if(current>=0)[state.team[slot],state.team[current]]=[state.team[current],state.team[slot]];else state.team[slot]=id;}
@@ -81,7 +82,7 @@
    }
    return {oldId:original,id,amount,cap,capped:record.level>=cap,oldLevel,level:record.level,newMoves:[...new Set(newMoves)],evolved};
   }
-  return {levelCapInfo,levelCap,itemPrice,claimScoutTicket,villageUnlocked,scoutChapter,reorderTeam,rewardCoins,battleStats,effectiveNature,randomNature,natures:NATURES,buyItem,sellItem,scoutCost,useItem,rewardRocket,claimItemUnlock,equipItem,experienceShares,scoutLevel,isRare,abilityOptions,defaultAbility,ability,setAbility,completeTutorial,normalize,defaultMoves,learnable,trainable,isFinal,threshold,freshRecord,levelMoves,chooseStarter,scoutPool,scout,recruit,setTeam,setMove,removeMove,unlocked,reward,evolve,gainExperience};
+  return {overCapTeam,levelCapInfo,levelCap,itemPrice,claimScoutTicket,villageUnlocked,scoutChapter,reorderTeam,rewardCoins,battleStats,effectiveNature,randomNature,natures:NATURES,buyItem,sellItem,scoutCost,useItem,rewardRocket,claimItemUnlock,equipItem,experienceShares,scoutLevel,isRare,abilityOptions,defaultAbility,ability,setAbility,completeTutorial,normalize,defaultMoves,learnable,trainable,isFinal,threshold,freshRecord,levelMoves,chooseStarter,scoutPool,scout,recruit,setTeam,setMove,removeMove,unlocked,reward,evolve,gainExperience};
  }
  root.createGameModel=createGameModel;if(typeof module!=='undefined')module.exports=createGameModel;
 })(typeof window!=='undefined'?window:globalThis);

@@ -717,21 +717,6 @@
         }
       ]
     },
-    "secret-journal": {
-      "title": "책장 뒤의 쪽지",
-      "backdrop": "hideout",
-      "npc": "blaine",
-      "lines": [
-        {
-          "speaker": "narrator",
-          "text": "책장 뒤에 연구원이 남긴 쪽지가 끼워져 있다."
-        },
-        {
-          "speaker": "blaine",
-          "text": "통제 실험은 실패했다… 뮤츠가 스스로 탈출한 모양이군. 이건 오박사에게 전하마. 옆의 불꽃의돌은 네가 쓰렴."
-        }
-      ]
-    },
     "after-9": {
       "title": "회색 배지",
       "backdrop": "gym-rock",

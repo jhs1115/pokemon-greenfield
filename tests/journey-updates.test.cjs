@@ -24,3 +24,23 @@ console.log('Map management round trip preserves chapter/stage and team edits, n
 
 vm.runInContext("managementReturn={chapter:1,stage:12,scroll:0};view='manage';managementTab='pokemon';renderManagement();",c);assert(el('#app').innerHTML.includes('레벨 제한 33'));assert(!el('#app').innerHTML.includes('management-level-cap'));vm.runInContext('game.clears[19]=1;renderManagement();',c);assert(el('#app').innerHTML.includes('레벨 제한 없음'));assert(!el('#app').innerHTML.includes('management-level-cap'));
 console.log('Management displays actual selected chapter cap compactly and changes to unrestricted after its gym is cleared: passed.');
+
+// Departure gates run before story scenes or battle state changes.
+const notices=[];w.StoryUI={beforeStage(){notices.push('story');return true;},hasAfterBattle(){return true;}};c.captureNotice=text=>notices.push(text);
+vm.runInContext("toast=captureNotice;game=G.normalize({owned:[7,25],team:[7],records:{7:G.freshRecord(7,26),25:G.freshRecord(25,70)},tutorial:{done:true}});stage=0;view='story';beginStage();",c);
+assert.deepEqual(notices,['레벨이 너무 높습니다!']);assert.equal(vm.runInContext('view',c),'story');
+notices.length=0;vm.runInContext('game.records[7].level=25;beginStage();',c);assert.deepEqual(notices,['story'],'equal cap and high-level benched Pokemon are allowed');
+notices.length=0;vm.runInContext('game.records[7].level=70;game.clears[9]=1;beginStage();',c);assert.deepEqual(notices,['story'],'cleared chapters have no departure cap');
+assert(vm.runInContext("resultNeedsConfirmation({result:'win'})",c));assert(!vm.runInContext("resultNeedsConfirmation({result:'lose'})",c));assert(!vm.runInContext("resultNeedsConfirmation({result:'win',pvp:true})",c));w.StoryUI.hasAfterBattle=()=>false;assert(!vm.runInContext("resultNeedsConfirmation({result:'win'})",c));
+
+// Team cards open equipment management without a preselected bag action.
+const teamButton={dataset:{bagTarget:'7',bagTeam:'true'}};c.document.querySelectorAll=selector=>selector==='[data-bag-target]'?[teamButton]:[];
+vm.runInContext("game=G.normalize({owned:[7,25],team:[7,25],tutorial:{done:true},itemsUnlocked:true,clears:Array(10).fill(1),inventory:{charcoal:1,'miracle-seed':1,'adamant-mint':1,'scout-ticket':2}});bagAction=null;bagSelected='charcoal';renderBag();",c);
+teamButton.onclick();assert(el('#app').innerHTML.includes('꼬부기 도구 관리'));assert(!el('#app').innerHTML.includes('value="scout-ticket"'));
+el('#party-item-choice').value='charcoal';el('#party-item-equip').onclick();assert.equal(vm.runInContext('game.heldItems[7]',c),'charcoal');assert.equal(vm.runInContext('game.inventory.charcoal',c),0);
+teamButton.onclick();el('#party-item-choice').value='miracle-seed';el('#party-item-equip').onclick();assert.equal(vm.runInContext('game.heldItems[7]',c),'miracle-seed');assert.equal(vm.runInContext('game.inventory.charcoal',c),1,'swapping returns the old tool');
+teamButton.onclick();el('#party-item-remove').onclick();assert.equal(vm.runInContext('game.heldItems[7]',c),undefined);assert.equal(vm.runInContext("game.inventory['miracle-seed']",c),1);
+teamButton.onclick();el('#party-item-choice').value='adamant-mint';el('#party-item-use').onclick();assert.equal(vm.runInContext('game.records[7].mint',c),'Adamant');assert.equal(vm.runInContext("game.inventory['adamant-mint']",c),0);
+vm.runInContext("game.inventory['water-stone']=1;game.owned.push(133);game.team[0]=133;game.records[133]=G.freshRecord(133,10);openPartyItemEditor(133);queueEvolution=()=>{};",c);el('#party-item-choice').value='water-stone';el('#party-item-use').onclick();assert.equal(vm.runInContext('game.team[0]',c),134);assert.equal(vm.runInContext("game.inventory['water-stone']",c),0);
+assert(!require('../story-scenes').scenes['secret-journal']);assert(!fs.readFileSync('story-ui.js','utf8').includes('secret-journal'));assert(fs.readFileSync('story-ui.js','utf8').includes('secret-marsh'));
+console.log('Over-cap departure blocking, cleared-chapter exemption, story-only confirmation, right team equipment swap/remove/mint/evolution and removed mansion event: passed.');
