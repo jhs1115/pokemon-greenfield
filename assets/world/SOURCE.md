@@ -29,3 +29,9 @@
 ## 2026-11-08 coarse pixel refresh
 
 Fifteen active generated assets were redrawn with the built-in image_gen reference-image edit tool. Existing concepts and map routes remain; coarse shape clusters and simpler shading match the approved Oak lab and the user-supplied handheld screenshot style. All assets, original paths and exact prompt files are listed in [PIXEL_ART_UPDATE.md](../../docs/PIXEL_ART_UPDATE.md) and `data/coarse-art-assets.json`. Current runtime uses home-scenes/interiors/gyms/title-adventure/pvp-home/trade-home/item-shop v2, chapter-1 through chapter-7 v5, and transparent scout-ranger-v2. Older artwork is retained. Pokemon and downloaded trainer sprites were not regenerated.
+
+- `port-warehouse-v1.png`: built-in image_gen, 2026-11-14. Coarse GBA-style abandoned port warehouse background; shared lit/dark CSS states. Prompt: `port-warehouse-v1.prompt.txt`. No external image source.
+
+- `flower-restaurant-v1.png`: built-in image_gen, 2026-11-14. Coarse handheld RPG pixel-art restaurant exterior framed by cherry blossoms, used at 4-4 meal and 4-8 meeting place. Prompt: `flower-restaurant-v1.prompt.txt`. No external image source.
+
+- `fuchsia-ruins-v1.png`: built-in image_gen, 2026-11-14. Coarse GBA-style ruined safari town for chapter five dialogue; prompt in `fuchsia-ruins-v1.prompt.txt`. No external source imagery.

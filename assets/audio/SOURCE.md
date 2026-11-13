@@ -41,3 +41,5 @@ Rebuild download assets with `scripts/prepare_audio.py`, `scripts/select_audio.p
 - During evolution: `pokemon-evolution.ogg`, existing Pokémon evolution BGM from the Pokémon Essentials GSC kit: https://github.com/RZC2/pokemon-essentials-GSC/blob/9ea8cc8e6725db95f4cf56bbbc48bdd404d367ff/Audio/BGM/Evolution.ogg .
 - Completion: `pokemon-evolution-success.ogg`, `Audio/ME/Evolution success.ogg` from Pokémon Essentials Chasm, commit `685d3f2234273faf116cf5a6a1b15227128aee37`. Exact raw source URLs are recorded alongside each file in `.source.txt`. Original game soundtrack rights remain with Nintendo / Creatures / GAME FREAK.
 - These are downloaded game audio files, not generated imitations. Playback follows the 4.3-second evolution scene, uses the effects volume/mute settings, and temporarily lowers the existing background music. Closing the completion dialog stops the evolution voice and restores background volume.
+
+- `sfx/ship-horn.wav`: original gentle ferry-horn synthesis created for chapter 3, 2026-11-14. No external recording. Uses existing effects volume/mute controls.

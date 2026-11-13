@@ -13,5 +13,34 @@ for(const [index,loadout] of Object.entries(root.GYM_LOADOUTS)){const i=+index,b
 /* Leaders prepare specialized natures and held items; Brock always has Sturdy. */
 for(const [index] of Object.entries(root.GYM_LOADOUTS)){const boss=root.STORY_STAGES[+index];boss.heldItems=boss.enemy.map((_,n)=>n===boss.enemy.length-1?'sitrus-berry':'oran-berry');boss.natures=boss.enemy.map(id=>{const p=root.POKE_DATA?.pokemon.find(p=>p.id===id);return !p||p.stats[2]>=p.stats[4]?'Adamant':'Modest';});}root.STORY_STAGES[9].abilities=['sturdy','sturdy'];
 
+/* Chapter three: two trainers of three Pokemon, a single stage reward. */
+for(const [index,waves] of [[22,[
+ {enemy:[24,20,88],levels:[24,24,25],moves:[[137,342,242,44],[158,98,162,116],[124,107,50,60]]},
+ {enemy:[42,109,97],levels:[26,26,27],moves:[[314,109,141,44],[108,92,124,60],[60,95,50,115]]}
+]],[27,[
+ {enemy:[42,110,53],levels:[28,29,29],moves:[[314,109,141,44],[124,108,92,60],[163,44,252,103]]},
+ {enemy:[24,89,97],levels:[29,30,31],moves:[[137,342,242,44],[124,107,60,50],[60,95,50,115]]}
+]]]){const encounter=root.STORY_STAGES[index];Object.assign(encounter,waves[0]);encounter.waves=waves.map((wave,i)=>({...wave,heldItems:['oran-berry','oran-berry',i?'sitrus-berry':'oran-berry']}));encounter.heldItems=encounter.waves[0].heldItems;}
+
+/* Erika pursues the leader while the player faces three separate grunts. */
+root.STORY_STAGES[37].waves=[
+ {enemy:[24,42,97],levels:[35,36,36],moves:[[137,342,242,44],[314,109,141,44],[60,95,50,115]],abilities:['intimidate','innerfocus','insomnia']},
+ {enemy:[20,89,110],levels:[36,36,37],moves:[[158,98,162,116],[124,107,60,50],[124,108,92,60]],abilities:['guts','stickyhold','levitate']},
+ {enemy:[53,42,97],levels:[37,37,38],moves:[[163,44,252,103],[314,109,141,44],[94,95,50,115]],abilities:['technician','innerfocus','insomnia']}
+].map((wave,i)=>({...wave,heldItems:['oran-berry','oran-berry',i===2?'sitrus-berry':'oran-berry']}));
+Object.assign(root.STORY_STAGES[37],root.STORY_STAGES[37].waves[0]);
+
+/* The occupied safari is liberated through three- and four-trainer gauntlets. */
+for(const [index,waves]of [[43,[
+ {enemy:[24,42,89],levels:[38,39,39],moves:[[137,342,242,44],[314,109,141,44],[188,107,60,50]],abilities:['intimidate','innerfocus','stickyhold']},
+ {enemy:[20,110,97],levels:[39,40,40],moves:[[158,98,162,116],[188,108,92,60],[94,95,50,115]],abilities:['guts','levitate','insomnia']},
+ {enemy:[53,42,97],levels:[40,40,41],moves:[[163,44,252,103],[314,109,141,44],[94,95,50,115]],abilities:['technician','innerfocus','insomnia']}
+]],[46,[
+ {enemy:[24,20,42],levels:[40,40,41],moves:[[137,342,242,44],[158,98,162,116],[314,109,141,44]],abilities:['intimidate','guts','innerfocus']},
+ {enemy:[89,110,53],levels:[41,41,42],moves:[[188,107,60,50],[188,108,92,60],[163,44,252,103]],abilities:['stickyhold','levitate','technician']},
+ {enemy:[42,97,24],levels:[41,42,42],moves:[[314,109,141,44],[94,95,50,115],[137,342,242,44]],abilities:['innerfocus','insomnia','intimidate']},
+ {enemy:[110,89,97],levels:[42,42,43],moves:[[188,108,92,60],[188,107,60,50],[94,95,50,115]],abilities:['levitate','stickyhold','insomnia']}
+]]]){const encounter=root.STORY_STAGES[index];encounter.waves=waves.map((wave,i)=>({...wave,heldItems:['oran-berry','oran-berry',i===waves.length-1?'sitrus-berry':'oran-berry']}));Object.assign(encounter,encounter.waves[0]);}
+
 if(typeof module==='object'&&module.exports)module.exports={STORY_STAGES:root.STORY_STAGES,ROCKET_AMBUSH:root.ROCKET_AMBUSH};
 })(typeof window==='object'?window:{...JSON.parse(JSON.stringify(require('./stages.js'))),POKE_DATA:require('./data/reference.json')});

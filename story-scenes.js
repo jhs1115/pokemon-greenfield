@@ -1,4 +1,4 @@
-/* User-authored chapters 1–2. Brackets are red clues; thought lines are gray. */
+/* User-authored chapters 1–5. Brackets are red clues; thought lines are gray. */
 (function(root){root.KANTO_STORY={
   "scenes": {
     "opening": {
@@ -348,35 +348,216 @@
     },
     "before-20": {
       "title": "갈색시티 항구",
-      "backdrop": "harbor",
-      "npc": "surge",
+      "backdrop": "coast",
+      "npc": "misty",
       "lines": [
         {
-          "speaker": "surge",
-          "text": "항구 창고는 당분간 접근 금지다. 포켓몬이 사라졌다는 신고가 들어왔어."
+          "speaker": "misty",
+          "text": "좋아. 이제 배를 타고 갈색시티 항구로 가면 돼!"
+        },
+        {
+          "speaker": "misty",
+          "text": "다음 관장은 전기 타입!"
+        },
+        {
+          "speaker": "misty",
+          "text": "외국인 군인 아저씨인데... 웅이랑 삐까 쳐 그냥"
         },
         {
           "speaker": "player",
-          "text": "강가에서 로켓단을 만났어요. 여기도 그 사람들일까요?"
+          "text": "???"
+        },
+        {
+          "speaker": "narrator",
+          "text": "이슬이의 안내를 받으며 사소한 대화를 나누며 걸으니, 배 바로 앞에 도착했다."
+        },
+        {
+          "speaker": "misty",
+          "text": "잘 갔다 와! 무슨 일 있으면 마음대로 연락하고!"
+        },
+        {
+          "speaker": "player",
+          "text": "감사합니다!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "배가 뱃고동 소리와 함께 출발한다.",
+          "actor": null,
+          "sound": "ship-horn"
+        },
+        {
+          "speaker": "narrator",
+          "text": "시원한 바닷바람이 몸을 감싼다.",
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "배멀미땜에 디질뻔;;",
+          "backdrop": "harbor",
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "여기가 갈색시티구나..",
+          "actor": null
         },
         {
           "speaker": "surge",
-          "text": "확인해 보지. 나는 마티스, 이곳 관장이야. 수상한 걸 보면 알려 다오."
+          "text": "hey, bro!",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "player",
+          "text": "?"
+        },
+        {
+          "speaker": "surge",
+          "text": "알아들을 수 없는 말을 하고 있다.",
+          "speakerName": "???",
+          "thought": true
+        },
+        {
+          "speaker": "player",
+          "text": "..."
+        },
+        {
+          "speaker": "player",
+          "text": "오 예스 아임파인땡큐"
+        },
+        {
+          "speaker": "surge",
+          "text": "하하~ joke man~ 장난이야~",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "player",
+          "text": "? 뭐야 영어 안 쓸 수 있어요?"
+        },
+        {
+          "speaker": "surge",
+          "text": "한국 30년 차 bro~",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "player",
+          "text": "하.."
+        },
+        {
+          "speaker": "player",
+          "text": "아 혹시 이 갈색시티 관장이신가요?"
+        },
+        {
+          "speaker": "surge",
+          "text": "yeah man 알아봐 주는구나"
+        },
+        {
+          "speaker": "surge",
+          "text": "this brown city의 관장 마티스라고 한다!"
+        },
+        {
+          "speaker": "surge",
+          "text": "잘 부탁한다!"
+        },
+        {
+          "speaker": "player",
+          "text": "아! 반갑습니다! 저 이번에 트레이너의 길을 걷게 됐습니다!"
+        },
+        {
+          "speaker": "surge",
+          "text": "wow trainer? very 오랜만 man~"
+        },
+        {
+          "speaker": "surge",
+          "text": "ok 너의 자질을 한번 보겠어!"
+        },
+        {
+          "speaker": "player",
+          "text": "ㅗㅜㅑ"
+        },
+        {
+          "speaker": "surge",
+          "text": "?"
         }
       ]
     },
     "before-22": {
       "title": "창고 앞",
       "backdrop": "harbor",
-      "npc": "rocket",
+      "npc": null,
       "lines": [
         {
-          "speaker": "player",
-          "text": "상자 안에 포켓몬이 있죠? 문을 열어요."
+          "speaker": "narrator",
+          "text": "모험을 떠나던 도중, 수상한 창고가 하나 보인다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "너무나 오래되어 사람이 없어야만 하는 곳이지만, 사람의 기척이 느껴진다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "... 들어가 보자."
+        },
+        {
+          "speaker": "narrator",
+          "text": "앞이 보이지 않을 정도로 어둡다.",
+          "backdrop": "warehouse-dark"
+        },
+        {
+          "speaker": "narrator",
+          "text": "스위치가... 어딨지..."
         },
         {
           "speaker": "rocket",
-          "text": "또 너냐. 운송을 방해하면 가만두지 않겠다."
+          "text": "[그 녀석]은 잡았어?",
+          "speakerName": "???",
+          "actor": null
+        },
+        {
+          "speaker": "rocket",
+          "text": "놓쳤습니다. 행적마저도 아직 찾지 못했어요..",
+          "speakerName": "???",
+          "actor": null
+        },
+        {
+          "speaker": "rocket",
+          "text": "이 쓰레기가!",
+          "speakerName": "???",
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "둔탁한 소리가 들린다.",
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "... 뭐지? 개무섭다 도망갈까?",
+          "thought": true,
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "그때, 불이 켜진다.",
+          "backdrop": "warehouse"
+        },
+        {
+          "speaker": "player",
+          "text": "잠만",
+          "actor": null
+        },
+        {
+          "speaker": "rocket",
+          "text": "... 너 뭐냐?",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "rocket",
+          "text": "침입자다! 잡아!",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "player",
+          "text": "아 잠만!!"
         }
       ]
     },
@@ -387,73 +568,271 @@
       "lines": [
         {
           "speaker": "narrator",
-          "text": "상자에 무지개시티로 향하는 운송장이 붙어 있다."
+          "text": "지쳐 보이는 수상한 사람들이 보인다."
         },
         {
           "speaker": "rocket",
-          "text": "그건 내려놔! 연구소에 보내야 하는 물건이다."
+          "text": "헉... 헉... 더럽게 끈질기네.",
+          "speakerName": "???"
         },
         {
-          "speaker": "player",
-          "text": "포켓몬을 어디로 데려가는 거죠?"
-        }
-      ]
-    },
-    "before-31": {
-      "title": "무지개시티의 정원",
-      "backdrop": "garden",
-      "npc": "erika",
-      "lines": [
-        {
-          "speaker": "erika",
-          "text": "항구에서 온 짐을 찾으시나요? 검은 옷을 입은 사람들이 오락장으로 가져가더군요."
-        },
-        {
-          "speaker": "player",
-          "text": "로켓단을 찾고 있어요. 포켓몬을 빼앗아 가고 있거든요."
-        },
-        {
-          "speaker": "erika",
-          "text": "저는 민화입니다. 정원에서 사라진 포켓몬도 있어요. 함께 확인해 보지요."
+          "speaker": "rocket",
+          "text": "좋아. 이 자리에서 다신 못 일어나게 눌러 주마.",
+          "speakerName": "???"
         }
       ]
     },
     "before-37": {
-      "title": "로켓단 거점",
+      "title": "미뤄진 약속",
+      "backdrop": "blossom-street",
+      "npc": "erika",
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "민화에게 연락이 온다.",
+          "actors": [
+            "erika"
+          ]
+        },
+        {
+          "speaker": "erika",
+          "text": "혹시 최근에 생긴 음식점을 아시나요?",
+          "actors": [
+            "erika"
+          ]
+        },
+        {
+          "speaker": "player",
+          "text": "네? 어디예요?",
+          "actors": [
+            "erika"
+          ]
+        },
+        {
+          "speaker": "erika",
+          "text": "여기예요. 같이 드셔 보실래요?",
+          "actors": [
+            "erika"
+          ]
+        },
+        {
+          "speaker": "player",
+          "text": "저야 좋죠!",
+          "actors": [
+            "erika"
+          ]
+        },
+        {
+          "speaker": "narrator",
+          "text": "민화가 주소를 보내 준다.",
+          "actors": [
+            "erika"
+          ]
+        },
+        {
+          "speaker": "player",
+          "text": "언제 만날까요?",
+          "actors": [
+            "erika"
+          ]
+        },
+        {
+          "speaker": "erika",
+          "text": "지금 만나죠.",
+          "actors": [
+            "erika"
+          ]
+        },
+        {
+          "speaker": "player",
+          "text": "넵!",
+          "actors": [
+            "erika"
+          ]
+        },
+        {
+          "speaker": "narrator",
+          "text": "약속한 장소에 도착했다.",
+          "actors": [
+            "erika"
+          ],
+          "backdrop": "restaurant"
+        },
+        {
+          "speaker": "narrator",
+          "text": "... 또 수상한 사람들이 보인다.",
+          "actors": [
+            "erika",
+            "rocket"
+          ]
+        },
+        {
+          "speaker": "player",
+          "text": "저 복장은...!",
+          "thought": true
+        },
+        {
+          "speaker": "erika",
+          "text": "... 설마..."
+        },
+        {
+          "speaker": "narrator",
+          "text": "민화도 알고 있는 눈치다."
+        },
+        {
+          "speaker": "erika",
+          "text": "약속은 다음으로 미룹시다. 일단 쫓아가죠!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "민화가 뛰어간다.",
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "아 네!",
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "뒤따라 뛰어갔다.",
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "헉... 헉...",
+          "backdrop": "hideout"
+        },
+        {
+          "speaker": "erika",
+          "text": "이곳은 당신들이 있을 곳이 아닐 텐데 말이죠."
+        },
+        {
+          "speaker": "rocket",
+          "text": "...? 뭐야 너네는",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "rocket",
+          "text": "요즘 귀찮은 꼬맹이가 보인다더니, 그쪽 패거리인가 봐?",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "rocket",
+          "text": "얘들아 교육하고 와",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "narrator",
+          "text": "무리의 수장 같아 보이는 사람은 유유히 떠나간다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "3명의 수상한 사람들이 앞길을 막는다."
+        },
+        {
+          "speaker": "erika",
+          "text": "비겁하게...!"
+        },
+        {
+          "speaker": "player",
+          "text": "여긴 제가 맡을게요! 쫓아가 주세요!"
+        },
+        {
+          "speaker": "erika",
+          "text": "... 감사합니다. 약속은 다음으로 미루죠."
+        }
+      ],
+      "actors": [
+        "erika",
+        "rocket"
+      ]
+    },
+    "after-37": {
+      "title": "함께 지켜 낸 마을",
       "backdrop": "hideout",
       "npc": "rocket",
       "lines": [
         {
-          "speaker": "narrator",
-          "text": "오락장 지하에서 갇힌 포켓몬들을 발견했다."
+          "speaker": "player",
+          "text": "후...",
+          "actors": [
+            "rocket"
+          ]
         },
         {
           "speaker": "rocket",
-          "text": "여길 어떻게 찾았지? 보스의 연구를 방해할 셈이냐?"
+          "text": "세 명이서 덤볐는데도 안 된 걸 보고 충격 먹은 듯하다.",
+          "speakerName": "???",
+          "thought": true,
+          "actors": [
+            "rocket"
+          ]
         },
         {
-          "speaker": "player",
-          "text": "우리를 열어요. 포켓몬들은 데려갈 거예요."
-        }
-      ]
-    },
-    "after-37": {
-      "title": "남은 기록",
-      "backdrop": "hideout",
-      "npc": "erika",
-      "lines": [
-        {
-          "speaker": "erika",
-          "text": "갇혀 있던 포켓몬들은 모두 무사해요."
+          "speaker": "narrator",
+          "text": "민화가 간 곳을 가 보자.",
+          "actor": null
         },
         {
-          "speaker": "player",
-          "text": "이 기록에 뮤츠라는 이름이 있어요. 통제 장치를 만든다고 적혀 있는데요."
+          "speaker": "narrator",
+          "text": "...",
+          "actor": null
         },
         {
           "speaker": "erika",
-          "text": "오박사님께 보내 확인해 볼게요. 다른 거점도 있는 듯해요."
+          "text": "후... 거기까지입니다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "민화가 배틀에서 승리한 것 같다."
+        },
+        {
+          "speaker": "rocket",
+          "text": "체육관 관장이 왜 여기 있는 거냐...",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "erika",
+          "text": "그쪽이 알 건 아닙니다. 이미 리그에 신고해 놨어요."
+        },
+        {
+          "speaker": "narrator",
+          "text": "그렇게 실랑이를 벌이다 리그 직원이 수상한 사람들을 모두 잡아간다."
+        },
+        {
+          "speaker": "erika",
+          "text": "휴... 어떻게든 됐네요.",
+          "actors": [
+            "erika"
+          ]
+        },
+        {
+          "speaker": "erika",
+          "text": "정말 감사합니다.",
+          "actors": [
+            "erika"
+          ]
+        },
+        {
+          "speaker": "player",
+          "text": "하핫 뭘요~",
+          "actors": [
+            "erika"
+          ]
+        },
+        {
+          "speaker": "erika",
+          "text": "미소 지은 후 떠나간다. 할 일이 남은 듯해 보인다.",
+          "thought": true,
+          "actors": [
+            "erika"
+          ]
         }
+      ],
+      "actors": [
+        "erika",
+        "rocket"
       ]
     },
     "scout": {
@@ -485,65 +864,167 @@
     },
     "before-40": {
       "title": "연분홍시티로",
-      "backdrop": "river",
-      "npc": "koga",
+      "backdrop": "ruined-city",
+      "npc": null,
       "lines": [
         {
-          "speaker": "koga",
-          "text": "사파리에서 포켓몬을 잡아가는 자들이 있다. 순찰 중이지."
+          "speaker": "narrator",
+          "text": "무지개시티를 떠나 연분홍시티로 가자, 평화로운 소리 대신 끔찍한 소리들이 들린다."
         },
         {
           "speaker": "player",
-          "text": "로켓단이라면 저도 찾고 있어요."
+          "text": "무슨 일이..."
+        },
+        {
+          "speaker": "player",
+          "text": "뛰어간다",
+          "thought": true
+        },
+        {
+          "speaker": "narrator",
+          "text": "누군가 피를 흘리며 쓰러져 있다."
+        },
+        {
+          "speaker": "player",
+          "text": "괜찮으세요?!"
         },
         {
           "speaker": "koga",
-          "text": "흔적을 발견하면 알려 다오. 나는 독수, 연분홍체육관의 관장이다."
+          "text": "크헉...",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "player",
+          "text": "다행히 살아 있다.",
+          "thought": true
+        },
+        {
+          "speaker": "player",
+          "text": "무슨 일이에요?!?"
+        },
+        {
+          "speaker": "koga",
+          "text": "이... [인간형 포켓몬]이... 이곳을.... 크헉...!",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "player",
+          "text": "...[인간형 포켓몬]...?"
+        },
+        {
+          "speaker": "koga",
+          "text": "나는 이곳 연분홍시티... 관장 독수다...."
+        },
+        {
+          "speaker": "koga",
+          "text": "주민들이 그 괴물에게 당하는 걸 지켜볼 수만은 없었지..."
+        },
+        {
+          "speaker": "koga",
+          "text": "그러다 그만... 늙긴 했군... 허허..."
+        },
+        {
+          "speaker": "player",
+          "text": "대체 무슨 일이..."
+        },
+        {
+          "speaker": "koga",
+          "text": "... 정말 무리한 부탁일 수 있네만..."
+        },
+        {
+          "speaker": "koga",
+          "text": "이곳까지 왔다는 건 트레이너의 길을 조금 걸은 상태일 터..."
+        },
+        {
+          "speaker": "koga",
+          "text": "이곳을... 지켜 주게나..."
+        },
+        {
+          "speaker": "player",
+          "text": "... 알겠습니다. 일단 리그에 신고해 놓을게요. 곧 응급처치 팀이 올 겁니다."
+        },
+        {
+          "speaker": "koga",
+          "text": "...정말 고맙네."
+        },
+        {
+          "speaker": "narrator",
+          "text": "난장판이 된 곳은 야생 포켓몬들이 줄지어 점령했다.",
+          "actor": null
         }
-      ]
+      ],
+      "injured": true
     },
     "before-43": {
       "title": "사파리 외곽",
-      "backdrop": "river",
+      "backdrop": "safari-fog",
       "npc": "rocket",
       "lines": [
         {
           "speaker": "rocket",
-          "text": "잡은 포켓몬은 도시로 보낸다. 상처 내지 말라고 했잖아."
+          "text": "하? 아직도 처리가 안 된 놈이 있냐?"
         },
         {
           "speaker": "player",
-          "text": "이번에도 연구에 쓰려는 거죠? 여기서 멈춰요."
+          "text": "화가 끓어오른다.",
+          "thought": true
+        },
+        {
+          "speaker": "rocket",
+          "text": "야 처리해!"
         }
       ]
     },
     "before-46": {
       "title": "막힌 운송로",
-      "backdrop": "river",
+      "backdrop": "safari-fog",
       "npc": "rocket",
       "lines": [
         {
           "speaker": "rocket",
-          "text": "실프의 장치만 있으면 그 녀석도 잡아둘 수 있다는데… 또 너냐!"
+          "text": "꼬맹이? 설마 소문의 그 꼬맹이냐? 야 한꺼번에 가! 잡아!"
         },
         {
-          "speaker": "player",
-          "text": "장치는 어디에 있죠?"
+          "speaker": "rocket",
+          "text": "네 명이서 몰려온다!",
+          "thought": true
         }
       ]
     },
     "after-46": {
       "title": "도시로 이어지는 단서",
-      "backdrop": "river",
-      "npc": "koga",
+      "backdrop": "safari-fog",
+      "npc": "rocket",
       "lines": [
         {
-          "speaker": "koga",
-          "text": "운송차는 노랑시티로 향했다. 그쪽에도 소식을 전해 두지."
+          "speaker": "rocket",
+          "text": "뭣!?!? 네 명이서 덤볐는데도?!?"
+        },
+        {
+          "speaker": "narrator",
+          "text": "뒤에서 리그 관계자들이 몰려온다."
+        },
+        {
+          "speaker": "rocket",
+          "text": "리그 관계자들까지?!? ...여기서 끝이군..."
+        },
+        {
+          "speaker": "rocket",
+          "text": "넌 절대 그분의 계획을 막을 수 없다."
+        },
+        {
+          "speaker": "rocket",
+          "text": "포기해라 꼬맹이!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "로켓단들은 잡혀갔다.",
+          "actor": null
         },
         {
           "speaker": "player",
-          "text": "알겠습니다. 먼저 체육관에 도전하고 출발할게요."
+          "text": "...",
+          "actor": null
         }
       ]
     },
@@ -1132,6 +1613,584 @@
           "unlock": "village"
         }
       ]
+    },
+    "after-22": {
+      "title": "창고 밖에서",
+      "backdrop": "warehouse",
+      "npc": "rocket",
+      "lines": [
+        {
+          "speaker": "rocket",
+          "text": "크윽... 어디서 이런 놈이...",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "narrator",
+          "text": "수상한 사람들은 모두 도망갔다.",
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "... 관장님께 알려야 해.",
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "마침 밖을 순찰하던 마티스를 만난다.",
+          "backdrop": "harbor",
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "마티스님!! 큰일 났어요!!",
+          "actor": "surge"
+        },
+        {
+          "speaker": "surge",
+          "text": "hey what's the matter??"
+        },
+        {
+          "speaker": "player",
+          "text": "예?"
+        },
+        {
+          "speaker": "surge",
+          "text": "... 무슨 일 man?"
+        },
+        {
+          "speaker": "player",
+          "text": "[로켓단]이 저 창고에서 뭔가를 하고 있었어요!"
+        },
+        {
+          "speaker": "surge",
+          "text": "what?!?? 드디어 우리 마을까지 침공 man???"
+        },
+        {
+          "speaker": "surge",
+          "text": "상황이 매우 심각 bro... 일단 ok thank you man"
+        }
+      ]
+    },
+    "before-26": {
+      "title": "수상한 사람들을 쫓아서",
+      "backdrop": "harbor",
+      "npc": null,
+      "lines": [
+        {
+          "speaker": "rocket",
+          "text": "그 꼬맹이 때문에 거점을 옮겨야 할 것 같다..",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "rocket",
+          "text": "쳇, 절대 안 들킬 거라 생각했는데...",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "rocket",
+          "text": "일단 확실한 거점을 잡고, 그리고 나서 DNA를 역추적해 보자고.",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "rocket",
+          "text": "그 녀석만 있다면...",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "player",
+          "text": ".. 저 사람들은!",
+          "thought": true
+        },
+        {
+          "speaker": "player",
+          "text": "잠시! 거기 서 봐!"
+        },
+        {
+          "speaker": "rocket",
+          "text": "이쪽을 쳐다본다.",
+          "speakerName": "???",
+          "thought": true
+        },
+        {
+          "speaker": "rocket",
+          "text": "어이 꼬맹이! 지금 너랑 놀 시간 따윈 없다!",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "narrator",
+          "text": "수상한 사람들이 도망간다!",
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "추격하려 하자, 야생 포켓몬들이 길을 막는다.",
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "이 포켓몬들부터 쓰러뜨리고 가자.",
+          "actor": null
+        }
+      ]
+    },
+    "after-27": {
+      "title": "놓쳐 버린 연구 자료",
+      "backdrop": "harbor",
+      "npc": "rocket",
+      "lines": [
+        {
+          "speaker": "player",
+          "text": "뭐 하는 분들이죠?"
+        },
+        {
+          "speaker": "rocket",
+          "text": "... 쳇... 조용히 해라... 네가 알 건 없다.",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "narrator",
+          "text": "떨어져 있는 연구 자료가 보인다."
+        },
+        {
+          "speaker": "player",
+          "text": "주워서 본다.",
+          "thought": true
+        },
+        {
+          "speaker": "player",
+          "text": "의미를 알 수 없는 단어들이 나열되어 있다.",
+          "thought": true
+        },
+        {
+          "speaker": "rocket",
+          "text": "에잇!",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "narrator",
+          "text": "수상한 사람이 밀치고 도망간다."
+        },
+        {
+          "speaker": "rocket",
+          "text": "네가 막아 봤자, 결국 우리의 계획은 성공한다.",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "narrator",
+          "text": "연구 자료도 놓쳤다...",
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "...",
+          "actor": null
+        }
+      ]
+    },
+    "after-29": {
+      "title": "갈색 배지",
+      "backdrop": "gym-electric",
+      "npc": "surge",
+      "lines": [
+        {
+          "speaker": "surge",
+          "text": "wow... 너희 포켓몬 is 최강"
+        },
+        {
+          "speaker": "surge",
+          "text": "갈색 배지를 줄게 man"
+        },
+        {
+          "speaker": "player",
+          "text": "thank you man~"
+        },
+        {
+          "speaker": "surge",
+          "text": "말투 전염 bro;;;"
+        },
+        {
+          "speaker": "surge",
+          "text": "ok 이 마티스가 인정하는 트레이너! 조심하고 앞으로 나아가길 빈다 man."
+        },
+        {
+          "speaker": "player",
+          "text": "감사합니다!"
+        }
+      ]
+    },
+    "before-30": {
+      "title": "꽃향기가 나는 도시",
+      "backdrop": "garden",
+      "npc": null,
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "항구를 넘어 배를 타고 다음 도시로 가자, 향긋한 꽃향기가 코를 감싼다."
+        },
+        {
+          "speaker": "player",
+          "text": "냄새 좋다~"
+        },
+        {
+          "speaker": "player",
+          "text": "일단 짐을 나르자",
+          "thought": true
+        },
+        {
+          "speaker": "narrator",
+          "text": "무거운 짐 때문에 균형이 무너지려 한다."
+        },
+        {
+          "speaker": "player",
+          "text": "잠깐만... 으악!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "누군가 넘어지는 걸 잡아 줬다."
+        },
+        {
+          "speaker": "erika",
+          "text": "괜찮으세요?",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "player",
+          "text": "아 네! 덕분입니다. 감사합니다!"
+        },
+        {
+          "speaker": "erika",
+          "text": "전 이곳 체육관 관장 민화예요. 오랜만에 트레이너가 온다는 소식에 신나서 여기까지 와 버렸답니다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "민화가 미소 짓는다."
+        },
+        {
+          "speaker": "player",
+          "text": "아 감사합니다!"
+        },
+        {
+          "speaker": "player",
+          "text": "좋으신 분인 것 같다",
+          "thought": true
+        },
+        {
+          "speaker": "erika",
+          "text": "... 혹시 그 아저씨께 무슨 일 당하신 건 아니죠...?"
+        },
+        {
+          "speaker": "player",
+          "text": "마티스님이요? 되게 좋으신 분이시던데"
+        },
+        {
+          "speaker": "erika",
+          "text": "그럼 다행입니다. 하핫..."
+        },
+        {
+          "speaker": "erika",
+          "text": "체육관에서 기다리고 있을게요."
+        },
+        {
+          "speaker": "player",
+          "text": "알겠습니다!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "민화에게 연락처를 받았다."
+        },
+        {
+          "speaker": "erika",
+          "text": "무슨 일 있으면 연락해 주세요."
+        },
+        {
+          "speaker": "narrator",
+          "text": "민화는 떠나갔다.",
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "엄청 친절하신 분이네...",
+          "actor": null
+        }
+      ]
+    },
+    "before-33": {
+      "title": "벚꽃이 흩날리는 길거리",
+      "backdrop": "blossom-street",
+      "npc": null,
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "벚꽃 내음이 풍기는 길거리로 들어왔다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "맛있는 음식점 냄새도 풍기고 있다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "그 사이로 민화가 길거리를 걸어가고 있다.",
+          "actor": "erika"
+        },
+        {
+          "speaker": "player",
+          "text": "민화님!"
+        },
+        {
+          "speaker": "erika",
+          "text": "여기서 만나네요. 반가워요."
+        },
+        {
+          "speaker": "player",
+          "text": "뭐 하고 계셨어요?"
+        },
+        {
+          "speaker": "erika",
+          "text": "본인의 마을을 순찰하는 건 관장의 기본이랍니다."
+        },
+        {
+          "speaker": "player",
+          "text": "아 순찰 중이셨군요"
+        },
+        {
+          "speaker": "erika",
+          "text": "그렇답니다. 혹시 이 마을 구경해 보셨나요?"
+        },
+        {
+          "speaker": "player",
+          "text": "포켓몬 배틀에만 집중한 나머지 보지 못한 풍경들을 본다",
+          "thought": true
+        },
+        {
+          "speaker": "player",
+          "text": "아름다운 꽃들이 펼쳐져 있다.",
+          "thought": true
+        },
+        {
+          "speaker": "player",
+          "text": "... 정말 멋지군요"
+        },
+        {
+          "speaker": "erika",
+          "text": "저희 마을은 제가 경치를 직접 관리한답니다. 많은 마을들 중 예쁘기로 유명해요."
+        },
+        {
+          "speaker": "player",
+          "text": "우와..."
+        },
+        {
+          "speaker": "erika",
+          "text": "한 음식점 쪽으로 걸어간다",
+          "thought": true,
+          "backdrop": "restaurant"
+        },
+        {
+          "speaker": "erika",
+          "text": "이거 드셔 보실래요?"
+        },
+        {
+          "speaker": "player",
+          "text": "아 네! 감사합니다!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "그렇게 민화와 즐겁게 대화했다."
+        },
+        {
+          "speaker": "player",
+          "text": "이제 가 볼게요! 재밌었어요!"
+        },
+        {
+          "speaker": "erika",
+          "text": "저도 감사하답니다. 안녕히 계세요."
+        },
+        {
+          "speaker": "narrator",
+          "text": "앞으로 일어날 일을 모른 채, 두 사람은 행복하게 떠나갔다.",
+          "actor": null
+        }
+      ]
+    },
+    "after-39": {
+      "title": "무지개 배지",
+      "backdrop": "gym-grass",
+      "npc": "erika",
+      "lines": [
+        {
+          "speaker": "erika",
+          "text": "역시... 제 눈은 틀리지 않는군요."
+        },
+        {
+          "speaker": "erika",
+          "text": "앞으로 나아가셔도 됩니다. 여기 무지개 배지예요."
+        },
+        {
+          "speaker": "erika",
+          "text": "... 조금은 답답한 게 치료됐습니다"
+        },
+        {
+          "speaker": "erika",
+          "text": "당신이라면 믿고 보내도 될 것 같아요."
+        },
+        {
+          "speaker": "player",
+          "text": "감사합니다!"
+        }
+      ]
+    },
+    "after-40": {
+      "title": "독수의 부탁",
+      "backdrop": "ruined-city",
+      "npc": "koga",
+      "lines": [
+        {
+          "speaker": "koga",
+          "text": "이곳은 이미 로켓단에게 점령당했다."
+        },
+        {
+          "speaker": "koga",
+          "text": "혼란한 틈을 타 벌써..."
+        },
+        {
+          "speaker": "koga",
+          "text": "부디... 로켓단을 제거해 주게..."
+        },
+        {
+          "speaker": "narrator",
+          "text": "독수는 응급처치 팀에게 실려 갔다.",
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "... 이 자식들이...",
+          "actor": null
+        }
+      ],
+      "injured": true
+    },
+    "after-43": {
+      "title": "붙잡힌 로켓단",
+      "backdrop": "safari-fog",
+      "npc": "rocket",
+      "lines": [
+        {
+          "speaker": "rocket",
+          "text": "쳇! 젠장...."
+        },
+        {
+          "speaker": "player",
+          "text": "리그에 신고했습니다. 곧 도착해요."
+        },
+        {
+          "speaker": "rocket",
+          "text": "뭣?! 리그?!?"
+        },
+        {
+          "speaker": "narrator",
+          "text": "포켓몬 리그 측에서 로켓단들을 잡으러 왔다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "로켓단들이 속수무책으로 잡힌다."
+        },
+        {
+          "speaker": "rocket",
+          "text": "....기님... 죄송합니다...."
+        },
+        {
+          "speaker": "rocket",
+          "text": "당신의 염원을...."
+        },
+        {
+          "speaker": "narrator",
+          "text": "로켓단들은 잡혀갔다.",
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "...기?",
+          "thought": true,
+          "actor": null
+        }
+      ]
+    },
+    "before-48": {
+      "title": "다시 만난 독수",
+      "backdrop": "ruined-city",
+      "npc": "koga",
+      "lines": [
+        {
+          "speaker": "koga",
+          "text": "자네!"
+        },
+        {
+          "speaker": "player",
+          "text": "... 독수님?"
+        },
+        {
+          "speaker": "koga",
+          "text": "로켓단이 모두 물러났다고 들었다!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "독수가 손을 잡는다."
+        },
+        {
+          "speaker": "koga",
+          "text": "정말 고맙네... 이 늙은이가 처리할 수 없는 일들을 전부 다..."
+        },
+        {
+          "speaker": "koga",
+          "text": "이 은혜는 꼭 갚겠다."
+        },
+        {
+          "speaker": "player",
+          "text": "... 뭘요. 당연한 겁니다."
+        },
+        {
+          "speaker": "koga",
+          "text": "덕분에 치료가 완벽하게 됐다. 곧 체육관에 오겠군."
+        },
+        {
+          "speaker": "koga",
+          "text": "절차는 절차니, 진심으로 상대해 주마."
+        },
+        {
+          "speaker": "koga",
+          "text": "이 늙은이의 실력이 만만치 않을 걸세. 하하!"
+        },
+        {
+          "speaker": "player",
+          "text": "좋습니다! 체육관에서 만납시다!"
+        }
+      ]
+    },
+    "after-49": {
+      "title": "핑크 배지",
+      "backdrop": "gym-poison",
+      "npc": "koga",
+      "lines": [
+        {
+          "speaker": "koga",
+          "text": "후... 정말 고맙군"
+        },
+        {
+          "speaker": "koga",
+          "text": "오랜만에 젊었을 때로 돌아간 기분이야."
+        },
+        {
+          "speaker": "koga",
+          "text": "좋아! 이 핑크 배지를 가져가거라!"
+        },
+        {
+          "speaker": "koga",
+          "text": "꼭 챔피언이 되어 날 반겨 주면 좋겠군."
+        },
+        {
+          "speaker": "player",
+          "text": "감사합니다!"
+        }
+      ]
     }
   },
   "gymLines": {
@@ -1186,21 +2245,33 @@
     "surge": [
       [
         "surge",
-        "항구 일은 고맙다. 오늘은 도전자로 왔군."
-      ],
-      [
-        "player",
-        "네. 전력으로 부탁드려요."
+        "hey bro, finally 체육관에 도착?"
       ],
       [
         "surge",
-        "좋다! 갈색체육관의 전격을 보여 주마."
+        "전력으로 상대해 주마! 전력은 electronic!"
+      ],
+      [
+        "surge",
+        "크하하 legand 언어유희 man~"
+      ],
+      [
+        "player",
+        "...?"
+      ],
+      [
+        "surge",
+        "이걸 이해 못 해 man...."
+      ],
+      [
+        "surge",
+        "ok! come on!!"
       ]
     ],
     "erika": [
       [
         "erika",
-        "포켓몬들을 구해 주셔서 감사해요. 오늘은 배지를 걸고 겨루어요."
+        "드디어 오셨군요."
       ],
       [
         "player",
@@ -1208,21 +2279,29 @@
       ],
       [
         "erika",
-        "무지개체육관의 민화, 도전을 받겠습니다."
+        "저번 일은 매우 감사하게 생각하고 있어요."
+      ],
+      [
+        "erika",
+        "또한, 여러 명을 상대한 당신의 실력도 궁금해졌습니다."
+      ],
+      [
+        "erika",
+        "갑니다!"
       ]
     ],
     "koga": [
       [
         "koga",
-        "사파리 일은 잘 처리됐어. 이제 네 실력을 보자."
+        "드디어 왔군."
       ],
       [
         "player",
-        "독타입에 대비해 왔어요."
+        "가겠습니다!"
       ],
       [
         "koga",
-        "그럼 시작하지. 연분홍체육관의 독수다."
+        "그럼 시작하지!"
       ]
     ],
     "sabrina": [
