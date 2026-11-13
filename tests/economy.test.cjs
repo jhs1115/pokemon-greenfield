@@ -19,3 +19,11 @@ console.log('Scout ticket price rises 3,000 per unlocked chapter; bulk checkout,
 // All chapter battle payouts, including both portions, are exactly halved.
 for(let stage=0;stage<70;stage++){const state=G.normalize(),ch=Math.floor(stage/10)+1,pos=stage%10,boss=pos===9;const base=1000+(ch-1)*5000+pos*500+(boss?2000:0),first=boss?10000+ch*3000:2000+ch*1000+pos*500;assert.deepEqual(G.rewardCoins(state,stage),{base:base/2,first:first/2,total:(base+first)/2});state.clears[stage]=1;assert.equal(G.rewardCoins(state,stage).total,base/2);}
 console.log('All 70 stage first-clear and repeat rewards halved: passed.');
+
+// Chapters 5 onward award 75% of their previous base EXP; sharing remains 40%.
+for(let chapter=1;chapter<=7;chapter++)for(const trainer of [false,true])for(const weight of [1,.4]){
+ const state=G.normalize({owned:[25],records:{25:G.freshRecord(25,5)},clears:Array(70).fill(1)}),foe={id:113,level:30},multiplier=chapter>=3?1.5:1;
+ const unshared=Math.floor(P.pokemon[foe.id].baseExp*foe.level*(trainer?1.5:1)*multiplier*(chapter>=5?.75:1)/7);
+ const result=G.gainExperience(state,25,foe,trainer,1,weight,multiplier,chapter);assert.equal(result.amount,Math.max(1,Math.floor(unshared*weight)),`chapter ${chapter}, trainer ${trainer}, share ${weight}`);
+}
+console.log('Chapters 1–4 EXP unchanged; chapters 5–7 EXP reduced by 25%, including trainer battles and held Exp. Shares: passed.');
