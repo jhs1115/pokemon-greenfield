@@ -156,6 +156,21 @@ function enemyMoveValue(m,p,def,can,critical){
   return good.length&&(p.hp>p.maxHP*.4)?Math.min(80,good.reduce((sum,[,v])=>sum+Math.abs(v)*35,0)):0;
  }return 0;
 }
+function executiveDragonite(p){return !battle.pvp&&p.id===149&&battle.encounter.portrait==='rocket-executive-seven';}
+function enemyAiMoveAllowed(p,m){
+ if(!executiveDragonite(p))return true;
+ if(m.id===349)return !p.aiDragonDanceUsed;
+ if(m.id===355)return p.hp<=p.maxHP*.4&&(p.aiLastRoostTurn==null||battle.turn-p.aiLastRoostTurn>=3);
+ return true;
+}
+function recordEnemyAiUsage(turn){
+ for(const record of turn.records){
+  if(record.actor[0]!=='e')continue;
+  const p=battle.combat.lookup(record.actor).mon;if(!executiveDragonite(p))continue;
+  if(record.move===349&&record.logs.some(l=>l.startsWith('|-boost|p2')&&/\|(?:atk|spe)\|/.test(l)))p.aiDragonDanceUsed=true;
+  if(record.move===355&&record.logs.some(l=>l.startsWith('|-heal|p2')))p.aiLastRoostTurn=battle.turn;
+ }
+}
 function aiCommand(){
  const b=battle,p=enemy(),def=player();let best=null;if(b.tutorial)return {kind:'wait',destination:{...b.enemyPos}};
  for(let y=0;y<7;y++)for(let x=0;x<10;x++){
@@ -163,7 +178,7 @@ function aiCommand(){
   // Weedle holds its ground or approaches instead of kiting the player.
   if(p.id===13&&E.distance(pos,b.pos)>E.distance(b.enemyPos,b.pos))continue;
   for(let i=0;i<p.moves.length;i++){
-   const m=p.moves[i];if(m.remaining<=0||m.disabled)continue;
+   const m=p.moves[i];if(m.remaining<=0||m.disabled||!enemyAiMoveAllowed(p,m))continue;
    for(let ty=0;ty<7;ty++)for(let tx=0;tx<10;tx++){
     const target={x:tx,y:ty};if(!E.range(pos,target,m))continue;
     const tiles=E.attackTiles(pos,target,m),can=tiles.some(t=>t.x===b.pos.x&&t.y===b.pos.y),coverage=tiles.filter(t=>Math.max(Math.abs(t.x-b.pos.x),Math.abs(t.y-b.pos.y))<=1).length,value=enemyMoveValue(m,p,def,can,E.isCritical(pos,target,b.pos,m));
@@ -206,6 +221,7 @@ for(const a of movers){
 }
 await pause(200);
 let turn;try{turn=b.combat.turn(command,opponent);}catch(error){console.error(error);b.busy=false;b.mode='idle';render();toast('이 명령은 지금 사용할 수 없습니다. 다시 선택해 주세요.');return;}
+recordEnemyAiUsage(turn);
 for(const [recordIndex,record]of turn.records.entries()){
  if(ownToken!==token)return;
  await applyBattleActive(record.before);const aSide=record.actor[0],atk=b.combat.lookup(record.actor).mon,c=aSide==='p'?command:opponent,pos=aSide==='p'?b.pos:b.enemyPos,defPos=aSide==='p'?b.enemyPos:b.pos,m=D.moves[record.move]?moveFor(record.move):{id:0,name:'행동',impact:'self',range:0,damageClass:1},target=c.target||pos;

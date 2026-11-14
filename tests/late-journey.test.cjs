@@ -38,3 +38,22 @@ vm.runInContext('stage=80;startBattle();',c);const rampage=vm.runInContext('batt
 const rescue=G.normalize({owned:[6,9,3],team:[6,9,3],clears:Array.from({length:81},(_,i)=>i<80?1:0)});assert(G.unlocked(rescue,80));assert(!G.claimMewtwo(rescue,()=>0));rescue.clears[80]=1;assert(G.claimMewtwo(rescue,()=>.6));assert.equal(rescue.records[150].level,85);assert.equal(rescue.records[150].nature,G.randomNature(()=>.6));assert.equal(rescue.owned.filter(id=>id===150).length,1);const record=JSON.stringify(rescue.records[150]);assert(!G.claimMewtwo(rescue,()=>0));assert.equal(JSON.stringify(rescue.records[150]),record);const reloaded=G.normalize(JSON.parse(JSON.stringify(rescue)));assert(!G.claimMewtwo(reloaded));assert.equal(reloaded.records[150].level,85);assert.equal(G.scoutChapter(reloaded),10);assert.equal(G.levelCapInfo(reloaded,10).unrestricted,true);assert.equal(G.levelCapInfo(reloaded,12).leagueUnlocked,true);
 const preOwned=G.normalize({owned:[150],team:[150],records:{150:G.freshRecord(150,99,'Jolly',true)},clears:Array(81).fill(1)}),originalRecord=JSON.stringify(preOwned.records[150]);assert(G.claimMewtwo(preOwned));assert.equal(JSON.stringify(preOwned.records[150]),originalRecord);assert.equal(preOwned.owned.length,1);
 console.log('Mewtwo rescue: Lv100 opening +1 to five stats, four special types, zero EVs, gated one-time Lv85 random-nature reward, legacy/duplicate preservation and league cap exemption: passed.');
+
+// Chapter eight patrols must remain distinct across all six trainers, including reserve waves.
+const patrols=Array.from(w.STORY_STAGES.slice(70,73)).flatMap(s=>Array.from(s.waves));
+const patrolSpecies=patrols.flatMap(s=>Array.from(s.enemy));
+assert.equal(new Set(patrolSpecies).size,22);
+for(const wave of patrols){
+ for(const key of ['moves','levels','abilities','heldItems','natures'])assert.equal(wave[key].length,wave.enemy.length);
+ const encounter={...w.STORY_STAGES[70],...wave};
+ w.patrolTestEncounter=encounter;vm.runInContext('stage=70;startBattle(false,window.patrolTestEncounter);',c);
+ const b=vm.runInContext('battle.combat',c);
+ assert.equal(b.sim.sides[1].pokemon.length,wave.enemy.length);
+ for(let i=0;i<wave.enemy.length;i++){
+  const mon=b.sim.sides[1].pokemon[i];
+  assert.equal(mon.ability,wave.abilities[i]);
+  assert.equal(mon.moveSlots.filter(m=>m.id!=='greenfieldwait').length,4);
+  assert.deepEqual(mon.moveSlots.filter(m=>m.id!=='greenfieldwait').map(m=>w.PKMN.Dex.moves.get(m.id).num),Array.from(wave.moves[i]));
+ }
+}
+console.log('Chapter eight: six distinct patrol teams, 22 unique species, four moves and active abilities for every reserve wave: passed.');

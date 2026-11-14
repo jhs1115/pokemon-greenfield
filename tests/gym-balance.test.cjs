@@ -16,3 +16,22 @@ vm.runInContext("stage=0;startBattle(false,{name:'무빙 복원 검증',enemy:[1
 
 for(const [own,foe]of [[{x:4,y:3},{x:5,y:3}],[{x:4,y:3},{x:6,y:3}],[{x:4,y:3},{x:5,y:4}],[{x:0,y:0},{x:1,y:1}],[{x:1,y:3},{x:8,y:3}]]){vm.runInContext("stage=0;startBattle(false,{name:'뿔충이 이동 검증',enemy:[13],levels:[8],moves:[[40,81]]});",c);c.ownPos=own;c.foePos=foe;vm.runInContext('battle.pos=ownPos;battle.enemyPos=foePos;',c);const pick=vm.runInContext('aiCommand()',c),distance=(a,b)=>Math.abs(a.x-b.x)+Math.abs(a.y-b.y);assert(distance(pick.destination,own)<=distance(foe,own),'Weedle cannot move farther from the player');assert.equal(pick.kind,'attack');}
 console.log('Weedle alone cannot retreat at melee/ranged/diagonal/corner/far positions; existing other-species AI retained: passed.');
+
+// Only the recurring executive's Dragonite gets the setup/recovery restraint.
+vm.runInContext("stage=73;startBattle();",c);
+assert(vm.runInContext('enemyAiMoveAllowed(enemy(),moveFor(349))',c));
+vm.runInContext("var ddTurn=battle.combat.turn({kind:'wait',destination:battle.pos},{kind:'attack',move:0,target:battle.enemyPos});recordEnemyAiUsage(ddTurn);",c);
+assert(vm.runInContext('enemy().aiDragonDanceUsed',c));
+assert(!vm.runInContext('enemyAiMoveAllowed(enemy(),moveFor(349))',c));
+vm.runInContext('enemy().statStages={2:0,3:0,4:0,5:0,6:0};',c);
+assert(!vm.runInContext('enemyAiMoveAllowed(enemy(),moveFor(349))',c),'Haze cannot allow a second successful Dragon Dance');
+assert(!vm.runInContext('enemyAiMoveAllowed(enemy(),moveFor(355))',c),'No Roost at high HP');
+vm.runInContext('enemy().hp=Math.floor(enemy().maxHP*.35);',c);
+assert(vm.runInContext('enemyAiMoveAllowed(enemy(),moveFor(355))',c));
+vm.runInContext("recordEnemyAiUsage({records:[{actor:'e0',move:355,logs:['|-heal|p2a: e0|100/300']}]});battle.turn++;",c);
+assert(!vm.runInContext('enemyAiMoveAllowed(enemy(),moveFor(355))',c));
+vm.runInContext('battle.turn++;',c);assert(!vm.runInContext('enemyAiMoveAllowed(enemy(),moveFor(355))',c));
+vm.runInContext('battle.turn++;',c);assert(vm.runInContext('enemyAiMoveAllowed(enemy(),moveFor(355))',c));
+vm.runInContext("battle.encounter.portrait='other';enemy().aiDragonDanceUsed=true;enemy().hp=enemy().maxHP;",c);
+assert(vm.runInContext('enemyAiMoveAllowed(enemy(),moveFor(349))&&enemyAiMoveAllowed(enemy(),moveFor(355))',c));
+console.log('Executive Dragonite: one successful Dragon Dance even after rank reset; Roost only at <=40% HP with two intervening turns; other trainers unchanged: passed.');

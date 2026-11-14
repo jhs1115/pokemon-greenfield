@@ -89,16 +89,17 @@ delete root.GYM_LOADOUTS[69];root.GYM_LOADOUTS[65]=root.STORY_STAGES[65].moves;
 for(const key of ['rocket','trainer','portrait'])delete root.STORY_STAGES[66][key];
 
 /* Final Viridian chapter. Levels are deliberate; every Pokemon still has zero EVs. */
+// Each grunt has a distinct roster; later patrols add varied offensive types.
 const finalPatrols=[
  [
-  {enemy:[24,42,97],levels:[68,69,69],moves:[[398,137,89,242],[403,141,109,369],[94,95,247,411]],abilities:['intimidate','innerfocus','insomnia']},
-  {enemy:[89,110,53],levels:[69,70,71],moves:[[441,425,7,151],[188,85,53,114],[252,400,369,103]],abilities:['stickyhold','levitate','technician']}
+  {enemy:[24,20,42],levels:[68,69,69],moves:[[398,137,89,242],[162,242,98,38],[403,141,109,369]],abilities:['intimidate','guts','innerfocus'],natures:['Adamant','Jolly','Timid']},
+  {enemy:[89,105,85],levels:[69,70,71],moves:[[441,425,7,151],[155,157,38,14],[413,65,98,14]],abilities:['stickyhold','lightningrod','earlybird'],natures:['Adamant','Adamant','Jolly']}
  ],[
-  {enemy:[82,68,94],levels:[70,71,71],moves:[[85,430,86,113],[238,157,282,339],[247,188,411,417]],abilities:['sturdy','noguard','cursedbody']},
-  {enemy:[112,130,65],levels:[71,72,73],moves:[[89,444,224,419],[349,127,89,423],[94,411,247,417]],abilities:['rockhead','intimidate','magicguard']}
+  {enemy:[82,57,73],levels:[70,71,71],moves:[[85,430,86,113],[370,157,369,8],[57,188,58,92]],abilities:['sturdy','vitalspirit','liquidooze'],natures:['Modest','Jolly','Timid']},
+  {enemy:[76,71,97],levels:[71,72,73],moves:[[89,444,389,38],[438,188,79,14],[94,95,247,411]],abilities:['sturdy','chlorophyll','insomnia'],natures:['Adamant','Adamant','Modest']}
  ],[
-  {enemy:[24,82,94,68,131],levels:[73,74,74,75,75],moves:[[398,137,89,242],[85,430,86,113],[247,188,411,417],[238,157,282,339],[56,573,85,182]],abilities:['intimidate','sturdy','cursedbody','noguard','waterabsorb']},
-  {enemy:[89,130,65,143,149],levels:[74,75,75,76,77],moves:[[441,425,7,151],[349,127,89,423],[94,411,247,417],[174,34,242,156],[349,245,89,355]],abilities:['stickyhold','intimidate','magicguard','thickfat','multiscale']}
+  {enemy:[110,127,91,26,78],levels:[73,74,74,75,75],moves:[[188,85,53,114],[404,370,89,14],[333,350,420,504],[85,411,447,86],[394,528,667,14]],abilities:['levitate','moldbreaker','skilllink','static','flashfire'],natures:['Modest','Jolly','Adamant','Timid','Jolly']},
+  {enemy:[31,123,103,128,80],levels:[74,75,75,76,77],moves:[[414,188,58,85],[404,332,98,14],[94,412,79,247],[34,89,157,428],[57,94,58,303]],abilities:['sheerforce','technician','chlorophyll','intimidate','regenerator'],natures:['Modest','Jolly','Modest','Jolly','Bold']}
  ]
 ];
 for(let i=0;i<3;i++){const waves=finalPatrols[i].map(w=>({...w,heldItems:w.enemy.map(()=> 'sitrus-berry')}));root.STORY_STAGES.push({name:'8-'+(i+1),chapter:8,theme:'city',rocket:true,trainer:true,portrait:'rocket_grunt_m',silentRetry:true,waves,...waves[0]});}
