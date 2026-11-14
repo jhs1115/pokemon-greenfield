@@ -2,3 +2,7 @@ window.CHAPTER_MAPS.push(...[[[8, 77], [16, 43], [31, 23], [43, 49], [32, 76], [
 
 /* Chapter seven ends at its sixth destination, the fire gym on the far right. */
 window.CHAPTER_MAPS[6]=[[7, 70], [23, 57], [39, 62], [54, 36], [73, 48], [93.5, 38.8]];
+
+window.CHAPTER_MAPS[7]=[[11, 80], [27, 57], [47, 76], [65, 50], [92, 40]];
+
+window.CHAPTER_MAPS[8]=[[50,79]];

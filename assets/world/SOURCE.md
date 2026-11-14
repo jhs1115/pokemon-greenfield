@@ -51,3 +51,19 @@ New original built-in image_gen backgrounds in story-v1/: cinnabar-coast-v1.png,
 ## Six-stop Cinnabar map and psychic gym — 2026-11-15
 
 New original built-in image_gen assets: `routes/chapter-7-v6.png` (1774×887, six road-centered destinations and far-right gym), `story-v1/gym-psychic-v1.png` (dedicated Sabrina gym). Exact prompts/source image names: `story-v1/map-seven-and-psychic-prompts.json`. Map reviewed centers: (124,621), (408,506), (692,550), (958,319), (1295,426), (1659,344). Chapter 7 only displays 7-1 through 7-6; old saved progress is retained.
+
+## Chapter eight — 2026-11-15
+
+Six new original built-in image_gen assets: routes/chapter-8-v1.png and story-v1/{viridian-street-v1,rocket-hq-hall-v1,rocket-hq-ante-v1,gym-ground-v1,viridian-gym-ruins-v1}.png. Exact prompts/source names: story-v1/chapter-eight-prompts.json. No generated Pokemon or people; Mewtwo and trainers use existing sprite files.
+
+## Chapter nine rescue — 2026-11-15
+
+Original built-in image_gen: routes/chapter-9-v1.png, story-v1/mewtwo-eye-v1.png and story-v1/mewtwo-rescue-dawn-v1.png. Prompts: story-v1/chapter-nine-prompts.json. Collar/rest/hands shots use original existing Mewtwo sprite plus CSS/SVG cinematics after direct generated body shots were blocked.
+
+Final rescue closeups: `story-v1/control-device-release-v1.png` and `story-v1/mewtwo-hands-v1.png`, newly generated with built-in image_gen. Exact prompts/source filenames: `story-v1/chapter-nine-closeup-prompts.json`. These replace the initial code-only handshake composition. Existing Mewtwo sprites still provide the standing/resting/awake character shots.
+
+
+### 2026-11-15 클라이맥스 보강
+- `assets/world/story-v1/mewtwo-rest-v2.png`: 실제 옆으로 누운 뮤츠를 새로 생성한 장면. 기존 서 있는 스프라이트 회전 연출을 대체한다. 프롬프트와 참조는 `rescue-climax-v2-prompts.json`에 보관했다.
+- 목걸이 파괴는 실제 뮤츠 스프라이트의 목에 SVG 제어장치를 결합하고 균열 → 분리 → 충격광·파편으로 연출한다. 뮤츠와 파괴 장치가 함께 있는 생성 그림은 이미지 도구가 거부하여 생성되지 않았다.
+- 회복 장면은 동일 그림을 유지하며 눈만 SVG로 열고, 손을 잡는 별도 그림으로 연결한다. 파괴까지 전투 음악, 이후 잔잔한 음악으로 전환한다.

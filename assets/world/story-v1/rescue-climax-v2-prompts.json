@@ -1,0 +1,20 @@
+{
+  "generator": "built-in image_gen",
+  "date": "2026-11-15",
+  "assets": {
+    "mewtwo-rest-v2": {
+      "path": "assets/world/story-v1/mewtwo-rest-v2.png",
+      "source": "exec-f0d9d321-45ea-4a26-b67c-0cbe5b8cc446.png",
+      "prompt": "Use case: compositing / cinematic pixel-art game asset. Image 1 is a CHARACTER DESIGN reference: the existing tiny Pokemon Mewtwo sprite, preserve its recognizable pale lavender feline Pokemon design and purple tail. Image 2 is the BACKGROUND reference and location. Produce a finished wide 16:9 game cutscene in the same coarse GBA pixel-art style as image 2. Compose Mewtwo resting on its SIDE on the cracked emerald floor, naturally drawn horizontal resting pose with limbs folded and head lying on one forearm toward the LEFT, purple tail curved behind toward the RIGHT. Eyes closed, breathing calmly after a difficult battle, unharmed. The creature occupies the middle third of the frame, fully visible, not a rotated standing sprite. Low camera at floor level, broken cream columns and warm dawn light in background. Emotional quiet moment of relief. Draw in chunky low-resolution 2-3 shade pixel clusters, no smooth realism. Entire image is a complete scene with no text or dialogue panel, no additional characters, no collar. This is an ordinary nonhuman cartoon Pokemon resting, use the supplied sprite design faithfully.",
+      "references": [
+        "assets/pokemon/150.png",
+        "assets/world/story-v1/mewtwo-rescue-dawn-v1.png"
+      ]
+    }
+  },
+  "blocked": {
+    "awake": "첫 번째 그림을 수정해 주세요. 배경과 누운 자세, 꼬리와 손발 위치, 카메라 구도는 그대로 두고, 뮤츠가 보이는 보라색 눈을 뜨고 화면 쪽을 부드럽게 바라보게 해 주세요. 두 번째 이미지는 뮤츠 캐릭터 참고 자료입니다. 기존과 동일한 굵은 픽셀의 포켓몬 게임 도트풍, 가로 16:9 완성된 장면입니다. 자막과 UI는 넣지 마세요.",
+    "break": "포켓몬 게임의 클라이맥스 컷신을 그려 주세요. 참고 1의 뮤츠가 참고 2의 폐허가 된 체육관에 서 있습니다. 뮤츠의 목에 있던 회색 기계 목걸이가 두 조각으로 분리되어 떨어지고, 그 자리에서 따뜻한 금빛이 퍼집니다. 뮤츠 얼굴과 목걸이가 함께 보이는 상반신 중심 구도이며, 보라색 꼬리도 옆에 보입니다. 뮤츠가 자유로워지는 희망찬 순간입니다. 기존 포켓몬 게임처럼 굵은 픽셀로 그린 도트 그래픽, 가로 16:9, 자막이나 UI 없는 완성된 배경 그림."
+  },
+  "notes": "A genuine horizontal resting pose was generated. Matching eye opening uses a small in-game pixel overlay. Body-plus-collar image attempts were rejected; the climax combines the authentic standing sprite, a detailed collar in the neck position, animated separation, gold light and particles. No CLI or Python raster editing used."
+}

@@ -2720,6 +2720,559 @@
           "text": "주인공은 떠났다."
         }
       ]
+    },
+    "before-70": {
+      "title": "마지막 도시 상록시티",
+      "backdrop": "viridian-street",
+      "npc": "brock",
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "드디어, 마지막 상록시티에 입장했다."
+        },
+        {
+          "speaker": "brock",
+          "text": "... 여긴 분위기부터 음산하군."
+        },
+        {
+          "speaker": "misty",
+          "text": "비주기? 비주기라고 했나?"
+        },
+        {
+          "speaker": "player",
+          "text": "네 맞아요. 비주기가 로켓단 수장이라 들었어요."
+        },
+        {
+          "speaker": "player",
+          "text": "또한... 8번째 관장이라고 들었어요."
+        },
+        {
+          "speaker": "sabrina",
+          "text": "... 8번째 관장이... 로켓단 수장이라고?"
+        },
+        {
+          "speaker": "brock",
+          "text": "완전 막장이네 이거"
+        },
+        {
+          "speaker": "brock",
+          "text": "좋다. 일단 그 녀석들의 계획을 막는 것이 우리의 역할이겠군."
+        },
+        {
+          "speaker": "rocket",
+          "text": "그게 마음대로 될 것 같나?"
+        },
+        {
+          "speaker": "player",
+          "text": "역시 편하게 가게 두진 않는군..."
+        }
+      ]
+    },
+    "after-70": {
+      "title": "물러선 조무래기들",
+      "backdrop": "viridian-street",
+      "npc": "rocket",
+      "lines": [
+        {
+          "speaker": "rocket",
+          "text": "역시 안 되는 건가..."
+        }
+      ]
+    },
+    "before-71": {
+      "title": "설계도를 찾는 남자",
+      "backdrop": "rocket-hq-hall",
+      "npc": "giovanni",
+      "lines": [
+        {
+          "speaker": "giovanni",
+          "text": "설계도! 설계도는 어딨나?",
+          "speakerName": "???"
+        },
+        {
+          "speaker": "rocket",
+          "text": "빼... 뺏겼습니다..."
+        },
+        {
+          "speaker": "giovanni",
+          "text": "..."
+        },
+        {
+          "speaker": "narrator",
+          "text": "로켓단 조무래기가 발로 차여 넘어진다."
+        },
+        {
+          "speaker": "rocket",
+          "text": "크악!"
+        },
+        {
+          "speaker": "misty",
+          "text": "뒤에서 몰래 보고 있었다.",
+          "thought": true
+        },
+        {
+          "speaker": "misty",
+          "text": "나... 저거 뉴스에서 봤어... 저 사람이 비주기야..."
+        },
+        {
+          "speaker": "giovanni",
+          "text": "손님들이 오셨군."
+        },
+        {
+          "speaker": "giovanni",
+          "text": "처리해라."
+        },
+        {
+          "speaker": "rocket",
+          "text": "... 네...!"
+        }
+      ]
+    },
+    "after-71": {
+      "title": "복종의 이유",
+      "backdrop": "rocket-hq-hall",
+      "npc": "rocket",
+      "lines": [
+        {
+          "speaker": "rocket",
+          "text": "비주기 님..."
+        },
+        {
+          "speaker": "misty",
+          "text": "대체 비주기가 뭐길래 그렇게까지 복종하는 거야?"
+        },
+        {
+          "speaker": "rocket",
+          "text": "비주기 님이 리그만 먹으시면... 우리는 돈방석에 앉는 겁니다... 후후후...."
+        },
+        {
+          "speaker": "brock",
+          "text": "그 시간에 노가다해라"
+        }
+      ]
+    },
+    "before-72": {
+      "title": "끝없는 로켓단",
+      "backdrop": "rocket-hq-hall",
+      "npc": "giovanni",
+      "lines": [
+        {
+          "speaker": "giovanni",
+          "text": "끈질기군."
+        },
+        {
+          "speaker": "rocket",
+          "text": "비주기 님의 뜻대로!"
+        },
+        {
+          "speaker": "player",
+          "text": "젠장...!"
+        }
+      ]
+    },
+    "after-72": {
+      "title": "돌아온 간부",
+      "backdrop": "rocket-hq-ante",
+      "npc": "rocketSeven",
+      "lines": [
+        {
+          "speaker": "player",
+          "text": "후..."
+        },
+        {
+          "speaker": "player",
+          "text": "끝이 안 보여..."
+        },
+        {
+          "speaker": "rocketSeven",
+          "text": "하... 복수의 시간이군..."
+        },
+        {
+          "speaker": "player",
+          "text": "너는...!"
+        }
+      ]
+    },
+    "before-73": {
+      "title": "간부의 복수",
+      "backdrop": "rocket-hq-ante",
+      "npc": "rocketSeven",
+      "lines": [
+        {
+          "speaker": "rocketSeven",
+          "text": "덤벼라. 이번엔 진심으로 간다."
+        },
+        {
+          "speaker": "player",
+          "text": "...."
+        }
+      ]
+    },
+    "after-73": {
+      "title": "최강을 위한 희생",
+      "backdrop": "rocket-hq-ante",
+      "npc": "rocketSeven",
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "로켓단 간부가 무릎을 꿇었다."
+        },
+        {
+          "speaker": "rocketSeven",
+          "text": "말도 안 돼...!"
+        },
+        {
+          "speaker": "player",
+          "text": "대체 왜 이런 일을 벌이는 겁니까!"
+        },
+        {
+          "speaker": "rocketSeven",
+          "text": "비주기 님이 이 리그를 제패하면"
+        },
+        {
+          "speaker": "rocketSeven",
+          "text": "쓰레기 같은 리그의 제도를 싹 다 바꿀 거다."
+        },
+        {
+          "speaker": "player",
+          "text": "어떤 점에서 쓰레기 같다는 겁니까...?"
+        },
+        {
+          "speaker": "giovanni",
+          "text": "그야 재능에만 의존한 시스템 때문이지."
+        },
+        {
+          "speaker": "giovanni",
+          "text": "내가 왜 [뮤츠]를 만들었는지 아나?"
+        },
+        {
+          "speaker": "player",
+          "text": "[뮤츠]..?"
+        },
+        {
+          "speaker": "player",
+          "text": "그게 인공 포켓몬의 이름입니까?"
+        },
+        {
+          "speaker": "giovanni",
+          "text": "그렇지."
+        },
+        {
+          "speaker": "giovanni",
+          "text": "어떠한 수를 써서라도 승리하면 그것이 최강자 아닌가?"
+        },
+        {
+          "speaker": "giovanni",
+          "text": "이상한 규칙 같은 걸 덕지덕지 붙이니..."
+        },
+        {
+          "speaker": "player",
+          "text": "그 포켓몬을 어떻게 만든 겁니까?"
+        },
+        {
+          "speaker": "giovanni",
+          "text": "우수한 유전자의 포켓몬들만 모았지."
+        },
+        {
+          "speaker": "player",
+          "text": "그럼 그 포켓몬들은..."
+        },
+        {
+          "speaker": "giovanni",
+          "text": "최강을 위해서라면 희생은 감내해야 한다."
+        },
+        {
+          "speaker": "giovanni",
+          "text": "언제까지 같은 곳에 머무를 것인가?"
+        },
+        {
+          "speaker": "player",
+          "text": "..."
+        }
+      ]
+    },
+    "before-74": {
+      "title": "상록체육관의 비주기",
+      "backdrop": "gym-ground",
+      "npc": "giovanni",
+      "lines": [
+        {
+          "speaker": "giovanni",
+          "text": "왔군..."
+        },
+        {
+          "speaker": "giovanni",
+          "text": "뭐, 궁금한 게 있는가?"
+        },
+        {
+          "speaker": "player",
+          "text": "... 궁금한 건 많지만, 이해는 못 할 것 같네요."
+        },
+        {
+          "speaker": "player",
+          "text": "덤비세요."
+        },
+        {
+          "speaker": "giovanni",
+          "text": "하하하하!!! 재밌군 그래!!!"
+        }
+      ]
+    },
+    "mewtwo-sendout": {
+      "title": "마지막 포켓몬",
+      "backdrop": "gym-ground",
+      "npc": "giovanni",
+      "lines": [
+        {
+          "speaker": "giovanni",
+          "text": "좋다!! 재밌군!!"
+        },
+        {
+          "speaker": "giovanni",
+          "text": "와라!!!!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "뮤츠가 고통스러운 굉음을 내지르며 나온다.",
+          "scenePokemon": 150,
+          "rampage": true,
+          "sound": "mewtwo-cry",
+          "actor": null
+        }
+      ]
+    },
+    "after-74": {
+      "title": "폭주",
+      "backdrop": "gym-ground",
+      "npc": null,
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "승리의 기쁨을 느낄 틈도 없이, 쓰러진 뮤츠가 미친 듯이 소리치기 시작한다.",
+          "scenePokemon": 150,
+          "rampage": true,
+          "sound": "mewtwo-cry"
+        },
+        {
+          "speaker": "player",
+          "text": "무슨...!!",
+          "scenePokemon": 150,
+          "rampage": true
+        },
+        {
+          "speaker": "giovanni",
+          "text": "제어장치! 제어장치는 어디 있나?",
+          "scenePokemon": 150,
+          "rampage": true
+        },
+        {
+          "speaker": "misty",
+          "text": "도망가!!",
+          "scenePokemon": 150,
+          "rampage": true
+        },
+        {
+          "speaker": "brock",
+          "text": "어서 도망가야 한다!!!",
+          "scenePokemon": 150,
+          "rampage": true
+        },
+        {
+          "speaker": "narrator",
+          "text": "뮤츠가 엄청난 폭발음과 함께, 눈 깜짝할 사이에 주변이 폐허가 된다.",
+          "backdrop": "viridian-ruins",
+          "actor": null,
+          "scenePokemon": null,
+          "explosion": true
+        },
+        {
+          "speaker": "narrator",
+          "text": "... 주변에 아무도 보이지 않는다.",
+          "backdrop": "viridian-ruins",
+          "actor": null,
+          "scenePokemon": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "잔해에 깔린 비주기.",
+          "backdrop": "viridian-ruins",
+          "actor": "giovanni",
+          "scenePokemon": null,
+          "fallen": true
+        },
+        {
+          "speaker": "narrator",
+          "text": "쓰러져 있는 관장들.",
+          "backdrop": "viridian-ruins",
+          "actor": null,
+          "scenePokemon": null,
+          "actors": [
+            "brock",
+            "misty",
+            "sabrina"
+          ],
+          "fallen": true
+        },
+        {
+          "speaker": "narrator",
+          "text": "...",
+          "backdrop": "viridian-ruins",
+          "actor": null,
+          "scenePokemon": null
+        }
+      ]
+    },
+    "before-80": {
+      "title": "폭주하는 뮤츠",
+      "backdrop": "mewtwo-ruins",
+      "npc": null,
+      "music": "mewtwo",
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "...",
+          "scenePokemon": 150,
+          "rampage": true,
+          "shot": "stand",
+          "sound": "mewtwo-cry"
+        },
+        {
+          "speaker": "narrator",
+          "text": "고통스러워 보인다.",
+          "scenePokemon": 150,
+          "rampage": true,
+          "shot": "stand",
+          "collar": true
+        },
+        {
+          "speaker": "narrator",
+          "text": "...",
+          "backdrop": "mewtwo-eye",
+          "scenePokemon": null,
+          "shot": "eye"
+        },
+        {
+          "speaker": "narrator",
+          "text": "자신을 막아 달라는 눈빛이다.",
+          "backdrop": "mewtwo-eye",
+          "scenePokemon": null,
+          "shot": "eye"
+        },
+        {
+          "speaker": "narrator",
+          "text": "가 보자.",
+          "backdrop": "mewtwo-ruins",
+          "scenePokemon": 150,
+          "shot": "stand",
+          "collar": true,
+          "rampage": true
+        }
+      ]
+    },
+    "after-80": {
+      "title": "손을 내밀다",
+      "backdrop": "mewtwo-ruins",
+      "npc": null,
+      "music": "mewtwo",
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "뮤츠가 고통스러워하고 있다.",
+          "scenePokemon": 150,
+          "rampage": true,
+          "collar": true,
+          "shot": "pain",
+          "sound": "mewtwo-cry"
+        },
+        {
+          "speaker": "narrator",
+          "text": "뮤츠 목에 있는 저건...",
+          "scenePokemon": 150,
+          "collar": true,
+          "shot": "collar"
+        },
+        {
+          "speaker": "narrator",
+          "text": "뭔가 저것이 뮤츠를 폭주시키는 것 같다!",
+          "scenePokemon": 150,
+          "collar": true,
+          "shot": "collar"
+        },
+        {
+          "speaker": "player",
+          "text": "{partnerFinal}! 가라!!!!!!! 저걸 부숴 버려!!!!!!!!!!",
+          "scenePokemon": 150,
+          "collar": true,
+          "shot": "charge",
+          "rescuePartner": true
+        },
+        {
+          "speaker": "narrator",
+          "text": "{partnerFinal}이 쓰러지기 직전, 힘을 짜내 목걸이를 부숴 버린다.",
+          "scenePokemon": 150,
+          "shot": "break",
+          "rescuePartner": false,
+          "collar": true,
+          "sound": "rescue-break",
+          "backdrop": "mewtwo-ruins"
+        },
+        {
+          "speaker": "narrator",
+          "text": "...",
+          "backdrop": "mewtwo-rest",
+          "music": "rescue",
+          "scenePokemon": null,
+          "shot": "rest"
+        },
+        {
+          "speaker": "narrator",
+          "text": "뮤츠가 쓰러졌다.",
+          "scenePokemon": null,
+          "shot": "rest"
+        },
+        {
+          "speaker": "narrator",
+          "text": "다행히 살아는 있는 것 같다.",
+          "scenePokemon": null,
+          "shot": "rest"
+        },
+        {
+          "speaker": "player",
+          "text": "... 괜찮아?",
+          "scenePokemon": null,
+          "shot": "rest"
+        },
+        {
+          "speaker": "narrator",
+          "text": "뮤츠가 이쪽을 쳐다본다.",
+          "scenePokemon": null,
+          "shot": "awake"
+        },
+        {
+          "speaker": "player",
+          "text": "손을 내민다.",
+          "thought": true,
+          "scenePokemon": null,
+          "shot": "reach"
+        },
+        {
+          "speaker": "narrator",
+          "text": "뮤츠가 손을 잡는다.",
+          "scenePokemon": null,
+          "shot": "hands",
+          "backdrop": "rescue-hands"
+        },
+        {
+          "speaker": "narrator",
+          "text": "[뮤츠] 합류!",
+          "scenePokemon": 150,
+          "shot": "join",
+          "clueTone": "mint",
+          "recruitMewtwo": true,
+          "sound": "rescue-join",
+          "backdrop": "rescue-dawn"
+        }
+      ]
     }
   },
   "gymLines": {
@@ -2860,6 +3413,28 @@
         "player",
         "다행히 로켓단이 한 줄 아는 듯하다."
       ]
+    ],
+    "giovanni": [
+      [
+        "giovanni",
+        "왔군..."
+      ],
+      [
+        "giovanni",
+        "뭐, 궁금한 게 있는가?"
+      ],
+      [
+        "player",
+        "... 궁금한 건 많지만, 이해는 못 할 것 같네요."
+      ],
+      [
+        "player",
+        "덤비세요."
+      ],
+      [
+        "giovanni",
+        "하하하하!!! 재밌군 그래!!!"
+      ]
     ]
   },
   "cast": {
@@ -2910,6 +3485,10 @@
     "rocketSeven": {
       "name": "로켓단 간부",
       "src": "rocket-executive-seven.png"
+    },
+    "giovanni": {
+      "name": "비주기",
+      "src": "giovanni.png"
     }
   },
   "gymThoughts": {

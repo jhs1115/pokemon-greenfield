@@ -1,5 +1,5 @@
 let mapChapter=0,leaderPage=0,leaderLines=[];
-const CHAPTER_NAMES=['초록 숲길','강가의 산책로','항구와 도시','꽃과 숲의 정원','안개 낀 사파리','도시의 그림자','홍련섬의 기록'];
+const CHAPTER_NAMES=['초록 숲길','강가의 산책로','항구와 도시','꽃과 숲의 정원','안개 낀 사파리','도시의 그림자','홍련섬의 기록','상록시티의 결전','폭주의 끝'];
 function renderStages(){
  const start=mapChapter*10,count=(window.StoryMapArt?.points(mapChapter)||window.CHAPTER_MAPS[mapChapter]).length,end=start+count;if(selectedStage<start||selectedStage>=end)selectedStage=selectedStage>=end?end-1:start;
  const palette=window.StoryMapArt?.palette(mapChapter)||{frame:'#6b8c5a',ink:'#3d5a3d',footer:'#36523e'};

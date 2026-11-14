@@ -162,3 +162,25 @@ Built-in image_gen으로 제작했다.
 ## 6개 지점 지도 개편
 
 지도는 [chapter-7-v6.png](../assets/world/routes/chapter-7-v6.png)로 교체했다. 7-1~7-6만 표시하고 마지막 강연 체육관은 오른쪽 끝에 고정한다. 7-7~7-10은 지도에서 제거하되 기존 저장 기록은 보존한다. 과거 선택 위치가 7-7 이후라면 7-6으로 보정한다. 강연 승리 시 다음 장 기준 스카우트 레벨 32로 갱신한다.
+
+## 7-4 마지막 간부의 실전형 샘플
+
+레벨 55~59와 다섯 종은 유지한다. **노력치는 전원 0**이며 플레이어의 육성 체계도 바꾸지 않는다. 본가 싱글 배틀의 역할을 이 게임의 타일 전투와 구현된 시스템에 맞춰 조합했다. 특정 대회 팀을 그대로 복제한 것은 아니다. 기합의띠는 간부의 전투 전용 도구로 사용하며 상점·보상 풀은 확장하지 않는다.
+
+| 포켓몬 | 성격 | 특성 | 도구 | 기술 |
+|---|---|---|---|---|
+| 망나뇽 Lv.55 | 고집 | 멀티스케일 | 먹다남은음식 | 용의춤 / 신속 / 지진 / 날개쉬기 |
+| 라프라스 Lv.56 | 조심 | 저수 | 먹다남은음식 | 하이드로펌프 / 프리즈드라이 / 10만볼트 / 방어 |
+| 후딘 Lv.57 | 겁쟁이 | 매직가드 | 기합의띠 | 사이코키네시스 / 기합구슬 / 섀도볼 / 나쁜음모 |
+| 잠만보 Lv.58 | 신중 | 두꺼운지방 | 유루열매 | 저주 / 누르기 / 깨물어부수기 / 잠자기 |
+| 갸라도스 Lv.59 | 명랑 | 위협 | 자뭉열매 | 용의춤 / 폭포오르기 / 지진 / 얼음엄니 |
+
+멀티스케일은 본가 엔진으로 실제 체력 최대일 때 피격 피해를 절반으로 줄인다. 기합의띠·매직가드·저수·두꺼운지방·위협·잠자기와 유루열매 역시 네이티브 전투 엔진에서 적용한다.
+
+참고 샘플 및 역할 자료:
+- https://www.smogon.com/dex/sv/pokemon/dragonite/draft/
+- https://www.smogon.com/dex/sv/pokemon/dragonite/battle-stadium-singles/
+- https://www.smogon.com/dex/ss/pokemon/alakazam/
+- https://www.smogon.com/dex/sm/pokemon/snorlax/battle-spot-singles/
+- https://www.smogon.com/dex/ss/pokemon/lapras/battle-stadium-singles/
+- https://www.smogon.com/dex/dp/pokemon/gyarados/ou/

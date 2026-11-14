@@ -1,0 +1,16 @@
+{
+  "generator": "built-in image_gen",
+  "date": "2026-11-15",
+  "assets": {
+    "mewtwo-hands-v1": {
+      "path": "assets/world/story-v1/mewtwo-hands-v1.png",
+      "source": "exec-c1bf51c9-aaa3-43f9-9d05-88e3df3099de.png",
+      "prompt": "Use case: stylized-concept. Finished cinematic game-background asset in authentic COARSE GBA pixel art: logical 240x135 for 16:9, or 384x192 for 2:1, enlarged nearest-neighbor. Clearly visible large square pixel clusters, dark single-pixel outlines, limited 24-color palette and only 2-3 flat shade bands. No smooth digital painting, no intricate high-resolution texture, no text, UI, border or blank dialogue panel. One complete environment shot, restrained dramatic light. Wide 16:9 cinematic CLOSE-UP of two hands gently clasping in friendship in a ruined emerald-floor gym at warm dawn. Only hands and short forearms are visible: a human adult's warm tan right hand enters from lower left and gently holds a smooth pale-lavender fantasy creature's THREE-FINGERED hand entering from upper right. Fingers should visibly curl around each other naturally, with clear separate rounded fingertip pixel clusters. No faces or bodies. Center the contact of the palms, emphasize trust and relief. Soft golden light behind the clasp, broken cream stone and emerald tiles softly simplified in the background. Very coarse charming handheld-game pixel art with dark outlines and 2-3 shades, NOT realistic skin or fine texture, no lettering or dialogue panel. A clear readable warm handshake, not geometric straight rectangular arms."
+    },
+    "control-device-release-v1": {
+      "path": "assets/world/story-v1/control-device-release-v1.png",
+      "source": "exec-b8ef2332-59ed-4053-9711-ee71243b302b.png",
+      "prompt": "Use case: stylized-concept. Finished cinematic game-background asset in authentic COARSE GBA pixel art: logical 240x135 for 16:9, or 384x192 for 2:1, enlarged nearest-neighbor. Clearly visible large square pixel clusters, dark single-pixel outlines, limited 24-color palette and only 2-3 flat shade bands. No smooth digital painting, no intricate high-resolution texture, no text, UI, border or blank dialogue panel. One complete environment shot, restrained dramatic light. Wide 16:9 dramatic macro close-up of a small dark gray SCI-FI CONTROL RING DEVICE separating into two broken arcs at the center of a golden-white burst of light. Just the mechanical ring and a few angular metal fragments are visible, NO creature, NO body, NO neck, NO people. A small violet square indicator on the device goes dark as warm light overtakes purple sparks. Background is a greatly simplified ruined emerald-tiled gym with cream stone pillars, out of focus in coarse pixel clusters. Hopeful heroic release moment, powerful diagonal light from lower left, clear recognizable mechanical object not an abstract explosion. The ring occupies middle third, no text or UI."
+    }
+  }
+}

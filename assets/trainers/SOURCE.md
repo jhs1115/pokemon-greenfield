@@ -28,3 +28,5 @@ Additional shop item icons (2026-11-06): original PokéAPI sprites for black-bel
 - Chapter 6 Rocket executive: existing Archer trainer sprite from Pokémon Showdown, downloaded 2026-11-15: https://play.pokemonshowdown.com/sprites/trainers/archer.png . Saved as `rocket-executive.png`; displayed as an unnamed Rocket executive, separate from the grunt.
 
 - Chapter 7 unnamed executive: existing Petrel trainer sprite downloaded 2026-11-15 from https://play.pokemonshowdown.com/sprites/trainers/petrel.png , saved as rocket-executive-seven.png. Distinct from chapter 6; used for dialogue and Poké Ball entrance.
+
+- Giovanni: existing trainer sprite downloaded from https://play.pokemonshowdown.com/sprites/trainers/giovanni.png on 2026-11-15, saved as giovanni.png. Dialogue and Poké Ball entrance share this asset.

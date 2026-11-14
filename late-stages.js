@@ -72,6 +72,13 @@ root.STORY_STAGES[63].waves=[
  {enemy:[149,131,65,143,130],levels:[55,56,57,58,59],moves:[[337,89,9,349],[57,58,85,94],[94,247,411,105],[34,242,89,156],[127,423,89,349]],portrait:'rocket-executive-seven',intro:'seventh-wave-2'}
 ].map(w=>({...w,heldItems:w.enemy.map(()=> 'sitrus-berry')}));
 Object.assign(root.STORY_STAGES[63],root.STORY_STAGES[63].waves[0]);
+/* Competitive singles archetypes adapted to tile combat; no EV investment. */
+Object.assign(root.STORY_STAGES[63].waves[2],{
+ moves:[[349,245,89,355],[56,573,85,182],[94,411,247,417],[174,34,242,156],[349,127,89,423]],
+ abilities:['multiscale','waterabsorb','magicguard','thickfat','intimidate'],
+ natures:['Adamant','Modest','Timid','Careful','Jolly'],
+ heldItems:['leftovers','leftovers','focus-sash','chesto-berry','sitrus-berry']
+});
 /* Blaine now occupies 7-6; retain the remaining map encounters without a second gym. */
 const oldFireGym=root.STORY_STAGES[69],oldSixth=root.STORY_STAGES[65];
 root.STORY_STAGES[65]={...oldFireGym,name:'7-6'};
@@ -80,6 +87,34 @@ root.STORY_STAGES[64].levels=[54,55,54,55];
 delete root.GYM_LOADOUTS[69];root.GYM_LOADOUTS[65]=root.STORY_STAGES[65].moves;
 /* The obsolete 7-7 Rocket encounter is a normal route battle in the new script. */
 for(const key of ['rocket','trainer','portrait'])delete root.STORY_STAGES[66][key];
+
+/* Final Viridian chapter. Levels are deliberate; every Pokemon still has zero EVs. */
+const finalPatrols=[
+ [
+  {enemy:[24,42,97],levels:[68,69,69],moves:[[398,137,89,242],[403,141,109,369],[94,95,247,411]],abilities:['intimidate','innerfocus','insomnia']},
+  {enemy:[89,110,53],levels:[69,70,71],moves:[[441,425,7,151],[188,85,53,114],[252,400,369,103]],abilities:['stickyhold','levitate','technician']}
+ ],[
+  {enemy:[82,68,94],levels:[70,71,71],moves:[[85,430,86,113],[238,157,282,339],[247,188,411,417]],abilities:['sturdy','noguard','cursedbody']},
+  {enemy:[112,130,65],levels:[71,72,73],moves:[[89,444,224,419],[349,127,89,423],[94,411,247,417]],abilities:['rockhead','intimidate','magicguard']}
+ ],[
+  {enemy:[24,82,94,68,131],levels:[73,74,74,75,75],moves:[[398,137,89,242],[85,430,86,113],[247,188,411,417],[238,157,282,339],[56,573,85,182]],abilities:['intimidate','sturdy','cursedbody','noguard','waterabsorb']},
+  {enemy:[89,130,65,143,149],levels:[74,75,75,76,77],moves:[[441,425,7,151],[349,127,89,423],[94,411,247,417],[174,34,242,156],[349,245,89,355]],abilities:['stickyhold','intimidate','magicguard','thickfat','multiscale']}
+ ]
+];
+for(let i=0;i<3;i++){const waves=finalPatrols[i].map(w=>({...w,heldItems:w.enemy.map(()=> 'sitrus-berry')}));root.STORY_STAGES.push({name:'8-'+(i+1),chapter:8,theme:'city',rocket:true,trainer:true,portrait:'rocket_grunt_m',silentRetry:true,waves,...waves[0]});}
+const revenge={...root.STORY_STAGES[63].waves[2],enemy:[149,131,65,143,130,36],levels:[76,77,78,79,80,81],moves:[...root.STORY_STAGES[63].waves[2].moves,[347,585,135,86]],abilities:[...root.STORY_STAGES[63].waves[2].abilities,'magicguard'],natures:[...root.STORY_STAGES[63].waves[2].natures,'Bold'],heldItems:[...root.STORY_STAGES[63].waves[2].heldItems,'leftovers']};
+delete revenge.intro;
+root.STORY_STAGES.push({...revenge,name:'8-4',chapter:8,theme:'city',rocket:true,trainer:true,silentRetry:true});
+root.STORY_STAGES.push({name:'8-5',chapter:8,theme:'city',rocket:true,trainer:true,leader:'비주기',gym:'ground',portrait:'giovanni',silentRetry:true,sendOutScene:'mewtwo-sendout',sendOutIndex:5,
+ enemy:[53,34,112,115,94,150],levels:[82,83,84,85,86,95],
+ moves:[[252,163,400,369],[414,188,58,85],[89,444,224,419],[252,34,389,409],[247,188,411,417],[540,58,396,105]],
+ abilities:['technician','sheerforce','rockhead','scrappy','cursedbody','pressure'],
+ natures:['Jolly','Modest','Adamant','Adamant','Timid','Timid'],heldItems:['silk-scarf','life-orb','eviolite','leftovers','life-orb','leftovers']
+});
+
+/* Reserved slots retain the existing chapter*10 save addresses; not shown on maps. */
+for(let n=6;n<=10;n++)root.STORY_STAGES.push({name:'8-'+n,chapter:8,reserved:true,theme:'city',enemy:[20],levels:[80]});
+root.STORY_STAGES.push({name:'9-1',chapter:9,chapterEnd:true,theme:'city',music:'mewtwo',rescueReward:true,silentRetry:true,enemy:[150],levels:[100],moves:[[540,53,58,396]],abilities:['pressure'],natures:['Timid'],heldItems:['leftovers'],startBoosts:{atk:1,def:1,spa:1,spd:1,spe:1}});
 
 if(typeof module==='object'&&module.exports)module.exports={STORY_STAGES:root.STORY_STAGES,ROCKET_AMBUSH:root.ROCKET_AMBUSH};
 })(typeof module==='object'&&module.exports?{...JSON.parse(JSON.stringify(require('./stages.js'))),POKE_DATA:require('./data/reference.json')}:typeof window==='object'?window:{});

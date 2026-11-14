@@ -1,0 +1,22 @@
+{
+  "generator": "built-in image_gen",
+  "date": "2026-11-15",
+  "assets": {
+    "chapter-9-v1": {
+      "source": "exec-03cabe73-94ad-4188-9a7d-3f5ef7fc1b56.png",
+      "prompt": "Use case: stylized-concept. Finished cinematic game-background asset in authentic COARSE GBA pixel art: logical 240x135 for 16:9, or 384x192 for 2:1, enlarged nearest-neighbor. Clearly visible large square pixel clusters, dark single-pixel outlines, limited 24-color palette and only 2-3 flat shade bands. No smooth digital painting, no intricate high-resolution texture, no text, UI, border or blank dialogue panel. One complete environment shot, restrained dramatic light. VERY WIDE 2:1 TOP-DOWN MAP of the destroyed Viridian gym and surrounding small town at dusk, one final-boss destination. Central broad cracked emerald-tiled court, collapsed cream stone pillars on each side, broken green window frames, shattered control machinery near top right, dark broken walls open to a violet dusk sky, scattered rubble at edges. One walkable road enters from left edge and leads directly to the empty center court; no branching stage plazas. Keep normalized x50 y56 empty floor for a separately overlaid standing Mewtwo sprite, x50 y79 clear floor for one stage button. The environment is ruined and ominous, with faint violet psychic sparks at edges but not overwhelming. NO people or Pokemon because actual sprites will be layered by code. Spacious readable simple tiles, no floating island border.",
+      "path": "assets/world/routes/chapter-9-v1.png"
+    },
+    "mewtwo-eye-v1": {
+      "source": "exec-bca00418-d74f-482c-92de-ada10507fa2a.png",
+      "prompt": "Use case: stylized-concept. Finished cinematic game-background asset in authentic COARSE GBA pixel art: logical 240x135 for 16:9, or 384x192 for 2:1, enlarged nearest-neighbor. Clearly visible large square pixel clusters, dark single-pixel outlines, limited 24-color palette and only 2-3 flat shade bands. No smooth digital painting, no intricate high-resolution texture, no text, UI, border or blank dialogue panel. One complete environment shot, restrained dramatic light. Wide 16:9 EXTREME CLOSE-UP cinematic of Mewtwo's eye looking directly toward the viewer: pale lavender feline brow, one large violet eye and restrained squared pixel highlights, a tiny reflected silhouette-like light implying a plea for help. The eye expresses pain and determination, NOT an evil grin. Dark shadow at edges, a few violet psychic pixel sparks, emotional and readable simple sprite-like shapes. Mewtwo's recognizable smooth pale lavender face and purple eye, no human eye realism, NO text. Fill entire canvas with the face close-up, no inset panels. Original shot for a rescue scene in a Pokemon fan RPG.",
+      "path": "assets/world/story-v1/mewtwo-eye-v1.png"
+    },
+    "mewtwo-rescue-dawn-v1": {
+      "source": "exec-25fc0221-4ce7-48de-9009-3908709277e5.png",
+      "prompt": "Use case: stylized-concept. Finished cinematic game-background asset in authentic COARSE GBA pixel art: logical 240x135 for 16:9, or 384x192 for 2:1, enlarged nearest-neighbor. Clearly visible large square pixel clusters, dark single-pixel outlines, limited 24-color palette and only 2-3 flat shade bands. No smooth digital painting, no intricate high-resolution texture, no text, UI, border or blank dialogue panel. One complete environment shot, restrained dramatic light. Wide 16:9 quiet rescue aftermath ENVIRONMENT ONLY. Low near-floor camera in the ruined Viridian gym, cracked emerald square floor tiles filling the foreground, broken cream stone columns and green window frames in the rear, distant pale golden dawn visible through the shattered wall. Soft warm sunlight comes from the left, a few simple dust pixels drifting, purple storm has cleared, hopeful and calm. Keep the central floor clear for game sprites. NO people, Pokemon, body parts, hands, collar, characters, UI, lettering, frame or inset panel. Use large chunky pixel clusters and only 2-3 shades per surface.",
+      "path": "assets/world/story-v1/mewtwo-rescue-dawn-v1.png"
+    }
+  },
+  "composition": "Lying/awake poses and standing Mewtwo use existing sprites plus CSS camera/device effects. Final collar-device macro and handshake are separately generated images; see chapter-nine-closeup-prompts.json. Direct generated body/collar shots were blocked; no CLI fallback used."
+}
