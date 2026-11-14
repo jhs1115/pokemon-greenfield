@@ -39,3 +39,15 @@ Fifteen active generated assets were redrawn with the built-in image_gen referen
 - `story-v1/*.png`: 16 dedicated chapter 1–5 dialogue backgrounds, built-in image_gen, 2026-11-14. Exact prompts and original generated filenames: `story-v1/prompts.json`. Full scene mapping: `docs/STORY_BACKGROUNDS.md`. No new backgrounds for chapters 6 onward.
 
 - Trainer handoff uses existing downloaded trainer sprites. `assets/items/poke-ball.png`: https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png (PokeAPI sprites repository), downloaded 2026-11-14.
+
+## Silph Company dedicated scenes — 2026-11-15
+
+Original built-in image_gen backgrounds: `story-v1/silph-exterior-v1.png`, `silph-lobby-v1.png`, and `silph-office-v1.png`. New corporate headquarters exterior, occupied reception lobby, and executive top floor; replace the reused cargo warehouse in chapter six. Full prompts and source image names: `story-v1/chapter-six-prompts.json`. Existing trainer sprites remain separate.
+
+## Chapter seven — 2026-11-15
+
+New original built-in image_gen backgrounds in story-v1/: cinnabar-coast-v1.png, cinnabar-courtyard-v1.png, gym-fire-v1.png. Full generation and coast cleanup prompts: story-v1/chapter-seven-prompts.json.
+
+## Six-stop Cinnabar map and psychic gym — 2026-11-15
+
+New original built-in image_gen assets: `routes/chapter-7-v6.png` (1774×887, six road-centered destinations and far-right gym), `story-v1/gym-psychic-v1.png` (dedicated Sabrina gym). Exact prompts/source image names: `story-v1/map-seven-and-psychic-prompts.json`. Map reviewed centers: (124,621), (408,506), (692,550), (958,319), (1295,426), (1659,344). Chapter 7 only displays 7-1 through 7-6; old saved progress is retained.

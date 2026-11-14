@@ -1,0 +1,16 @@
+{
+  "generator": "built-in image_gen",
+  "date": "2026-11-15",
+  "assets": [
+    {
+      "path": "assets/world/routes/chapter-7-v6.png",
+      "source": "exec-8ec41dd0-e903-43f2-89f9-e478140f55bc.png",
+      "prompt": "Use case: stylized-concept. A brand-new VERY WIDE 2:1 landscape top-down regional world map for chapter 7 of a classic GBA monster-catching RPG. Authentic COARSE low-resolution tile pixel art, as if 384x192 logical pixels enlarged nearest-neighbor, large clearly visible pixel clusters, simple 2-3 flat shade bands, limited palette, NO smooth painting or high-resolution tiny details. Zoomed OUT so houses are small and the region feels spacious. Volcanic Cinnabar coast: blue sea along the LOWER LEFT edge, small red-roofed coastal houses in left third, a modest old research mansion at the upper middle, dark volcanic slopes and brown stone cliffs toward upper right, restrained orange volcanic accents, not green all over. Continuous land connects beyond left/right edges, not an isolated tiny island. A SINGLE broad walkable tan stone route winds clearly from west/left to east/right with exactly SIX open road plazas along it, with logical centers at normalized percent coordinates: (7,70), (23,57), (39,62), (54,36), (73,48), (92,37). Connect them in that order with an obvious continuous generous-width road; stage 4 plaza in front of the mansion, final sixth plaza directly in front of a small RED FIRE GYM at the FAR RIGHT EDGE. Last gym is the rightmost destination, no extra destinations beyond it. These six coordinates must remain empty dry pavement for code-overlaid stage buttons, NEVER roofs, rocks, trees or water. Fill lower quarter with coherent scenery, NO blank panel. No characters, Pokemon, numbers, stage markers, circles, labels, text, UI, frames or border. Wide single environment map filling canvas."
+    },
+    {
+      "path": "assets/world/story-v1/gym-psychic-v1.png",
+      "source": "exec-03a42f21-b8d9-48ad-b24f-bb15d21b69f7.png",
+      "prompt": "Use case: stylized-concept. Finished wide 16:9 background asset: Sabrina's Saffron psychic gym interior for a classic GBA monster-catching RPG. Authentic COARSE low resolution pixel art, as if 240x135 logical pixels then nearest-neighbor enlarged, clearly visible chunky square pixels, dark one-pixel outlines, limited approximately 24 colors with 2-3 flat shade bands. Same retro visual scale as original trainer sprites. A quiet symmetrical psychic gym room: muted plum-purple walls, central raised platform at rear with closed simple double doors, four small square teleport-pad tiles with magenta and teal borders arranged toward the rear sides, two restrained violet wall lamps, subtle geometric floor pattern. Broad open lilac and dark-slate tiled floor fills entire lower half all the way to bottom edge for separate character overlays. Slightly elevated straight-on handheld RPG cutscene viewpoint. Readable and charming, not a sci-fi control room or corporate office. NO people, Pokemon, characters, lettering, text, logos, UI, dialogue boxes, blank panels or border. No painterly textures, smooth gradients, tiny intricate details or swirling overwhelming special effects. Single environment fills entire wide canvas."
+    }
+  ]
+}

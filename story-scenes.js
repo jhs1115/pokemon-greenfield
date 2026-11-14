@@ -1030,157 +1030,192 @@
       ]
     },
     "before-50": {
-      "title": "노랑시티",
-      "backdrop": "harbor",
-      "npc": "sabrina",
+      "title": "노랑시티로 가는 길",
+      "backdrop": "saffron-city",
+      "npc": "misty",
       "lines": [
         {
-          "speaker": "sabrina",
-          "text": "실프주식회사에 낯선 사람들이 들어갔어. 직원들도 밖으로 나오지 못하고 있어."
+          "speaker": "narrator",
+          "text": "전화가 울린다."
+        },
+        {
+          "speaker": "misty",
+          "text": "너 지금 어디야?"
         },
         {
           "speaker": "player",
-          "text": "로켓단이 장치를 찾고 있어요. 그 건물에 있는 것 같아요."
+          "text": "지금 연분홍시티를 넘어서 노랑시티로 가고 있어요!"
         },
         {
-          "speaker": "sabrina",
-          "text": "정문은 내가 지킬게. 안에 있는 사람들을 부탁해."
+          "speaker": "misty",
+          "text": "연분홍시티!? 거기 괜찮아?"
+        },
+        {
+          "speaker": "misty",
+          "text": "그쪽으로 민화와 마티스가 가고 있긴 한데 이미 점령당했다고..."
+        },
+        {
+          "speaker": "player",
+          "text": "제가 처리해 놨어요. 일단은 괜찮을 겁니다."
+        },
+        {
+          "speaker": "misty",
+          "text": "... 정말이야?"
+        },
+        {
+          "speaker": "misty",
+          "text": "진짜 강해졌구나... 좋아! 다음 노랑시티는 그래도 안전할 거야!"
+        },
+        {
+          "speaker": "misty",
+          "text": "그리고 그쪽 관장은 초련 씨!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "그때, 통화 너머로 누군가의 목소리가 들린다."
+        },
+        {
+          "speaker": "brock",
+          "text": "통화 중인가?"
+        },
+        {
+          "speaker": "misty",
+          "text": "... 어 태초마을 쪽은 괜찮아?"
+        },
+        {
+          "speaker": "brock",
+          "text": "회색시티에도 로켓단이 보였다는 신고가 들어왔다..."
+        },
+        {
+          "speaker": "brock",
+          "text": "이제 더 이상 안전한 곳은 없는 것 같군."
+        },
+        {
+          "speaker": "misty",
+          "text": "쳇... 일단 내가 그쪽으로 갈게! 이곳은 리그에 신고해 놓을 테니까 괜찮을 거야!"
+        },
+        {
+          "speaker": "brock",
+          "text": "나도 돕겠다!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "전화가 끊겼다."
+        },
+        {
+          "speaker": "player",
+          "text": "대체 왜 이런 짓을..."
         }
       ]
     },
     "before-53": {
-      "title": "실프주식회사",
-      "backdrop": "hideout",
+      "title": "점령당한 실프주식회사",
+      "backdrop": "silph-alert",
       "npc": "rocket",
       "lines": [
         {
-          "speaker": "rocket",
-          "text": "통제 장치의 설계도만 챙기면 된다. 서둘러!"
+          "speaker": "narrator",
+          "text": "실프주식회사에 도착하자, 이미 점령당한 듯 빨간불이 켜져 있다."
         },
         {
-          "speaker": "player",
-          "text": "그 장치는 가져갈 수 없어요."
+          "speaker": "rocket",
+          "text": "이곳은 이미 점령당했다! 순순히 내놓으시지!"
         }
       ]
     },
     "before-57": {
-      "title": "중앙 제어실",
-      "backdrop": "hideout",
-      "npc": "rocket",
+      "title": "최상층의 로켓단 간부",
+      "backdrop": "silph-lobby",
+      "npc": "sabrina",
       "lines": [
         {
-          "speaker": "rocket",
-          "text": "설계도는 이미 홍련섬에 보냈다. 네가 여기서 뭘 해도 늦었어."
+          "speaker": "narrator",
+          "text": "실프주식회사 본사. 로켓단들이 바글바글할 걸 예상했지만, 이슬이와 웅이가 처리해 둔 듯하다."
+        },
+        {
+          "speaker": "sabrina",
+          "text": "위층에 있을 겁니다! 서두르죠!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "최상층으로 올라가자, 대치 중인 웅이와 이슬이, 로켓단 간부가 보인다.",
+          "backdrop": "silph-office"
+        },
+        {
+          "speaker": "rocketExecutive",
+          "text": "...뭐냐? 더 있어?"
+        },
+        {
+          "speaker": "misty",
+          "text": "오셨군요!"
+        },
+        {
+          "speaker": "brock",
+          "text": "아 ㅋㅋ 내가 개바를 수 있는데 그냥 봐드림 ㅋ"
         },
         {
           "speaker": "player",
-          "text": "우선 직원들부터 풀어 주세요."
+          "text": "...?"
+        },
+        {
+          "speaker": "player",
+          "text": "앞으로 나선다.",
+          "thought": true
+        },
+        {
+          "speaker": "player",
+          "text": "덤비시죠."
+        },
+        {
+          "speaker": "rocketExecutive",
+          "text": "비주기 님의 계획을 방해하지 마라!!"
+        },
+        {
+          "speaker": "player",
+          "text": "... 비주기?"
         }
       ]
     },
     "after-57": {
-      "title": "멈춘 장치",
-      "backdrop": "harbor",
-      "npc": "sabrina",
+      "title": "남겨진 제어장치 설계도",
+      "backdrop": "silph-office",
+      "npc": "rocketExecutive",
       "lines": [
+        {
+          "speaker": "rocketExecutive",
+          "text": "크헉..."
+        },
+        {
+          "speaker": "rocketExecutive",
+          "text": "난 간부 중에서 최약체지... 우리를 막을 수 있을 것 같나?"
+        },
+        {
+          "speaker": "narrator",
+          "text": "쓰러진 로켓단 간부 옆에 무언가 설계도 같은 게 보인다."
+        },
         {
           "speaker": "sabrina",
-          "text": "직원들은 모두 나왔어. 장치도 멈췄고."
-        },
-        {
-          "speaker": "player",
-          "text": "홍련섬으로 보낸 설계도는 남아 있어요."
+          "text": "[제어장치 설계도]...? 이게 뭐죠?"
         },
         {
           "speaker": "sabrina",
-          "text": "그곳 연구를 알던 사람이 있어. 강연 관장을 찾아가 봐."
-        }
-      ]
-    },
-    "before-60": {
-      "title": "홍련섬",
-      "backdrop": "river",
-      "npc": "blaine",
-      "lines": [
+          "text": "만약을 대비한, 폭주 시 진정시킬 제어장치의 설계도... 라고 적혀 있네요."
+        },
         {
-          "speaker": "blaine",
-          "text": "초련에게 연락받았다. 뮤츠의 기록을 찾고 있다지?"
+          "speaker": "rocketExecutive",
+          "text": "그건 단순히 표지에 불과하지. 메인 설계도는 이미 보내졌다. 포기하시지!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "초련이 이쪽을 본다."
+        },
+        {
+          "speaker": "sabrina",
+          "text": "... 빨리 나아가셔야 할 것 같아요."
         },
         {
           "speaker": "player",
-          "text": "로켓단이 통제 장치를 만들고 있어요."
-        },
-        {
-          "speaker": "blaine",
-          "text": "옛 저택에 연구 일지가 남아 있다. 나도 함께 살펴보마."
-        }
-      ]
-    },
-    "before-63": {
-      "title": "폐허가 된 저택",
-      "backdrop": "hideout",
-      "npc": "rocket",
-      "lines": [
-        {
-          "speaker": "rocket",
-          "text": "남은 자료는 전부 회수해. 보스가 직접 확인하신다."
-        },
-        {
-          "speaker": "player",
-          "text": "비주기가 시킨 일이군요. 그 자료를 보여 주세요."
-        }
-      ]
-    },
-    "before-66": {
-      "title": "연구실의 문",
-      "backdrop": "hideout",
-      "npc": "rocket",
-      "lines": [
-        {
-          "speaker": "rocket",
-          "text": "그 포켓몬은 우리 힘으로 다룰 수 있어. 보스가 증명하실 거다."
-        },
-        {
-          "speaker": "player",
-          "text": "그래서 다른 포켓몬들까지 잡아간 건가요? 여기서 끝내요."
-        }
-      ]
-    },
-    "after-66": {
-      "title": "연구 일지",
-      "backdrop": "hideout",
-      "npc": "blaine",
-      "lines": [
-        {
-          "speaker": "blaine",
-          "text": "뮤를 바탕으로 새로운 포켓몬을 만들었다는 기록이다. 이름은 뮤츠."
-        },
-        {
-          "speaker": "player",
-          "text": "로켓단은 그 힘을 이용하려는 거군요."
-        },
-        {
-          "speaker": "blaine",
-          "text": "현재 계획은 비주기만 알겠지. 남은 단서는 상록시티 쪽이다."
-        }
-      ]
-    },
-    "after-69": {
-      "title": "다음 목적지",
-      "backdrop": "river",
-      "npc": "blaine",
-      "lines": [
-        {
-          "speaker": "blaine",
-          "text": "볼케이노배지다. 이제 배지는 하나 남았구나."
-        },
-        {
-          "speaker": "player",
-          "text": "상록시티로 갈게요. 비주기도 찾아야 해요."
-        },
-        {
-          "speaker": "blaine",
-          "text": "기록은 오박사에게 보내 두마. 조심해서 가거라."
+          "text": "비주기... 비주기라..."
         }
       ]
     },
@@ -2192,6 +2227,499 @@
           "text": "감사합니다!"
         }
       ]
+    },
+    "before-51": {
+      "title": "도시에서 만난 관장들",
+      "backdrop": "saffron-city",
+      "npc": "sabrina",
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "빽빽한 건물들 사이로 대화하는 사람들이 보인다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "가까이 가 보자."
+        },
+        {
+          "speaker": "misty",
+          "text": "여긴 괜찮은가요?"
+        },
+        {
+          "speaker": "sabrina",
+          "text": "어느 정도 처리는 했다만... 도시 안쪽이라 그런지 끊임없이 들어오긴 합니다."
+        },
+        {
+          "speaker": "sabrina",
+          "text": "다행히 연분홍시티를 지켜서 수가 많이 줄었어요."
+        },
+        {
+          "speaker": "brock",
+          "text": "역시! 내가 인정하는 자답군!"
+        },
+        {
+          "speaker": "player",
+          "text": "아 안녕하세요..."
+        },
+        {
+          "speaker": "sabrina",
+          "text": "... 이분이 혹시 소문의 그 트레이너분인가요?"
+        },
+        {
+          "speaker": "misty",
+          "text": "왔구나! 네 맞아요 그 트레이너분이에요!"
+        },
+        {
+          "speaker": "brock",
+          "text": "내가 유일하게 인정하는 트레이너지 음음"
+        },
+        {
+          "speaker": "sabrina",
+          "text": "이렇게 뵙게 되다니 반갑네요."
+        },
+        {
+          "speaker": "sabrina",
+          "text": "... 혹시 [로켓단]에 대한 정보가 있으신가요?"
+        },
+        {
+          "speaker": "player",
+          "text": "제가 지금까지 본 걸로는, 일단 DNA와 관련된 [인간형 포켓몬]이 있고"
+        },
+        {
+          "speaker": "player",
+          "text": "그 녀석이 매우 난폭하며, [로켓단]이 그 포켓몬을 잡고 무언가를 꾸미고 있어요."
+        },
+        {
+          "speaker": "sabrina",
+          "text": "[인간형 포켓몬]? 이건 처음 들어 보는데요?"
+        },
+        {
+          "speaker": "misty",
+          "text": "인간형 포켓몬이면.... 근육몬인가..."
+        },
+        {
+          "speaker": "misty",
+          "text": "알았어 고마워!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "그때, 뒤에서 어떤 주민이 달려온다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "헉... 헉... 관장님!! 실프주식회사가 점령당했습니다!!",
+          "speakerName": "주민",
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "직원들이 건물에 갇혔대요!!",
+          "speakerName": "주민",
+          "actor": null
+        },
+        {
+          "speaker": "sabrina",
+          "text": "뭐? 잠시만... 실프주식회사?"
+        },
+        {
+          "speaker": "sabrina",
+          "text": "여러분들! 도와주세요! 빨리 갑시다!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "초련이 뛰어가자 남은 관장들도 모두 뛰어간다."
+        },
+        {
+          "speaker": "player",
+          "text": "우리도 출발하자.",
+          "thought": true
+        }
+      ]
+    },
+    "after-53": {
+      "title": "붙잡힌 로켓단",
+      "backdrop": "silph-lobby",
+      "npc": "rocket",
+      "lines": [
+        {
+          "speaker": "rocket",
+          "text": "젠장! 언제까지 방해할 셈이냐!"
+        },
+        {
+          "speaker": "rocket",
+          "text": "우리의 계획을 막을 수 있을 거라 생각하나!?"
+        },
+        {
+          "speaker": "sabrina",
+          "text": "조용히 하시죠. 이미 본사엔 이슬과 웅이가 도착했습니다."
+        },
+        {
+          "speaker": "rocket",
+          "text": "다른 마을 관장까지 난입하고 있네?"
+        },
+        {
+          "speaker": "rocket",
+          "text": "비겁한 자식들"
+        },
+        {
+          "speaker": "player",
+          "text": "비겁한 건 너네들..!"
+        },
+        {
+          "speaker": "narrator",
+          "text": "초련이 앞을 막아선다."
+        },
+        {
+          "speaker": "sabrina",
+          "text": "감정에 지배당하지 마시죠."
+        },
+        {
+          "speaker": "player",
+          "text": "... 죄송합니다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "로켓단 무리들은 잡혀갔다."
+        }
+      ]
+    },
+    "after-56": {
+      "title": "실프주식회사 본사 앞",
+      "backdrop": "silph-alert",
+      "npc": "sabrina",
+      "lines": [
+        {
+          "speaker": "sabrina",
+          "text": "실프주식회사 본사에 도착하였습니다."
+        },
+        {
+          "speaker": "sabrina",
+          "text": "이슬과 웅이가 배틀 중일 겁니다. 빨리 갑시다!"
+        }
+      ]
+    },
+    "after-59": {
+      "title": "골드뱃지",
+      "backdrop": "gym-psychic",
+      "npc": "sabrina",
+      "lines": [
+        {
+          "speaker": "sabrina",
+          "text": "... 말도 안 돼"
+        },
+        {
+          "speaker": "sabrina",
+          "text": "후후.. 좋습니다."
+        },
+        {
+          "speaker": "sabrina",
+          "text": "이 골드뱃지를 받아 주세요."
+        },
+        {
+          "speaker": "player",
+          "text": "감사합니다."
+        },
+        {
+          "speaker": "sabrina",
+          "text": "앞으로 어떤 시련이 있더라도, 이 빛나는 뱃지처럼 멋지게 해결해 주세요."
+        }
+      ]
+    },
+    "before-60": {
+      "title": "홍련섬에 들어선 로켓단",
+      "backdrop": "cinnabar-coast",
+      "npc": "rocket",
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "홍련섬에 발을 들이자마자 반겨 주는 건 로켓단이었다."
+        },
+        {
+          "speaker": "rocket",
+          "text": "비주기 님의 계획에 도달할 수 있을 거라 생각하냐?"
+        },
+        {
+          "speaker": "rocket",
+          "text": "헛된 꿈 꾸지 마라."
+        },
+        {
+          "speaker": "player",
+          "text": "젠장..."
+        }
+      ]
+    },
+    "after-60": {
+      "title": "길을 막았던 로켓단",
+      "backdrop": "cinnabar-coast",
+      "npc": "rocket",
+      "lines": [
+        {
+          "speaker": "rocket",
+          "text": "..."
+        }
+      ]
+    },
+    "before-62": {
+      "title": "또다시 막아선 로켓단",
+      "backdrop": "cinnabar-coast",
+      "npc": "rocket",
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "로켓단 두 명이 앞길을 막아선다."
+        }
+      ]
+    },
+    "after-62": {
+      "title": "물러난 로켓단",
+      "backdrop": "cinnabar-coast",
+      "npc": "rocket",
+      "lines": [
+        {
+          "speaker": "rocket",
+          "text": "...비주기 님..."
+        }
+      ]
+    },
+    "before-63": {
+      "title": "간부와 두 부하",
+      "backdrop": "cinnabar-courtyard",
+      "npc": "rocketSeven",
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "앞으로 나아가자, 강해 보이는 트레이너와 그 부하 두 명이 보인다."
+        },
+        {
+          "speaker": "rocketSeven",
+          "text": "왔어?"
+        },
+        {
+          "speaker": "narrator",
+          "text": "간부가 부하의 엉덩이를 찬다."
+        },
+        {
+          "speaker": "rocketSeven",
+          "text": "야 너가 먼저 나가"
+        },
+        {
+          "speaker": "rocket",
+          "text": "저... 저요?"
+        },
+        {
+          "speaker": "rocketSeven",
+          "text": "안 나가?"
+        },
+        {
+          "speaker": "rocket",
+          "text": "히익...! 알겠습니다!"
+        }
+      ]
+    },
+    "seventh-wave-1": {
+      "title": "두 번째 상대",
+      "backdrop": "cinnabar-courtyard",
+      "npc": "rocket",
+      "lines": [
+        {
+          "speaker": "rocket",
+          "text": "모자란 놈이... 내가 밟아 주지."
+        }
+      ]
+    },
+    "seventh-wave-2": {
+      "title": "소매를 걷은 간부",
+      "backdrop": "cinnabar-courtyard",
+      "npc": "rocketSeven",
+      "lines": [
+        {
+          "speaker": "rocketSeven",
+          "text": "야~ 너 재밌다?"
+        },
+        {
+          "speaker": "rocketSeven",
+          "text": "나도 재밌게 좀 해 줘 봐"
+        },
+        {
+          "speaker": "rocketSeven",
+          "text": "팔 소매를 걷는다.",
+          "thought": true
+        },
+        {
+          "speaker": "rocketSeven",
+          "text": "들어와"
+        }
+      ]
+    },
+    "after-63": {
+      "title": "떨어진 설계도",
+      "backdrop": "cinnabar-courtyard",
+      "npc": "rocketSeven",
+      "lines": [
+        {
+          "speaker": "rocketSeven",
+          "text": "... 무슨... 말도 안 되는..."
+        },
+        {
+          "speaker": "rocketSeven",
+          "text": "화가 난 듯이 발을 구른다.",
+          "thought": true
+        },
+        {
+          "speaker": "narrator",
+          "text": "로켓단 간부 옆에 어떤 종이가 떨어져 있다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "... 설계도다!"
+        },
+        {
+          "speaker": "player",
+          "text": "즉시 줍는다.",
+          "thought": true
+        },
+        {
+          "speaker": "player",
+          "text": "설계도... DNA 완벽 조작...."
+        },
+        {
+          "speaker": "player",
+          "text": "... 이걸 통해 완벽한 포켓몬을 제어해서"
+        },
+        {
+          "speaker": "player",
+          "text": "[최강의 포켓몬을 만들어 리그를 통제하겠다...]"
+        },
+        {
+          "speaker": "player",
+          "text": "진짜... 얼척이 없네"
+        },
+        {
+          "speaker": "rocketSeven",
+          "text": "이제 알겠나? 너라도 그 포켓몬을 막을 순 없다."
+        },
+        {
+          "speaker": "rocketSeven",
+          "text": "그니까 더 이상 방해하지 말라고. 어?"
+        },
+        {
+          "speaker": "player",
+          "text": "충격에 말이 나오지 않는다.",
+          "thought": true
+        },
+        {
+          "speaker": "blaine",
+          "text": "아이고! 무슨 일인가?"
+        },
+        {
+          "speaker": "player",
+          "text": "... 누구?"
+        },
+        {
+          "speaker": "blaine",
+          "text": "나는 체육관 관장 강연일세! 홀홀홀 요즘 많은 일이 일어나고 있다 들었지"
+        },
+        {
+          "speaker": "blaine",
+          "text": "... 괘씸한 놈들. 언제까지 올 것인가?"
+        },
+        {
+          "speaker": "rocketSeven",
+          "text": "퉤"
+        },
+        {
+          "speaker": "blaine",
+          "text": "어른한테 지금 뭐 하는 짓인가!@?!@?"
+        },
+        {
+          "speaker": "blaine",
+          "text": "머리가 빨개졌다.",
+          "thought": true
+        },
+        {
+          "speaker": "player",
+          "text": "와 타코야끼다"
+        },
+        {
+          "speaker": "player",
+          "text": "아 이게 아니고 진정하세요 강연님!"
+        },
+        {
+          "speaker": "blaine",
+          "text": "후... 좋다. 일단 체육관으로 와라!"
+        },
+        {
+          "speaker": "player",
+          "text": "알겠습니다."
+        }
+      ]
+    },
+    "after-65": {
+      "title": "볼케이노 뱃지와 비주기의 정체",
+      "backdrop": "gym-fire",
+      "npc": "blaine",
+      "lines": [
+        {
+          "speaker": "blaine",
+          "text": "홀홀홀! 좋구만! 역시 젊은이들이 강해!"
+        },
+        {
+          "speaker": "blaine",
+          "text": "여기 볼케이노 뱃지다! 앞으로 나아가게!"
+        },
+        {
+          "speaker": "player",
+          "text": "...혹시 비주기에 대해 아시나요?"
+        },
+        {
+          "speaker": "blaine",
+          "text": "... 지금 뭐라고 했나."
+        },
+        {
+          "speaker": "player",
+          "text": "비주기...라고..."
+        },
+        {
+          "speaker": "narrator",
+          "text": "강연의 표정이 진지해진다."
+        },
+        {
+          "speaker": "blaine",
+          "text": "비주기... 그 자식은 8번째 체육관의 관장이다."
+        },
+        {
+          "speaker": "player",
+          "text": "네?!"
+        },
+        {
+          "speaker": "blaine",
+          "text": "동시에 로켓단의 수장. 최고 지위다."
+        },
+        {
+          "speaker": "blaine",
+          "text": "그 녀석이 어떤 짓을 꾸미고 있는지는 모르겠지만..."
+        },
+        {
+          "speaker": "blaine",
+          "text": "적어도 좋은 일은 아닐 거다!"
+        },
+        {
+          "speaker": "blaine",
+          "text": "비주기 그 녀석은 남들보다 위에 있기 위해 모든 걸 다 하는 사람이야."
+        },
+        {
+          "speaker": "blaine",
+          "text": "그 녀석을 잡으러 가는 건가 보군... 조심하게."
+        },
+        {
+          "speaker": "player",
+          "text": "비주기... 알겠습니다."
+        },
+        {
+          "speaker": "narrator",
+          "text": "주인공은 떠났다."
+        }
+      ]
     }
   },
   "gymLines": {
@@ -2308,29 +2836,29 @@
     "sabrina": [
       [
         "sabrina",
-        "도시를 도와줘서 고마워. 이번엔 우리 차례네."
-      ],
-      [
-        "player",
-        "배지에 도전할게."
+        "... 오셨군요."
       ],
       [
         "sabrina",
-        "노랑체육관의 초련이야. 준비됐어."
+        "당신의 강함을 느껴 보고 싶습니다. 들어오시죠."
       ]
     ],
     "blaine": [
       [
         "blaine",
-        "저택에서 수고했다. 출발 전에 배지를 얻어 가야지."
-      ],
-      [
-        "player",
-        "네. 준비됐습니다."
+        "다행히 다치지 않고 여기까지 왔구나!"
       ],
       [
         "blaine",
-        "홍련체육관의 강연이다! 뜨거운 승부를 해 보자."
+        "이 나를 넘고 로켓단을 박살 내 주게!"
+      ],
+      [
+        "blaine",
+        "괘씸한 놈들... 타코야끼 뭐?"
+      ],
+      [
+        "player",
+        "다행히 로켓단이 한 줄 아는 듯하다."
       ]
     ]
   },
@@ -2374,6 +2902,19 @@
     "scout": {
       "name": "스카우터",
       "src": "scout-ranger-v2.png"
+    },
+    "rocketExecutive": {
+      "name": "로켓단 간부",
+      "src": "rocket-executive.png"
+    },
+    "rocketSeven": {
+      "name": "로켓단 간부",
+      "src": "rocket-executive-seven.png"
     }
+  },
+  "gymThoughts": {
+    "blaine": [
+      3
+    ]
   }
 };if(typeof module==='object')module.exports=root.KANTO_STORY;})(typeof window==='object'?window:globalThis);

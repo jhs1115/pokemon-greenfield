@@ -42,5 +42,44 @@ for(const [index,waves]of [[43,[
  {enemy:[110,89,97],levels:[42,42,43],moves:[[188,108,92,60],[188,107,60,50],[94,95,50,115]],abilities:['levitate','stickyhold','insomnia']}
 ]]]){const encounter=root.STORY_STAGES[index];encounter.waves=waves.map((wave,i)=>({...wave,heldItems:['oran-berry','oran-berry',i===waves.length-1?'sitrus-berry':'oran-berry']}));Object.assign(encounter,encounter.waves[0]);}
 
+/* Silph: three four-Pokemon grunts, followed by a distinct six-Pokemon executive. */
+root.STORY_STAGES[53].waves=[
+ {enemy:[20,24,42,97],levels:[45,45,46,46],moves:[[162,242,98,158],[137,398,242,89],[403,109,141,369],[94,95,247,411]],abilities:['guts','intimidate','innerfocus','insomnia']},
+ {enemy:[89,110,53,42],levels:[46,47,47,47],moves:[[441,425,7,151],[188,53,261,114],[252,400,369,103],[403,141,109,92]],abilities:['stickyhold','levitate','technician','innerfocus']},
+ {enemy:[24,110,97,89],levels:[47,48,48,49],moves:[[137,398,89,242],[188,85,53,114],[94,95,247,411],[441,425,7,151]],abilities:['intimidate','levitate','insomnia','stickyhold']}
+].map(wave=>({...wave,heldItems:['oran-berry','oran-berry','sitrus-berry','sitrus-berry']}));
+Object.assign(root.STORY_STAGES[53],root.STORY_STAGES[53].waves[0]);
+Object.assign(root.STORY_STAGES[57],{
+ portrait:'rocket-executive',enemy:[53,24,89,110,42,97],levels:[49,50,50,51,51,52],
+ moves:[[252,400,369,103],[137,398,89,242],[441,425,7,151],[188,85,53,114],[403,141,109,369],[94,95,247,411]],
+ abilities:['technician','intimidate','stickyhold','levitate','innerfocus','insomnia'],
+ heldItems:['silk-scarf','sitrus-berry','poison-barb','sitrus-berry','sitrus-berry','sitrus-berry'],
+ natures:['Jolly','Adamant','Adamant','Modest','Jolly','Modest']
+});
+
+/* Cinnabar's new script: two patrols, then a confirmation-paced three-trainer gauntlet. */
+for(const [index,waves]of [[60,[
+ {enemy:[24,82,42,97],levels:[50,50,51,51],moves:[[398,137,89,242],[85,430,86,113],[403,141,109,369],[94,95,247,411]]},
+ {enemy:[89,110,53,68],levels:[51,51,52,52],moves:[[441,425,7,151],[188,85,53,114],[252,400,369,103],[238,157,282,339]]}
+]],[62,[
+ {enemy:[94,112,71,101],levels:[52,53,53,53],moves:[[247,188,95,85],[89,157,224,444],[438,188,79,14],[85,86,113,521]]},
+ {enemy:[130,59,65,89],levels:[53,54,54,54],moves:[[127,423,89,349],[53,245,242,261],[94,247,411,105],[441,425,7,151]]}
+]]]){const c=root.STORY_STAGES[index];Object.assign(c,{rocket:true,trainer:true,portrait:'rocket_grunt_m'});c.waves=waves.map(w=>({...w,heldItems:w.enemy.map(()=> 'sitrus-berry')}));Object.assign(c,c.waves[0]);}
+root.STORY_STAGES[63].confirmWaves=true;
+root.STORY_STAGES[63].waves=[
+ {enemy:[112,82,94],levels:[53,53,53],moves:[[89,157,224,444],[85,430,86,113],[247,188,95,85]],portrait:'rocket_grunt_m'},
+ {enemy:[68,71,101,78],levels:[55,55,55,55],moves:[[238,157,282,339],[438,188,79,14],[85,86,113,521],[394,528,667,14]],portrait:'rocket_grunt_m',intro:'seventh-wave-1'},
+ {enemy:[149,131,65,143,130],levels:[55,56,57,58,59],moves:[[337,89,9,349],[57,58,85,94],[94,247,411,105],[34,242,89,156],[127,423,89,349]],portrait:'rocket-executive-seven',intro:'seventh-wave-2'}
+].map(w=>({...w,heldItems:w.enemy.map(()=> 'sitrus-berry')}));
+Object.assign(root.STORY_STAGES[63],root.STORY_STAGES[63].waves[0]);
+/* Blaine now occupies 7-6; retain the remaining map encounters without a second gym. */
+const oldFireGym=root.STORY_STAGES[69],oldSixth=root.STORY_STAGES[65];
+root.STORY_STAGES[65]={...oldFireGym,name:'7-6'};
+root.STORY_STAGES[69]={...oldSixth,name:'7-10'};
+root.STORY_STAGES[64].levels=[54,55,54,55];
+delete root.GYM_LOADOUTS[69];root.GYM_LOADOUTS[65]=root.STORY_STAGES[65].moves;
+/* The obsolete 7-7 Rocket encounter is a normal route battle in the new script. */
+for(const key of ['rocket','trainer','portrait'])delete root.STORY_STAGES[66][key];
+
 if(typeof module==='object'&&module.exports)module.exports={STORY_STAGES:root.STORY_STAGES,ROCKET_AMBUSH:root.ROCKET_AMBUSH};
 })(typeof module==='object'&&module.exports?{...JSON.parse(JSON.stringify(require('./stages.js'))),POKE_DATA:require('./data/reference.json')}:typeof window==='object'?window:{});

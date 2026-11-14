@@ -24,3 +24,7 @@ Additional shop item icons (2026-11-06): original PokéAPI sprites for black-bel
 - Koga / Sabrina / Blaine: pret/pokefirered `graphics/trainers/front_pics/leader_{koga,sabrina,blaine}_front_pic.png`.
 - Nature mints: PokeAPI/sprites `sprites/items/*-mint.png`.
 - Chapter 5–7 gym species and moves: https://github.com/pret/pokefirered/blob/master/src/data/trainer_parties.h (campaign levels differ).
+
+- Chapter 6 Rocket executive: existing Archer trainer sprite from Pokémon Showdown, downloaded 2026-11-15: https://play.pokemonshowdown.com/sprites/trainers/archer.png . Saved as `rocket-executive.png`; displayed as an unnamed Rocket executive, separate from the grunt.
+
+- Chapter 7 unnamed executive: existing Petrel trainer sprite downloaded 2026-11-15 from https://play.pokemonshowdown.com/sprites/trainers/petrel.png , saved as rocket-executive-seven.png. Distinct from chapter 6; used for dialogue and Poké Ball entrance.

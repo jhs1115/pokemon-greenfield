@@ -48,9 +48,9 @@
   const scoutCost=state=>ITEMS['scout-ticket'].price+(scoutChapter(state)-1)*3000;
   const itemPrice=(state,key)=>ITEMS[key]?.ticket?scoutCost(state):ITEMS[key]?.price;
   const villageUnlocked=state=>state.clears[2]>0;
-  const scoutChapter=state=>state.clears.reduce((chapter,n,i)=>n>0&&i%10===9?Math.max(chapter,Math.floor(i/10)+2):chapter,1);
+  const scoutChapter=state=>state.clears.reduce((chapter,n,i)=>n>0&&(stageData[i]?.leader||i%10===9)?Math.max(chapter,Math.floor(i/10)+2):chapter,1);
   const scoutLevel=state=>Math.min(100,scoutChapter(state)*4);
-  function levelCapInfo(state,chapter=scoutChapter(state)){chapter=Number.isInteger(chapter)&&chapter>=1?chapter:scoutChapter(state);const boss=stageData[chapter*10-1],cleared=state.clears[chapter*10-1]>0,leaderLevel=boss?.levels?.length?Math.max(...boss.levels):null,unrestricted=cleared||leaderLevel===null;return {chapter,cleared,leader:boss?.leader||'',leaderLevel,unrestricted,cap:unrestricted?100:Math.min(100,leaderLevel+5)};}
+  function levelCapInfo(state,chapter=scoutChapter(state)){chapter=Number.isInteger(chapter)&&chapter>=1?chapter:scoutChapter(state);const found=stageData.findIndex(c=>c.chapter===chapter&&c.leader),bossIndex=found<0?chapter*10-1:found,boss=stageData[bossIndex],cleared=state.clears[bossIndex]>0||(chapter===7&&state.clears[69]>0),leaderLevel=boss?.levels?.length?Math.max(...boss.levels):null,unrestricted=cleared||leaderLevel===null;return {chapter,cleared,leader:boss?.leader||'',leaderLevel,unrestricted,cap:unrestricted?100:Math.min(100,leaderLevel+5)};}
   const levelCap=(state,chapter)=>levelCapInfo(state,chapter).cap;
   function overCapTeam(state,chapter,team=state.team){const info=levelCapInfo(state,chapter);return info.unrestricted?[]:team.filter(id=>id&&state.records[id]?.level>info.cap);}
   const isRare=id=>[1,4,7,147].some(base=>info(base).chain===info(id)?.chain);
