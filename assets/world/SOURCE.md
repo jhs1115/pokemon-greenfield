@@ -37,3 +37,5 @@ Fifteen active generated assets were redrawn with the built-in image_gen referen
 - `fuchsia-ruins-v1.png`: built-in image_gen, 2026-11-14. Coarse GBA-style ruined safari town for chapter five dialogue; prompt in `fuchsia-ruins-v1.prompt.txt`. No external source imagery.
 
 - `story-v1/*.png`: 16 dedicated chapter 1–5 dialogue backgrounds, built-in image_gen, 2026-11-14. Exact prompts and original generated filenames: `story-v1/prompts.json`. Full scene mapping: `docs/STORY_BACKGROUNDS.md`. No new backgrounds for chapters 6 onward.
+
+- Trainer handoff uses existing downloaded trainer sprites. `assets/items/poke-ball.png`: https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png (PokeAPI sprites repository), downloaded 2026-11-14.

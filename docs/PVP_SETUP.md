@@ -62,3 +62,14 @@ node ..\tools\npm\bin\npm-cli.js exec --yes --package=supabase -- supabase funct
 - GitHub Desktop에서 Commit 후 Push origin으로 클라이언트를 반영합니다.
 - 타이머는 서버 deadline 기준입니다. 턴 애니메이션 시간은 선택 시간에 포함하지 않습니다. 이미 진행 중인 선택 시간은 새로 늘이거나 줄이지 않고, 다음 선택부터 새 제한시간을 적용합니다.
 - 기술 범위는 `engine.js`의 `signatureGeometry`에 의미별로 정의합니다. `localMask`는 사용자 기준으로 방향에 맞춰 회전하고, `mask`는 지정한 타일을 중심으로 적용됩니다. 미리보기와 서버 판정 모두 같은 엔진을 사용하며 최대 9칸, 초반 기술의 작은 범위, 스톤샤워의 5칸 십자가를 유지합니다.
+
+
+## 2026-11-14 Edge 시작 오류 수정
+
+증상: 클라이언트에 PVP_NOT_READY 안내만 표시되고, 실제 Edge 함수는 OPTIONS/POST 모두 WORKER_ERROR 500을 반환했다.
+
+원인: Supabase Deno 환경에도 window가 존재한다. CommonJS로 번들한 late-stages.js가 이를 브라우저로 판단해, 아직 초기화되지 않은 window.STORY_STAGES에 push하며 시작 중 종료됐다. Node 단독 테스트에는 window가 없어 재현되지 않았다.
+
+수정: stages.js와 late-stages.js에서 CommonJS module.exports 분기를 먼저 선택하고 서버에서는 독립된 스테이지 데이터를 사용한다. 브라우저 스크립트의 window 연결은 유지한다. tests/pvp.test.cjs에 window=globalThis 조건에서 번들 cold start·팀 구성·Lv50 전투 생성을 검사하는 회귀 테스트를 추가했다.
+
+검증: 실제 프로젝트에 PVP 함수 재배포 완료. 공개 OPTIONS는 200, 로그인 없는 POST는 AUTH_REQUIRED 401로 정상 응답한다. 실제 DB에 pvp_gateway·pvp_finish가 있으며 deadline 기본값은 15초다. 실제 두 계정의 온라인 매칭은 사용자가 다시 입장해 확인한다.

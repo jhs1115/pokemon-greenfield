@@ -1,3 +1,20 @@
+// Supabase's Deno runtime exposes window even when importing a server module.
+const {spawnSync}=require('node:child_process');
+const cold=spawnSync(process.execPath,['--input-type=module','-e',`
+ globalThis.window=globalThis;
+ try{
+  const {Rules}=await import('./supabase/functions/pvp/rules.mjs');
+  const {createRequire}=await import('node:module'),require=createRequire(import.meta.url);
+  const save=require('./tests/pvp-harness.cjs').fixture();
+  const team=Rules.prepareTeam(save,save.pvpTeam);
+  if(team.length!==6)throw Error('invalid prepared team');
+  const result=Rules.resolve({team1:team,team2:team,picks1:[0,1,2],picks2:[0,1,2],seed:[1,2,3,4],history:[]});
+  if(result.state.party[0].level!==50)throw Error('invalid battle initialization');
+  console.log('Deno-like cold start and native battle OK');
+ }catch(error){console.error(error.message);process.exitCode=1;}
+`],{cwd:require('node:path').resolve(__dirname,'..'),encoding:'utf8'});
+if(cold.status!==0)throw Error('Edge runtime cold start failed: '+cold.stderr);
+console.log(cold.stdout.trim());
 const assert=require('node:assert/strict'),{createHarness}=require('./pvp-harness.cjs');
 (async()=>{const h=await createHarness();try{const team=h.fixture().pvpTeam;const shinySave=h.fixture();shinySave.records[team[0].id].shiny=true;const preparedShiny=h.Rules.prepareTeam(shinySave,team);assert.equal(preparedShiny[0].shiny,true);const shinyMatch=h.Rules.resolve({team1:preparedShiny,team2:preparedShiny,picks1:[0,1,2],picks2:[0,1,2],seed:[1,2,3,4],history:[]});assert.equal(shinyMatch.state.party[0].shiny,true);
  assert.throws(()=>h.Rules.prepareTeam(h.fixture(),team.slice(0,5)),/SIX_REQUIRED/);assert.throws(()=>h.Rules.prepareTeam(h.fixture(),team.map((v,i)=>i===5?team[0]:v)),/DUPLICATE_POKEMON/);

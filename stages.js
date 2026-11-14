@@ -4,4 +4,4 @@ root.ROCKET_AMBUSH={"name": "로켓단 습격", "chapter": 2, "enemy": [20, 41, 
 Object.assign(root.STORY_STAGES[37],{enemy:[24,42,97],levels:[34,35,36],rocket:true,rocketBase:true,trainer:true,portrait:"rocket_grunt_m"});
 
 if(typeof module==='object'&&module.exports)module.exports={STORY_STAGES:root.STORY_STAGES,ROCKET_AMBUSH:root.ROCKET_AMBUSH};
-})(typeof window==='object'?window:{});
+})(typeof module==='object'&&module.exports?{}:typeof window==='object'?window:{});

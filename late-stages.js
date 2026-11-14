@@ -43,4 +43,4 @@ for(const [index,waves]of [[43,[
 ]]]){const encounter=root.STORY_STAGES[index];encounter.waves=waves.map((wave,i)=>({...wave,heldItems:['oran-berry','oran-berry',i===waves.length-1?'sitrus-berry':'oran-berry']}));Object.assign(encounter,encounter.waves[0]);}
 
 if(typeof module==='object'&&module.exports)module.exports={STORY_STAGES:root.STORY_STAGES,ROCKET_AMBUSH:root.ROCKET_AMBUSH};
-})(typeof window==='object'?window:{...JSON.parse(JSON.stringify(require('./stages.js'))),POKE_DATA:require('./data/reference.json')});
+})(typeof module==='object'&&module.exports?{...JSON.parse(JSON.stringify(require('./stages.js'))),POKE_DATA:require('./data/reference.json')}:typeof window==='object'?window:{});

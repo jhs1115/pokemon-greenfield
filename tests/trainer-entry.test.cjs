@@ -1,0 +1,16 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const timers=[],renders=[],announcements=[];
+const w={POKE_DATA:require('../data/reference.json'),TRAINING_DATA:require('../data/training.json'),PROGRESSION_DATA:require('../data/progression.json'),ABILITY_DATA:require('../data/abilities.json'),ITEM_DATA:require('../items'),PKMN:require('@pkmn/sim'),NativeCombat:require('../native-combat'),createGameModel:require('../game-state'),BattleEngine:require('../engine'),MOVE_RULES:require('../moves'),getExpandedMoveRule:require('../expanded-moves'),setTimeout:(callback,ms)=>timers.push({callback,ms}),GameAudio:{play(){},later(){}}};
+for(const f of ['stages.js','late-stages.js'])vm.runInNewContext(fs.readFileSync(f,'utf8'),{window:w});
+const c=vm.createContext({window:w,document:{querySelector:()=>null,querySelectorAll:()=>[]},setTimeout:callback=>callback(),localStorage:{setItem(){}},console,showAbilityNotices:()=>announcements.push('ability'),describeCombat:()=>[],showBattleNotes(){}});
+vm.runInContext(fs.readFileSync('trainer-entry.js','utf8'),c);vm.runInContext(fs.readFileSync('app.js','utf8').replace(/render\(\);\s*$/,''),c);c.recordRender=()=>renders.push('render');
+vm.runInContext("render=recordRender;game=G.normalize({owned:[9],team:[9],records:{9:G.freshRecord(9,40)},clears:Array(70).fill(1),tutorial:{done:true}});stage=22;startBattle();",c);
+(async()=>{
+ assert(vm.runInContext('battle.busy&&battle.trainerIntro',c));assert.equal(timers[0].ms,2100);assert(w.TrainerEntrance.markup(vm.runInContext('battle',c)).includes('rocket_grunt_m.png'));assert(w.TrainerEntrance.markup(vm.runInContext('battle',c)).includes('poke-ball.png'));
+ await vm.runInContext("resolveTurn({kind:'wait'})",c);assert.equal(vm.runInContext('battle.turn',c),1,'commands are blocked while a trainer is throwing');
+ timers.shift().callback();await vm.runInContext('battle.entryPromise',c);assert(!vm.runInContext('battle.busy||battle.trainerIntro',c));assert.equal(w.TrainerEntrance.markup(vm.runInContext('battle',c)),'');assert.equal(announcements.length,1,'entry abilities announce after the entrance');
+ vm.runInContext('game.battleSpeed=2;startBattle();',c);assert.equal(timers[0].ms,1050);const oldEntry=vm.runInContext('battle.entryPromise',c);vm.runInContext('startBattle();',c);timers.shift().callback();await oldEntry;assert(vm.runInContext('battle.busy&&battle.trainerIntro',c),'an obsolete entrance cannot unlock the next battle');
+ const activeEntry=vm.runInContext('battle.entryPromise',c),noticeCount=announcements.length;vm.runInContext("navigate('home',true);",c);const renderCount=renders.length;timers.shift().callback();await activeEntry;assert.equal(vm.runInContext('view',c),'home');assert.equal(renders.length,renderCount,'leaving cancels late entrance renders');assert.equal(announcements.length,noticeCount);
+ assert(!w.TrainerEntrance.enabled({encounter:{trainer:true},pvp:true}));assert(!w.TrainerEntrance.enabled({encounter:{trainer:true},tutorial:true}));assert(!w.TrainerEntrance.enabled({encounter:{}}));
+ console.log('Trainer entrance: real portrait/ball, input lock, playback rate, ability timing, cancellation and PvP/tutorial/wild exclusions: passed.');
+})().catch(e=>{console.error(e);process.exitCode=1;});
