@@ -1789,7 +1789,7 @@
       ]
     },
     "after-29": {
-      "title": "갈색 배지",
+      "title": "오렌지뱃지",
       "backdrop": "gym-electric",
       "npc": "surge",
       "lines": [
@@ -1799,7 +1799,7 @@
         },
         {
           "speaker": "surge",
-          "text": "갈색 배지를 줄게 man"
+          "text": "오렌지뱃지를 줄게 man"
         },
         {
           "speaker": "player",
