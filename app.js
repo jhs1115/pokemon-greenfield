@@ -160,6 +160,8 @@ function aiCommand(){
  const b=battle,p=enemy(),def=player();let best=null;if(b.tutorial)return {kind:'wait',destination:{...b.enemyPos}};
  for(let y=0;y<7;y++)for(let x=0;x<10;x++){
   const pos={x,y};if(E.path(b.enemyPos,pos,b.pos)===null)continue;
+  // Weedle holds its ground or approaches instead of kiting the player.
+  if(p.id===13&&E.distance(pos,b.pos)>E.distance(b.enemyPos,b.pos))continue;
   for(let i=0;i<p.moves.length;i++){
    const m=p.moves[i];if(m.remaining<=0||m.disabled)continue;
    for(let ty=0;ty<7;ty++)for(let tx=0;tx<10;tx++){
