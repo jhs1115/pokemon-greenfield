@@ -2,7 +2,16 @@
 'use strict';
 const book=window.KANTO_STORY;let current=null,archiveChapter=0;const starterPage=book.scenes.opening.lines.findIndex(l=>l.choice==='starter');
 const gymKeys={웅이:'brock',이슬이:'misty',마티스:'surge',민화:'erika',독수:'koga',초련:'sabrina',강연:'blaine'};
-function progress(){return game.story||(game.story={version:1,seen:[],cursors:{},scoutGiftAvailable:false});}
+function progress(){
+ const state=game.story||(game.story={version:1,seen:[],cursors:{},scoutGiftAvailable:false}),revision='rocket-authored-chapters-six-seven-v1';
+ if(!state.seen.includes(revision)){
+  const rewritten=new Set([53,57,60,62,63].flatMap(i=>['before-'+i,'after-'+i]));
+  state.seen=state.seen.filter(key=>!rewritten.has(key));
+  for(const key of rewritten)delete state.cursors[key];
+  state.seen.push(revision);
+ }
+ return state;
+}
 function has(key){return progress().seen.includes(key);}
 function open(key,spec,done,options={}){const state=progress();current={key,spec,done,options,page:options.repeat||options.replay?0:Math.min(state.cursors[key]||0,spec.lines.length-1),lastNpc:spec.npc||null};view='dialogue';render();return true;}
 function finish(){const active=current;if(!active)return;if(!active.options.replay){const state=progress();if(!state.seen.includes(active.key))state.seen.push(active.key);delete state.cursors[active.key];saveGame();}current=null;active.done();}
@@ -70,6 +79,7 @@ function beforeStage(index,done){const c=chapters[index],key='before-'+index;
   if(repeat)lines[0].text=({brock:'또 시계 풀어?',misty:'재도전은 환영이지. 간다!',surge:'재도전 man?!? 이번에도 전력으로 간다 bro!!',erika:'재도전... 또 기대되게 만드는군요.',koga:'이 늙은이를 또 상대할 건가? 나야 좋다!',sabrina:'좋습니다. 준비됐나요?'})[actor]||'준비됐나? 다시 겨뤄 보자.';
   return open('gym-'+index+(repeat?'-repeat':''),{title:c.leader+'의 체육관',backdrop:'gym-'+c.gym,npc:actor,lines},()=>{game.gymVisits[index]=(game.gymVisits[index]||0)+1;saveGame();startBattle();},{repeat});
  }
+ if(c.rocket&&index>=50&&index<70&&book.scenes[key])return open(key,book.scenes[key],()=>startBattle(),{repeat:has(key)});
  if(book.scenes[key]&&!has(key))return open(key,book.scenes[key],c.rocket?()=>startBattle():done);
  if(c.rocket)return open(key+'-repeat',{title:c.rocketBase?'로켓단의 지하 거점':'로켓단',backdrop:c.chapter<=5?(c.rocketBase?'rocket-hideout':c.chapter===5?'safari-fog':c.name==='3-3'?'warehouse':'vermilion-port'):(c.rocketBase?'hideout':'harbor'),npc:'rocket',lines:[{speaker:'rocket',text:'여기서 또 마주치다니! 이번에는 그냥 보내 주지 않겠다!'}]},()=>startBattle(),{repeat:true});
  return false;
