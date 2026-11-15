@@ -68,7 +68,7 @@ const backgroundAssets=Object.freeze({
   "warehouse-dark": "assets/world/port-warehouse-v1.png",
   "ruined-city": "assets/world/fuchsia-ruins-v1.png"
 });
-function background(kind){if(backgroundAssets[kind])return `<img src="${backgroundAssets[kind]}" alt="" decoding="async">`;if(kind==='ruined-city')return '<img src="assets/world/fuchsia-ruins-v1.png" alt="">';if(kind==='safari-fog')return '<img src="assets/world/routes/chapter-5-v5.png" alt="">';if(kind==='restaurant')return '<img src="assets/world/flower-restaurant-v1.png" alt="">';if(kind==='warehouse'||kind==='warehouse-dark')return '<img src="assets/world/port-warehouse-v1.png" alt="">';if(kind==='coast')return '<img src="assets/world/routes/chapter-2-v5.png" alt="">';if(kind==='lab')return '<img src="assets/world/oak-laboratory-v2.png" alt="">';if(kind==='shop')return sceneArt('interiors',0);if(kind==='lounge')return sceneArt('interiors',2);if(kind==='training')return sceneArt('interiors',1);if(kind==='river')return sceneArt('interiors',3);if(kind==='blossom-street')return '<img src="assets/world/routes/chapter-4-v5.png" alt="">';if(kind==='garden')return sceneArt('home-scenes',2);if(kind==='harbor')return '<img src="assets/world/pvp-home-v2.png" alt="">';if(kind==='hideout')return sceneArt('gyms',0);if(kind.startsWith('gym-'))return sceneArt('gyms',({rock:0,water:1,electric:2,grass:3,poison:3,psychic:2,fire:0})[kind.slice(4)]||0);return sceneArt('home-scenes',0);}
+function background(kind){if(kind==='black')return '<div class="story-black-frame"></div>';if(backgroundAssets[kind])return `<img src="${backgroundAssets[kind]}" alt="" decoding="async">`;if(kind==='ruined-city')return '<img src="assets/world/fuchsia-ruins-v1.png" alt="">';if(kind==='safari-fog')return '<img src="assets/world/routes/chapter-5-v5.png" alt="">';if(kind==='restaurant')return '<img src="assets/world/flower-restaurant-v1.png" alt="">';if(kind==='warehouse'||kind==='warehouse-dark')return '<img src="assets/world/port-warehouse-v1.png" alt="">';if(kind==='coast')return '<img src="assets/world/routes/chapter-2-v5.png" alt="">';if(kind==='lab')return '<img src="assets/world/oak-laboratory-v2.png" alt="">';if(kind==='shop')return sceneArt('interiors',0);if(kind==='lounge')return sceneArt('interiors',2);if(kind==='training')return sceneArt('interiors',1);if(kind==='river')return sceneArt('interiors',3);if(kind==='blossom-street')return '<img src="assets/world/routes/chapter-4-v5.png" alt="">';if(kind==='garden')return sceneArt('home-scenes',2);if(kind==='harbor')return '<img src="assets/world/pvp-home-v2.png" alt="">';if(kind==='hideout')return sceneArt('gyms',0);if(kind.startsWith('gym-'))return sceneArt('gyms',({rock:0,water:1,electric:2,grass:3,poison:3,psychic:2,fire:0})[kind.slice(4)]||0);return sceneArt('home-scenes',0);}
 function finalPartner(){const id=game.starter||4;return id<=3?3:id<=6?6:id<=9?9:id;}
 function renderScene(){if(!current){view='story';render();return;}const {key,spec,page,options}=current,line=spec.lines[page],speaker=line.speaker;
  if(book.cast[speaker])current.lastNpc=speaker;
@@ -100,7 +100,7 @@ function rescueMarkup(line){
  const fragments=line.shot==='break'?'<div class="collar-fragments"><i></i><i></i><i></i><i></i></div>':'';
 
  const impact=line.shot==='break'?'<div class="rescue-impact"><i></i><b></b></div>':'';
- const hands=impact;
+ const hands=impact+(line.shot==='burst'?'<div class="rescue-burst"><i></i><b></b></div>':'');
  return partner+rays+fragments+hands;
 }
 function beforeStage(index,done){const c=chapters[index],key='before-'+index;

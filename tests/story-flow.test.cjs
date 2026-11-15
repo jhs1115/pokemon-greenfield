@@ -93,13 +93,13 @@ for(const key of ['before-70','before-71','before-72','before-73','before-74','a
 console.log('Chapter eight: all authored stage/after-story triggers, silent retries, once-only Mewtwo sprite/cry cutscene and newly drawn destruction backdrops: passed.');
 
 const ninth=fixture({starter:4,owned:[6],team:[6],records:{6:G.freshRecord(6,100)},tutorial:{done:true},clears:Array(81).fill(1)});ninth.c.stage=80;ninth.c.chapters[80]={chapter:9,rescueReward:true,silentRetry:true};assert(ninth.w.StoryUI.beforeStage(80,()=>{}));assert.equal(ninth.el('#story-cinema').dataset.scene,'after-80','an interrupted winning save resumes the rescue instead of requiring another fight');while(ninth.el('#story-cinema').dataset.line!=='3')ninth.el('#story-next').onclick();assert(ninth.el('#story-line').textContent.includes('리자몽!'));assert(ninth.el('.rescue-cinema').innerHTML.includes('pokemon/6'));ninth.el('#story-skip').onclick();assert.equal(ninth.c.game.records[150].level,85);assert(ninth.c.game.story.seen.includes('mewtwo-rescue-reward'));assert(ninth.c.game.story.seen.includes('after-80'));const preservedNature=ninth.c.game.records[150].nature;ninth.w.StoryUI.beforeStage(80,()=>{});ninth.el('#story-skip').onclick();assert.equal(ninth.c.game.records[150].nature,preservedNature);
-assert.equal(book.scenes['after-80'].lines.at(-1).clueTone,'mint');assert(book.scenes['after-80'].lines.some(l=>l.shot==='hands'));assert.equal(book.scenes['after-80'].lines[6].shot,'rest');assert.equal(book.scenes['after-80'].lines[9].shot,'awake');assert(book.scenes['before-80'].lines.some(l=>l.backdrop==='mewtwo-eye'));
+assert.equal(book.scenes['after-80'].lines.at(-1).clueTone,'mint');assert(book.scenes['after-80'].lines.some(l=>l.shot==='hands'));assert.equal(book.scenes['after-80'].lines[8].shot,'rest');assert.equal(book.scenes['after-80'].lines[11].shot,'awake');assert(book.scenes['before-80'].lines.some(l=>l.backdrop==='mewtwo-eye'));
 console.log('Rescue story: reload recovery, final-starter interpolation, cinematic shot sequence, skip-safe Lv85 reward and mint join announcement: passed.');
 
-assert.equal(book.scenes['after-80'].lines[4].backdrop,'mewtwo-control-break');assert.equal(book.scenes['after-80'].lines[11].backdrop,'rescue-hands');for(const key of ['mewtwo-ruins','mewtwo-eye','rescue-dawn','mewtwo-rest','collar-release','rescue-hands'])assert(fsArt.existsSync(art[key]));
+assert.equal(book.scenes['after-80'].lines[4].backdrop,'mewtwo-control-break');assert.equal(book.scenes['after-80'].lines[13].backdrop,'rescue-hands');for(const key of ['mewtwo-ruins','mewtwo-eye','rescue-dawn','mewtwo-rest','collar-release','rescue-hands'])assert(fsArt.existsSync(art[key]));
 
-assert.equal(book.scenes['after-80'].lines[6].scenePokemon,null);
-assert.equal(book.scenes['after-80'].lines[5].backdrop,'mewtwo-rest');
+assert.equal(book.scenes['after-80'].lines[8].scenePokemon,null);
+assert.equal(book.scenes['after-80'].lines[7].backdrop,'mewtwo-rest');
 
 const musicScenes=[],battleMusicStory=fixture({starter:4,owned:[4],team:[4],tutorial:{done:true}});
 battleMusicStory.w.GameAudio={scene:key=>musicScenes.push(key)};
@@ -111,7 +111,7 @@ const renderBody=fs.readFileSync('app.js','utf8').split('function render(){')[1]
 assert(renderBody.indexOf("if(view==='dialogue')return window.StoryUI.render();")<renderBody.indexOf('window.GameAudio?.scene('),'dialogue must not switch to menu music before rendering a battle cutscene');
 console.log('Giovanni dialogue: battle music throughout entrance, sixth send-out and rampage; no menu-track switch before dialogue rendering: passed.');
 
-assert.equal(book.scenes["after-80"].lines[9].backdrop,"mewtwo-awake");
+assert.equal(book.scenes["after-80"].lines[11].backdrop,"mewtwo-awake");
 assert(fsArt.existsSync(art["mewtwo-awake"]));
 assert(!fs.readFileSync("story-ui.js","utf8").includes("rescue-open-eye"));
 
@@ -127,3 +127,9 @@ assert.equal(book.scenes['after-80'].lines[1].backdrop,'mewtwo-control-neck');
 assert(book.scenes['after-80'].lines[4].text.includes('제어장치를 부숴'));
 assert(!fs.readFileSync('styles.css','utf8').includes('.control-collar'));
 console.log('Mewtwo control device: hidden throughout entry story, revealed after victory, old collar flags/styles removed: passed.');
+
+assert.deepEqual(book.scenes['after-80'].lines.slice(4,8).map(l=>l.shot),['break','burst','silence','rest']);
+assert.equal(book.scenes['after-80'].lines[5].text,'!!!');assert.equal(book.scenes['after-80'].lines[6].text,'...');assert.equal(book.scenes['after-80'].lines[6].backdrop,'black');
+const blackout=fixture({starter:4,owned:[6],team:[6],tutorial:{done:true},clears:Array(81).fill(1),story:{seen:['opening'],cursors:{'after-80':4}}});
+blackout.w.StoryUI.afterBattle(80,()=>{});blackout.el('#story-next').onclick();assert.equal(blackout.el('#story-cinema').dataset.shot,'burst');assert.equal(blackout.el('#story-line').textContent,'!!!');blackout.el('#story-next').onclick();assert.equal(blackout.el('#story-cinema').dataset.shot,'silence');assert(blackout.el('.story-backdrop').innerHTML.includes('story-black-frame'));blackout.el('#story-next').onclick();assert.equal(blackout.el('#story-cinema').dataset.backdrop,'mewtwo-rest');
+console.log('Rescue climax: destruction -> explosion !!! -> black ... -> resting Mewtwo; explicit dialogue advancement: passed.');

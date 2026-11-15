@@ -3215,6 +3215,21 @@
           "backdrop": "mewtwo-control-break"
         },
         {
+          "speaker": "player",
+          "text": "!!!",
+          "scenePokemon": null,
+          "backdrop": "mewtwo-control-break",
+          "shot": "burst",
+          "sound": "rescue-explosion"
+        },
+        {
+          "speaker": "narrator",
+          "text": "...",
+          "scenePokemon": null,
+          "backdrop": "black",
+          "shot": "silence"
+        },
+        {
           "speaker": "narrator",
           "text": "...",
           "backdrop": "mewtwo-rest",
