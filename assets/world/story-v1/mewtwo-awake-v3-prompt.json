@@ -1,0 +1,7 @@
+{
+  "tool": "built-in image_gen",
+  "prompt": "이 그림에서 뮤츠의 눈만 바꿔줘. 뮤츠가 잠에서 깨어 눈을 완전히 뜨고 화면 밖의 플레이어를 바라본다. 양쪽 눈이 확실하게 열려 있고 흰자와 보라색 홍채와 검은 동공이 또렷하게 보여야 한다. 가늘게 뜬 실눈이 아니라 자연스럽게 충분히 뜬 눈. 표정은 차분하고 지친 모습. 누워 있는 자세, 머리와 손과 몸과 꼬리 위치, 카메라 구도, 배경, 노을빛, 굵은 도트 스타일은 전부 그대로 유지해줘. 다른 것은 바꾸지 말고 눈만 다시 그려줘.",
+  "reference": "assets/world/story-v1/mewtwo-rest-v2.png",
+  "output": "assets/world/story-v1/mewtwo-awake-v3.png",
+  "source": "C:/Users/tprtl/.codex/generated_images/01a1931d-51fa-7433-8dd6-d0f79f083bd3/exec-13ed696e-4513-433c-b9ea-663c6b20506c.png"
+}

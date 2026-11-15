@@ -100,3 +100,17 @@ assert.equal(book.scenes['after-80'].lines[4].backdrop,'mewtwo-ruins');assert.eq
 
 assert.equal(book.scenes['after-80'].lines[6].scenePokemon,null);
 assert.equal(book.scenes['after-80'].lines[5].backdrop,'mewtwo-rest');
+
+const musicScenes=[],battleMusicStory=fixture({starter:4,owned:[4],team:[4],tutorial:{done:true}});
+battleMusicStory.w.GameAudio={scene:key=>musicScenes.push(key)};
+assert(battleMusicStory.w.StoryUI.battleScene('mewtwo-sendout',()=>{}));
+battleMusicStory.el('#story-next').onclick();battleMusicStory.el('#story-next').onclick();
+assert.deepEqual(musicScenes,['battle:ground','battle:ground','battle:ground']);
+for(const key of ['before-74','after-74'])assert.equal(book.scenes[key].music,'battle:ground');
+const renderBody=fs.readFileSync('app.js','utf8').split('function render(){')[1].split('function ')[0];
+assert(renderBody.indexOf("if(view==='dialogue')return window.StoryUI.render();")<renderBody.indexOf('window.GameAudio?.scene('),'dialogue must not switch to menu music before rendering a battle cutscene');
+console.log('Giovanni dialogue: battle music throughout entrance, sixth send-out and rampage; no menu-track switch before dialogue rendering: passed.');
+
+assert.equal(book.scenes["after-80"].lines[9].backdrop,"mewtwo-awake");
+assert(fsArt.existsSync(art["mewtwo-awake"]));
+assert(!fs.readFileSync("story-ui.js","utf8").includes("rescue-open-eye"));

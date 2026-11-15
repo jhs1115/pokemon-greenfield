@@ -41,6 +41,7 @@ const backgroundAssets=Object.freeze({
   "rescue-dawn": "assets/world/story-v1/mewtwo-rescue-dawn-v1.png",
   "rescue-hands": "assets/world/story-v1/mewtwo-hands-v1.png",
   "mewtwo-rest": "assets/world/story-v1/mewtwo-rest-v2.png",
+  "mewtwo-awake": "assets/world/story-v1/mewtwo-awake-v3.png",
   "collar-release": "assets/world/story-v1/control-device-release-v1.png",
   "pallet-town": "assets/world/story-v1/pallet-town-v1.png",
   "road": "assets/world/story-v1/forest-path-v1.png",
@@ -73,7 +74,7 @@ function renderScene(){if(!current){view='story';render();return;}const {key,spe
  let shell=$('#story-cinema');
  if(!shell||shell.dataset.scene!==key){$('#app').innerHTML=`<section id="story-cinema" class="story-cinema" data-scene="${key}" aria-label="${escapeHTML(spec.title)}"><div class="story-backdrop" aria-hidden="true"></div><div class="story-scene-shade" aria-hidden="true"></div><div class="story-petals" aria-hidden="true"><i style="--petal:0"></i><i style="--petal:1"></i><i style="--petal:2"></i><i style="--petal:3"></i><i style="--petal:4"></i><i style="--petal:5"></i><i style="--petal:6"></i><i style="--petal:7"></i></div><header class="story-scene-header"><span>${escapeHTML(spec.title)}</span><button id="story-skip" class="outline">장면 건너뛰기</button></header><div class="story-actors" aria-hidden="true">${Object.entries(book.cast).map(([id,c])=>`<img class="story-actor offstage" data-story-actor="${id}" src="assets/trainers/${c.src}" alt="">`).join('')}</div><div class="story-partner" aria-hidden="true"></div><div class="rescue-cinema" aria-hidden="true"></div><div class="story-choices" id="story-choices"></div><div class="story-dialogue" aria-live="off"><b id="story-speaker"></b><p id="story-line"></p><div class="story-dialogue-actions"><small>Enter</small><button id="story-next" class="primary" aria-label="대화 계속">다음 <span aria-hidden="true">▸</span></button></div></div></section>`;shell=$('#story-cinema');$('#story-skip').textContent=options.replay?'이야기 닫기':'장면 건너뛰기';$('#story-skip').onclick=skip;}
  if(shell.dataset.backdrop!==backdrop){const old=shell.dataset.backdrop;$('.story-backdrop').innerHTML=old&&['before-80','after-80'].includes(key)?`<div class="story-backdrop-layer">${background(old)}</div><div class="story-backdrop-layer arriving">${background(backdrop)}</div>`:background(backdrop);shell.dataset.backdrop=backdrop;}
- shell.dataset.shot=line.shot||'';shell.dataset.clueTone=line.clueTone||'';const music=spec.lines.slice(0,page+1).reverse().find(l=>l.music)?.music||spec.music;if(music)window.GameAudio?.scene?.(music);
+ shell.dataset.shot=line.shot||'';shell.dataset.clueTone=line.clueTone||'';const music=spec.lines.slice(0,page+1).reverse().find(l=>l.music)?.music||spec.music;if(music)window.GameAudio?.scene?.(music);else if(!options.battleCutscene)window.GameAudio?.scene?.('dialogue');
  shell.dataset.injured=String(!!spec.injured);shell.dataset.duo=String(!!(line.actors||spec.actors));shell.dataset.fallen=String(!!line.fallen);shell.dataset.rampage=String(!!line.rampage);shell.dataset.explosion=String(!!line.explosion);shell.dataset.line=String(page);shell.dataset.speaker=speaker;shell.dataset.thought=String(!!line.thought);shell.classList.toggle('choosing-starter',choosing);shell.classList.toggle('receiving-item',!!line.itemGift);shell.classList.toggle('receiving-unlock',!!line.unlock);
  document.querySelectorAll('[data-story-actor]').forEach(el=>{const shown=npc!==null&&((line.actors||spec.actors)?(line.actors||spec.actors).includes(el.dataset.storyActor):el.dataset.storyActor===npc);el.classList.toggle('offstage',!shown);el.classList.toggle('speaking',shown&&speaker===el.dataset.storyActor);el.classList.toggle('listening',shown&&speaker!==el.dataset.storyActor);});
  $('#story-speaker').textContent=line.speakerName||(speaker==='player'?'나':speaker==='news'?'아나운서':speaker==='narrator'?'':cast?.name||'');
@@ -96,9 +97,9 @@ function rescueMarkup(line){
  const partner=line.rescuePartner?`<img class="rescue-starter" src="${img(finalPartner())}" alt="">`:'';
  const rays=['charge','break','join'].includes(line.shot)?'<div class="rescue-rays"></div>':'';
  const fragments=line.shot==='break'?'<div class="collar-fragments"><i></i><i></i><i></i><i></i></div>':'';
- const eyes=['awake','reach'].includes(line.shot)?'<svg class="rescue-open-eye" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid slice" shape-rendering="crispEdges"><path d="m541 586 8-13 11-10-2 21-10 9Z" fill="#302c48"/><path d="m546 584 9-14-1 13-6 6Z" fill="#ba68c9"/><path d="m552 576 3-4v6h-3Z" fill="#f9e7f9"/></svg>':'';
+
  const impact=line.shot==='break'?'<div class="rescue-impact"><i></i><b></b></div>':'';
- const hands=eyes+impact;
+ const hands=impact;
  return partner+rays+fragments+hands;
 }
 function beforeStage(index,done){const c=chapters[index],key='before-'+index;

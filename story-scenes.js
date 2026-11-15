@@ -2995,6 +2995,7 @@
       "title": "상록체육관의 비주기",
       "backdrop": "gym-ground",
       "npc": "giovanni",
+      "music": "battle:ground",
       "lines": [
         {
           "speaker": "giovanni",
@@ -3022,6 +3023,7 @@
       "title": "마지막 포켓몬",
       "backdrop": "gym-ground",
       "npc": "giovanni",
+      "music": "battle:ground",
       "lines": [
         {
           "speaker": "giovanni",
@@ -3045,6 +3047,7 @@
       "title": "폭주",
       "backdrop": "gym-ground",
       "npc": null,
+      "music": "battle:ground",
       "lines": [
         {
           "speaker": "narrator",
@@ -3245,6 +3248,7 @@
         {
           "speaker": "narrator",
           "text": "뮤츠가 이쪽을 쳐다본다.",
+          "backdrop": "mewtwo-awake",
           "scenePokemon": null,
           "shot": "awake"
         },
