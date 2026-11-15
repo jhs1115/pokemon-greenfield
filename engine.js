@@ -46,6 +46,7 @@
   return m;
  }
  function normalizeMove(move){
+  if(move.id===540)return {...move,geometryVersion:2,range:99,unlimitedRange:true,impact:'square',size:1,tileLimit:9,mask:null,localMask:null,fx:'psystrike',fxVariant:undefined,geometryLabel:'3×3 · 사거리 제한 없음'};
   if(move.geometryVersion===2)return {...move};
   // Footprint cap, distinct from selectable reach. Starter attacks stay compact.
   const m={...move,geometryVersion:2,range:Math.min(5,move.range||0),tileLimit:9};
@@ -60,6 +61,7 @@
  function range(origin,target,move){
   move=normalizeMove(move);
   if(!inside(target))return false;
+  if(move.unlimitedRange)return true;
   if(!move.impact)return distance(origin,target)<=move.range&&(move.shape!=='line'||origin.x===target.x||origin.y===target.y);
   const dx=target.x-origin.x,dy=target.y-origin.y;
   if(move.impact==='self'||move.impact==='burst')return dx===0&&dy===0;
@@ -70,7 +72,7 @@
   move=normalizeMove(move);
   if(!range(origin,target,move))return [];
   if(move.impact==='self')return [{...origin}];
-  const tiles=[],seen=new Set(),add=(x,y)=>{const key=x+','+y;if(inside({x,y})&&(move.impact==='burst'||x!==origin.x||y!==origin.y)&&!seen.has(key)){seen.add(key);tiles.push({x,y});}};
+  const tiles=[],seen=new Set(),add=(x,y)=>{const key=x+','+y;if(inside({x,y})&&(move.id===540||move.impact==='burst'||x!==origin.x||y!==origin.y)&&!seen.has(key)){seen.add(key);tiles.push({x,y});}};
   if(move.localMask){const dx=Math.sign(target.x-origin.x),dy=Math.sign(target.y-origin.y);for(const [depth,offset]of move.localMask)add(origin.x+dx*depth-dy*offset,origin.y+dy*depth+dx*offset);}
   else if(move.mask){for(const [dx,dy]of move.mask)add(target.x+dx,target.y+dy);}
   else if(move.impact==='burst'&&move.tileLimit===5){for(const [x,y]of [[0,0],[0,-1],[1,0],[0,1],[-1,0]])add(origin.x+x,origin.y+y);}

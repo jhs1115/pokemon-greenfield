@@ -78,6 +78,7 @@ function skillEffectivenessBadge(move,foe){
 }
 
 function renderStory(){
+ document.body.dataset.battleTheme=!battle.pvp&&battle.encounter.rescueReward?'mewtwo':'';
  const b=battle,p=player(),f=enemy(),m=p.moves[b.move],origin=b.destination||b.pos;
  const previewTarget=b.mode==='target'&&m?(b.hover||b.target||defaultAim(origin,m)):null;
  const preview=previewTarget?E.attackTiles(origin,previewTarget,m):[];

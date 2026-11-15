@@ -50,3 +50,13 @@ let blocked=0;for(let i=1;i<=128;i++){
  const mobility=x.combat.prepareMovement({kind:'attack',move:0},{kind:'attack',move:0}),result=x.turn();assert.equal(calls,1,'one shared paralysis roll');assert.equal(result.logs.some(l=>l.includes('|cant|p1')&&l.endsWith('|par')),!mobility.p0);if(!mobility.p0)blocked++;
 }assert.equal(blocked,16);
 console.log('Opponent Intimidate, two-sided sleep/freeze movement lock, and one 1-in-8 paralysis roll shared by movement and attack: passed.');
+
+function bossCritCheck(pvp=false,immune=true,foeId=150){
+ const v=setup(['scratch'],['scratch'],[25,foeId]);v.state.encounter={criticalImmune:immune};v.state.pvp=pvp;v.geo.isCritical=()=>true;
+ const combat=N.create(v.state,D,v.geo,mf,[1,2,3,4]);return combat.turn({kind:'attack',move:0,target:v.state.enemyPos},{kind:'attack',move:0,target:v.state.pos});
+}
+let protectedBoss=bossCritCheck();assert(!protectedBoss.logs.some(l=>l.startsWith('|-crit|p2')));assert(protectedBoss.logs.some(l=>l.startsWith('|-crit|p1')),'Mewtwo can still land critical hits on the player');
+assert(bossCritCheck(true).logs.some(l=>l.startsWith('|-crit|p2')),'PvP ignores encounter-only critical immunity');
+assert(bossCritCheck(false,false).logs.some(l=>l.startsWith('|-crit|p2')),'owned/ordinary Mewtwo remains vulnerable to critical hits');
+assert(bossCritCheck(false,true,7).logs.some(l=>l.startsWith('|-crit|p2')),'other species are unaffected');
+console.log('Boss Mewtwo alone ignores guaranteed tile-center critical hits; player, ordinary Mewtwo and PvP retain critical-hit rules: passed.');

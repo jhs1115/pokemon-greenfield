@@ -327,3 +327,12 @@ body[data-view="dialogue"]{background:radial-gradient(ellipse at 50% 0,#e9efe1,#
 .story-cinema[data-shot="burst"] #story-line{font-size:clamp(36px,5vw,64px);font-weight:900;color:#a24d22}.story-cinema[data-shot="silence"]{background:#000}.story-cinema[data-shot="silence"] .story-backdrop-layer.arriving{animation:none}.story-cinema[data-shot="silence"] .story-scene-shade{background:none}.story-cinema[data-shot="silence"] .story-scene-header{visibility:hidden}.story-cinema[data-shot="silence"] .story-dialogue{background:#000;border-color:#000;box-shadow:none}.story-cinema[data-shot="silence"] #story-line{color:#fff;text-align:center;letter-spacing:.2em}.story-cinema[data-shot="silence"] .story-dialogue-actions small{color:#aaa}
 @keyframes rescue-burst-light{0%{opacity:0}12%,30%{opacity:1}100%{opacity:0}}@keyframes rescue-burst-ring{0%{transform:scale(.05);opacity:0}15%{opacity:1}100%{transform:scale(4);opacity:0}}
 @media(prefers-reduced-motion:reduce){.rescue-burst{animation:none;background:radial-gradient(ellipse at 50% 40%,#ffe6a644,transparent 65%)}.rescue-burst i,.rescue-burst b{animation:none;display:none}}
+
+/* The Mewtwo battle alone uses a quiet, ruined stone arena. */
+.battle-wrapper.mewtwo-battle{color:#f0eef8}.battle-wrapper.mewtwo-battle .arena{background:#333c4b url('assets/world/mewtwo-battle-floor.svg') center/100% 100%;border-color:#4e5269;box-shadow:inset 0 0 0 3px #77738d66,0 12px 35px #12142155}.battle-wrapper.mewtwo-battle .board{background:transparent}
+.battle-wrapper.mewtwo-battle .arena .tile:not(.reachable):not(.target-option):not(.damage-zone):not(.critical-zone):not(.selected):not(.aim){background:rgba(144,150,173,.035);border-color:#aeb4c51c;box-shadow:none}.battle-wrapper.mewtwo-battle .arena .tile:nth-child(even):not(.reachable):not(.target-option):not(.damage-zone):not(.critical-zone):not(.selected):not(.aim){background:rgba(19,27,42,.055)}.battle-wrapper.mewtwo-battle .arena .tile:before{display:none}
+.battle-wrapper.mewtwo-battle .enemy-shadow{background:#9385ba48;border-color:#b0a2cf80}.battle-wrapper.mewtwo-battle .top-hud{border-color:#7f78994d}.battle-wrapper.mewtwo-battle .battle-instruction{color:#eee9fa}.battle-wrapper.mewtwo-battle .turn{color:#c3b6dc}.battle-wrapper.mewtwo-battle .game-shell{background:transparent}.battle-wrapper.mewtwo-battle.boss-fatigued .enemy-shadow{background:#7e8b9f42;border-color:#aeb7c666}
+
+body[data-view="battle"][data-battle-theme="mewtwo"]{background:#242b37;color:#efedf6}
+
+.battle-wrapper.mewtwo-battle .arena .tile:after{display:none}

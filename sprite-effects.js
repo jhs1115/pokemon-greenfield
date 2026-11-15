@@ -10,7 +10,7 @@
  });}
  const loading=Promise.all(Array.from({length:4},async()=>{while(queue.length){const [key,asset]=queue.shift();await loadAsset(key,asset);}}));
  loading.catch(error=>console.error(error));
- const durationByMove={thunder:1450,shock:1050,dash:900,slam:1100,vine:1100,tackle:900,leaves:1300,rush:1050,embers:1200,scratch:850,flamethrower:1500,slash:950,watergun:1300,bite:1050,surf:1600,stars:1350,gust:1300,wings:950,fireblast:1650,absorb:1200,acid:1200,drain:1400,sludge:1350,confusion:1200,psychic:1450,shadow:1350,flamewheel:1250,fang:1100};
+ const durationByMove={psystrike:2100,thunder:1450,shock:1050,dash:900,slam:1100,vine:1100,tackle:900,leaves:1300,rush:1050,embers:1200,scratch:850,flamethrower:1500,slash:950,watergun:1300,bite:1050,surf:1600,stars:1350,gust:1300,wings:950,fireblast:1650,absorb:1200,acid:1200,drain:1400,sludge:1350,confusion:1200,psychic:1450,shadow:1350,flamewheel:1250,fang:1100};
  window.playMoveEffect=async function({move,origin,target,tiles,hit,critical=false,defenderPos,durationScale=1}){
   await loading;
   const board=document.querySelector('.board');if(!board)return;
@@ -58,6 +58,21 @@
   }
   function charge(key='electricity',size=.8){burst(key,a,.02,.33,size);}
   const recipes={
+   psystrike(){
+    // Gather at the caster, mark all nine tiles, then drop and shatter psychic crystals.
+    burst('hollow_orb',a,.01,.34,1.25);burst('ring',a,.04,.36,1.8);
+    for(let i=0;i<5;i++){const q=phase(t,.01,.32);if(q>=0&&q<=1){const radius=(1-q)*.85,theta=i*Math.PI*2/5+q*4;sprite('pink_orb',spread(a,Math.cos(theta)*radius,Math.sin(theta)*radius),q,.38,0,Math.sin(q*Math.PI));}}
+    for(const [i,p]of cells.entries()){
+     const mark=phase(t,.16,.79);if(mark>=0&&mark<=1){ctx.save();ctx.globalAlpha=Math.sin(mark*Math.PI)*.19;ctx.fillStyle='#b69aff';ctx.fillRect(p.x-cw*.47,p.y-ch*.47,cw*.94,ch*.94);ctx.restore();}
+     const start=.25+i*.015,q=phase(t,start,.65+i*.015);
+     if(q>=0&&q<=1){const fall=Math.min(1,q*1.8),pos={x:p.x,y:p.y-(1-fall)*ch*1.8},radius=cw*(.16+Math.sin(q*Math.PI)*.13);
+      ctx.save();ctx.globalAlpha=clamp(q*9)*clamp((1-q)*8);ctx.translate(Math.round(pos.x),Math.round(pos.y));ctx.fillStyle=i%2?'#ae78ed':'#dfbbff';ctx.strokeStyle='#8054c5';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(0,-radius*1.9);ctx.lineTo(radius,0);ctx.lineTo(0,radius*1.3);ctx.lineTo(-radius,0);ctx.closePath();ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(0,-radius*1.9);ctx.lineTo(0,radius*1.3);ctx.strokeStyle='#f2dcff';ctx.stroke();ctx.restore();
+     }
+     burst('purple_swipe',p,.56+i*.012,.86+i*.012,.95,(i%4)*Math.PI/2);
+     burst('blue_star',spread(p,(i%3-1)*.18,-.18),.61+i*.009,.98,.65);
+    }
+    burst('hollow_orb',z,.35,.74,2.4);burst('ring',z,.5,.93,3.5);burst('ring',z,.61,.99,2.7);
+   },
    thunder(){
     charge('electricity',.9);
     burst('lightning',spread(z,0,-.55),.22,.64,2.6);

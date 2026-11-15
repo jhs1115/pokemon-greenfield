@@ -9,7 +9,7 @@ for(const asset of Object.values(manifest)){
 }
 const byPath=Object.fromEntries(Object.values(manifest).map(m=>[m.src,m]));
 let clock=0,draws=[];
-const context2d={imageSmoothingEnabled:false,save(){},restore(){},clearRect(){},rotate(){},translate(){},scale(){},strokeText(){},fillText(){},
+const context2d={imageSmoothingEnabled:false,fillRect(){},beginPath(){},moveTo(){},lineTo(){},closePath(){},fill(){},stroke(){},save(){},restore(){},clearRect(){},rotate(){},translate(){},scale(){},strokeText(){},fillText(){},
  drawImage(image,sx,sy,sw,sh,x,y,w,h){
   const asset=byPath[image.src];assert.ok(asset);assert.ok(sx>=0&&sx+sw<=asset.width*asset.frames);assert.equal(sh,asset.height);assert.ok([x,y,w,h].every(Number.isFinite));draws.push(image.src);
  }};

@@ -100,3 +100,13 @@ assert.deepEqual(E.attackTiles(forward,north,punch).map(p=>`${p.x},${p.y}`).sort
 assert(E.attackTiles(forward,east,punch).every(p=>p.x>forward.x),'punch does not hit behind the user');
 const slide=signature(157);assert.equal(E.attackTiles({x:0,y:3},{x:3,y:3},slide).length,5);assert(E.attackTiles({x:0,y:3},{x:3,y:3},slide).every(p=>Math.abs(p.x-3)+Math.abs(p.y-3)<=1));
 console.log('Signature move families, rotated directional masks, forward-only punches and unchanged five-cell Rock Slide: passed.');
+
+const psystrike=E.normalizeMove({...D.moves[540],...require('../moves')[540]});
+assert.equal(psystrike.fx,'psystrike');assert.equal(psystrike.unlimitedRange,true);
+for(let y=0;y<7;y++)for(let x=0;x<10;x++)assert(E.range({x:0,y:0},{x,y},psystrike));
+assert(!E.range({x:0,y:0},{x:10,y:7},psystrike));
+assert.equal(E.attackTiles({x:0,y:0},{x:8,y:5},psystrike).length,9);
+assert.equal(E.attackTiles({x:0,y:0},{x:1,y:1},psystrike).length,9,'full square includes the caster tile for consistent area previews');
+assert.equal(E.attackTiles({x:0,y:0},{x:9,y:6},psystrike).length,4,'map boundaries clip the square');
+assert.equal(E.criticalTiles({x:0,y:0},{x:8,y:5},psystrike).length,1);
+console.log('Psystrike: unlimited on-board targeting, centered 3x3 footprint, edge clipping and center critical tile: passed.');
