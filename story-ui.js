@@ -40,6 +40,8 @@ const backgroundAssets=Object.freeze({
   "mewtwo-eye": "assets/world/story-v1/mewtwo-eye-v1.png",
   "rescue-dawn": "assets/world/story-v1/mewtwo-rescue-dawn-v1.png",
   "rescue-hands": "assets/world/story-v1/mewtwo-hands-v1.png",
+  "mewtwo-control-neck": "assets/world/story-v1/mewtwo-control-neck-v1.png",
+  "mewtwo-control-break": "assets/world/story-v1/mewtwo-control-neck-break-v1.png",
   "mewtwo-rest": "assets/world/story-v1/mewtwo-rest-v2.png",
   "mewtwo-awake": "assets/world/story-v1/mewtwo-awake-v3.png",
   "collar-release": "assets/world/story-v1/control-device-release-v1.png",
@@ -83,7 +85,7 @@ function renderScene(){if(!current){view='story';render();return;}const {key,spe
  $('#story-choices').innerHTML=choosing?[4,7,1].map(id=>`<button data-story-starter="${id}" aria-label="${species(id).name}와 함께하기"><img src="${img(id)}" alt=""><b>${species(id).name}</b><small>Lv.5</small></button>`).join(''):'';
  document.querySelectorAll('[data-story-starter]').forEach(btn=>btn.onclick=()=>{if(game.starter)return;G.chooseStarter(game,+btn.dataset.storyStarter);savedTeam=game.team;progress().cursors.opening=starterPage+1;saveGame();if(current.options.skipAfterChoice){finish();return;}current.page=starterPage+1;renderScene();});
  if(partnerId===150&&line.shot)partnerArea.innerHTML=`<img src="assets/pokemon/150.png" alt="">`;
- $('.rescue-cinema').innerHTML=rescueMarkup(line);if(partnerId===150&&line.collar)partnerArea.innerHTML+=collarMarkup();if(partnerId===150&&!line.collar)partnerArea.querySelector?.('.control-collar')?.remove();
+ $('.rescue-cinema').innerHTML=rescueMarkup(line);
  if(line.recruitMewtwo){if(!options.replay&&G.claimMewtwo(game))saveGame();$('#story-choices').innerHTML='<div class="mewtwo-recruit-card"><img src="assets/pokemon/150.png" alt=""><b>뮤츠</b><span>Lv.85</span></div>';}else if(['before-80','after-80'].includes(key))$('#story-choices').innerHTML='';
  if(line.sound&&shell.dataset.soundPage!==key+':'+page){shell.dataset.soundPage=key+':'+page;window.GameAudio?.storySound?.(line.sound);}
  const button=$('#story-next');button.hidden=choosing;button.innerHTML=(page===spec.lines.length-1?options.opening?'길을 나선다':'계속':'다음')+' <span aria-hidden="true">▸</span>';button.onclick=next;
@@ -91,7 +93,6 @@ function renderScene(){if(!current){view='story';render();return;}const {key,spe
  if(line.itemGift){const itemKey=typeof line.itemGift==='string'?line.itemGift:'exp-share',count=line.itemCount||2,name=window.ITEM_DATA[itemKey].name;$('#story-choices').innerHTML=`<div class="story-item-gift"><img src="assets/items/${itemKey}.png" alt="${name}"><b>${name} ×${count}</b></div>`;}if(line.unlock)$('#story-choices').innerHTML='<div class="story-unlock-gift">마을 · 스카우트<br>잠금 해제!</div>';
  typeDialogue($('#story-line'),text,choosing?null:button,null,null,{rich:true});
 }
-function collarMarkup(){return `<svg class="control-collar" viewBox="0 0 120 48" aria-hidden="true" shape-rendering="crispEdges"><g class="collar-half"><path d="M60 3H23L5 14v20l18 11h37V32H29l-9-6v-6l9-5h31Z" fill="#333747" stroke="#141a2c" stroke-width="4"/><path d="M58 9H26L12 18v12l14 8h32" fill="none" stroke="#abb7c9" stroke-width="7"/><path d="M30 12h13v9H30z" fill="#ca69e6"/></g><g class="collar-half"><path d="M60 3h37l18 11v20L97 45H60V32h31l9-6v-6l-9-5H60Z" fill="#333747" stroke="#141a2c" stroke-width="4"/><path d="M62 9h32l14 9v12l-14 8H62" fill="none" stroke="#abb7c9" stroke-width="7"/><path d="M77 12h13v9H77z" fill="#ca69e6"/></g><path class="collar-crack" d="m61 0-9 16 14 8-14 10 8 14" fill="none" stroke="#fff9d3" stroke-width="5"/></svg>`;}
 function rescueMarkup(line){
  if(!line.shot)return '';
  const partner=line.rescuePartner?`<img class="rescue-starter" src="${img(finalPartner())}" alt="">`:'';

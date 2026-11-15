@@ -96,7 +96,7 @@ const ninth=fixture({starter:4,owned:[6],team:[6],records:{6:G.freshRecord(6,100
 assert.equal(book.scenes['after-80'].lines.at(-1).clueTone,'mint');assert(book.scenes['after-80'].lines.some(l=>l.shot==='hands'));assert.equal(book.scenes['after-80'].lines[6].shot,'rest');assert.equal(book.scenes['after-80'].lines[9].shot,'awake');assert(book.scenes['before-80'].lines.some(l=>l.backdrop==='mewtwo-eye'));
 console.log('Rescue story: reload recovery, final-starter interpolation, cinematic shot sequence, skip-safe Lv85 reward and mint join announcement: passed.');
 
-assert.equal(book.scenes['after-80'].lines[4].backdrop,'mewtwo-ruins');assert.equal(book.scenes['after-80'].lines[11].backdrop,'rescue-hands');for(const key of ['mewtwo-ruins','mewtwo-eye','rescue-dawn','mewtwo-rest','collar-release','rescue-hands'])assert(fsArt.existsSync(art[key]));
+assert.equal(book.scenes['after-80'].lines[4].backdrop,'mewtwo-control-break');assert.equal(book.scenes['after-80'].lines[11].backdrop,'rescue-hands');for(const key of ['mewtwo-ruins','mewtwo-eye','rescue-dawn','mewtwo-rest','collar-release','rescue-hands'])assert(fsArt.existsSync(art[key]));
 
 assert.equal(book.scenes['after-80'].lines[6].scenePokemon,null);
 assert.equal(book.scenes['after-80'].lines[5].backdrop,'mewtwo-rest');
@@ -114,3 +114,16 @@ console.log('Giovanni dialogue: battle music throughout entrance, sixth send-out
 assert.equal(book.scenes["after-80"].lines[9].backdrop,"mewtwo-awake");
 assert(fsArt.existsSync(art["mewtwo-awake"]));
 assert(!fs.readFileSync("story-ui.js","utf8").includes("rescue-open-eye"));
+
+for(const key of ["mewtwo-control-neck","mewtwo-control-break"])assert(fsArt.existsSync(art[key]));
+assert.equal(book.scenes["after-80"].lines[1].scenePokemon,null);
+assert.equal(book.scenes["after-80"].lines[4].scenePokemon,null);
+assert(!fs.readFileSync("story-ui.js","utf8").includes("function collarMarkup"));
+
+assert(book.scenes['before-80'].lines.every(line=>!line.collar&&!/mewtwo-control|collar-release/.test(line.backdrop||'')));
+assert.equal(book.scenes['before-80'].backdrop,'mewtwo-ruins');
+assert.equal(book.scenes['after-80'].lines[0].shot,'pain');
+assert.equal(book.scenes['after-80'].lines[1].backdrop,'mewtwo-control-neck');
+assert(book.scenes['after-80'].lines[4].text.includes('제어장치를 부숴'));
+assert(!fs.readFileSync('styles.css','utf8').includes('.control-collar'));
+console.log('Mewtwo control device: hidden throughout entry story, revealed after victory, old collar flags/styles removed: passed.');

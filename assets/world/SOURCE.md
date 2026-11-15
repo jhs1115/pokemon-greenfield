@@ -70,3 +70,6 @@ Final rescue closeups: `story-v1/control-device-release-v1.png` and `story-v1/me
 
 
 - 2026-11-15 `story-v1/mewtwo-awake-v3.png`: built-in image_gen edit of `mewtwo-rest-v2.png`. Both eyes fully open with visible whites, purple irises and pupils, same resting pose/environment. Replaces the SVG eye overlay in the awake/reach shots. Exact prompt: `story-v1/mewtwo-awake-v3-prompt.json`.
+
+
+2026-11-15 목 제어장치 최종 교체: `mewtwo-control-neck-v1.png`와 `mewtwo-control-neck-break-v1.png`를 built-in image_gen으로 제작했다. 턱·목·어깨만 잡은 동일 구도에서 기계식 장치와 파괴된 장치를 직접 그린 그림이다. 발견/명령/파괴 컷에 적용하고 기존 스프라이트 위의 SVG 장치는 제거했다. 이전 생성 실패·합성 방식에 대한 기록을 대체한다. 프롬프트는 `assets/world/story-v1/mewtwo-control-neck-prompts.json`에 보관했다.

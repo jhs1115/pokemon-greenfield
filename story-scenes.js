@@ -3144,8 +3144,7 @@
           "text": "고통스러워 보인다.",
           "scenePokemon": 150,
           "rampage": true,
-          "shot": "stand",
-          "collar": true
+          "shot": "stand"
         },
         {
           "speaker": "narrator",
@@ -3167,7 +3166,6 @@
           "backdrop": "mewtwo-ruins",
           "scenePokemon": 150,
           "shot": "stand",
-          "collar": true,
           "rampage": true
         }
       ]
@@ -3183,41 +3181,38 @@
           "text": "뮤츠가 고통스러워하고 있다.",
           "scenePokemon": 150,
           "rampage": true,
-          "collar": true,
           "shot": "pain",
           "sound": "mewtwo-cry"
         },
         {
           "speaker": "narrator",
           "text": "뮤츠 목에 있는 저건...",
-          "scenePokemon": 150,
-          "collar": true,
+          "scenePokemon": null,
+          "backdrop": "mewtwo-control-neck",
           "shot": "collar"
         },
         {
           "speaker": "narrator",
           "text": "뭔가 저것이 뮤츠를 폭주시키는 것 같다!",
-          "scenePokemon": 150,
-          "collar": true,
+          "scenePokemon": null,
+          "backdrop": "mewtwo-control-neck",
           "shot": "collar"
         },
         {
           "speaker": "player",
           "text": "{partnerFinal}! 가라!!!!!!! 저걸 부숴 버려!!!!!!!!!!",
-          "scenePokemon": 150,
-          "collar": true,
+          "scenePokemon": null,
           "shot": "charge",
           "rescuePartner": true
         },
         {
           "speaker": "narrator",
-          "text": "{partnerFinal}이 쓰러지기 직전, 힘을 짜내 목걸이를 부숴 버린다.",
-          "scenePokemon": 150,
+          "text": "{partnerFinal}이 쓰러지기 직전, 힘을 짜내 제어장치를 부숴 버린다.",
+          "scenePokemon": null,
           "shot": "break",
           "rescuePartner": false,
-          "collar": true,
           "sound": "rescue-break",
-          "backdrop": "mewtwo-ruins"
+          "backdrop": "mewtwo-control-break"
         },
         {
           "speaker": "narrator",

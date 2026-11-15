@@ -287,11 +287,9 @@ body[data-view="dialogue"]{background:radial-gradient(ellipse at 50% 0,#e9efe1,#
 .story-cinema[data-shot] .story-backdrop{transition:filter .7s ease,transform 1.4s ease}.story-cinema[data-shot="eye"] .story-backdrop{animation:rescue-eye-zoom 5s ease-out both}
 .story-cinema[data-shot="stand"] .scene-legendary,.story-cinema[data-shot="pain"] .scene-legendary{left:35%;bottom:24%;width:30%;height:54%}
 .story-cinema[data-shot="collar"] .scene-legendary{left:25%;bottom:9%;width:50%;height:83%;filter:drop-shadow(0 0 14px #9763c4)}
-.control-collar{position:absolute;left:43%;top:39%;width:15%;height:5%;display:flex;filter:drop-shadow(0 0 3px #ea8dba)}.control-collar i{display:block;width:50%;height:100%;background:#4c536c;border:3px solid #9aa5b9;box-sizing:border-box}.control-collar i:first-child{border-right-color:#e76593}.control-collar i:last-child{border-left-color:#e76593}
 .story-cinema[data-shot="charge"] .scene-legendary,.story-cinema[data-shot="break"] .scene-legendary{left:37%;bottom:24%;width:32%;height:55%}
 .rescue-starter{position:absolute;width:27%;height:40%;object-fit:contain;image-rendering:pixelated;left:5%;bottom:25%;filter:drop-shadow(0 0 8px #ffe0a7);animation:rescue-lunge .8s cubic-bezier(.4,0,.1,1) both}
 .rescue-rays{position:absolute;inset:0;background:linear-gradient(135deg,transparent 39%,#fff1ad80 49%,#fffdeba8 50%,#fff1ad80 51%,transparent 61%);mix-blend-mode:screen;animation:rescue-release 1.5s ease-out both}
-.story-cinema[data-shot="break"] .control-collar i:first-child{animation:collar-left .9s ease-out both}.story-cinema[data-shot="break"] .control-collar i:last-child{animation:collar-right .9s ease-out both}
 .collar-fragments{position:absolute;left:50%;top:40%;width:1px;height:1px}.collar-fragments i{position:absolute;display:block;width:12px;height:8px;background:#9da9b8;border:2px solid #4c536c;animation:collar-left 1.2s ease-out both}.collar-fragments i:nth-child(2){animation-name:collar-right;animation-delay:.1s}.collar-fragments i:nth-child(3){top:24px;animation-name:collar-right;animation-delay:.2s}.collar-fragments i:nth-child(4){top:-20px;animation-delay:.15s}
 .rescue-hands{position:absolute;width:90%;height:76%;left:5%;top:0;filter:drop-shadow(0 0 12px #d8ffdd66);animation:rescue-hands-meet 1.4s ease-out both;image-rendering:pixelated}
 .story-cinema[data-clue-tone="mint"] .story-clue{color:#159780;text-shadow:0 1px 0 #b1f8dc}.story-cinema[data-shot="join"] #story-line{font-size:clamp(26px,3vw,45px);font-weight:900;text-align:center}.story-cinema[data-shot="join"] .scene-legendary{opacity:0}
@@ -303,22 +301,23 @@ body[data-view="dialogue"]{background:radial-gradient(ellipse at 50% 0,#e9efe1,#
 @keyframes collar-left{to{transform:translate(-100px,-48px) rotate(-130deg);opacity:0}}
 @keyframes collar-right{to{transform:translate(110px,-55px) rotate(150deg);opacity:0}}
 @keyframes rescue-hands-meet{from{opacity:0;transform:translateY(15px) scale(.94)}to{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){.route-mewtwo,.rescue-starter,.rescue-rays,.rescue-hands,.collar-fragments i,.control-collar i,.mewtwo-recruit-card,.story-cinema[data-shot="eye"] .story-backdrop{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.route-mewtwo,.rescue-starter,.rescue-rays,.rescue-hands,.collar-fragments i,.mewtwo-recruit-card,.story-cinema[data-shot="eye"] .story-backdrop{animation:none!important}}
 
 .story-cinema[data-shot="join"] .story-choices{left:50%;right:auto;top:18%;bottom:auto;transform:translateX(-50%);width:auto}
 
 /* Chapter nine: a continuous close-up, release, and quiet recovery. */
 .story-backdrop-layer{position:absolute;inset:0}.story-backdrop-layer>img,.story-backdrop-layer>svg{width:100%;height:100%;object-fit:cover;image-rendering:pixelated}.story-backdrop-layer.arriving{animation:rescue-backdrop-arrive .8s ease both}
 .story-cinema[data-shot="break"] .scene-legendary,.story-cinema[data-shot="collar"] .scene-legendary{left:50%;bottom:13%;width:min(76vh,68vw);height:min(76vh,68vw);transform:translateX(-50%);animation:none;filter:drop-shadow(0 0 20px #b67bdf)}
-.control-collar{left:40%;top:37%;width:21%;height:9%;display:block;overflow:visible;filter:drop-shadow(0 0 6px #e56df0)}
-.collar-crack{opacity:0}.story-cinema[data-shot="break"] .collar-crack{animation:collar-crack-flash .7s ease-out both}.story-cinema[data-shot="break"] .collar-half:first-child{animation:collar-left 1.2s .35s cubic-bezier(.2,.7,.2,1) both;transform-origin:60px 24px}.story-cinema[data-shot="break"] .collar-half:nth-child(2){animation:collar-right 1.2s .35s cubic-bezier(.2,.7,.2,1) both;transform-origin:60px 24px}
 .story-cinema[data-shot="break"] .story-backdrop{animation:rescue-impact-shake .7s .3s ease-out both}.story-cinema[data-shot="break"] .rescue-rays{animation-duration:2s}.story-cinema[data-shot="break"] .collar-fragments{left:50%;top:44%}.story-cinema[data-shot="break"] .collar-fragments i{animation-delay:.4s}
 .rescue-impact{position:absolute;left:50%;top:44%;width:1px;height:1px}.rescue-impact i,.rescue-impact b{display:block;position:absolute;left:-18vmin;top:-18vmin;width:36vmin;height:36vmin;border-radius:50%;animation:rescue-impact-ring 1.4s .25s ease-out both}.rescue-impact i{border:5px solid #fff7bc;box-shadow:0 0 70px 35px #ffe2aaab,inset 0 0 50px #fff0b5}.rescue-impact b{background:#fff9d8;animation-name:rescue-impact-light}
 .rescue-open-eye{position:absolute;inset:0;width:100%;height:100%;animation:rescue-wake 1.4s ease both}.story-cinema[data-backdrop="mewtwo-rest"] .story-scene-shade,.story-cinema[data-backdrop="mewtwo-awake"] .story-scene-shade{background:linear-gradient(0deg,#162c3970,transparent 45%)}
 @keyframes rescue-backdrop-arrive{from{opacity:0}to{opacity:1}}@keyframes collar-crack-flash{0%{opacity:0}35%,70%{opacity:1}100%{opacity:0}}@keyframes rescue-impact-ring{0%{opacity:0;transform:scale(.05)}20%{opacity:1}100%{opacity:0;transform:scale(3)}}@keyframes rescue-impact-light{0%{opacity:0;transform:scale(.1)}15%{opacity:.95;transform:scale(2)}100%{opacity:0;transform:scale(3)}}@keyframes rescue-impact-shake{0%,100%{transform:none}15%{transform:translate(-8px,4px)}30%{transform:translate(7px,-5px)}45%{transform:translate(-5px,3px)}65%{transform:translate(3px,-2px)}}@keyframes rescue-wake{from{opacity:0}to{opacity:1}}
-@media(prefers-reduced-motion:reduce){.story-backdrop-layer.arriving,.rescue-open-eye,.collar-half,.collar-crack,.rescue-impact i,.rescue-impact b,.story-cinema[data-shot="break"] .story-backdrop{animation:none!important}.rescue-impact{display:none}}
+@media(prefers-reduced-motion:reduce){.story-backdrop-layer.arriving,.rescue-open-eye,.rescue-impact i,.rescue-impact b,.story-cinema[data-shot="break"] .story-backdrop{animation:none!important}.rescue-impact{display:none}}
 
 .story-cinema[data-backdrop="mewtwo-rest"] .story-backdrop,.story-cinema[data-backdrop="mewtwo-awake"] .story-backdrop{transform:translateY(-12%) scale(1.06)}
 .story-cinema[data-shot="break"] .scene-legendary{bottom:-7vh;width:min(112vh,94vw);height:min(112vh,94vw)}
 .story-cinema[data-shot="break"] .collar-fragments i{animation-name:rescue-shard-left}.story-cinema[data-shot="break"] .collar-fragments i:nth-child(even){animation-name:rescue-shard-right}
 @keyframes rescue-shard-left{0%{opacity:0}10%{opacity:1}100%{opacity:.8;transform:translate(-180px,125px) rotate(-150deg)}}@keyframes rescue-shard-right{0%{opacity:0}10%{opacity:1}100%{opacity:.8;transform:translate(190px,140px) rotate(160deg)}}
+
+.story-cinema[data-backdrop="mewtwo-control-neck"] .story-backdrop,.story-cinema[data-backdrop="mewtwo-control-break"] .story-backdrop{transform:translateY(-10%) scale(1.04)}
+.story-cinema[data-backdrop="mewtwo-control-break"] .story-backdrop{animation:none}
