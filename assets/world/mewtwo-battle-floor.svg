@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" preserveAspectRatio="none">
+<defs><radialGradient id="floor"><stop stop-color="#535d6c"/><stop offset="1" stop-color="#343e4b"/></radialGradient><pattern id="stone" width="200" height="100" patternUnits="userSpaceOnUse"><path d="M0 0h200v100H0Z M100 0v100" fill="none" stroke="#8792a0" stroke-opacity=".13" stroke-width="2"/><path d="m16 8 40 0m58 83h42" stroke="#a7b0ba" stroke-opacity=".07" stroke-width="3"/></pattern></defs>
+<path fill="url(#floor)" d="M0 0h1000v700H0z"/><path fill="url(#stone)" d="M0 0h1000v700H0z"/>
+<g fill="none" stroke="#a6a3ba" stroke-opacity=".16"><path d="M180 92h640v516H180z" stroke-width="5"/><path d="M196 108h608v484H196z" stroke-width="2"/><circle cx="500" cy="350" r="148" stroke-width="5"/><circle cx="500" cy="350" r="125" stroke-width="2"/><path d="M352 350h296" stroke-width="5"/><circle cx="500" cy="350" r="40" fill="#424b5b" stroke-width="5"/></g>
+<g fill="none" stroke="#202c38" stroke-width="5" stroke-linecap="square"><path d="m0 172 62 18 24 35 58 8 35 44m-93-52-20 30m934 234-65-9-32-43-60-8-23-36m83 44 18-35M208 700l8-66 36-26-9-47m543-561-11 56-37 25 8 39"/></g>
+<g fill="#252f3c" opacity=".45"><path d="m24 37 33-8 13 15-18 14-32-4zM919 627l37-12 22 18-12 24-46-8zM44 617l22 6 5 23-32 7zM924 63l19-11 23 12-4 15-31 4z"/></g>
+</svg>
