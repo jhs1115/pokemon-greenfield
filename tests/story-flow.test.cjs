@@ -138,3 +138,29 @@ assert(book.scenes["before-57"].lines.some(l=>l.speaker==="brock"&&l.text==="봐
 
 const lg=fixture({starter:4,owned:[6],team:[6],records:{6:G.freshRecord(6,100)},tutorial:{done:true},clears:Array.from({length:95},(_,i)=>i<=80?1:0)});lg.c.chapters[90]=require('../late-stages').STORY_STAGES[90];lg.c.stage=90;assert(lg.w.StoryUI.beforeStage(90,()=>{}));assert.equal(lg.el('#story-cinema').dataset.scene,'before-90');lg.el('#story-skip').onclick();assert(lg.c.game.story.seen.includes('league-green-badge'));assert.equal(lg.c.game.gymVisits[90],1);assert(lg.w.StoryUI.beforeStage(90,()=>{}));assert.equal(lg.el('#story-cinema').dataset.scene,'league-retry-90');lg.el('#story-skip').onclick();lg.c.game.clears[94]=1;assert(lg.w.StoryUI.afterBattle(94,()=>{}));lg.el('#story-skip').onclick();assert(lg.c.game.champion);assert.equal(lg.c.game.hallOfFame.team[0].id,6);
 console.log('League story: first long introduction, skip-safe eighth badge, one-line retry, skip-safe championship registration: passed.');
+
+// Background-only shots hide portraits, never the actual speaker label.
+const labels=fixture({starter:4,owned:[6],team:[6],tutorial:{done:true},clears:Array(95).fill(0)});labels.c.chapters[90]=require('../late-stages').STORY_STAGES[90];labels.w.StoryUI.beforeStage(90,()=>{});
+for(const line of book.scenes['before-90'].lines){
+ const expected=line.speakerName&&line.speakerName!=='???'?line.speakerName:(line.speaker==='player'?'나':line.speaker==='news'?'아나운서':line.speaker==='narrator'?'':book.cast[line.speaker]?.name||'등장인물');
+ assert.equal(labels.el('#story-speaker').textContent,expected,line.text);
+ if(line.actor===null)assert(labels.actors.every(a=>a.classList.values.has('offstage')),'background-only portrait remains hidden');
+ labels.el('#story-next').onclick();
+}
+console.log('League background-only shots preserve speaker names, anonymous aliases and blank narration independently of portrait visibility: passed.');
+
+const reunion=fixture({starter:4,owned:[6],team:[6],tutorial:{done:true},clears:Array(95).fill(0)});reunion.c.chapters[90]=require('../late-stages').STORY_STAGES[90];reunion.w.StoryUI.beforeStage(90,()=>{});let inConversation=false;const speakers=new Set();
+for(const line of book.scenes['before-90'].lines){
+ if(line.backdrop==='league-bright-ruins')inConversation=true;if(line.backdrop==='league-exterior')inConversation=false;
+ if(inConversation&&book.cast[line.speaker]){
+  const actor=reunion.actors.find(a=>a.dataset.storyActor===line.speaker);assert(!actor.classList.values.has('offstage'),line.speaker+' portrait visible');assert(actor.classList.values.has('speaking'),line.speaker+' is highlighted');assert.equal(reunion.el('#story-speaker').textContent,book.cast[line.speaker].name);speakers.add(line.speaker);
+ }
+ if(inConversation&&line.speaker==='player'){const listening=reunion.actors.filter(a=>!a.classList.values.has('offstage'));assert.equal(listening.length,1);assert(listening[0].classList.values.has('listening'));assert.equal(reunion.el('#story-speaker').textContent,'나');}
+ reunion.el('#story-next').onclick();
+}
+assert.deepEqual([...speakers].sort(),['blue','brock','erika','misty','sabrina','surge'].sort());
+console.log('Reunion conversation: all five leaders and Blue show their real portrait, correct name and speaking depth; player lines retain a dimmed listening NPC: passed.');
+
+for(const scene of Object.values(book.scenes))for(const line of scene.lines||[]){const name=labels.w.StoryUI.speakerName(line);if(line.speaker==='narrator'&&!line.speakerName)assert.equal(name,'');else {assert(name&&name!=='???');if(line.speaker==='player')assert.equal(name,'나');if(book.cast[line.speaker]&&(!line.speakerName||line.speakerName==='???'))assert.equal(name,book.cast[line.speaker].name);}}
+assert.equal(labels.w.StoryUI.speakerName({speaker:'narrator',speakerName:'주민'}),'주민');
+console.log('Every story line: actual character names even for anonymous/portrait-free shots, protagonist label, named residents and plain narration: passed.');

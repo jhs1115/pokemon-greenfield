@@ -1,0 +1,7 @@
+Pokemon FireRed & LeafGreen (2004) — The Last Battle (VS Rival) / Champion Battle
+Original game music: Nintendo / Creatures / GAME FREAK. Composer: Junichi Masuda.
+Audio source: ENLS Pre-Looped Music Library, FRLG track 70. Game audio, not a newly composed cover.
+Source page: https://enls.eu/prelooped/album/?game=FRLG
+Download: https://enls.eu/prelooped/downloads/FRLG/FRLG%2070%20The%20Last%20Battle%20%28VS%20Rival%29.ogg
+SHA256: 28f0f6ec1af76b625660c48c84ddb72da4e0458a5c333584450eed0a53bffa83
+Assigned only to battle:champion (Green), including the pre-battle dialogue. Ending music is unchanged.

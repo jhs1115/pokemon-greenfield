@@ -43,3 +43,6 @@ Rebuild download assets with `scripts/prepare_audio.py`, `scripts/select_audio.p
 - These are downloaded game audio files, not generated imitations. Playback follows the 4.3-second evolution scene, uses the effects volume/mute settings, and temporarily lowers the existing background music. Closing the completion dialog stops the evolution voice and restores background volume.
 
 - `sfx/ship-horn.wav`: original gentle ferry-horn synthesis created for chapter 3, 2026-11-14. No external recording. Uses existing effects volume/mute controls.
+
+## Green champion battle (replacement)
+`pokemon-frlg-champion.ogg`: FireRed & LeafGreen — The Last Battle (VS Rival), ENLS library track 70. https://enls.eu/prelooped/album/?game=FRLG . Original game audio, Nintendo / Creatures / GAME FREAK. Download and SHA256 in `pokemon-frlg-champion.source.txt`. Replaces the original composition only for Green; ending remains original.

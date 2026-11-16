@@ -3477,163 +3477,137 @@
           "speaker": "surge",
           "text": "hey man~? 엄청난 일을 벌였네?",
           "scenePokemon": null,
-          "backdrop": "league-bright-ruins",
-          "actor": null
+          "backdrop": "league-bright-ruins"
         },
         {
           "speaker": "erika",
           "text": "괜찮으세요?",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "surge",
           "text": "wow girl your boyfriend?",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "erika",
           "text": "경멸.",
           "scenePokemon": null,
-          "thought": true,
-          "actor": null
+          "thought": true
         },
         {
           "speaker": "surge",
           "text": "아니 왜 그래...",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "sabrina",
           "text": "말도 안 되는 일을 해내셨군요.",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "sabrina",
           "text": "정말 감사합니다... 이 관동지방을 구한 것과 마찬가지예요.",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "player",
           "text": "에이 그 정도인가 ㅎㅎ",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "surge",
           "text": "yeah man 입꼬리 승천 bro~",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "erika",
           "text": "마티스를 툭 치자 마티스가 날아간다.",
           "scenePokemon": null,
-          "thought": true,
-          "actor": null
+          "thought": true
         },
         {
           "speaker": "erika",
           "text": "정말 걱정했어요.",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "erika",
           "text": "... 걱정이 무색하게 정말 잘 해내주셨습니다. 저도 감사해요.",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "misty",
           "text": "나도! 걱정 많았는데 정말 고맙다...!",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "player",
           "text": "여러분들...!",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "brock",
           "text": "난 안 고마워! 이거 내가 할 수 있었는데!",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "misty",
           "text": "개팬다.",
           "scenePokemon": null,
-          "thought": true,
-          "actor": null
+          "thought": true
         },
         {
           "speaker": "brock",
           "text": "다시 기절.",
           "scenePokemon": null,
-          "thought": true,
-          "actor": null
+          "thought": true
         },
         {
           "speaker": "blue",
           "text": "관장 여러분들까지... 인기가 많으시네요.",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "blue",
           "text": "좋습니다! 챔피언이 되려면 저를 넘어 보시죠!",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "blue",
           "text": "리그로 오시면 됩니다!",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "narrator",
           "text": "그린을 따라가자, 화려한 리그 건물이 보인다.",
           "scenePokemon": null,
-          "backdrop": "league-exterior",
-          "actor": null
+          "backdrop": "league-exterior"
         },
         {
           "speaker": "blue",
           "text": "전 저 최상층에서 기다리고 있겠습니다!",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "player",
           "text": "여러분들! 전 가보겠습니다!",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "erika",
           "text": "잘 다녀오세요!",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "narrator",
           "text": "모두가 손을 흔들어 준다.",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "narrator",
           "text": "...",
-          "scenePokemon": null,
-          "actor": null
+          "scenePokemon": null
         },
         {
           "speaker": "official",
