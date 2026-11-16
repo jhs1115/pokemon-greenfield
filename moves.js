@@ -1,6 +1,6 @@
 (function(root){
  const definitions={
-  540:{range:99,unlimitedRange:true,impact:'square',size:1,fx:'psystrike'},
+  540:{range:99,unlimitedRange:true,impact:'global-cross',tileLimit:16,fx:'psystrike'},
   157:{range:4,impact:'cross',size:1,fx:'slam'},
   84:{range:3,impact:'cross',size:1,fx:'shock'},
   85:{range:4,impact:'square',size:1,fx:'thunder'},

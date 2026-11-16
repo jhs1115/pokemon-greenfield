@@ -34,10 +34,10 @@ for(const i of [70,71])assert.deepEqual(Array.from(w.STORY_STAGES[i].waves,w=>w.
 const beforeEighth=G.normalize({clears:Array.from({length:70},(_,i)=>i<=65?1:0)});assert.equal(beforeEighth.clears.length,81);assert(G.unlocked(beforeEighth,70));assert(!G.unlocked(beforeEighth,71));assert.equal(G.levelCap(beforeEighth,8),100);G.reward(beforeEighth,70,'eighth-first',()=>1);assert.equal(beforeEighth.clears[70],1);assert(G.unlocked(beforeEighth,71));assert.equal(G.normalize(beforeEighth).clears[70],1);
 console.log('Chapter eight: 2x3 / 2x3 / 2x5 patrols, six-Pokemon competitive revenge, Persian and Lv95 Mewtwo, no-EV defaults, 7-6 unlock and 75-slot save persistence: passed.');
 
-vm.runInContext('stage=80;startBattle();',c);const rampage=vm.runInContext('battle',c),rampageMon=rampage.combat.sim.sides[1].active[0];assert.equal(rampage.foes[0].level,100);assert.deepEqual({...rampageMon.boosts},{atk:1,def:3,spa:1,spd:3,spe:1,accuracy:0,evasion:0});assert(Object.values(rampageMon.set.evs).every(v=>v===0));assert.equal(rampage.foes[0].moves.length,4);assert(rampage.foes[0].moves.every(m=>m.damageClass===3));assert.equal(new Set(rampage.foes[0].moves.map(m=>m.type)).size,4);assert.equal(rampage.encounter.music,'mewtwo');assert.equal(w.STORY_STAGES[80].chapterEnd,true);
+vm.runInContext('stage=80;startBattle();',c);const rampage=vm.runInContext('battle',c),rampageMon=rampage.combat.sim.sides[1].active[0];assert.equal(rampage.foes[0].level,100);assert.deepEqual({...rampageMon.boosts},{atk:1,def:2,spa:1,spd:2,spe:1,accuracy:0,evasion:0});assert(Object.values(rampageMon.set.evs).every(v=>v===0));assert.equal(rampage.foes[0].moves.length,4);assert(rampage.foes[0].moves.every(m=>m.damageClass===3));assert.equal(new Set(rampage.foes[0].moves.map(m=>m.type)).size,4);assert.equal(rampage.encounter.music,'mewtwo');assert.equal(w.STORY_STAGES[80].chapterEnd,true);
 const rescue=G.normalize({owned:[6,9,3],team:[6,9,3],clears:Array.from({length:81},(_,i)=>i<80?1:0)});assert(G.unlocked(rescue,80));assert(!G.claimMewtwo(rescue,()=>0));rescue.clears[80]=1;assert(G.claimMewtwo(rescue,()=>.6));assert.equal(rescue.records[150].level,85);assert.equal(rescue.records[150].nature,G.randomNature(()=>.6));assert.equal(rescue.owned.filter(id=>id===150).length,1);const record=JSON.stringify(rescue.records[150]);assert(!G.claimMewtwo(rescue,()=>0));assert.equal(JSON.stringify(rescue.records[150]),record);const reloaded=G.normalize(JSON.parse(JSON.stringify(rescue)));assert(!G.claimMewtwo(reloaded));assert.equal(reloaded.records[150].level,85);assert.equal(G.scoutChapter(reloaded),10);assert.equal(G.levelCapInfo(reloaded,10).unrestricted,true);assert.equal(G.levelCapInfo(reloaded,12).leagueUnlocked,true);
 const preOwned=G.normalize({owned:[150],team:[150],records:{150:G.freshRecord(150,99,'Jolly',true)},clears:Array(81).fill(1)}),originalRecord=JSON.stringify(preOwned.records[150]);assert(G.claimMewtwo(preOwned));assert.equal(JSON.stringify(preOwned.records[150]),originalRecord);assert.equal(preOwned.owned.length,1);
-console.log('Mewtwo rescue: Lv100 opening +3 defenses and +1 attack/special attack/speed, four special types, zero EVs, gated one-time Lv85 random-nature reward, legacy/duplicate preservation and league cap exemption: passed.');
+console.log('Mewtwo rescue: Lv100 opening +2 defenses and +1 attack/special attack/speed, four special types, zero EVs, gated one-time Lv85 random-nature reward, legacy/duplicate preservation and league cap exemption: passed.');
 
 // Chapter eight patrols must remain distinct across all six trainers, including reserve waves.
 const patrols=Array.from(w.STORY_STAGES.slice(70,73)).flatMap(s=>Array.from(s.waves));
@@ -62,13 +62,14 @@ console.log('Chapter eight: six distinct patrol teams, 22 unique species, four m
 {
 vm.runInContext('stage=80;startBattle();',c);
 let tired=vm.runInContext('battle.combat.sim.sides[1].active[0]',c),bossSim=vm.runInContext('battle.combat.sim',c);
+assert.equal(tired.boosts.def,2);tired.hp=Math.floor(tired.maxhp*.7)+2;bossSim.damage(1,tired);assert.equal(tired.boosts.def,2);bossSim.damage(2,tired);assert.equal(tired.boosts.def,3);assert.equal(tired.boosts.spd,3);assert.equal(tired.boosts.spa,1);
 tired.hp=Math.floor(tired.maxhp*.3)+2;bossSim.damage(1,tired);assert.equal(tired.boosts.def,3);assert(!bossSim.log.some(l=>l.includes('뮤츠가 지쳐보인다!')));
-bossSim.damage(2,tired);assert.deepEqual({...tired.boosts},{atk:0,def:1,spa:0,spd:1,spe:0,accuracy:0,evasion:0});assert.equal(bossSim.log.filter(l=>l.includes('뮤츠가 지쳐보인다!')).length,1);
+bossSim.damage(2,tired);assert.deepEqual({...tired.boosts},{atk:0,def:0,spa:0,spd:0,spe:0,accuracy:0,evasion:0});assert.equal(bossSim.log.filter(l=>l.includes('뮤츠가 지쳐보인다!')).length,1);
 tired.hp=tired.maxhp;tired.boosts.def=3;bossSim.damage(Math.ceil(tired.maxhp*.8),tired);assert.equal(tired.boosts.def,3);assert.equal(bossSim.log.filter(l=>l.includes('뮤츠가 지쳐보인다!')).length,1);
 vm.runInContext('battle.combat.apply(battle.combat.snapshot());',c);assert(vm.runInContext('battle.mewtwoFatigued',c));
 vm.runInContext('stage=80;startBattle();',c);tired=vm.runInContext('battle.combat.sim.sides[1].active[0]',c);bossSim=vm.runInContext('battle.combat.sim',c);bossSim.damage(tired.maxhp,tired);assert(!bossSim.log.some(l=>l.includes('뮤츠가 지쳐보인다!')),'a knockout cannot announce a surviving fatigue phase');
 vm.runInContext('stage=74;startBattle();',c);tired=vm.runInContext('battle.combat.sim.sides[1].active[0]',c);bossSim=vm.runInContext('battle.combat.sim',c);bossSim.damage(Math.floor(tired.maxhp*.8),tired);assert(!bossSim.log.some(l=>l.includes('뮤츠가 지쳐보인다!')));
-console.log('Rampaging Mewtwo: crossing 30% HP immediately sets defenses +1, other ranks 0, announces once, does not retrigger after healing or on KO/other encounters: passed.');
+console.log('Rampaging Mewtwo: crossing 30% HP resets every rank to zero, announces once, does not retrigger after healing or on KO/other encounters: passed.');
 
 }
 

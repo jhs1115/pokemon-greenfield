@@ -115,7 +115,7 @@ root.STORY_STAGES.push({name:'8-5',chapter:8,theme:'city',rocket:true,trainer:tr
 
 /* Reserved slots retain the existing chapter*10 save addresses; not shown on maps. */
 for(let n=6;n<=10;n++)root.STORY_STAGES.push({name:'8-'+n,chapter:8,reserved:true,theme:'city',enemy:[20],levels:[80]});
-root.STORY_STAGES.push({name:'9-1',chapter:9,chapterEnd:true,theme:'city',music:'mewtwo',rescueReward:true,silentRetry:true,enemy:[150],levels:[100],moves:[[540,53,58,396]],abilities:['pressure'],natures:['Timid'],heldItems:['leftovers'],startBoosts:{atk:1,def:3,spa:1,spd:3,spe:1},fatigueThreshold:.3,criticalImmune:true});
+root.STORY_STAGES.push({name:'9-1',chapter:9,chapterEnd:true,theme:'city',music:'mewtwo',rescueReward:true,silentRetry:true,enemy:[150],levels:[100],moves:[[540,53,58,396]],abilities:['pressure'],natures:['Timid'],heldItems:['leftovers'],startBoosts:{atk:1,def:2,spa:1,spd:2,spe:1},defenseThreshold:.7,fatigueThreshold:.3,criticalImmune:true});
 
 if(typeof module==='object'&&module.exports)module.exports={STORY_STAGES:root.STORY_STAGES,ROCKET_AMBUSH:root.ROCKET_AMBUSH};
 })(typeof module==='object'&&module.exports?{...JSON.parse(JSON.stringify(require('./stages.js'))),POKE_DATA:require('./data/reference.json')}:typeof window==='object'?window:{});

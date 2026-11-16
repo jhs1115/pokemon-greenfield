@@ -1151,7 +1151,7 @@
         },
         {
           "speaker": "brock",
-          "text": "아 ㅋㅋ 내가 개바를 수 있는데 그냥 봐드림 ㅋ"
+          "text": "봐줌"
         },
         {
           "speaker": "player",

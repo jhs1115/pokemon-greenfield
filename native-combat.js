@@ -31,16 +31,20 @@ function create(state,data,geometry,moveFor,seed){
  // Encounter-only opening ranks; never applied to players or PvP.
  if(!state.pvp&&state.encounter?.startBoosts){const foe=sim.sides[1].active[0];for(const stat of Object.keys(STATS)){const amount=state.encounter.startBoosts[stat];if(Number.isInteger(amount)&&amount!==0){foe.boosts[stat]=Math.max(-6,Math.min(6,amount));sim.add(amount>0?'-boost':'-unboost',foe,stat,Math.abs(foe.boosts[stat]));}}}
  // The rampaging boss weakens once, immediately after damage crosses its threshold.
- let bossFatigued=false;
+ let bossFatigued=false,bossGuarded=false;
  function checkBossFatigue(){
   if(state.pvp||!state.encounter?.rescueReward||!state.encounter.fatigueThreshold||bossFatigued)return;
-  const foe=sim.sides[1].active[0];if(!foe||foe.baseSpecies.num!==150||foe.hp<=0||foe.hp>foe.maxhp*state.encounter.fatigueThreshold)return;
-  bossFatigued=true;for(const stat of Object.keys(foe.boosts))foe.boosts[stat]=['def','spd'].includes(stat)?1:0;
-  sim.add('-message','뮤츠가 지쳐보인다!');
+  const foe=sim.sides[1].active[0];if(!foe||foe.baseSpecies.num!==150||foe.hp<=0)return;
+  if(foe.hp<=foe.maxhp*state.encounter.fatigueThreshold){
+   bossFatigued=true;bossGuarded=true;for(const stat of Object.keys(foe.boosts))foe.boosts[stat]=0;
+   sim.add('-message','뮤츠가 지쳐보인다!');
+  }else if(!bossGuarded&&foe.hp<=foe.maxhp*(state.encounter.defenseThreshold||.7)){
+   bossGuarded=true;foe.boosts.def=3;foe.boosts.spd=3;sim.add('-message','뮤츠가 방어 태세를 강화했다!');
+  }
  }
  const nativeDamage=sim.damage.bind(sim);sim.damage=(...args)=>{const result=nativeDamage(...args);checkBossFatigue();return result;};
  const switchIn=sim.actions.switchIn.bind(sim.actions);sim.actions.switchIn=(pokemon,pos,sourceEffect,isDrag)=>{const old=pokemon?.side.active[pos],side=pokemon?.side.id==='p1'?0:1,position=side===0?'pos':'enemyPos',other=side===0?state.enemyPos:state.pos,prior=state[position]&&{...state[position]},keepPosition=old?.hp>0&&!isDrag;if(old&&old!==pokemon&&!keepPosition)state[position]=geometry.spawnPosition?geometry.spawnPosition(side,other):{x:side===0?2:7,y:3};const result=switchIn(pokemon,pos,sourceEffect,isDrag);if(!result&&prior)state[position]=prior;return result;};
- function snapshot(){return {bossFatigued,positions:[{...(state.pos||{x:2,y:3})},{...(state.enemyPos||{x:7,y:3})}],field:{weather:sim.field.weather||'',terrain:sim.field.terrain||'',weatherTurns:sim.field.weatherState?.duration||0,terrainTurns:sim.field.terrainState?.duration||0},active:sim.sides.map(s=>s.active[0]?.name),mons:sim.sides.flatMap(s=>s.pokemon.map(p=>({name:p.name,hp:p.hp,maxHP:p.maxhp,status:p.status,item:p.item,speed:p.getActionSpeed(),volatiles:Object.keys(p.volatiles),boosts:{...p.boosts},types:p.getTypes().map(t=>(['Normal','Fighting','Flying','Poison','Ground','Rock','Bug','Ghost','Steel','Fire','Water','Grass','Electric','Psychic','Ice','Dragon','Dark','Fairy'].indexOf(t)+1)),species:p.species.num,moves:p.moveSlots.filter(m=>m.id!=='greenfieldwait').map(m=>({id:Dex.moves.get(m.id).num,pp:m.pp,maxpp:m.maxpp,disabled:m.disabled})),request:p.isActive&&!p.fainted?p.getMoveRequestData():null})))};}
+ function snapshot(){return {bossFatigued,bossGuarded,positions:[{...(state.pos||{x:2,y:3})},{...(state.enemyPos||{x:7,y:3})}],field:{weather:sim.field.weather||'',terrain:sim.field.terrain||'',weatherTurns:sim.field.weatherState?.duration||0,terrainTurns:sim.field.terrainState?.duration||0},active:sim.sides.map(s=>s.active[0]?.name),mons:sim.sides.flatMap(s=>s.pokemon.map(p=>({name:p.name,hp:p.hp,maxHP:p.maxhp,status:p.status,item:p.item,speed:p.getActionSpeed(),volatiles:Object.keys(p.volatiles),boosts:{...p.boosts},types:p.getTypes().map(t=>(['Normal','Fighting','Flying','Poison','Ground','Rock','Bug','Ghost','Steel','Fire','Water','Grass','Electric','Psychic','Ice','Dragon','Dark','Fairy'].indexOf(t)+1)),species:p.species.num,moves:p.moveSlots.filter(m=>m.id!=='greenfieldwait').map(m=>({id:Dex.moves.get(m.id).num,pp:m.pp,maxpp:m.maxpp,disabled:m.disabled})),request:p.isActive&&!p.fainted?p.getMoveRequestData():null})))};}
  function hitFrames(record){const count=Number(record.logs.find(l=>l.startsWith('|-hitcount|'))?.split('|').at(-1))||1;if(count<=1)return [];const frames=[],frame=JSON.parse(JSON.stringify(record.before)),actorSide=record.actor[0];let skipPublic=false;for(let i=0;i<record.logs.length;i++){const log=record.logs[i];if(log.startsWith('|split|')){skipPublic=true;continue;}const parts=log.split('|');if(parts[1]!=='-damage')continue;const name=parts[2]?.match(/: ([pe]\d+)$/)?.[1];if(name&&name[0]!==actorSide){const mon=frame.mons.find(m=>m.name===name);if(mon){mon.hp=Math.max(0,Number(parts[3].split('/')[0].split(' ')[0])||0);frames.push(JSON.parse(JSON.stringify(frame)));}}if(skipPublic){i++;skipPublic=false;}}
   // Substitute hits still animate even when the Pokemon's own HP does not change.
   while(frames.length<count)frames.push(JSON.parse(JSON.stringify(frames.at(-1)||record.before)));return frames.slice(0,count);}

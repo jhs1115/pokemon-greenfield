@@ -59,7 +59,7 @@
   function charge(key='electricity',size=.8){burst(key,a,.02,.33,size);}
   const recipes={
    psystrike(){
-    // Gather at the caster, mark all nine tiles, then drop and shatter psychic crystals.
+    // Gather at the caster, mark the entire cross, then drop and shatter psychic crystals.
     burst('hollow_orb',a,.01,.34,1.25);burst('ring',a,.04,.36,1.8);
     for(let i=0;i<5;i++){const q=phase(t,.01,.32);if(q>=0&&q<=1){const radius=(1-q)*.85,theta=i*Math.PI*2/5+q*4;sprite('pink_orb',spread(a,Math.cos(theta)*radius,Math.sin(theta)*radius),q,.38,0,Math.sin(q*Math.PI));}}
     for(const [i,p]of cells.entries()){

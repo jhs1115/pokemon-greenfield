@@ -133,3 +133,5 @@ assert.equal(book.scenes['after-80'].lines[5].text,'!!!');assert.equal(book.scen
 const blackout=fixture({starter:4,owned:[6],team:[6],tutorial:{done:true},clears:Array(81).fill(1),story:{seen:['opening'],cursors:{'after-80':4}}});
 blackout.w.StoryUI.afterBattle(80,()=>{});blackout.el('#story-next').onclick();assert.equal(blackout.el('#story-cinema').dataset.shot,'burst');assert.equal(blackout.el('#story-line').textContent,'!!!');blackout.el('#story-next').onclick();assert.equal(blackout.el('#story-cinema').dataset.shot,'silence');assert(blackout.el('.story-backdrop').innerHTML.includes('story-black-frame'));blackout.el('#story-next').onclick();assert.equal(blackout.el('#story-cinema').dataset.backdrop,'mewtwo-rest');
 console.log('Rescue climax: destruction -> explosion !!! -> black ... -> resting Mewtwo; explicit dialogue advancement: passed.');
+
+assert(book.scenes["before-57"].lines.some(l=>l.speaker==="brock"&&l.text==="봐줌"));

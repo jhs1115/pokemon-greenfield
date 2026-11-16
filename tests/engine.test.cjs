@@ -69,7 +69,7 @@ for(const raw of Object.values(D.moves)){
  const move={...raw,...(moves[raw.id]||expanded(raw))};
  for(const origin of [{x:0,y:0},{x:4,y:3},{x:9,y:6}])for(let y=0;y<7;y++)for(let x=0;x<10;x++){
   const cells=E.attackTiles(origin,{x,y},move);
-  assert.ok(cells.length<=9,`${raw.key} exceeds nine tiles`);
+  assert.ok(cells.length<=(raw.id===540?16:9),`${raw.key} exceeds its tile limit`);
   assert.equal(new Set(cells.map(p=>`${p.x},${p.y}`)).size,cells.length);
  }
  assert.deepEqual(E.normalizeMove(E.normalizeMove(move)),E.normalizeMove(move),'normalization must be idempotent');
@@ -105,8 +105,10 @@ const psystrike=E.normalizeMove({...D.moves[540],...require('../moves')[540]});
 assert.equal(psystrike.fx,'psystrike');assert.equal(psystrike.unlimitedRange,true);
 for(let y=0;y<7;y++)for(let x=0;x<10;x++)assert(E.range({x:0,y:0},{x,y},psystrike));
 assert(!E.range({x:0,y:0},{x:10,y:7},psystrike));
-assert.equal(E.attackTiles({x:0,y:0},{x:8,y:5},psystrike).length,9);
-assert.equal(E.attackTiles({x:0,y:0},{x:1,y:1},psystrike).length,9,'full square includes the caster tile for consistent area previews');
-assert.equal(E.attackTiles({x:0,y:0},{x:9,y:6},psystrike).length,4,'map boundaries clip the square');
+for(const target of [{x:8,y:5},{x:1,y:1},{x:9,y:6},{x:0,y:0}]){
+ const cells=E.attackTiles({x:0,y:0},target,psystrike);assert.equal(cells.length,16);assert(cells.every(p=>p.x===target.x||p.y===target.y));
+ for(let x=0;x<10;x++)assert(cells.some(p=>p.x===x&&p.y===target.y));
+ for(let y=0;y<7;y++)assert(cells.some(p=>p.x===target.x&&p.y===y));
+}
 assert.equal(E.criticalTiles({x:0,y:0},{x:8,y:5},psystrike).length,1);
-console.log('Psystrike: unlimited on-board targeting, centered 3x3 footprint, edge clipping and center critical tile: passed.');
+console.log('Psystrike: unlimited targeting, full 10-column/7-row cross, 16 unique tiles at center and edges, one critical center: passed.');

@@ -3,7 +3,7 @@ function describeCombat(record,actor,move){
  const add=(text,kind='neutral',side=defaultSide)=>{const key=text+side;if(!seen.has(key)){seen.add(key);notes.push({text,kind,side});}};
  const stats={atk:'공격력',def:'방어력',spa:'특수공격',spd:'특수방어',spe:'스피드',accuracy:'명중률',evasion:'회피율'};
  for(const line of record.logs){const a=line.split('|'),target=a[2]?.match(/: ([pe]\d+)/)?.[1],side=target?.[0]||defaultSide;
-  if(a[1]==='-message'&&a[2]==='뮤츠가 지쳐보인다!')add(a[2],'status','e');
+  if(a[1]==='-message'&&['뮤츠가 지쳐보인다!','뮤츠가 방어 태세를 강화했다!'].includes(a[2]))add(a[2],'status','e');
   if(a[1]==='-supereffective'){const defender=record.before.mons.find(m=>m.name===target);const factor=defender?E.effectiveness(move.type,defender.types,D):2;add(factor>=4?'효과가 매우 굉장했다!':'효과가 굉장했다!','super',side);}
   if(a[1]==='-resisted')add('효과가 별로였다...','resisted',side);
   if(a[1]==='-immune')add('효과가 없다!','immune',side);

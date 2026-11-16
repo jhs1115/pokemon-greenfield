@@ -46,7 +46,7 @@
   return m;
  }
  function normalizeMove(move){
-  if(move.id===540)return {...move,geometryVersion:2,range:99,unlimitedRange:true,impact:'square',size:1,tileLimit:9,mask:null,localMask:null,fx:'psystrike',fxVariant:undefined,geometryLabel:'3×3 · 사거리 제한 없음'};
+  if(move.id===540)return {...move,geometryVersion:2,range:99,unlimitedRange:true,impact:'global-cross',size:1,tileLimit:16,mask:null,localMask:null,fx:'psystrike',fxVariant:undefined,geometryLabel:'전장 끝까지 십자 · 사거리 제한 없음'};
   if(move.geometryVersion===2)return {...move};
   // Footprint cap, distinct from selectable reach. Starter attacks stay compact.
   const m={...move,geometryVersion:2,range:Math.min(5,move.range||0),tileLimit:9};
@@ -73,7 +73,8 @@
   if(!range(origin,target,move))return [];
   if(move.impact==='self')return [{...origin}];
   const tiles=[],seen=new Set(),add=(x,y)=>{const key=x+','+y;if(inside({x,y})&&(move.id===540||move.impact==='burst'||x!==origin.x||y!==origin.y)&&!seen.has(key)){seen.add(key);tiles.push({x,y});}};
-  if(move.localMask){const dx=Math.sign(target.x-origin.x),dy=Math.sign(target.y-origin.y);for(const [depth,offset]of move.localMask)add(origin.x+dx*depth-dy*offset,origin.y+dy*depth+dx*offset);}
+  if(move.impact==='global-cross'){for(let x=0;x<10;x++)add(x,target.y);for(let y=0;y<7;y++)add(target.x,y);}
+  else if(move.localMask){const dx=Math.sign(target.x-origin.x),dy=Math.sign(target.y-origin.y);for(const [depth,offset]of move.localMask)add(origin.x+dx*depth-dy*offset,origin.y+dy*depth+dx*offset);}
   else if(move.mask){for(const [dx,dy]of move.mask)add(target.x+dx,target.y+dy);}
   else if(move.impact==='burst'&&move.tileLimit===5){for(const [x,y]of [[0,0],[0,-1],[1,0],[0,1],[-1,0]])add(origin.x+x,origin.y+y);}
   else if(move.impact==='ring'&&move.tileLimit===5){for(const [x,y]of [[0,0],[0,-2],[2,0],[0,2],[-2,0]])add(target.x+x,target.y+y);}
