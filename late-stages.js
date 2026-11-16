@@ -107,15 +107,26 @@ const revenge={...root.STORY_STAGES[63].waves[2],enemy:[149,131,65,143,130,36],l
 delete revenge.intro;
 root.STORY_STAGES.push({...revenge,name:'8-4',chapter:8,theme:'city',rocket:true,trainer:true,silentRetry:true});
 root.STORY_STAGES.push({name:'8-5',chapter:8,theme:'city',rocket:true,trainer:true,leader:'비주기',gym:'ground',portrait:'giovanni',silentRetry:true,sendOutScene:'mewtwo-sendout',sendOutIndex:5,
- enemy:[53,34,112,115,94,150],levels:[82,83,84,85,86,95],
+ enemy:[53,34,112,115,94,150],levels:[82,83,84,85,86,91],
  moves:[[252,163,400,369],[414,188,58,85],[89,444,224,419],[252,34,389,409],[247,188,411,417],[540,58,396,105]],
  abilities:['technician','sheerforce','rockhead','scrappy','cursedbody','pressure'],
- natures:['Jolly','Modest','Adamant','Adamant','Timid','Timid'],heldItems:['silk-scarf','life-orb','eviolite','leftovers','life-orb','leftovers']
+ natures:['Jolly','Modest','Adamant','Adamant','Timid','Timid'],heldItems:['silk-scarf','life-orb','eviolite','leftovers','life-orb','']
 });
 
 /* Reserved slots retain the existing chapter*10 save addresses; not shown on maps. */
 for(let n=6;n<=10;n++)root.STORY_STAGES.push({name:'8-'+n,chapter:8,reserved:true,theme:'city',enemy:[20],levels:[80]});
-root.STORY_STAGES.push({name:'9-1',chapter:9,chapterEnd:true,theme:'city',music:'mewtwo',rescueReward:true,silentRetry:true,enemy:[150],levels:[100],moves:[[540,53,58,396]],abilities:['pressure'],natures:['Timid'],heldItems:['leftovers'],startBoosts:{atk:1,def:2,spa:1,spd:2,spe:1},defenseThreshold:.7,fatigueThreshold:.3,criticalImmune:true});
+root.STORY_STAGES.push({name:'9-1',chapter:9,chapterEnd:true,theme:'city',music:'mewtwo',rescueReward:true,silentRetry:true,enemy:[150],levels:[100],moves:[[540,53,58,396]],abilities:['pressure'],natures:['Timid'],heldItems:[''],startBoosts:{atk:1,def:2,spa:1,spd:2,spe:1},defenseThreshold:.7,fatigueThreshold:.3,criticalImmune:true});
+
+/* League addresses remain chapter*10; old 81-entry saves extend safely. */
+for(let n=2;n<=10;n++)root.STORY_STAGES.push({name:'9-'+n,chapter:9,reserved:true,theme:'city',enemy:[20],levels:[80]});
+const league=[
+ {trainerName:'칸나',portrait:'lorelei',room:'ice',enemy:[87,91,80,124,137,131],levels:[90,91,91,92,93,94],moves:[[58,57,227,182],[504,333,350,420],[347,503,94,303],[142,58,473,411],[105,58,85,161],[56,573,85,182]],abilities:['thickfat','skilllink','regenerator','dryskin','download','waterabsorb'],natures:['Calm','Jolly','Bold','Timid','Modest','Modest'],heldItems:['leftovers','focus-sash','leftovers','focus-sash','eviolite','sitrus-berry']},
+ {trainerName:'시바',portrait:'bruno',room:'fighting',enemy:[95,57,62,106,107,68],levels:[92,93,93,94,95,96],moves:[[89,157,446,525],[370,369,157,8],[187,409,127,8],[252,370,282,444],[409,183,8,9],[223,444,282,418]],abilities:['sturdy','vitalspirit','waterabsorb','unburden','ironfist','noguard'],natures:['Impish','Jolly','Adamant','Adamant','Adamant','Adamant'],heldItems:['eviolite','choice-scarf','sitrus-berry','normal-gem','assault-vest','lum-berry']},
+ {trainerName:'국화',portrait:'agatha',room:'ghost',enemy:[42,24,93,45,92,94],levels:[94,95,95,96,97,98],moves:[[413,355,92,269],[489,398,89,389],[247,188,95,194],[202,188,79,235],[95,247,188,109],[247,188,411,194]],abilities:['infiltrator','intimidate','levitate','effectspore','levitate','cursedbody'],natures:['Jolly','Adamant','Timid','Bold','Timid','Timid'],heldItems:['eviolite','black-sludge','eviolite','black-sludge','focus-sash','life-orb']},
+ {trainerName:'목호',portrait:'lance',room:'dragon',enemy:[130,142,148,6,141,149],levels:[96,96,97,98,98,99],moves:[[349,127,89,423],[444,89,332,269],[349,401,245,156],[53,403,411,355],[127,444,453,14],[349,337,245,89]],abilities:['intimidate','rockhead','shedskin','blaze','swiftswim','multiscale'],natures:['Jolly','Jolly','Adamant','Timid','Adamant','Adamant'],heldItems:['sitrus-berry','focus-sash','eviolite','heavy-duty-boots','life-orb','lum-berry']},
+ {trainerName:'그린',portrait:'blue',room:'champion',champion:true,enemy:[18,65,112,103,130,6],levels:[100,100,100,100,100,100],moves:[[413,216,369,355],[94,411,247,417],[89,444,224,446],[94,437,202,79],[349,127,89,423],[53,403,411,355]],abilities:['keeneye','magicguard','rockhead','harvest','intimidate','blaze'],natures:['Jolly','Timid','Adamant','Modest','Jolly','Timid'],heldItems:['choice-band','focus-sash','eviolite','sitrus-berry','lum-berry','heavy-duty-boots']}
+];
+league.forEach((team,i)=>root.STORY_STAGES.push({...team,name:'10-'+(i+1),chapter:10,league:true,trainer:true,theme:'league-'+team.room,music:team.champion?'champion':'league',chapterEnd:i===4}));
 
 if(typeof module==='object'&&module.exports)module.exports={STORY_STAGES:root.STORY_STAGES,ROCKET_AMBUSH:root.ROCKET_AMBUSH};
 })(typeof module==='object'&&module.exports?{...JSON.parse(JSON.stringify(require('./stages.js'))),POKE_DATA:require('./data/reference.json')}:typeof window==='object'?window:{});

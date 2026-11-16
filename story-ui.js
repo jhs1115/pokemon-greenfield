@@ -14,7 +14,7 @@ function progress(){
 }
 function has(key){return progress().seen.includes(key);}
 function open(key,spec,done,options={}){const state=progress();current={key,spec,done,options,page:options.repeat||options.replay?0:Math.min(state.cursors[key]||0,spec.lines.length-1),lastNpc:spec.npc||null};view='dialogue';render();return true;}
-function finish(){const active=current;if(!active)return;if(active.key==='after-80'&&!active.options.replay)G.claimMewtwo(game);if(!active.options.replay){const state=progress();if(!state.seen.includes(active.key))state.seen.push(active.key);delete state.cursors[active.key];saveGame();}current=null;active.done();}
+function finish(){const active=current;if(!active)return;if(active.key==='after-80'&&!active.options.replay)G.claimMewtwo(game);if(active.key==='after-94'&&!active.options.replay)G.claimChampionship(game);if(active.key==='before-90'&&!active.options.replay&&!has('league-green-badge'))progress().seen.push('league-green-badge');if(!active.options.replay){const state=progress();if(!state.seen.includes(active.key))state.seen.push(active.key);delete state.cursors[active.key];saveGame();}current=null;active.done();}
 function opening(replay=false){if(current&&view==='dialogue')return renderScene();const spec=book.scenes.opening,returnChapter=mapChapter,returnStage=selectedStage;
  open('opening',spec,()=>{if(!replay){const first=!game.tutorial.done;G.completeTutorial(game);if(first)progress().scoutGiftAvailable=false;saveGame();}mapChapter=replay?returnChapter:0;selectedStage=replay?returnStage:0;view='story';render();},{opening:true,replay});
  if(!game.starter&&!replay){current.page=Math.min(current.page,starterPage);renderScene();}
@@ -23,6 +23,22 @@ function opening(replay=false){if(current&&view==='dialogue')return renderScene(
 function skip(){if(!current)return;if(current.options.opening&&!game.starter){current.page=starterPage;current.options.skipAfterChoice=true;renderScene();return;}finish();}
 function next(){if(!current)return;if(current.page>=current.spec.lines.length-1){finish();return;}current.page++;if(!current.options.replay&&!current.options.repeat){progress().cursors[current.key]=current.page;saveGame();}renderScene();}
 const backgroundAssets=Object.freeze({
+  "league-exterior": "assets/world/league/league-exterior-v1.png",
+  "league-lobby": "assets/world/league/league-lobby-v1.png",
+  "league-ice": "assets/world/league/league-ice-v1.png",
+  "league-fighting": "assets/world/league/league-fighting-v1.png",
+  "league-ghost": "assets/world/league/league-ghost-v1.png",
+  "league-dragon": "assets/world/league/league-dragon-v1.png",
+  "league-champion": "assets/world/league/league-champion-v1.png",
+  "league-confrontation": "assets/world/league/league-confrontation-v2.png",
+  "league-intercept": "assets/world/league/league-intercept-v2.png",
+  "league-arrest": "assets/world/league/league-arrest-v1.png",
+  "league-reunion": "assets/world/league/league-reunion-v2.png",
+  "league-bright-ruins": "assets/world/league/league-bright-ruins-v2.png",
+  "league-blue-portrait": "assets/world/league/league-blue-portrait-v1.png",
+  "league-applause": "assets/world/league/league-applause-v2.png",
+  "league-hall-of-fame": "assets/world/league/league-hall-of-fame-v1.png",
+  "league-ending": "assets/world/league/league-ending-v2.png",
   "saffron-city": "assets/world/routes/chapter-6-v5.png",
   "silph-alert": "assets/world/story-v1/silph-exterior-v1.png",
   "silph-office": "assets/world/story-v1/silph-office-v1.png",
@@ -86,7 +102,9 @@ function renderScene(){if(!current){view='story';render();return;}const {key,spe
  document.querySelectorAll('[data-story-starter]').forEach(btn=>btn.onclick=()=>{if(game.starter)return;G.chooseStarter(game,+btn.dataset.storyStarter);savedTeam=game.team;progress().cursors.opening=starterPage+1;saveGame();if(current.options.skipAfterChoice){finish();return;}current.page=starterPage+1;renderScene();});
  if(partnerId===150&&line.shot)partnerArea.innerHTML=`<img src="assets/pokemon/150.png" alt="">`;
  $('.rescue-cinema').innerHTML=rescueMarkup(line);
- if(line.recruitMewtwo){if(!options.replay&&G.claimMewtwo(game))saveGame();$('#story-choices').innerHTML='<div class="mewtwo-recruit-card"><img src="assets/pokemon/150.png" alt=""><b>뮤츠</b><span>Lv.85</span></div>';}else if(['before-80','after-80'].includes(key))$('#story-choices').innerHTML='';
+ if(line.badgeGift&&!options.replay&&!has('league-green-badge')){progress().seen.push('league-green-badge');saveGame();}
+ if(line.hallRegistration){if(!options.replay&&G.claimChampionship(game))saveGame();$('#story-choices').innerHTML='<div class="hall-party">'+(game.hallOfFame?.team||[]).map(p=>`<img src="${img(p.id,p.shiny)}" alt="${species(p.id).name}">`).join('')+'</div>';}
+ if(line.recruitMewtwo){if(!options.replay&&G.claimMewtwo(game))saveGame();$('#story-choices').innerHTML='<div class="mewtwo-recruit-card"><img src="assets/pokemon/150.png" alt=""><b>뮤츠</b><span>Lv.85</span></div>';}else if(!line.hallRegistration&&['before-80','after-80'].includes(key))$('#story-choices').innerHTML='';
  if(line.sound&&shell.dataset.soundPage!==key+':'+page){shell.dataset.soundPage=key+':'+page;window.GameAudio?.storySound?.(line.sound);}
  const button=$('#story-next');button.hidden=choosing;button.innerHTML=(page===spec.lines.length-1?options.opening?'길을 나선다':'계속':'다음')+' <span aria-hidden="true">▸</span>';button.onclick=next;
  $('.story-dialogue').onclick=e=>{if(e.target.closest('button'))return;activeDialogue?.advance();};
@@ -104,6 +122,11 @@ function rescueMarkup(line){
  return partner+rays+fragments+hands;
 }
 function beforeStage(index,done){const c=chapters[index],key='before-'+index;
+ if(c.league){
+  if(index===94&&game.clears[index]>0&&!game.champion)return open('after-94',book.scenes['after-94'],()=>{view='story';render();});
+  const repeat=has(key)||(game.gymVisits[index]||0)>0||game.clears[index]>0;
+  return open(repeat?'league-retry-'+index:key,book.scenes[repeat?'league-retry-'+index:key],()=>{game.gymVisits[index]=(game.gymVisits[index]||0)+1;saveGame();startBattle();},{repeat});
+ }
  if(c.rescueReward&&game.clears[index]>0&&!has('mewtwo-rescue-reward'))return open('after-80',book.scenes['after-80'],()=>{view='story';render();});
  if(c.silentRetry){if(has(key)||(c.leader&&game.gymVisits[index])){startBattle();return true;}if(book.scenes[key])return open(key,book.scenes[key],()=>{if(c.leader){game.gymVisits[index]=(game.gymVisits[index]||0)+1;saveGame();}startBattle();});}
  if(c.leader){const actor=gymKeys[c.leader],repeat=(game.gymVisits[index]||game.clears[index]||0)>0;const lines=repeat?[{speaker:actor,text:''}]:book.gymLines[actor].map(([speaker,text],i)=>({speaker,text,thought:actor==='misty'&&i===1||!!book.gymThoughts?.[actor]?.includes(i)}));

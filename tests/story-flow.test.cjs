@@ -135,3 +135,6 @@ blackout.w.StoryUI.afterBattle(80,()=>{});blackout.el('#story-next').onclick();a
 console.log('Rescue climax: destruction -> explosion !!! -> black ... -> resting Mewtwo; explicit dialogue advancement: passed.');
 
 assert(book.scenes["before-57"].lines.some(l=>l.speaker==="brock"&&l.text==="봐줌"));
+
+const lg=fixture({starter:4,owned:[6],team:[6],records:{6:G.freshRecord(6,100)},tutorial:{done:true},clears:Array.from({length:95},(_,i)=>i<=80?1:0)});lg.c.chapters[90]=require('../late-stages').STORY_STAGES[90];lg.c.stage=90;assert(lg.w.StoryUI.beforeStage(90,()=>{}));assert.equal(lg.el('#story-cinema').dataset.scene,'before-90');lg.el('#story-skip').onclick();assert(lg.c.game.story.seen.includes('league-green-badge'));assert.equal(lg.c.game.gymVisits[90],1);assert(lg.w.StoryUI.beforeStage(90,()=>{}));assert.equal(lg.el('#story-cinema').dataset.scene,'league-retry-90');lg.el('#story-skip').onclick();lg.c.game.clears[94]=1;assert(lg.w.StoryUI.afterBattle(94,()=>{}));lg.el('#story-skip').onclick();assert(lg.c.game.champion);assert.equal(lg.c.game.hallOfFame.team[0].id,6);
+console.log('League story: first long introduction, skip-safe eighth badge, one-line retry, skip-safe championship registration: passed.');

@@ -1,4 +1,4 @@
-/* User-authored chapters 1–5. Brackets are red clues; thought lines are gray. */
+/* User-authored campaign dialogue and cinematic stage directions. */
 (function(root){root.KANTO_STORY={
   "scenes": {
     "opening": {
@@ -3287,6 +3287,925 @@
           "backdrop": "rescue-dawn"
         }
       ]
+    },
+    "before-90": {
+      "title": "마지막 배지를 향해",
+      "backdrop": "viridian-ruins",
+      "npc": "giovanni",
+      "lines": [
+        {
+          "speaker": "giovanni",
+          "text": "급한 듯 달려온다.",
+          "scenePokemon": null,
+          "thought": true
+        },
+        {
+          "speaker": "giovanni",
+          "text": "어... 어떻게...",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "giovanni",
+          "text": "뮤츠! 뮤츠는 어디 있나!",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "player",
+          "text": "내 편에 선 뮤츠를 보여준다.",
+          "scenePokemon": 150,
+          "thought": true
+        },
+        {
+          "speaker": "giovanni",
+          "text": "... 말도... 말도 안 된다!!!!",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "giovanni",
+          "text": "이 몸의 계획을 막다니!!!",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "분노한 비주기가 주먹을 휘두른다.",
+          "scenePokemon": null,
+          "backdrop": "league-confrontation",
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "누군가 비주기의 팔을 붙잡았다.",
+          "scenePokemon": null,
+          "backdrop": "league-intercept",
+          "actor": null
+        },
+        {
+          "speaker": "blue",
+          "text": "거기까지.",
+          "scenePokemon": null,
+          "actor": null,
+          "speakerName": "???"
+        },
+        {
+          "speaker": "giovanni",
+          "text": "뭐냐!? 넌 또 뭐냐!?",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "blue",
+          "text": "리그에서 나왔습니다.",
+          "scenePokemon": null,
+          "actor": null,
+          "speakerName": "???"
+        },
+        {
+          "speaker": "giovanni",
+          "text": "잠시만... 너... 그 챔피언이지?!",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "blue",
+          "text": "네 맞습니다.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "giovanni",
+          "text": "그린 이 자식이!!! 네놈마저도 나를!!!",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "리그 관계자들이 비주기를 붙잡았다.",
+          "scenePokemon": null,
+          "backdrop": "league-arrest",
+          "actor": null
+        },
+        {
+          "speaker": "giovanni",
+          "text": "혼이 나간 얼굴로 아무 말도 하지 않는다.",
+          "scenePokemon": null,
+          "thought": true,
+          "actor": null
+        },
+        {
+          "speaker": "giovanni",
+          "text": "... 이거라도 가져가.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "giovanni",
+          "text": "뭔가를 던진다.",
+          "scenePokemon": null,
+          "thought": true,
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "그린뱃지다!",
+          "scenePokemon": null,
+          "actor": null,
+          "badgeGift": true
+        },
+        {
+          "speaker": "player",
+          "text": "관장이 맞긴 하구나...",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "blue",
+          "text": "이쪽을 바라본다.",
+          "scenePokemon": null,
+          "thought": true,
+          "backdrop": "viridian-ruins"
+        },
+        {
+          "speaker": "blue",
+          "text": "정말 감사합니다.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "blue",
+          "text": "리그를 대표하여 감사를 전하겠습니다.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "player",
+          "text": "에이 뭘요 ㅋ",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "blue",
+          "text": "표정이 살짝 일그러졌다 풀렸다.",
+          "scenePokemon": null,
+          "thought": true
+        },
+        {
+          "speaker": "blue",
+          "text": "저는 이 관동지방의 리그 챔피언 그린입니다.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "blue",
+          "text": "저를 꺾으시고 챔피언이 되는 게 목표실 텐데,",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "blue",
+          "text": "그리 쉽진 않을 겁니다.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "misty",
+          "text": "야!!! 괜찮아!?!?",
+          "scenePokemon": null,
+          "backdrop": "league-reunion",
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "멀리서 이슬이 웅이를 안고 달려온다.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "surge",
+          "text": "hey man~? 엄청난 일을 벌였네?",
+          "scenePokemon": null,
+          "backdrop": "league-bright-ruins",
+          "actor": null
+        },
+        {
+          "speaker": "erika",
+          "text": "괜찮으세요?",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "surge",
+          "text": "wow girl your boyfriend?",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "erika",
+          "text": "경멸.",
+          "scenePokemon": null,
+          "thought": true,
+          "actor": null
+        },
+        {
+          "speaker": "surge",
+          "text": "아니 왜 그래...",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "sabrina",
+          "text": "말도 안 되는 일을 해내셨군요.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "sabrina",
+          "text": "정말 감사합니다... 이 관동지방을 구한 것과 마찬가지예요.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "에이 그 정도인가 ㅎㅎ",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "surge",
+          "text": "yeah man 입꼬리 승천 bro~",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "erika",
+          "text": "마티스를 툭 치자 마티스가 날아간다.",
+          "scenePokemon": null,
+          "thought": true,
+          "actor": null
+        },
+        {
+          "speaker": "erika",
+          "text": "정말 걱정했어요.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "erika",
+          "text": "... 걱정이 무색하게 정말 잘 해내주셨습니다. 저도 감사해요.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "misty",
+          "text": "나도! 걱정 많았는데 정말 고맙다...!",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "여러분들...!",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "brock",
+          "text": "난 안 고마워! 이거 내가 할 수 있었는데!",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "misty",
+          "text": "개팬다.",
+          "scenePokemon": null,
+          "thought": true,
+          "actor": null
+        },
+        {
+          "speaker": "brock",
+          "text": "다시 기절.",
+          "scenePokemon": null,
+          "thought": true,
+          "actor": null
+        },
+        {
+          "speaker": "blue",
+          "text": "관장 여러분들까지... 인기가 많으시네요.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "blue",
+          "text": "좋습니다! 챔피언이 되려면 저를 넘어 보시죠!",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "blue",
+          "text": "리그로 오시면 됩니다!",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "그린을 따라가자, 화려한 리그 건물이 보인다.",
+          "scenePokemon": null,
+          "backdrop": "league-exterior",
+          "actor": null
+        },
+        {
+          "speaker": "blue",
+          "text": "전 저 최상층에서 기다리고 있겠습니다!",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "여러분들! 전 가보겠습니다!",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "erika",
+          "text": "잘 다녀오세요!",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "모두가 손을 흔들어 준다.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "...",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "official",
+          "text": "배지 8개 있으시고~ 트레이너, 네 좋습니다. 들어가세요!",
+          "scenePokemon": null,
+          "backdrop": "league-lobby",
+          "actor": null
+        },
+        {
+          "speaker": "official",
+          "text": "건투를 빕니다!",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "문 안으로 들어간다.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "lorelei",
+          "text": "좋아~ 드디어 왔네~",
+          "scenePokemon": null,
+          "backdrop": "league-ice"
+        },
+        {
+          "speaker": "lorelei",
+          "text": "나는 사천왕 칸나. 기다리는 동안 허리 부러지는 줄 알았어~",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "lorelei",
+          "text": "한번 차가운 내 포켓몬들을 녹여 봐~",
+          "scenePokemon": null
+        }
+      ],
+      "music": "story-league"
+    },
+    "after-90": {
+      "title": "얼음의 방",
+      "backdrop": "league-ice",
+      "npc": "lorelei",
+      "lines": [
+        {
+          "speaker": "lorelei",
+          "text": "와... 너 정말 강하다...",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "lorelei",
+          "text": "차가운 이곳에 열기가 솟아나는 게 보이네.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "lorelei",
+          "text": "좋아! 다음으로 넘어가도 돼~",
+          "scenePokemon": null
+        }
+      ],
+      "music": "battle:league"
+    },
+    "before-91": {
+      "title": "격투의 방",
+      "backdrop": "league-fighting",
+      "npc": "bruno",
+      "lines": [
+        {
+          "speaker": "bruno",
+          "text": "왔군!",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "bruno",
+          "text": "나는 사천왕 시바!",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "player",
+          "text": "욕한 거예요?",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "bruno",
+          "text": "이름이 시바다!",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "player",
+          "text": "아",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "bruno",
+          "text": "내 격투 포켓몬들로 짓눌러 주지. 와라!",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "player",
+          "text": "알았어 시바!",
+          "scenePokemon": null
+        }
+      ],
+      "music": "battle:league"
+    },
+    "after-91": {
+      "title": "격투의 방",
+      "backdrop": "league-fighting",
+      "npc": "bruno",
+      "lines": [
+        {
+          "speaker": "bruno",
+          "text": "말도 안 돼...",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "bruno",
+          "text": "강력하군!",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "player",
+          "text": "좋은 승부였습니다!",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "bruno",
+          "text": "좋은 태도다! 앞으로 멋진 승부 기대하겠다!",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "bruno",
+          "text": "다음으로 나아가거라!",
+          "scenePokemon": null
+        }
+      ],
+      "music": "battle:league"
+    },
+    "before-92": {
+      "title": "고스트의 방",
+      "backdrop": "league-ghost",
+      "npc": "agatha",
+      "lines": [
+        {
+          "speaker": "narrator",
+          "text": "음산한 분위기가 풍긴다.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "player",
+          "text": "사천왕님은 어디...",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "agatha",
+          "text": "여기란다...",
+          "scenePokemon": null,
+          "speakerName": "???"
+        },
+        {
+          "speaker": "player",
+          "text": "으악!!!!!",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "agatha",
+          "text": "호호호! 역시 트레이너 놀리기가 제일 재밌구나.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "agatha",
+          "text": "난 사천왕 국화라고 한단다. 오컬트를 아주 사랑하는 할머니지.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "agatha",
+          "text": "오싹오싹하게 만들어 줄게. 준비하거라.",
+          "scenePokemon": null
+        }
+      ],
+      "music": "battle:league"
+    },
+    "after-92": {
+      "title": "고스트의 방",
+      "backdrop": "league-ghost",
+      "npc": "agatha",
+      "lines": [
+        {
+          "speaker": "agatha",
+          "text": "호호! 역시 재능이 넘쳐나는구나.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "agatha",
+          "text": "좋아! 다음으로 넘어가도 된단다.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "agatha",
+          "text": "그전에 혹시 이곳의 괴담 아나...?",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "player",
+          "text": "네 압니다.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "agatha",
+          "text": "어?",
+          "scenePokemon": null
+        }
+      ],
+      "music": "battle:league"
+    },
+    "before-93": {
+      "title": "용의 방",
+      "backdrop": "league-dragon",
+      "npc": "lance",
+      "lines": [
+        {
+          "speaker": "lance",
+          "text": "... 뜨거운 함성이 들리는군...",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "player",
+          "text": "주위를 둘러본다.",
+          "scenePokemon": null,
+          "thought": true
+        },
+        {
+          "speaker": "player",
+          "text": "... 아무도 없는데?",
+          "scenePokemon": null,
+          "thought": true
+        },
+        {
+          "speaker": "lance",
+          "text": "방금 아무도 없다고 생각했나?",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "player",
+          "text": "어케 아셨어요?",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "lance",
+          "text": "... 이 뜨거운 함성은 내 마음이 외치는 전투의 함성이다.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "player",
+          "text": "아니 어케 알았냐고요.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "lance",
+          "text": "이 뜨거운 내 가슴이 진정되지 않는구나!",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "lance",
+          "text": "오거라! 전투의 환호성이여!!!",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "player",
+          "text": "... 예 갈게요.",
+          "scenePokemon": null
+        }
+      ],
+      "music": "battle:league"
+    },
+    "after-93": {
+      "title": "챔피언을 향해",
+      "backdrop": "league-dragon",
+      "npc": "lance",
+      "lines": [
+        {
+          "speaker": "lance",
+          "text": "좋다!!! 좋아!!! 아주 엄청난 열기였어!!!",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "lance",
+          "text": "... 아 졌네.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "lance",
+          "text": "개빡치네.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "player",
+          "text": "...?",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "lance",
+          "text": "다음은 네가 그토록 고대하던 챔피언이다.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "lance",
+          "text": "이 여정의 마지막이 될 거다.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "lance",
+          "text": "각오는 되었나?",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "player",
+          "text": "넵! 됐습니다!",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "lance",
+          "text": "내가 안 됐는데?",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "player",
+          "text": "?",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "player",
+          "text": "그냥 갔다.",
+          "scenePokemon": null,
+          "thought": true
+        },
+        {
+          "speaker": "lance",
+          "text": "아오 내가 다 긴장되네.",
+          "scenePokemon": null
+        }
+      ],
+      "music": "battle:league"
+    },
+    "before-94": {
+      "title": "최정상",
+      "backdrop": "league-champion",
+      "npc": "blue",
+      "lines": [
+        {
+          "speaker": "blue",
+          "text": "... 드디어 오셨군요.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "blue",
+          "text": "생각보단 훨씬 빨리 오셨네요.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "blue",
+          "text": "좋습니다.",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "blue",
+          "text": "...",
+          "scenePokemon": null,
+          "backdrop": "league-blue-portrait",
+          "actor": null
+        },
+        {
+          "speaker": "blue",
+          "text": "저는 챔피언 그린이라고 합니다.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "blue",
+          "text": "당신의 도전을 받아드립니다.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "blue",
+          "text": "들어오시죠!",
+          "scenePokemon": null,
+          "actor": null
+        }
+      ],
+      "music": "battle:champion"
+    },
+    "after-94": {
+      "title": "새로운 챔피언",
+      "backdrop": "league-applause",
+      "npc": null,
+      "lines": [
+        {
+          "speaker": "blue",
+          "text": "박수를 친다.",
+          "scenePokemon": null,
+          "thought": true,
+          "actor": null
+        },
+        {
+          "speaker": "blue",
+          "text": "정말 명경기였습니다.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "blue",
+          "text": "당신과 포켓몬의 그 유대.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "blue",
+          "text": "정말 멋있네요...",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "blue",
+          "text": "당신은 이제 이 관동지방의 챔피언입니다!",
+          "scenePokemon": null,
+          "backdrop": "league-champion"
+        },
+        {
+          "speaker": "blue",
+          "text": "명예의 전당으로 가시죠!",
+          "scenePokemon": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "그린을 따라가자, 명예의 전당이 보인다.",
+          "scenePokemon": null,
+          "backdrop": "league-hall-of-fame",
+          "actor": null
+        },
+        {
+          "speaker": "blue",
+          "text": "여기다가 등록하시면 됩니다.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "드디어...",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "전당에 등록한다.",
+          "scenePokemon": null,
+          "thought": true,
+          "actor": null,
+          "hallRegistration": true,
+          "shot": "hall-registration"
+        },
+        {
+          "speaker": "blue",
+          "text": "축하합니다. 뉴 챔피언.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "player",
+          "text": "... 감사합니다!!",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "오박사가 들어온다.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "oak",
+          "text": "챔피언이 되었구나.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "oak",
+          "text": "모든 관장들이 너에게 축하한다는 메시지를 보냈단다.",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "oak",
+          "text": "관동지방 최강의 트레이너! 축하한단다!",
+          "scenePokemon": null,
+          "actor": null
+        },
+        {
+          "speaker": "narrator",
+          "text": "— THE END —",
+          "scenePokemon": null,
+          "backdrop": "league-ending",
+          "actor": null,
+          "shot": "ending"
+        }
+      ],
+      "music": "ending"
+    },
+    "league-retry-90": {
+      "title": "마지막 배지를 향해",
+      "backdrop": "viridian-ruins",
+      "npc": "lorelei",
+      "lines": [
+        {
+          "speaker": "lorelei",
+          "text": "한 번 더? 이번엔 제대로 얼려 줄게~",
+          "scenePokemon": null
+        }
+      ],
+      "music": "story-league"
+    },
+    "league-retry-91": {
+      "title": "격투의 방",
+      "backdrop": "league-fighting",
+      "npc": "bruno",
+      "lines": [
+        {
+          "speaker": "bruno",
+          "text": "좋다! 다시 오거라!",
+          "scenePokemon": null
+        }
+      ],
+      "music": "battle:league"
+    },
+    "league-retry-92": {
+      "title": "고스트의 방",
+      "backdrop": "league-ghost",
+      "npc": "agatha",
+      "lines": [
+        {
+          "speaker": "agatha",
+          "text": "괴담이 궁금해서 왔구나! ... 아니라고?",
+          "scenePokemon": null
+        }
+      ],
+      "music": "battle:league"
+    },
+    "league-retry-93": {
+      "title": "용의 방",
+      "backdrop": "league-dragon",
+      "npc": "lance",
+      "lines": [
+        {
+          "speaker": "lance",
+          "text": "뜨거운 함성을 다시 느껴 보자꾸나!",
+          "scenePokemon": null
+        }
+      ],
+      "music": "battle:league"
+    },
+    "league-retry-94": {
+      "title": "최정상",
+      "backdrop": "league-champion",
+      "npc": "blue",
+      "lines": [
+        {
+          "speaker": "blue",
+          "text": "다시 도전하시겠습니까? 좋습니다. 당신의 도전을 받아드립니다.",
+          "scenePokemon": null
+        }
+      ],
+      "music": "battle:champion"
     }
   },
   "gymLines": {
@@ -3503,6 +4422,30 @@
     "giovanni": {
       "name": "비주기",
       "src": "giovanni.png"
+    },
+    "blue": {
+      "name": "그린",
+      "src": "blue.png"
+    },
+    "lorelei": {
+      "name": "칸나",
+      "src": "lorelei.png"
+    },
+    "bruno": {
+      "name": "시바",
+      "src": "bruno.png"
+    },
+    "agatha": {
+      "name": "국화",
+      "src": "agatha.png"
+    },
+    "lance": {
+      "name": "목호",
+      "src": "lance.png"
+    },
+    "official": {
+      "name": "리그 관계자",
+      "src": "professor_oak.png"
     }
   },
   "gymThoughts": {

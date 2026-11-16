@@ -73,3 +73,9 @@ Final rescue closeups: `story-v1/control-device-release-v1.png` and `story-v1/me
 
 
 2026-11-15 목 제어장치 최종 교체: `mewtwo-control-neck-v1.png`와 `mewtwo-control-neck-break-v1.png`를 built-in image_gen으로 제작했다. 턱·목·어깨만 잡은 동일 구도에서 기계식 장치와 파괴된 장치를 직접 그린 그림이다. 발견/명령/파괴 컷에 적용하고 기존 스프라이트 위의 SVG 장치는 제거했다. 이전 생성 실패·합성 방식에 대한 기록을 대체한다. 프롬프트는 `assets/world/story-v1/mewtwo-control-neck-prompts.json`에 보관했다.
+
+
+## Chapter 10 League — 2026-11-16
+17 new raster backgrounds/cinematic scenes are in `assets/world/league/`, created with built-in image_gen. Exact prompts and generated source paths: `league/prompts.json`. Includes a symmetric 2:1 League map, exterior/lobby, five rooms, Giovanni confrontation/interception/departure, reunion/group conversation, Blue portrait/applause, Hall of Fame and trophy ending. Existing Viridian ruins are used only for the requested initial scene.
+
+- League revision v2: built-in image generation/editing. Solo frontal Giovanni, five-person reunion, empty sunlit ruins, FireRed Red outfit and two-arm ending correction. Runtime uses `assets/world/league/*-v2.png`; prompts and reference paths in `assets/world/league/revisions-v2-prompts.json`. Original versions retained for history.

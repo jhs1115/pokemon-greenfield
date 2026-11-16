@@ -1,0 +1,63 @@
+[
+  {
+    "key": "confrontation",
+    "prompt": "같은 도트 게임 컷신의 구도만 바꿔주세요. 검은 정장의 비주기를 카메라 정면에서 본 모습으로, 카메라 쪽으로 한 주먹을 내미는 역동적인 포즈. 비주기 혼자만 등장하며 오른쪽의 빨간 모자 인물은 완전히 지워주세요. 비주기 팔은 정확히 두 개. 한쪽 주먹은 앞으로, 다른 쪽은 허리 뒤로. 실제 타격이나 부상 없이 포즈만 보여주는 장면입니다. 뒤의 초록 타일 폐허 체육관과 굵은 도트 그림체 유지. 가로 16:9.",
+    "references": [
+      "C:/Users/tprtl/OneDrive/바탕 화면/포켓몬 m짱/pokemon-greenfield/assets/world/league/league-confrontation-v1.png"
+    ],
+    "source": "C:\\Users\\tprtl\\.codex\\generated_images\\01a1931d-51fa-7433-8dd6-d0f79f083bd3\\exec-f371ab66-89df-4573-83a1-3879ccf9e806.png",
+    "file": "league-confrontation-v2.png",
+    "generator": "built-in image_gen"
+  },
+  {
+    "key": "intercept",
+    "prompt": "첫 그림의 왼쪽 아래 뒷모습 인물의 옷만 두 번째 그림의 파이어레드 레드 복장으로 수정해주세요. 빨강/흰 모자, 검은 티셔츠 위 빨간 민소매 조끼, 흰색 큰 깃 없이, 노란 배낭. 중앙의 갈색 머리 그린과 오른쪽 비주기는 그대로 유지. 전체 구도와 도트 스타일, 배경, 자세는 변경하지 마세요.",
+    "references": [
+      "C:/Users/tprtl/OneDrive/바탕 화면/포켓몬 m짱/pokemon-greenfield/assets/world/league/league-intercept-v1.png",
+      "C:/Users/tprtl/OneDrive/바탕 화면/포켓몬 m짱/pokemon-greenfield/assets/trainers/red.source.png"
+    ],
+    "source": "C:\\Users\\tprtl\\.codex\\generated_images\\01a1931d-51fa-7433-8dd6-d0f79f083bd3\\exec-3dc560f4-5d2c-42f1-92fa-db2646a2c924.png",
+    "file": "league-intercept-v2.png",
+    "generator": "built-in image_gen"
+  },
+  {
+    "key": "reunion",
+    "prompt": "Edit the supplied pixel-art scene. Remove exactly three background people completely, reconstructing the ruined building behind them: remove the small blue-haired person immediately LEFT of the blond muscular man, remove the gray-haired purple ninja with red scarf, and remove the bald elderly man in white labcoat at the far right. Keep ONLY FIVE characters total: foreground orange-haired Misty carrying Brock (two people), background blond muscular Lt. Surge, black-haired Erika in kimono, and stern purple-haired Sabrina in red. Preserve their current poses, locations, expressions, architecture and pixel-art look. No added people, no other changes.",
+    "references": [
+      "C:/Users/tprtl/OneDrive/바탕 화면/포켓몬 m짱/pokemon-greenfield/assets/world/league/league-reunion-v2.png"
+    ],
+    "source": "C:\\Users\\tprtl\\.codex\\generated_images\\01a1931d-51fa-7433-8dd6-d0f79f083bd3\\exec-e31081b0-05d1-4175-a360-7a308c8be3ee.png",
+    "file": "league-reunion-v2.png",
+    "generator": "built-in image_gen"
+  },
+  {
+    "key": "applause",
+    "prompt": "첫 번째 그림에서 왼쪽 주인공의 외모와 옷만 두 번째 파이어레드 레드 디자인에 맞춰줘. 빨간색과 흰색 모자, 검은 반팔 안에 빨간 조끼, 연한 청바지. 게임 레드의 차분한 얼굴, 지우풍 얼굴이나 지그재그 뺨 선, 큰 흰 칼라 재킷은 없다. 오른쪽에서 박수 치는 그린과 리그 배경과 굵은 픽셀 스타일은 그대로 유지. 팔은 각자 정확히 두 개만. 가로16:9.",
+    "references": [
+      "C:/Users/tprtl/OneDrive/바탕 화면/포켓몬 m짱/pokemon-greenfield/assets/world/league/league-applause-v1.png",
+      "C:/Users/tprtl/OneDrive/바탕 화면/포켓몬 m짱/pokemon-greenfield/assets/trainers/red.source.png"
+    ],
+    "source": "C:\\Users\\tprtl\\.codex\\generated_images\\01a1931d-51fa-7433-8dd6-d0f79f083bd3\\exec-e57c7b24-2c8e-4b93-9b56-711898ef638a.png",
+    "file": "league-applause-v2.png",
+    "generator": "built-in image_gen"
+  },
+  {
+    "key": "ending",
+    "prompt": "첫 번째 엔딩 그림의 배경, 오박사와 그린, 도트 스타일을 유지하고 중앙 주인공만 두 번째 참고 그림의 파이어레드 주인공 레드 디자인으로 바꿔줘. 빨간색과 흰색 모자, 단순한 검은 반팔 안에 빨간 조끼, 연한 청바지, 게임 레드 특유의 차분하고 자신감 있는 얼굴. 지우 애니메이션 복장이나 뺨의 지그재그 선은 없다. 오른팔 하나로 트로피를 머리 위로 들어 올리고, 왼팔 하나는 허리에 둔다. 양팔이 어깨에서부터 손까지 각각 명확하게 이어져 있고, 주인공에게 팔은 정확히 두 개, 손도 정확히 두 개만 있다. 겹친 팔이나 추가 손을 전부 없애줘. 기쁜 미소. 전체 구도와 주변 두 인물은 유지. 가로16:9.",
+    "references": [
+      "C:/Users/tprtl/OneDrive/바탕 화면/포켓몬 m짱/pokemon-greenfield/assets/world/league/league-ending-v1.png",
+      "C:/Users/tprtl/OneDrive/바탕 화면/포켓몬 m짱/pokemon-greenfield/assets/trainers/red.source.png"
+    ],
+    "source": "C:\\Users\\tprtl\\.codex\\generated_images\\01a1931d-51fa-7433-8dd6-d0f79f083bd3\\exec-5dae25a2-b170-45aa-bedc-f909416ad9c7.png",
+    "file": "league-ending-v2.png",
+    "generator": "built-in image_gen"
+  },
+  {
+    "key": "bright-ruins",
+    "prompt": "가로16:9 포켓몬 GBA 도트 게임의 배경. 무너진 상록시티 체육관 내부. 초록색 타일 바닥과 포켓몬볼 문양, 부서진 기둥과 깨진 창문, 잔해는 그대로 남아 있다. 사건이 끝난 맑은 아침, 창문으로 따뜻하고 밝은 햇살이 들어와 폐허를 비춘다. 안도감이 느껴지는 밝은 색감. 사람과 포켓몬은 전혀 없다. 하단은 넓은 바닥. 굵고 선명한 저해상도 픽셀 아트. 글자 UI 없음.",
+    "references": [],
+    "source": "C:\\Users\\tprtl\\.codex\\generated_images\\01a1931d-51fa-7433-8dd6-d0f79f083bd3\\exec-7015b9a1-872d-461a-9d4c-1815a97041e3.png",
+    "file": "league-bright-ruins-v2.png",
+    "generator": "built-in image_gen"
+  }
+]

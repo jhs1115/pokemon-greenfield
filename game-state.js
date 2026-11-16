@@ -30,6 +30,7 @@
    for(const id of owned){const item=raw.heldItems?.[id];if(ITEMS[item]&&!ITEMS[item].stone&&!ITEMS[item].mint&&!ITEMS[item].ticket)state.heldItems[id]=item;}
    if(state.clears[14]>0&&!state.rocketCleared)state.rocketPending=true;
    for(const id of owned){const allowed=new Set(trainable(state,id)),list=[...new Set((raw.moveSets?.[id]||defaultMoves(id,records[id].level)).filter(m=>allowed.has(m)))].slice(0,4);state.moveSets[id]=list.length?list:defaultMoves(id,records[id].level);}
+   state.champion=raw.champion===true&&state.clears[94]>0;state.hallOfFame=state.champion&&raw.hallOfFame&&Array.isArray(raw.hallOfFame.team)?{registeredAt:typeof raw.hallOfFame.registeredAt==='string'?raw.hallOfFame.registeredAt:'',team:raw.hallOfFame.team.filter(p=>p&&valid(p.id)).slice(0,6).map(p=>({id:p.id,level:Math.max(1,Math.min(100,p.level||1)),nature:natureKey(p.nature),ability:Number(p.ability)||0,item:typeof p.item==='string'?p.item:'',moves:Array.isArray(p.moves)?p.moves.filter(id=>data.moves[id]).slice(0,4):[],shiny:p.shiny===true}))}:null;
    const story=raw.story&&typeof raw.story==='object'?raw.story:{};state.story={version:1,seen:[...new Set((Array.isArray(story.seen)?story.seen:[]).filter(k=>typeof k==='string'&&/^[a-z0-9-]{1,60}$/.test(k)))].slice(-150),cursors:Object.fromEntries(Object.entries(story.cursors&&typeof story.cursors==='object'?story.cursors:{}).filter(([k,v])=>/^[a-z0-9-]{1,60}$/.test(k)&&Number.isInteger(v)&&v>=0&&v<200).slice(0,100)),scoutGiftAvailable:story.scoutGiftAvailable===true};
    if(!state.story.seen.includes('economy-money-v1'))state.story.seen.push('economy-money-v1');
    claimScoutTicket(state);
@@ -54,6 +55,10 @@
   const levelCap=(state,chapter)=>levelCapInfo(state,chapter).cap;
   function overCapTeam(state,chapter,team=state.team){const info=levelCapInfo(state,chapter);return info.unrestricted?[]:team.filter(id=>id&&state.records[id]?.level>info.cap);}
   const isRare=id=>[1,4,7,147].some(base=>info(base).chain===info(id)?.chain);
+  function claimChampionship(state,registeredAt=new Date().toISOString()){
+   if(!state.clears[94]||state.champion)return false;
+   state.champion=true;state.hallOfFame={registeredAt,team:state.team.filter(Boolean).map(id=>({id,level:state.records[id].level,nature:effectiveNature(state.records[id]),ability:ability(state,id),item:state.heldItems[id]||'',moves:[...(state.moveSets[id]||defaultMoves(id,state.records[id].level))],shiny:state.records[id].shiny===true}))};return true;
+  }
   function claimMewtwo(state,random=Math.random){
    const key='mewtwo-rescue-reward';if(!(state.clears[80]>0)||state.story.seen.includes(key))return false;
    if(!state.owned.includes(150)){state.owned.push(150);state.records[150]=freshRecord(150,85,randomNature(random));state.moveSets[150]=defaultMoves(150,85);state.abilitySets[150]=defaultAbility(150);const slot=state.team.indexOf(null);if(slot>=0)state.team[slot]=150;}
@@ -77,7 +82,12 @@
 
   function evolve(state,id,next){const rule=info(id).evolutions.find(e=>e.to===next);if(!state.owned.includes(id)||!rule||rule.level&&state.records[id].level<rule.level)throw new Error('진화 조건을 만족하지 않습니다');if(state.owned.includes(next))throw new Error('이미 보유한 진화형입니다');if(rule.trigger===3){const key=Object.keys(ITEMS).find(k=>ITEMS[k].stone===rule.item);if(!key||!(state.inventory[key]>0))throw new Error('해당 진화의 돌이 필요합니다. 상점이나 모험 보상에서 구할 수 있습니다');state.inventory[key]--;}state.owned[state.owned.indexOf(id)]=next;state.team=state.team.map(v=>v===id?next:v);state.records[next]=state.records[id];if(state.heldItems[id]){state.heldItems[next]=state.heldItems[id];delete state.heldItems[id];}state.abilitySets[next]=defaultAbility(next);delete state.abilitySets[id];state.moveSets[next]=state.moveSets[id];delete state.records[id];delete state.moveSets[id];return next;}
   function gainExperience(state,id,foe,trainer=false,participants=1,share=1,baseMultiplier=1,chapter=scoutChapter(state)){
-   const original=id,record=state.records[id],oldLevel=record.level,cap=Math.min(levelCap(state),levelCap(state,chapter)),requested=Math.max(1,Math.floor(Math.floor(info(foe.id).baseExp*foe.level*(trainer?1.5:1)*baseMultiplier*(chapter>=5?.75:1)/(7*Math.max(1,participants)))*share)),newMoves=[],evolved=[];
+   const original=id,record=state.records[id],oldLevel=record.level,cap=Math.min(levelCap(state),levelCap(state,chapter));
+   const baseAward=Math.floor(info(foe.id).baseExp*foe.level*(trainer?1.5:1)*baseMultiplier*(chapter>=5?.75:1)*(chapter>=7?1.3:1)/(7*Math.max(1,participants)));
+   // Late-game pacing: an active high-level Pokemon levels in roughly 3–4 comparable knockouts.
+   const levelGap=oldLevel<100?threshold(id,oldLevel+1)-threshold(id,oldLevel):0;
+   const paceFloor=chapter>=7&&oldLevel>=70?Math.floor(levelGap/3.5*Math.min(1,foe.level/Math.max(1,oldLevel-15))/Math.max(1,participants)):0;
+   const requested=Math.max(1,Math.floor(Math.max(baseAward,paceFloor)*share)),newMoves=[],evolved=[];
    const amount=Math.min(requested,Math.max(0,threshold(id,Math.max(cap,oldLevel))-record.exp));record.exp+=amount;
    while(record.level<cap&&record.exp>=threshold(id,record.level+1)){
     record.level++;
@@ -87,7 +97,7 @@
    }
    return {oldId:original,id,amount,cap,capped:record.level>=cap,oldLevel,level:record.level,newMoves:[...new Set(newMoves)],evolved};
   }
-  return {claimMewtwo,overCapTeam,levelCapInfo,levelCap,itemPrice,claimScoutTicket,villageUnlocked,scoutChapter,reorderTeam,rewardCoins,battleStats,effectiveNature,randomNature,natures:NATURES,buyItem,sellItem,scoutCost,useItem,rewardRocket,claimItemUnlock,equipItem,experienceShares,scoutLevel,isRare,abilityOptions,defaultAbility,ability,setAbility,completeTutorial,normalize,defaultMoves,learnable,trainable,isFinal,threshold,freshRecord,levelMoves,chooseStarter,scoutPool,scout,recruit,setTeam,setMove,removeMove,unlocked,reward,evolve,gainExperience};
+  return {claimChampionship,claimMewtwo,overCapTeam,levelCapInfo,levelCap,itemPrice,claimScoutTicket,villageUnlocked,scoutChapter,reorderTeam,rewardCoins,battleStats,effectiveNature,randomNature,natures:NATURES,buyItem,sellItem,scoutCost,useItem,rewardRocket,claimItemUnlock,equipItem,experienceShares,scoutLevel,isRare,abilityOptions,defaultAbility,ability,setAbility,completeTutorial,normalize,defaultMoves,learnable,trainable,isFinal,threshold,freshRecord,levelMoves,chooseStarter,scoutPool,scout,recruit,setTeam,setMove,removeMove,unlocked,reward,evolve,gainExperience};
  }
  root.createGameModel=createGameModel;if(typeof module!=='undefined')module.exports=createGameModel;
 })(typeof window!=='undefined'?window:globalThis);

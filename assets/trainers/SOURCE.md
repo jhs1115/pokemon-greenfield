@@ -30,3 +30,9 @@ Additional shop item icons (2026-11-06): original PokéAPI sprites for black-bel
 - Chapter 7 unnamed executive: existing Petrel trainer sprite downloaded 2026-11-15 from https://play.pokemonshowdown.com/sprites/trainers/petrel.png , saved as rocket-executive-seven.png. Distinct from chapter 6; used for dialogue and Poké Ball entrance.
 
 - Giovanni: existing trainer sprite downloaded from https://play.pokemonshowdown.com/sprites/trainers/giovanni.png on 2026-11-15, saved as giovanni.png. Dialogue and Poké Ball entrance share this asset.
+
+
+## League trainers — 2026-11-16
+Downloaded original FireRed trainer sprites from `https://raw.githubusercontent.com/pret/pokefirered/master/graphics/trainers/front_pics/`: `elite_four_lorelei_front_pic.png`, `elite_four_bruno_front_pic.png`, `elite_four_agatha_front_pic.png`, `elite_four_lance_front_pic.png`, `champion_rival_front_pic.png`. Saved as lorelei/bruno/agatha/lance/blue, with original `.source.png` copies. Palette index zero is transparent for compositing; pixels and palette are preserved.
+
+- `red.source.png`: FireRed Red front sprite reference, https://raw.githubusercontent.com/pret/pokefirered/master/graphics/trainers/front_pics/red_front_pic.png (illustration costume reference only).

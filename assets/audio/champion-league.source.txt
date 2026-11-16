@@ -1,0 +1,5 @@
+2026-11-16 original instrumental composition for this project.
+Champion: "최정상 — 그린의 도전", 136 BPM, 32 bars.
+Ending: "새로운 시작", 100 BPM, 16 bars.
+Offline sine/harmonic synthesis; no downloaded samples, copied melody or external services.
+Reproducible source: scripts/compose-league.py
