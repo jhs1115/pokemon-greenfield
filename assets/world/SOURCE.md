@@ -79,3 +79,5 @@ Final rescue closeups: `story-v1/control-device-release-v1.png` and `story-v1/me
 17 new raster backgrounds/cinematic scenes are in `assets/world/league/`, created with built-in image_gen. Exact prompts and generated source paths: `league/prompts.json`. Includes a symmetric 2:1 League map, exterior/lobby, five rooms, Giovanni confrontation/interception/departure, reunion/group conversation, Blue portrait/applause, Hall of Fame and trophy ending. Existing Viridian ruins are used only for the requested initial scene.
 
 - League revision v2: built-in image generation/editing. Solo frontal Giovanni, five-person reunion, empty sunlit ruins, FireRed Red outfit and two-arm ending correction. Runtime uses `assets/world/league/*-v2.png`; prompts and reference paths in `assets/world/league/revisions-v2-prompts.json`. Original versions retained for history.
+
+- `league/league-confrontation-v3.png`: built-in image_gen edit of v2. Extreme close-up of only Giovanni fist and black suit sleeve, ruined gym retained. Prompt in `league/giovanni-fist-v3-prompt.json`.

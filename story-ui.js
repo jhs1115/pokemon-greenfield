@@ -30,7 +30,7 @@ const backgroundAssets=Object.freeze({
   "league-ghost": "assets/world/league/league-ghost-v1.png",
   "league-dragon": "assets/world/league/league-dragon-v1.png",
   "league-champion": "assets/world/league/league-champion-v1.png",
-  "league-confrontation": "assets/world/league/league-confrontation-v2.png",
+  "league-confrontation": "assets/world/league/league-confrontation-v3.png",
   "league-intercept": "assets/world/league/league-intercept-v2.png",
   "league-arrest": "assets/world/league/league-arrest-v1.png",
   "league-reunion": "assets/world/league/league-reunion-v2.png",

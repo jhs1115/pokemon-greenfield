@@ -3337,6 +3337,7 @@
           "text": "누군가 비주기의 팔을 붙잡았다.",
           "scenePokemon": null,
           "backdrop": "league-intercept",
+          "music": "battle:champion",
           "actor": null
         },
         {
@@ -3632,7 +3633,8 @@
           "speaker": "lorelei",
           "text": "좋아~ 드디어 왔네~",
           "scenePokemon": null,
-          "backdrop": "league-ice"
+          "backdrop": "league-ice",
+          "music": "battle:league"
         },
         {
           "speaker": "lorelei",
@@ -4046,6 +4048,7 @@
           "text": "그린을 따라가자, 명예의 전당이 보인다.",
           "scenePokemon": null,
           "backdrop": "league-hall-of-fame",
+          "music": "ending",
           "actor": null
         },
         {
@@ -4114,7 +4117,7 @@
           "shot": "ending"
         }
       ],
-      "music": "ending"
+      "music": "battle:champion"
     },
     "league-retry-90": {
       "title": "마지막 배지를 향해",

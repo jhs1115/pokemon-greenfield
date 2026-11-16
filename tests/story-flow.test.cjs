@@ -164,3 +164,8 @@ console.log('Reunion conversation: all five leaders and Blue show their real por
 for(const scene of Object.values(book.scenes))for(const line of scene.lines||[]){const name=labels.w.StoryUI.speakerName(line);if(line.speaker==='narrator'&&!line.speakerName)assert.equal(name,'');else {assert(name&&name!=='???');if(line.speaker==='player')assert.equal(name,'나');if(book.cast[line.speaker]&&(!line.speakerName||line.speakerName==='???'))assert.equal(name,book.cast[line.speaker].name);}}
 assert.equal(labels.w.StoryUI.speakerName({speaker:'narrator',speakerName:'주민'}),'주민');
 console.log('Every story line: actual character names even for anonymous/portrait-free shots, protagonist label, named residents and plain narration: passed.');
+
+const musicStory=fixture({starter:4,owned:[6],team:[6],tutorial:{done:true},clears:Array(95).fill(0)});let activeMusic='';musicStory.w.GameAudio={scene:n=>activeMusic=n};musicStory.c.chapters[90]=require('../late-stages').STORY_STAGES[90];musicStory.w.StoryUI.beforeStage(90,()=>{});let greenArrived=false;
+for(const line of book.scenes['before-90'].lines){if(line.backdrop==='league-intercept')greenArrived=true;if(greenArrived)assert.equal(activeMusic,line.speaker==='lorelei'?'battle:league':'battle:champion');musicStory.el('#story-next').onclick();}
+musicStory.c.game.clears[94]=1;musicStory.w.StoryUI.afterBattle(94,()=>{});let inHall=false;for(const line of book.scenes['after-94'].lines){if(line.backdrop==='league-hall-of-fame')inHall=true;assert.equal(activeMusic,inHall?'ending':'battle:champion');musicStory.el('#story-next').onclick();}
+console.log('Green story music: actual champion theme begins at first arrival and continues through dialogue; Lorelei and Hall of Fame switch to their own tracks: passed.');

@@ -1,0 +1,7 @@
+{
+  "generator": "built-in image_gen",
+  "prompt": "Edit this pixel-art game cutscene into an extreme close-up insert shot: ONLY one clenched fist and its black suit sleeve, with a narrow white shirt cuff, thrust toward the camera. The fist is large and centered slightly to the right; the black sleeve enters diagonally from the left frame edge. No head, face, hair, torso, legs, other hand, or other characters anywhere. Keep the same coarse pixel-art style and muted ruined green-tiled gym background with restrained motion lines, but show the background only around the fist and sleeve. It is a dramatic action pose with no contact or injury. Landscape 16:9 full-bleed illustration, no text, no border, no black letterbox.",
+  "source": "C:\\Users\\tprtl\\.codex\\generated_images\\01a1931d-51fa-7433-8dd6-d0f79f083bd3\\exec-412ee3b2-6d04-4384-9831-593f3c203659.png",
+  "reference": "league-confrontation-v2.png",
+  "output": "league-confrontation-v3.png"
+}
